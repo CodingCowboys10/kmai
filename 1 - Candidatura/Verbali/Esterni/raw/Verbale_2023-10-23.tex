@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[italian]{babel}
-\usepackage[headheight=33pt, footskip=50pt]{geometry}
+\usepackage[headheight=30pt, textheight=590pt, footskip=50pt, includeheadfoot]{geometry}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{anyfontsize}
@@ -47,11 +47,9 @@
             \node [circle,xshift=-3cm,draw,colorline,fill=white] (circle) at (current page.center)  {\includegraphics[width=6cm]{logoenome.png}};
             \node [xshift=4.7cm,yshift=24cm,draw,color3,text=black] (uni) at (current page.south){\fontsize{32pt}{36pt}\selectfont Università di Padova};
             \node [draw,color3,text=black, below=of uni] (corso1) {\fontsize{28pt}{32pt}\selectfont Corso di Ingegneria};
-            \node [yshift=0.75cm,draw,color3,text=black, below=of corso1] (corso2) {\fontsize{28pt}{32pt}\selectfont del Sofware};
+            \node [yshift=0.75cm,draw,color3,text=black, below=of corso1] (corso2) {\fontsize{28pt}{32pt}\selectfont del Software};
             \node [xshift=3.5cm,yshift=7cm,draw,color3,text=black] (riunione) at (current page.south){\fontsize{40pt}{48pt}\selectfont Verbale esterno};
             \node [draw,color3,text=black, below=of riunione] (date) {\fontsize{28pt}{32pt}\selectfont 23 ottobre 2023};
-            \node [draw,color3,text=black, below=of date, xshift=3cm] (resp) {\fontsize{20pt}{24pt}\selectfont Responsabile: Anna Nordio};
-            
         \end{tikzpicture}
     \end{titlepage}
 
