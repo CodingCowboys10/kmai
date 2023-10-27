@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+\usepackage[italian]{babel}
+\usepackage[margin=80pt,headheight=50pt,includeheadfoot]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{anyfontsize}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{subfig}
+\usepackage{colortbl}
+\usepackage{pifont}
+
+\usetikzlibrary{positioning, calc}
+
+\pagestyle{fancy}
+
+\definecolor{primarycolor}{HTML}{008ba4}
+\definecolor{secondarycolor}{HTML}{b2dce3}
+\definecolor{color3}{HTML}{ffffff}
+\definecolor{colorline}{HTML}{006172}
+\definecolor{oddrow}{HTML}{b2dce3}
+\definecolor{evenrow}{HTML}{7fc5d1}
+\definecolor{headerrow}{HTML}{006f83}
+\definecolor{cmarkcolor}{HTML}{00a46b}
+\definecolor{xmarkcolor}{HTML}{a41900}
+
+\begin{document}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=0.1\textwidth]{logo.png}}
+\fancyhead[C]{Verbale riunione}
+\fancyhead[R]{Coding Cowboys}
+\fancyfoot[L]{19 ottobre 2023}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{codingcowboys.swe@gmail.com}
+
+\begin{titlepage}
+        \thispagestyle{empty}
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[fill=color3] (current page.north west) rectangle (current page.south east);
+            \draw[fill=primarycolor, primarycolor] (current page.north west) -- (current page.north) -- (1, -28.7) -- (current page.south west);
+            \node [draw,fill=secondarycolor,secondarycolor,text=black,minimum width=\paperwidth,minimum height=5.5cm] (rect) at (current page.center) {};
+            \node [circle,xshift=-3cm,draw,colorline,fill=white] (circle) at (current page.center)  {\includegraphics[width=6cm]{logoenome2.png}};
+            \node [xshift=4.7cm,yshift=24cm,draw,color3,text=black] (uni) at (current page.south){\fontsize{32pt}{36pt}\selectfont Università di Padova};
+            \node [draw,color3,text=black, below=of uni] (corso1) {\fontsize{28pt}{32pt}\selectfont Corso di Ingegneria};
+            \node [yshift=0.75cm,draw,color3,text=black, below=of corso1] (corso2) {\fontsize{28pt}{32pt}\selectfont del Sofware};
+            \node [xshift=3.5cm,yshift=7cm,draw,color3,text=black] (riunione) at (current page.south){\fontsize{40pt}{48pt}\selectfont Verbale Riunione};
+            \node [draw,color3,text=black, below=of riunione] (date) {\fontsize{28pt}{32pt}\selectfont 19 ottobre 2023};
+        \end{tikzpicture}
+    \end{titlepage}
+
+\section{Informazioni della riunione} \label{sec:info}
+La riunione è stata svolta in presenza dalle ore 14:30 alle ore 17:00
+
+\subsection{Lista partecipanti} \label{subsec:partecipanti}
+\begingroup
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \rowcolors{2}{oddrow}{evenrow}
+    \begin{tabular}{| l | l | c |}
+        \hline
+        \rowcolor{headerrow}\textbf{\textcolor{white}{Partecipante}} & \textbf{\textcolor{white}{Ruolo}} & \textbf{\textcolor{white}{Presenza}} \\
+        \hline
+        Andrea Cecchin & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Marco Dolzan & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Ferraioli & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Giacomuzzo & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Leonardo Lago & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Giovanni Menon & Amministratore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Anna Nordio & Responsabile & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+    \end{tabular}
+\endgroup
+\label{tab:partecipanti}
+%\newpage
+
+\section{Ordine del giorno} \label{sec:agenda}
+\subsection{Discussioni} \label{subsec:discussione}
+\begin{enumerate}
+    \item Concordare i canali di comunicazione informali
+    \item Scelta del nome e logo del gruppo
+    \item Creazione dell'indirizzo di posta elettronica del gruppo
+    \item Divisione dei ruoli per le seguenti 2 settimane
+    \item Discussione sulle preferenze dei capitolati proposti 
+\end{enumerate}
+
+\subsection{Votazioni} \label{subsec:votazione}
+\begin{enumerate}
+    \item Finalizzare la scelta del nome del gruppo
+    \item Finalizzare la scelta del logo del gruppo
+\end{enumerate}
+%\newpage
+\section{Resoconto} \label{sec:resoconto}
+\subsection{Discussioni} \label{subsec:resdiscussione}
+\begin{enumerate}
+    \item Si sono stabili come canali di comunicazione informali, chat di gruppo su Telegram, sever Discord e Notion workspace
+    \item Si sono raccolte le varie proposte scaturite nei canali di comunicazione informali sovracitati sia per il nome che per il logo
+    \item Si è creato l'indirizzo di posta elettronica codingcowboys.swe@gmail.com. 
+    \item Si sono stabiliti i ruoli ricoperti da ciascun componente del gruppo che hanno validità immediata fino all'aggiudicazione di un capitolato. Si veda la tabella nella sottosezione \ref{tab:partecipanti}
+    \item Si sono raccolte le opinioni di ciascun membro del gruppo tenendo in considerazione le diverse discussioni avvenute nei canali di comunicazione informali sovracitati. Si è quindi creato un foglio elettronico in cui ognuno ha espresso una valutazione da 1 a 9 mutualmente esclusiva (link al foglio elettronico: \url{https://docs.google.com/spreadsheets/d/1s50pfQHOXVb5-U64ijQavQbHquG-dzEn2njDACqJriE/edit?usp=sharing}). La media dei voti per ciascun capitolato ha così generato una classifica delle preferenza che vede come prime 3 scelte rispettivamente i capitolati numero 1, 9 e 3. Per ognuno di essi si è quindi stilata una lista di domande da porre al proponente riguardo argomenti poco chiari presenti nei capitolati (link alla lista delle domande raccolte: \url{https://docs.google.com/document/d/1b3XOG-xtldQIatobF35Gn50k5Un1x1iHAcsYn0fE4HY/edit?usp=sharing}). Si è quindi incaricato Giovanni Menon di programmare l'invio di una e-mail ai proponenti dei capitoli ai quali il gruppo è interessato, con la richiesta di un colloquio per il chiarimento dei sopracitati dubbi sorti.
+    
+\end{enumerate}
+
+\subsection{Votazioni} \label{subsec:resvotazione}
+\begin{enumerate}
+    \item Esito votazione del nome del gruppo: \\\\
+        \begingroup
+            \setlength{\tabcolsep}{10pt}
+            \renewcommand{\arraystretch}{1.5}
+            \rowcolors{2}{oddrow}{evenrow}
+            \begin{tabularx}{0.93\textwidth}{| l | l | X |}
+                 \hline
+                 \rowcolor{headerrow}\textbf{\textcolor{white}{Proposta}} & \textbf{\textcolor{white}{Sommario}} & \textbf{\textcolor{white}{Mittente}} \\
+                 \hline
+                 Coding Cowboys & 100\%  & Andrea Cecchin, Marco Dolzan, Francesco Ferraioli, Francesco Giacomuzzo, Leonardo Lago, Giovanni Menon, Anna Nordio \\
+                 \hline
+                 HeSWEnberg & 0\% & \\
+                 \hline
+                 Astenuti & 0\% & \\
+                 \hline
+            \end{tabularx}
+        \endgroup
+    \item Esito votazione logo del gruppo: \\\\
+        \begingroup
+            \setlength{\tabcolsep}{10pt}
+            \renewcommand{\arraystretch}{1.5}
+            \rowcolors{2}{oddrow}{evenrow}
+            \begin{tabularx}{0.93\textwidth}{| l | l | X |}
+                 \hline
+                 \rowcolor{headerrow}\textbf{\textcolor{white}{Proposta}} & \textbf{\textcolor{white}{Sommario}} & \textbf{\textcolor{white}{Mittente}} \\
+                 \hline
+                 Figura \ref{fig:logo1} & 100\%  & Andrea Cecchin, Marco Dolzan, Francesco Ferraioli, Francesco Giacomuzzo, Leonardo Lago, Giovanni Menon, Anna Nordio \\
+                 \hline
+                 Figura \ref{fig:logo2} & 0\% & \\
+                 \hline
+                 Astenuti & 0\% & \\
+                 \hline
+            \end{tabularx}
+        \endgroup
+        \begin{figure}
+            \centering
+            \subfloat[][\label{fig:logo1}]{
+            \includegraphics[width=0.4\textwidth]{logoenome.png}} \quad
+            \subfloat[][\label{fig:logo2}]{
+            \includegraphics[width=0.3\textwidth]{logobrutto.png}} \quad
+            \caption{Loghi proposti}
+            \label{fig:loghi}
+        \end{figure}
+\end{enumerate}
+
+\subsection{Prossima riunione} \label{subsec:riunione}
+Ogni partecipante ha dato la propria disponibilità a partecipare ad almeno una riunione settimanale che si terrà alle ore 14:30 e avrà durata variabile.  La prossima riunione è quindi fissata per il giorno 26 ottobre 2023 alle ore 14:30. 
+
+%\newpage
+\section{Storia del documento} \label{sec:storia}
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{tabularx}{\textwidth}{| l | l | X | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Versione}} & \textbf{\textcolor{white}{Data}} & \textbf{\textcolor{white}{Autori}} & \textbf{\textcolor{white}{Descrizione}} \\
+    \hline
+    0.1 & 2023/10/18 & Andrea Cecchin, Leonardo Lago  & Creazione del template documento. Compilate sezioni \ref{sec:info} e \ref{sec:agenda}\\
+    \hline
+    1.0 & 2023/10/19 & Andrea Cecchin, Leonardo Lago &  Aggiornata tabella nella sottosezione \ref{subsec:partecipanti}. Compilate la sezioni \ref{sec:resoconto}\\
+    \hline
+    1.1 & 2023/10/21 & Andrea Cecchin, Leonardo Lago & Modificato lo stile delle tabelle e della prima pagina\\
+    \hline
+    1.2 & 2023/10/21 & Francesco Ferraioli & Correzione errori ortografici\\
+    \hline
+    1.3 & 2023/10/21 & Marco Dolzan, Francesco Ferraioli, Francesco Giacomuzzo & Revisione documento\\
+    \hline
+\end{tabularx}
+\endgroup
+\end{document}
