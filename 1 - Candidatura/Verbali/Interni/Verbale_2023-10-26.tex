@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+\usepackage[italian]{babel}
+\usepackage[headheight=30pt, textheight=590pt, footskip=50pt, includeheadfoot]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{anyfontsize}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{subfig}
+\usepackage{colortbl}
+\usepackage{pifont}
+
+\usetikzlibrary{positioning, calc}
+
+\pagestyle{fancy}
+
+\definecolor{primarycolor}{HTML}{008ba4}
+\definecolor{secondarycolor}{HTML}{b2dce3}
+\definecolor{color3}{HTML}{ffffff}
+\definecolor{colorline}{HTML}{006172}
+\definecolor{oddrow}{HTML}{b2dce3}
+\definecolor{evenrow}{HTML}{7fc5d1}
+\definecolor{headerrow}{HTML}{006f83}
+\definecolor{cmarkcolor}{HTML}{00a46b}
+\definecolor{xmarkcolor}{HTML}{a41900}
+
+\begin{document}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=0.1\textwidth]{logo.png}}
+\fancyhead[C]{Verbale riunione}
+\fancyhead[R]{Coding Cowboys}
+\fancyfoot[L]{26 ottobre 2023}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{codingcowboys.swe@gmail.com}
+
+\begin{titlepage}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[fill=color3] (current page.north west) rectangle (current page.south east);
+        \draw[fill=primarycolor, primarycolor] (current page.north west) -- (current page.north) -- (1, -28.7) -- (current page.south west);
+        \node [draw,fill=secondarycolor,secondarycolor,text=black,minimum width=\paperwidth,minimum height=5.5cm] (rect) at (current page.center) {};
+        \node [circle,xshift=-3cm,draw,colorline,fill=white] (circle) at (current page.center)  {\includegraphics[width=6cm]{logoenome.png}};
+        \node [xshift=4.7cm,yshift=24cm,draw,color3,text=black] (uni) at (current page.south){\fontsize{32pt}{36pt}\selectfont Università di Padova};
+        \node [draw,color3,text=black, below=of uni] (corso1) {\fontsize{28pt}{32pt}\selectfont Corso di Ingegneria};
+        \node [yshift=0.75cm,draw,color3,text=black, below=of corso1] (corso2) {\fontsize{28pt}{32pt}\selectfont del Software};
+        \node [xshift=3.5cm,yshift=7cm,draw,color3,text=black] (riunione) at (current page.south){\fontsize{40pt}{48pt}\selectfont Verbale Riunione};
+        \node [draw,color3,text=black, below=of riunione] (date) {\fontsize{28pt}{32pt}\selectfont 26 ottobre 2023};
+    \end{tikzpicture}
+\end{titlepage}
+    
+\section{Informazioni della riunione} \label{sec:info}
+La riunione è stata svolta in presenza, con l'eccezione di un membro* presente via piattaforma Discord, dalle ore 14:20 alle ore 16:45.
+
+\subsection{Lista partecipanti} \label{subsec:partecipanti}
+\begingroup
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \rowcolors{2}{oddrow}{evenrow}
+    \begin{tabular}{| l | l | c |}
+        \hline
+        \rowcolor{headerrow}\textbf{\textcolor{white}{Partecipante}} & \textbf{\textcolor{white}{Ruolo}} & \textbf{\textcolor{white}{Presenza}} \\
+        \hline
+        Andrea Cecchin & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Marco Dolzan & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Ferraioli & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Giacomuzzo & Verificatore & \textcolor{cmarkcolor}{\ding{51}}*\\
+        \hline
+        Leonardo Lago & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Giovanni Menon & Amministratore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Anna Nordio & Responsabile & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+    \end{tabular}
+\endgroup
+
+\section{Ordine del giorno} \label{sec:agenda}
+\subsection{Discussioni} \label{subsec:discussione}
+\begin{enumerate}
+    \item Modifica dei ruoli;
+    \item Gestione del repository su GitHub;
+    \item Gestione della modifica di documenti; 
+    \item Prima stesura della valutazione capitolati;
+    \item Stesura della bozza del preventivo costi e assunzione impegni;
+    \item Stesura della bozza del prossimo diario di bordo;
+    \item Varie ed eventuali.
+\end{enumerate}
+
+\subsection{Votazioni} \label{subsec:votazione}
+\begin{enumerate}
+    \item Scelta del template per il diario di bordo.
+\end{enumerate}
+%\newpage
+\section{Resoconto} \label{sec:resoconto}
+\subsection{Discussioni} \label{subsec:resdiscussione}
+\begin{enumerate}
+    \item Vengono confermati i ruoli già assegnati una settimana fa, con l'eccezione di Francesco Ferraioli. Quest'ultimo diverrà redattore, in risposta alla necessità di maggiori figure in tale ruolo. I ruoli sono assegnati fino al 31 ottobre, termine ultimo per la consegna della lettera di presentazione.
+    \item Viene formalizzata la decisione di associare issue GitHub per la gestione delle operazioni di redazione, verifica e caricamento della documentazione. Tali issue saranno assegnate ai membri dall'amministratore, per migliorare l'attuale way of working relativo alla gestione della parte di documentazione del progetto.
+    \item Viene formalizzata l'introduzione della firma del responsabile del gruppo, da apporre in fondo al documento nel momento dell'accettazione finale. In particolare, viene introdotta nel changelog una riga che identifica lo stato del documento, ovvero l'approvazione di tale.\\
+    Viene deciso formalmente che, per facilitare la lettura del changelog e ottenere una rapida visione dello stato del documento, le modifiche di quest'ultimo saranno ordinate dall'ultima versione alla prima, a differenza di quanto visto con il primo verbale interno.
+    \item Viene iniziata la stesura del documento per la valutazione dei capitolati, parte della documentazione da presentare al momento della presentazione per la candidatura ad un capitolato, entro martedì 31 ottobre 2023. Particolare attenzione viene rivolta per i capitolati 1, 3 e 9, ovvero quelli maggiormente apprezzati dai componenti del gruppo. Un aggiornamento di tale documento è previsto successivamente all'incontro con l'azienda proponente del capitolato 3, "Easy Meal" di Imola Informatica.
+    \item Viene cominciata la stesura del documento relativo al preventivo dei costi e all'assunzione di responsabilità. Tale documento è parte della documentazione da presentare al momento della presentazione per la candidatura ad un capitolato, entro martedì 31 ottobre 2023.
+    \item Viene cominciata una prima stesura del contenuto del diario di bordo, da presentare a lezione il 30 ottobre 2023.
+    
+\end{enumerate}
+
+\subsection{Votazioni} \label{subsec:resvotazione}
+\begin{enumerate}
+    \item Viene deciso il template del diario di bordo, a seguito di una votazione tra i mebri del gruppo con tre diverse proposte.
+\end{enumerate}
+
+\subsection{Prossima riunione} \label{subsec:riunione}
+Viene fissata una riunione sabato 28 ottobre.
+
+\section{Storia del documento} \label{sec:storia}
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{tabularx}{\textwidth}{| l | l | X | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Versione}} & \textbf{\textcolor{white}{Data}} & \textbf{\textcolor{white}{Autori}} & \textbf{\textcolor{white}{Descrizione}} \\
+     \hline
+    0.4 & 2023/10/27 & Francesco Giacomuzzo & Aggiornata sezione \ref{subsec:resdiscussione}\\
+    \hline
+    0.3 & 2023/10/26 & Andrea Cecchin, Francesco Ferraioli, Leonardo Lago & Redazione sezione \ref{sec:resoconto}\\
+    \hline
+    0.2 & 2023/10/25 & Anna Nordio & Aggiornamento sezione \ref{sec:agenda}\\
+    \hline
+    0.1 & 2023/10/25 & Andrea Cecchin, Leonardo Lago & Redazione sezioni \ref{sec:info} e \ref{sec:agenda}\\
+    \hline
+\end{tabularx}
+\endgroup
+\end{document}
