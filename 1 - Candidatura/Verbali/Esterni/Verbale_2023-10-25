@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage[italian]{babel}
+\usepackage[headheight=33pt, footskip=50pt]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{anyfontsize}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{subfig}
+\usepackage{colortbl}
+\usepackage{pifont}
+
+\usetikzlibrary{positioning, calc}
+
+\pagestyle{fancy}
+
+\definecolor{primarycolor}{HTML}{008ba4}
+\definecolor{secondarycolor}{HTML}{b2dce3}
+\definecolor{color3}{HTML}{ffffff}
+\definecolor{colorline}{HTML}{006172}
+\definecolor{oddrow}{HTML}{b2dce3}
+\definecolor{evenrow}{HTML}{7fc5d1}
+\definecolor{headerrow}{HTML}{006f83}
+\definecolor{cmarkcolor}{HTML}{00a46b}
+\definecolor{xmarkcolor}{HTML}{a41900}
+
+\begin{document}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=0.1\textwidth]{logo.png}}
+\fancyhead[C]{Verbale esterno}
+\fancyhead[R]{Coding Cowboys}
+\fancyfoot[L]{25 ottobre 2023}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{codingcowboys.swe@gmail.com}
+
+\begin{titlepage}
+        \thispagestyle{empty}
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[fill=color3] (current page.north west) rectangle (current page.south east);
+            \draw[fill=primarycolor, primarycolor] (current page.north west) -- (current page.north) -- (1, -28.7) -- (current page.south west);
+            \node [draw,fill=secondarycolor,secondarycolor,text=black,minimum width=\paperwidth,minimum height=5.5cm] (rect) at (current page.center) {};
+            \node [circle,xshift=-3cm,draw,colorline,fill=white] (circle) at (current page.center)  {\includegraphics[width=6cm]{logoenome2.png}};
+            \node [xshift=4.7cm,yshift=24cm,draw,color3,text=black] (uni) at (current page.south){\fontsize{32pt}{36pt}\selectfont Università di Padova};
+            \node [draw,color3,text=black, below=of uni] (corso1) {\fontsize{28pt}{32pt}\selectfont Corso di Ingegneria};
+            \node [yshift=0.75cm,draw,color3,text=black, below=of corso1] (corso2) {\fontsize{28pt}{32pt}\selectfont del Sofware};
+            \node [xshift=3.5cm,yshift=7cm,draw,color3,text=black] (riunione) at (current page.south){\fontsize{40pt}{48pt}\selectfont Verbale esterno};
+            \node [draw,color3,text=black, below=of riunione] (date) {\fontsize{28pt}{32pt}\selectfont 25 ottobre 2023};
+        \end{tikzpicture}
+    \end{titlepage}
+
+\section{Informazioni della riunione} \label{sec:info}
+La riunione è stata svolta da remoto, tramite la piattaforma Google Meet, dalle ore 14:30 alle ore 14:55, in presenza di Giuseppe Caliendo e Carlo Davanzo, rappresentanti dell'azienda AzzurroDigitale.
+
+\subsection{Lista partecipanti} \label{subsec:partecipanti}
+\begingroup
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \rowcolors{2}{oddrow}{evenrow}
+    \begin{tabular}{| l | l | c |}
+        \hline
+        \rowcolor{headerrow}\textbf{\textcolor{white}{Partecipante}} & \textbf{\textcolor{white}{Ruolo}} & \textbf{\textcolor{white}{Presenza}} \\
+        \hline
+        Andrea Cecchin & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Marco Dolzan & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Ferraioli & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Giacomuzzo & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Leonardo Lago & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Giovanni Menon & Amministratore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Anna Nordio & Responsabile & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+    \end{tabular}
+    \endgroup
+\label{tab:partecipanti}
+\\ \\In rappresentanza di AzzurroDigitale :\\ \\
+\begingroup
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \rowcolors{2}{oddrow}{evenrow}
+    \begin{tabular}{|l|}
+        \hline
+        \rowcolor{headerrow}\textbf{\textcolor{white}{Partecipante}} \\
+        \hline
+        Giuseppe Caliendo\\
+        \hline
+        Carlo Davanzo\\
+        \hline
+    \end{tabular}
+\endgroup
+%\newpage
+
+\section{Ordine del giorno} \label{sec:agenda}
+\subsection{Discussioni} \label{subsec:discussione}
+Discussione di dubbi riguardanti il capitolato proposto dall'azienda, "Knowledge management AI", tramite il format domanda-risposta.
+
+
+%\newpage
+\section{Resoconto} \label{sec:resoconto}
+\subsection{Discussioni} \label{subsec:resdiscussione}
+Nel corso dell'incontro, sono state poste le seguenti domande:
+\begin{enumerate}
+    \item Quali tecnologie e framework l’azienda consiglia e perché? Quali tecnologie/supporti ci vengono eventualmente forniti dall’azienda?\\ \\
+Tutte le tecnologie citate nel documento di presentazione del capitolato, come il framework Angular o il database ChromaDB, sono da considerarsi puramente consigliate e sono tali in quanto già adottate all'interno dell'azienda AzzurroDigitale. Questo comporta che, in caso di utilizzo di tecnologie consigliate dall'azienda, quest'ultima è pienamente disponibile a fornire supporto per l'utilizzo e l'apprendimento delle tali. Non è comunque vietato scegliere tecnologie e framework deviando dalle proposte date.
+    \item I contenuti per la fase di training del modello sono dati da voi? A quanto ammonta la mole di documentazione su cui il modello deve essere in grado di rispondere? Qual è il livello di precisione della risposta voluto? \\ \\
+Tutti i documenti utili alla fase di training e test del modello sono forniti da AzzurroDigitale qualora richiesti. Sarà altresì possibile utilizzare documentazioni auto prodotte.\\
+La mole di documentazione che il modello deve essere in grado di gestire non è definita a priori: una volta ottenuto il modello, lo si potrà sollecitare con grado incrementale per vedere fin dove può arrivare.\\
+Discorso simile vale per quanto riguarda il grado di precisione che il modello deve essere in grado di fornire: l'obiettivo di questo progetto è proprio quello di scoprire le potenzialità di queste tecnologie, osservando quanto precise possono essere le risposte che il modello è in grado di fornire.
+    \item Solo determinati utenti hanno i permessi di caricare file per il training del modello? Bisogna distinguere diversi tipi di utenti con diversi permessi? Per ogni utente si ha un modello diverso? Ad esempio, un operaio e una segretaria possono accedere alla stessa quantità di documenti, o solo a una parte in base alla loro mansione?\\ \\
+Il prodotto finale dovrà essere una piattaforma web nella quale si distinguono due parti: una, alla quale può accedere solo l'admin per effettuare l'upload dei documenti, e una dove l'utente finale può porre una domanda tramite un chatbot, stile ChatGPT. Non è dunque richiesta alcuna distinzione di privilegi tra utenti finali, nè alcun sistema di login.
+    \item Le domande fatte dall’utente sono permesse solamente sui dati forniti dall’azienda? Addestriamo un modello o creiamo un modello da zero?\\ \\
+È decisamente auspicabile, dato lo use case da cui parte il progetto, che il modello fornisca risposte che contengono solo le informazioni delle documentazioni con le quali è stato addestrato. 
+    \item Come gestire i grafici contenuti nella documentazione inserita, quindi in che modo estrarre e utilizzare i dati contenuti nelle immagini?\\ \\
+La gestione delle immagini presenti nei documenti non è un requisito obbligatorio: un modello in grado di fornire risposte contenenti informazioni relative alle didascalie delle immagini e dei grafici è considerato un "nice-to-have".
+    \item Abbiamo pensato che poter accedere al chatbot tramite richieste vocali possa essere una implementazione interessante per questo progetto. Avete dei consigli a riguardo? \\ \\
+Fare domande tramite input vocali, o ricevere le risposte con output sonori, sono senz'altro ottime implementazioni apprezzabili che migliorano l'accessibilità, ma che si delineano come "nice-to-have" aggiuntivi ai requisiti richiesti.
+    \item  La tipologia di file che verranno caricati sono solamente testuali, oppure possono essere anche file audio e video (es. tutorial su come svolgere una determinata azione)? \\ \\
+La proposta di inserire file multimediali, con relativa conversione a testo mediante trascrizione, è una proposta molto interessante. L'obiettivo dato da questo progetto rimane quello di poter lavorare con file testuali. La possibilità di poter caricare qualsiasi altra tipologia di file, come video e audio, non sono richiesti come requisito e sono lasciati alla libera scelta del gruppo.
+    \item In che modo l'azienda si interfaccerà con il gruppo?\\ \\
+In conformità all'attuale metodo lavorativo aziendale di AzzurroDigitale, l'adozione del modello SCRUM agile è proposto come way of working a cui giungere tramite un percorso condiviso.
+Sarà possibile richiedere, qualora ne si abbia l'esigenza, un repository Github di AzzurroDigitale nel quale gestire ed organizzare il prodotto.
+Con il desiderio di ottenere un Proof of Concept in 6 settimane di lavoro e un M.V.P. con altre 14 settimane. L'azienda si è detta disponibile ad organizzare un incontro ogni 2 settimane della durata di 2 ore, nel quale viene fatto il punto della situazione, viene discusso cosa è stato svolto nel periodo successivo all'ultimo colloquio e cosa si dovrà svolgere nelle settimane successive. Inoltre, ci hanno informato che si stanno già organizzando per calendarizzare gli incontri che ci comunicheranno non appena le date saranno ufficiali, qualora gruppo assegnato al capitolato.
+Sarà inoltre attivato un canale Slack con il quale poter comunicare in modo asincrono con i rappresentanti del proponente.
+    
+\end{enumerate}
+
+%\newpage
+\section{Storia del documento} \label{sec:storia}
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{tabularx}{\textwidth}{| l | l | X | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Versione}} & \textbf{\textcolor{white}{Data}} & \textbf{\textcolor{white}{Autori}} & \textbf{\textcolor{white}{Descrizione}} \\
+    \hline
+    0.3 & 2023/10/25 &Marco Dolzan, Francesco Ferraioli, Francesco Giacomuzzo & Aggiornate sezioni \ref{tab:partecipanti} e \ref{subsec:resdiscussione} \\
+    \hline
+    0.2 & 2023/10/25 & Andrea Cecchin, Leonardo Lago & Redazione sezioni \ref{sec:resoconto} \\
+    \hline
+    0.1 & 2023/10/24 & Andrea Cecchin, Leonardo Lago  & Redazione sezioni \ref{sec:info} e \ref{sec:agenda}\\
+    \hline
+    
+    
+   
+\end{tabularx}
+\endgroup
+\end{document}
