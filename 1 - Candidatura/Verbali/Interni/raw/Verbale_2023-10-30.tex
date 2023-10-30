@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage[italian]{babel}
+\usepackage[headheight=30pt, textheight=590pt, footskip=50pt, includeheadfoot]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{anyfontsize}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{subfig}
+\usepackage{colortbl}
+\usepackage{pifont}
+
+\usetikzlibrary{positioning, calc}
+
+\pagestyle{fancy}
+
+\definecolor{primarycolor}{HTML}{008ba4}
+\definecolor{secondarycolor}{HTML}{b2dce3}
+\definecolor{color3}{HTML}{ffffff}
+\definecolor{colorline}{HTML}{006172}
+\definecolor{oddrow}{HTML}{b2dce3}
+\definecolor{evenrow}{HTML}{7fc5d1}
+\definecolor{headerrow}{HTML}{006f83}
+\definecolor{cmarkcolor}{HTML}{00a46b}
+\definecolor{xmarkcolor}{HTML}{a41900}
+
+\begin{document}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=0.1\textwidth]{logo.png}}
+\fancyhead[C]{Verbale riunione}
+\fancyhead[R]{Coding Cowboys}
+\fancyfoot[L]{30 ottobre 2023}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{codingcowboys.swe@gmail.com}
+
+\begin{titlepage}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[fill=color3] (current page.north west) rectangle (current page.south east);
+        \draw[fill=primarycolor, primarycolor] (current page.north west) -- (current page.north) -- (1, -28.7) -- (current page.south west);
+        \node [draw,fill=secondarycolor,secondarycolor,text=black,minimum width=\paperwidth,minimum height=5.5cm] (rect) at (current page.center) {};
+        \node [circle,xshift=-3cm,draw,colorline,fill=white] (circle) at (current page.center)  {\includegraphics[width=6cm]{logoenome.png}};
+        \node [xshift=4.7cm,yshift=24cm,draw,color3,text=black] (uni) at (current page.south){\fontsize{32pt}{36pt}\selectfont Università di Padova};
+        \node [draw,color3,text=black, below=of uni] (corso1) {\fontsize{28pt}{32pt}\selectfont Corso di Ingegneria};
+        \node [yshift=0.75cm,draw,color3,text=black, below=of corso1] (corso2) {\fontsize{28pt}{32pt}\selectfont del Software};
+        \node [xshift=3.5cm,yshift=7cm,draw,color3,text=black] (riunione) at (current page.south){\fontsize{40pt}{48pt}\selectfont Verbale Riunione};
+        \node [draw,color3,text=black, below=of riunione] (date) {\fontsize{28pt}{32pt}\selectfont 30 ottobre 2023};
+    \end{tikzpicture}
+\end{titlepage}
+    
+\section{Informazioni della riunione} \label{sec:info}
+La riunione è stata svolta in remoto, tramite piattaforma Discord, dalle ore 18:10 alle ore 19:00.
+
+\subsection{Lista partecipanti} \label{subsec:partecipanti}
+\begingroup
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \rowcolors{2}{oddrow}{evenrow}
+    \begin{tabular}{| l | l | c |}
+        \hline
+        \rowcolor{headerrow}\textbf{\textcolor{white}{Partecipante}} & \textbf{\textcolor{white}{Ruolo}} & \textbf{\textcolor{white}{Presenza}} \\
+        \hline
+        Andrea Cecchin & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Marco Dolzan & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Ferraioli & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Giacomuzzo & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Leonardo Lago & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Giovanni Menon & Amministratore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Anna Nordio & Responsabile & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+    \end{tabular}
+\endgroup
+
+\section{Ordine del giorno} \label{sec:agenda}
+\subsection{Discussioni} \label{subsec:discussione}
+\begin{enumerate} 
+    \item Riflessione sul diario di bordo esposto in mattinata;
+    \item Redazione della lettera di presentazione;
+    \item Riflessione sull'attuale gestione delle issue.
+\end{enumerate}
+%\newpage
+\section{Resoconto} \label{sec:resoconto}
+\subsection{Discussioni} \label{subsec:resdiscussione}
+\begin{enumerate}
+    \item Viene svolta una riflessione sul primo diario di bordo esposto a lezione nella mattinata odierna. Il gruppo ritiene che sia stata un'attività proficua, che grazie al confronto con l'insegnate e i vari gruppi, ha risolto i principali dubbi riguardanti la documentazione, il way of working e la rotazione dei ruoli durante l'intero progetto.
+    \item Viene preparata la lettera di presentazione, con cui il gruppo intende prendere contatto con i committenti e candidarsi per il capitolato scelto.
+    \item Viene svolta una riflessione riguardante l'attuale gestione delle issue GitHub e della documentazione della repository. In particolare, il gruppo concorda sulla necessità di migliorare il processo di assegnazione delle issue e completamento delle fasi di redazione, revisione e approvazione dei documenti, ritenuto troppo articolato e inefficiente. 
+    
+\end{enumerate}
+
+%\subsection{Prossima riunione} \label{subsec:riunione}
+%Viene fissata una riunione xxx .
+
+\section{Storia del documento} \label{sec:storia}
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{tabularx}{\textwidth}{| X | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Stato del documento}} & \textbf{\textcolor{white}{Responsabile}} \\
+    \hline
+    Non approvato &\\
+    \hline   
+\end{tabularx}
+\\\\\\
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{tabularx}{\textwidth}{| l | l | X | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Versione}} & \textbf{\textcolor{white}{Data}} & \textbf{\textcolor{white}{Autori}} & \textbf{\textcolor{white}{Descrizione}} \\
+     \hline
+     0.2 & 2023/10/30 & Andrea Cecchin, Francesco Ferraioli, Leonardo Lago & Redazione sezioni \ref{sec:info} e \ref{sec:resoconto}\\
+    \hline
+    0.1 & 2023/10/29 & Andrea Cecchin, Francesco Ferraioli, Leonardo Lago & Redazione sezione \ref{sec:agenda}\\
+    \hline
+\end{tabularx}
+\endgroup
+\end{document}
