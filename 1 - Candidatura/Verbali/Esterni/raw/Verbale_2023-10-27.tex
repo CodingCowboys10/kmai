@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage[italian]{babel}
+\usepackage[headheight=30pt, textheight=590pt, footskip=50pt, includeheadfoot]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{anyfontsize}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{subfig}
+\usepackage{colortbl}
+\usepackage{pifont}
+
+\usetikzlibrary{positioning, calc}
+
+\pagestyle{fancy}
+
+\definecolor{primarycolor}{HTML}{008ba4}
+\definecolor{secondarycolor}{HTML}{b2dce3}
+\definecolor{color3}{HTML}{ffffff}
+\definecolor{colorline}{HTML}{006172}
+\definecolor{oddrow}{HTML}{b2dce3}
+\definecolor{evenrow}{HTML}{7fc5d1}
+\definecolor{headerrow}{HTML}{006f83}
+\definecolor{cmarkcolor}{HTML}{00a46b}
+\definecolor{xmarkcolor}{HTML}{a41900}
+
+\begin{document}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=0.1\textwidth]{logo.png}}
+\fancyhead[C]{Verbale esterno}
+\fancyhead[R]{Coding Cowboys}
+\fancyfoot[L]{27 ottobre 2023}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{codingcowboys.swe@gmail.com}
+
+\begin{titlepage}
+        \thispagestyle{empty}
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[fill=color3] (current page.north west) rectangle (current page.south east);
+            \draw[fill=primarycolor, primarycolor] (current page.north west) -- (current page.north) -- (1, -28.7) -- (current page.south west);
+            \node [draw,fill=secondarycolor,secondarycolor,text=black,minimum width=\paperwidth,minimum height=5.5cm] (rect) at (current page.center) {};
+            \node [circle,xshift=-3cm,draw,colorline,fill=white] (circle) at (current page.center)  {\includegraphics[width=6cm]{logoenome2.png}};
+            \node [xshift=4.7cm,yshift=24cm,draw,color3,text=black] (uni) at (current page.south){\fontsize{32pt}{36pt}\selectfont Università di Padova};
+            \node [draw,color3,text=black, below=of uni] (corso1) {\fontsize{28pt}{32pt}\selectfont Corso di Ingegneria};
+            \node [yshift=0.75cm,draw,color3,text=black, below=of corso1] (corso2) {\fontsize{28pt}{32pt}\selectfont del Software};
+            \node [xshift=3.5cm,yshift=7cm,draw,color3,text=black] (riunione) at (current page.south){\fontsize{40pt}{48pt}\selectfont Verbale esterno};
+            \node [draw,color3,text=black, below=of riunione] (date) {\fontsize{28pt}{32pt}\selectfont 27 ottobre 2023};
+        \end{tikzpicture}
+    \end{titlepage}
+
+\section{Informazioni della riunione} \label{sec:info}
+La riunione è stata svolta da remoto, tramite la piattaforma Microsoft Teams, dalle ore 17:00 alle ore 17:20, in presenza di Alessandro Staffolani, rappresentante dell'azienda Imola Informatica.
+
+\subsection{Lista partecipanti} \label{subsec:partecipanti}
+\begingroup
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \rowcolors{2}{oddrow}{evenrow}
+    \begin{tabular}{| l | l | c |}
+        \hline
+        \rowcolor{headerrow}\textbf{\textcolor{white}{Partecipante}} & \textbf{\textcolor{white}{Ruolo}} & \textbf{\textcolor{white}{Presenza}} \\
+        \hline
+        Andrea Cecchin & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Marco Dolzan & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Ferraioli & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Francesco Giacomuzzo & Verificatore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Leonardo Lago & Redattore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Giovanni Menon & Amministratore & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+        Anna Nordio & Responsabile & \textcolor{cmarkcolor}{\ding{51}}\\
+        \hline
+    \end{tabular}
+    \endgroup
+\label{tab:partecipanti}
+\\ \\In rappresentanza di Imola Informatica :\\ \\
+\begingroup
+    \setlength{\tabcolsep}{10pt}
+    \renewcommand{\arraystretch}{1.5}
+    \rowcolors{2}{oddrow}{evenrow}
+    \begin{tabular}{|l|}
+        \hline
+        \rowcolor{headerrow}\textbf{\textcolor{white}{Partecipante}} \\
+        \hline
+        Alessandro Staffolani\\
+        \hline
+    \end{tabular}
+\endgroup
+%\newpage
+
+\section{Ordine del giorno} \label{sec:agenda}
+\subsection{Discussioni} \label{subsec:discussione}
+Discussione di dubbi riguardanti il capitolato proposto dall'azienda, "Easy Meal", tramite il format domanda-risposta.
+
+
+%\newpage
+\section{Resoconto} \label{sec:resoconto}
+\subsection{Discussioni} \label{subsec:resdiscussione}
+Nel corso dell'incontro, sono state poste le seguenti domande:
+\begin{enumerate}
+    \item Quali tecnologie e framework l’azienda consiglia e perché?\\ \\
+Non è dato alcun limite o vincolo da questo punto di vista, il solo limite è la nostra conoscenza: ogni scelta è accettata se adeguatamente motivata. Tecnologie come Angular o React sono consigliate, in quanto ampiamente utilizzate dall'azienda proponente, e rispetto alle quali sono disponibili ad organizzare dei piccoli seminari per aiutarci ad approcciare tali tecnologie. È comunque molto incentivato l'utilizzo di un framework, in quanto renderebbe molto meno dispendioso, in quantità di tempo, lo sviluppo di un'applicazione responsive.
+    \item Quale modello di lavoro ci consigliate? \\ \\
+L'azienda proponente utilizza solitamente la metodologia agile, dunque medesima soluzione sarebbe adottata per la realizzazione di questo progetto.
+    \item Avete preferenze su quale tecnologia utilizzare per il database? Dove possiamo testare il nostro prodotto?\\ \\
+Come già detto in precedenza, anche la scelta di quale tecnologia utilizzare per il database è lasciata al gruppo. In particolare, la decisione del database dovrà essere ben soppesata al prodotto dell'analisi dei requisiti, e opportunamente motivata.\\
+Il prodotto può essere adeguatamente testato in locale tramite l'uso di docker. Sarà forse possibile, previa richiesta e disponibilità dell'azienda stessa, sfruttare le risorse tecnologiche fornite da Imola Informatica.
+    \item Cosa potete consigliarci per crittografare la chat tra cliente e ristorante?\\ \\
+Viene sottolineato che l'implementazione della criptazione delle chat tra cliente e ristorante è facoltativa. Una possibile soluzione semplificata potrebbe essere l'utilizzo di una chiave crittografica, utilizzata per la criptazione dei messaggi, che viene salvata lato client. In alternativa, se si vuole ricercare una implementazione migliore ma ben più complicata, si dovrebbe utilizzare un sistema di sicurezza end-to-end.
+    \item In che modo l'azienda si interfaccerà con il gruppo?\\ \\
+L'azienda si è resa disponibile ad effettuare un incontro settimanale, nel quale fare il punto della situazione e risolvere gli eventuali dubbi che sorgeranno, qualsiasi sia la loro natura. Inoltre, viene proposta la creazione di un gruppo Telegram per comunicazioni asincrone in cui raccogliere domande alle quali si può rispondere con dei semplici riferimenti online e per l'organizzazione delle riunioni future.
+
+\end{enumerate}
+
+\section{Storia del documento} \label{sec:storia}
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{tabularx}{\textwidth}{| X | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Stato del documento}} & \textbf{\textcolor{white}{Responsabile}} \\
+    \hline
+    Non approvato &\\
+    \hline   
+\end{tabularx}
+\\\\\\
+%\subsection{Versioni}
+\begin{tabularx}{\textwidth}{| l | l | X | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Versione}} & \textbf{\textcolor{white}{Data}} & \textbf{\textcolor{white}{Autori}} & \textbf{\textcolor{white}{Descrizione}} \\
+    \hline  
+    0.3 & 2023/10/30 & Francesco Giacomuzzo  & Aggiornata sezione \ref{subsec:resdiscussione} \\
+    \hline
+    0.2 & 2023/10/27 & Andrea Cecchin, Francesco Ferraioli, Leonardo Lago & Redazione sezione \ref{sec:resoconto} e aggiornamento sezione \ref{sec:info}\\
+    \hline
+    0.1 & 2023/10/27 & Andrea Cecchin, Francesco Ferraioli, Leonardo Lago  & Redazione sezioni \ref{sec:info} e \ref{sec:agenda}\\
+    \hline   
+\end{tabularx}
+\endgroup
+\end{document}
