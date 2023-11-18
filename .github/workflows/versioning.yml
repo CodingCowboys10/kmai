@@ -27,7 +27,7 @@ jobs:
 
       - name: Run script
         id: script-runned
-        run: python script.py -f "${{ steps.changed-files.outputs.all_changed_files }}" -a "${{ github.event.pull_request.user.login }}" -r "${{ github.actor }}" -c "${{ github.event.review.body}}"
+        run: python actions/script.py -f "${{ steps.changed-files.outputs.all_changed_files }}" -a "${{ github.event.pull_request.user.login }}" -r "${{ github.actor }}" -c "${{ github.event.review.body}}"
         
       - name: Commit and push changes
         run: | 
