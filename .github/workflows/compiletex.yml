@@ -1,0 +1,66 @@
+name: Compile tex
+
+on: 
+  workflow_dispatch:
+    inputs:
+      directory-sorgente:
+        description: 'Directory file sorgente'
+        required: true
+      directory-destinazione:
+        description: 'Directory destinazione pdf'
+        required: true
+      nome-pdf: 
+        description: 'Nome del pdf da creare'
+        required: true
+      elimina-sorgenti:
+        description: 'Elimina i file sorgenti'
+        type: boolean
+        required: true
+        default: false
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+  
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+  
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+  
+      - name: Run script
+        id: script-runned
+        run: python actions/script.py -f "${{ steps.changed-files.outputs.all_changed_files }}" -a "${{ github.actor}}" -r "" -c "Approvazione documento" --approve
+  
+      - name: Compile
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: ${{ inputs.directory-sorgente }}
+          latexmk_use_lualatex: true
+
+      - name: Commit and push changes
+        run: | 
+          mv ${{ inputs.directory-sorgente }}/main.pdf ${{ inputs.directory-destinazione }}/${{ inputs.nome-pdf }}.pdf
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          if [ ${{ inputs.elimina-sorgenti }} == true ]; then
+            rm -r ${{ inputs.directory-sorgente }}
+            git add -A
+          else
+            git add '*.pdf' '*.tex'
+          fi
+          git commit -m "Creato file .pdf"
+          git remote set-url origin https://${{ github.token }}@github.com/${{ github.repository }}
+          git push
+          
