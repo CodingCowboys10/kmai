@@ -1,0 +1,42 @@
+name: Versioning latex file
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  version:
+    if: github.event.review.state == 'APPROVED' &&  github.event.pull_request.base.ref == 'develop'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+
+      - name: Run script
+        id: script-runned
+        run: python script.py -f "${{ steps.changed-files.outputs.all_changed_files }}" -a "${{ github.event.pull_request.user.login }}" -r "${{ github.actor }}" -c "${{ github.event.review.body}}"
+        
+      - name: Commit and push changes
+        run: | 
+          if [ "${{ steps.script-runned.outputs.runned }}" == "True" ];
+          then
+            git config user.name 'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
+            git add -A
+            git commit -m "Aggiunta versione file .tex"
+            git remote set-url origin https://${{ github.token }}@github.com/${{ github.repository }}
+            git push
+          fi
