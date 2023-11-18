@@ -40,7 +40,7 @@ jobs:
   
       - name: Run script
         id: script-runned
-        run: python script.py -f "${{ steps.changed-files.outputs.all_changed_files }}" -a "${{ github.actor}}" -r "" -c "Approvazione documento" --approve
+        run: python actions/script.py -f "${{ steps.changed-files.outputs.all_changed_files }}" -a "${{ github.actor}}" -r "" -c "Approvazione documento" --approve
   
       - name: Compile
         uses: xu-cheng/latex-action@v3
