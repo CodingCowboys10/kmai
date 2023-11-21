@@ -4,7 +4,6 @@ import os
 import sys
 from datetime import date
 
-headlog = "\\rowcolor{headerrow} \\textbf{\\textcolor{white}{Versione}} & \\textbf{\\textcolor{white}{Data}} & \\textbf{\\textcolor{white}{Autori}} & \\textbf{\\textcolor{white}{Verificatori}} & \\textbf{\\textcolor{white}{Descrizione}} \\\\"
 hline = "\n    \\hline\n    "
 sep = ' & '
 
@@ -44,12 +43,12 @@ def directory_list(args) :
             directory.add(d.group(1))
     return directory
 
-def build_ver(data, approve):
+def build_ver(data, approve, headlog):
     num = ""
     lines = data.splitlines()
     for l in range(len(lines)) :
         if headlog in lines[l]:
-            num = re.search('(\d)\.(\d)', lines[l+2])
+            num = re.search('(\d+)\.(\d+)', lines[l+2])
             break
     if approve and num:
         ver = str(int(num.group(1)) + 1) + ".0"
@@ -79,8 +78,13 @@ def main():
         try:
             with open(filename, 'r') as file:
                 data = file.read()
-
-            ver = build_ver(data, approve)
+            headlog = ""
+            if "\\endhead" in data:
+                headlog = "\\endhead"
+            else:
+                headlog = "\\rowcolor{headerrow} \\textbf{\\textcolor{white}{Versione}} & \\textbf{\\textcolor{white}{Data}} & \\textbf{\\textcolor{white}{Autori}} & \\textbf{\\textcolor{white}{Verificatori}} & \\textbf{\\textcolor{white}{Descrizione}} \\\\"
+            
+            ver = build_ver(data, approve, headlog)
 
             replace_str = headlog + hline + ver + sep + date.today().strftime("%Y/%m/%d") + sep + author + sep + reviser + sep + comment + '\\\\'
             newdata = data.replace(headlog, replace_str)
