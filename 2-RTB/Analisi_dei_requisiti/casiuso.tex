@@ -397,7 +397,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 
 \subsection{UC-13 Visualizza errore inserimento documento}
 \begin{description}
-    \item[Descrizione:] L'utente ha tentato di aggiungere nel sistema un documento che non può essere inserito, e visualizza un messaggio di errore.
+    \item[Descrizione:] L'utente visualizza un messaggio che lo notifica che c'è stato un errore nell'inserimento del documento.
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente tenta di inserire un documento nel sistema.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene inserito nel sistema.
@@ -407,7 +407,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 
 \subsection{UC-13.1 Visualizza errore nome file già presente}
 \begin{description}
-    \item[Descrizione:] Viene visualizzato un messaggio di errore per aver tentato di inserire un documento con un nome già in uso.
+    \item[Descrizione:] L'utente visualizza un messaggio che lo notifica che c'è stato un errore nell'inserimento del documento dovuto al nome del file già in uso.
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente tenta di inserire nel sistema un documento con un nome già in uso.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene inserito nel sistema.
@@ -416,7 +416,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 
 \subsection{UC-13.2 Visualizza errore formato file}
 \begin{description}
-    \item[Descrizione:] Viene visualizzato un messaggio di errore per aver tentato di inserire un documento con un formato non supportato.
+    \item[Descrizione:] L'utente visualizza un messaggio che lo notifica che c'è stato un errore nell'inserimento del documento dovuto al formato del file non supportato.
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente tenta di inserire nel sistema un documento con un formato non supportato.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene inserito nel sistema.
@@ -425,9 +425,9 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 
 \subsection{UC-13.3 Visualizza errore file corrotto}
 \begin{description}
-    \item[Descrizione:] Viene visualizzato un messaggio di errore per aver tentato di inserire un file corrotto.
+    \item[Descrizione:] L'utente visualizza un messaggio che lo notifica che c'è stato un errore nell'inserimento del documento dovuto alla corruzione del file.
     \item[Attore primario:] Utente generico.
-    \item[Pre condizioni:] L'utente tenta di inserire nel sistema un documento in un file corrotto.
+    \item[Pre condizioni:] L'utente tenta di inserire nel sistema un documento corrotto.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene inserito nel sistema.
     \item[Scenario:] L'utente visualizza un messaggio di errore, a seguito di un tentativo di aggiungere un nuovo documento a sistema tramite un file corrotto.
 \end{description}
@@ -565,7 +565,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{UC20-21.PNG}
-    \caption{Diagramma UML de casi d'uso UC-20 e UC-21}
+    \caption{Diagramma UML dei casi d'uso UC-20 e UC-21}
     \label{fig:UC20-21}
 \end{figure}
 
@@ -591,7 +591,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{UC22-23.PNG}
-    \caption{Diagramma UML de casi d'uso UC-22 e UC-23}
+    \caption{Diagramma UML dei casi d'uso UC-22 e UC-23}
     \label{fig:UC22-23}
 \end{figure}
 
@@ -626,7 +626,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{UC24-25.PNG}
-    \caption{Diagramma UML de casi d'uso UC-24, UC-24.1 e UC-25}
+    \caption{Diagramma UML dei casi d'uso UC-24, UC-24.1 e UC-25}
     \label{fig:UC24-25}
 \end{figure}
 
@@ -652,7 +652,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{UC26-27.PNG}
-    \caption{Diagramma UML de casi d'uso UC-26 e UC-27}
+    \caption{Diagramma UML dei casi d'uso UC-26 e UC-27}
     \label{fig:UC26-27}
 \end{figure}
 
@@ -678,7 +678,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{UC28-29.PNG}
-    \caption{Diagramma UML de casi d'uso UC-28 e UC-29}
+    \caption{Diagramma UML dei casi d'uso UC-28 e UC-29}
     \label{fig:UC28-29}
 \end{figure}
 
@@ -704,7 +704,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{UC30-31.PNG}
-    \caption{Diagramma UML de casi d'uso UC-30 e UC-31}
+    \caption{Diagramma UML dei casi d'uso UC-30 e UC-31}
     \label{fig:UC30-31}
 \end{figure}
 
@@ -726,7 +726,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 
 \subsection{UC-32.1 Visualizza nome del documento}
 \begin{description}
-    \item[Descrizione:] L'utente vuole poter visualizzare il nome del documento.
+    \item[Descrizione:] L'utente vuole poter visualizzare il nome del documento relativo alla risposta.
     \item[Attore primario:] Utente generico.
     \item[Attore secondario:] Modello LLM.
     \item[Pre condizioni:] Il sistema non visualizza il nome del documento.
@@ -736,7 +736,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 
 \subsection{UC-32.2 Visualizza pagina del documento}
 \begin{description}
-    \item[Descrizione:] L'utente vuole poter visualizzare la pagina del documento.
+    \item[Descrizione:] L'utente vuole poter visualizzare la pagina del documento relativo alla risposta.
     \item[Attore primario:] Utente generico.
     \item[Attore secondario:] Modello LLM.
     \item[Pre condizioni:] Il sistema non visualizza la pagina del documento.
@@ -746,7 +746,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 
 \subsection{UC-32.3 Visualizza preview del documento}
 \begin{description}
-    \item[Descrizione:] L'utente vuole poter avere un preview del documento.
+    \item[Descrizione:] L'utente vuole poter avere un preview del documento relativo alla risposta.
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non presenta il preview del documento.
     \item[Post condizioni:] Il sistema visualizza il preview del documento.
