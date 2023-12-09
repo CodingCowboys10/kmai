@@ -1,0 +1,144 @@
+\chapter{Piano di qualità}
+
+\section{Introduzione}
+
+\section{Qualità di processo}
+
+\section{Qualità di prodotto}
+
+\section{Insieme dei test} \label{sec:test}
+In questa sezione vengono definiti i test finalizzati a dimostrare l'adempimento, da parte del prodotto del progetto, ai requisiti individuati nella relativa fase di analisi.\\
+Tali test, coerentemente a quanto prefigge il \ccgloss{V model} e il documento Norme\_di\_progetto, sono individuati parallelamente alle attività di sviluppo.\\
+Ogni test sarà identificato da un codice alfanumerico, da una descrizione generale, dall'identificazione del requisito da cui tale test deriva e dal tracciamento della soddisfazione, o meno, di tale requisito nel prodotto.
+
+\subsection{Test di sistema}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| c | X | c | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Requisito}} & \textbf{\textcolor{white}{Soddisfatto}}\\
+    \hline
+    \endhead
+    TS-1 & Verificare che l’utente possa accedere alla parte del sistema relativa alla gestione della documentazione. & RFO-1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-2 & Verificare che l’utente possa accedere alla parte del sistema relativa al chatbot. & RFO-2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-3 & Verificare che l’utente possa visualizzare la lista dei documenti presenti nel sistema. & RFO-3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-3.1 & Verificare che l’utente possa visualizzare un particolare documento presente nel sistema. & RFO-3.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-3.1.1 & Verificare che l'utente possa visualizzare il nome del documento di interesse. & RFO-3.1.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-3.1.2 & Verificare che l’utente possa visualizzare la data di inserimento del documento di interesse. & RFO-3.1.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-3.1.3 & Verificare che l’utente possa visualizzare i tag applicati al documento di interesse. & RFZ-3.1.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-3.1.4 & Verificare che l’utente possa visualizzare la preview del documento di interesse. & RFO-3.1.4 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-4.1 & Verificare che l’utente possa ricercare un documento per nome. & RFO-4.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-4.2 & Verificare che l’utente possa ricercare un documento per data di inserimento. & RFO-4.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-4.3 &  Verificare che l’utente possa ricercare un documento per il proprio tag. & RFZ-4.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-5 & Verificare che l’utente possa aggiungere un tag ad un documento. & RFZ-5 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-6 & Verificare che l’utente possa rimuovere un tag da un documento. & RFZ-6 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-7 & Verificare che l’utente possa creare un nuovo tag. & RFZ-7 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-7.1 & Verificare che l’utente possa aggiungere un nome nella creazione del tag. & RFZ-7.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-7.2 & Verificare che l’utente possa aggiungere un colore nella creazione del tag. & RFZ-7.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-7.3 & Verificare che l’utente possa aggiungere una descrizione nella creazione del tag. & RFZ-7.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-8 & Verificare che l’utente possa visualizzare la lista di tutti i tag creati. & RFZ-8 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-8.1 & Verificare che l’utente possa visualizzare uno dei tag creati. & RFZ-8.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-8.1.1 & Verificare che l’utente possa visualizzare il nome del tag di interesse. & RFZ-8.1.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-8.1.2 &  Verificare che l’utente possa visualizzare il colore del tag di interesse. & RFZ-8.1.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-8.1.3 & Verificare che l'utente possa visualizzare la descrizione del tag di interesse. & RFZ-8.1.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-9 & Verificare che l’utente possa eliminare uno dei tag presenti nel sistema. & RFZ-9 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-10 & Verificare che l’utente possa eliminare uno dei documenti presenti nel sistema. & RFO-10 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-10.1 & Verificare che l’utente possa confermare l’eliminazione di uno dei documenti presenti nel sistema. & RFO-10.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-11 & Verificare che l'utente visualizzi un messaggio che notifica che c'è stato un errore nell'eliminazione di un documento. & RFO-11 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-12.1 & Verificare che l’utente possa aggiungere un documento nel sistema tramite trascinamento. & RFD-11.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-12.2 & Verificare che l’utente possa aggiungere un documento nel sistema tramite navigazione del file system. & RFO-11.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-13 & Verificare che l’utente, dopo aver tentato di aggiungere nel sistema un documento che non può essere inserito, visualizzi un messaggio di errore. & RFD-13 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-13.1 & Verificare che sia visualizzato un messaggio di errore per aver tentato di inserire un documento con un nome già in uso. & RFD-13.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-13.2 & Verificare che sia visualizzato un messaggio di errore per aver tentato di inserire un documento con un formato non supportato. & RFD-13.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-13.3 & Verificare che sia visualizzato un messaggio di errore per aver tentato di inserire un documento in un file corrotto. & RFD-13.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-14 & Verificare che l’utente possa visualizzare la lista delle lingue supportate dal chatbot. & RFD-14 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-15 & Verificare che l’utente possa selezionare la lingua del sistema. & RFD-15 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-16 & Verificare che l’utente possa inserire una domanda per il chatbot. & RFO-16 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-16.1 & Verificare che l'utente possa digitare la domanda da porgere al chatbot. & RFO-16.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-16.2 & Verificare che l'utente possa inserire tramite microfono la domanda da porgere al sistema. & RFD-16.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-17 & Verificare che l’utente, dopo aver tentato di inserire senza successo la domanda da porre al sistema tramite input vocale, visualizzi un messaggio di errore. & RFD-17 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-18 &  Verificare che l'utente possa inviare una domanda al sistema. & RFO-18 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-19 & Verificare che l'utente visualizzi un messaggio che lo informa che si è verificato un errore durante l'invio della domanda. & RFO-19 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-20 & Verificare che l’utente visualizzi la risposta alla domanda che ha inviato in precedenza. & RFO-20 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-21 & Verificare che l'utente visualizzi un messaggio che lo informa che c'è stato un errore nel ricevere la risposta. & RFO-21 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-22 & Verificare che l'utente possa creare una nuova sessione di conversazione col chatbot. & RFD-22 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-23 & Verificare che l'utente visualizzi un messaggio che lo notifica che c'è stato un errore nella creazione di una nuova sessione. & RFD-23 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-24 & Verificare che l'utente possa visualizzare la lista delle sessioni di conversazione col chatbot aperte. & RFD-24 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-24.1 & Verificare che l'utente possa visualizzare una delle sessioni di conversazione col chatbot. & RFD-21.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-25 & Verificare che l'utente visualizzi un messaggio che notifica che c'è stato un errore nella visualizzazione delle sessioni aperte. & RFD-25 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-26 & Verificare che l'utente possa eliminare una delle sessioni di conversazioni attive nel sistema. & RFD-26 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-27 & Verificare che l'utente visualizzi un messaggio che notifica che c'è stato un errore nell'eliminazione di una sessione. & RFD-27 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-28 & Verificare che l'utente possa visualizzare lo scambio di domande e risposte avvenuto in precedenza con il sistema in una sessione. & RFD-28 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-29 & Verificare che l'utente visualizzi un messaggio che lo notifica che c'è stato un errore nella visualizzazione della chat history. & RFD-29 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-30 & Verificare che l'utente possa eliminare lo scambio di domande e risposte, avvenuto in precedenza con il chatbot, dalla sessione del sistema. & RFD-30 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-31 & Verificare che l'utente visualizzi un messaggio che notifica che c'è stato un errore nell'eliminazione della chat history. & RFD-31 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-32 & Verificare che l'utente possa visualizzare le informazioni del documento da cui deriva la risposta ricevuta. & RFD-32 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-32.1 & Verificare che l'utente possa visualizzare il nome del documento da cui deriva la risposta. & RFD-32.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-32.2 & Verificare che l'utente possa visualizzare il numero della pagina del documento da cui deriva la risposta. & RFD-32.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-32.3 & Verificare che l'utente possa visualizzare una preview del documento da cui deriva la risposta. & RFD-32.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-33 & Verificare che l'utente possa sentire la lettura della risposta ricevuta. & RFD-33 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    \rowcolor{white} \caption{Insieme dei test di sistema}
+    \label{tab:test}
+\end{xltabular}
+\endgroup
