@@ -1,0 +1,230 @@
+\chapter{Requisiti}\label{sec:requisiti}
+\section{Introduzione}
+In questa sezione del documento vengono riportati tutti i requisiti, relativi al prodotto del progetto, individuati a seguito della fase di analisi.\\
+Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad identificare tipologia (funzionale, di qualità, di vincolo, prestazionale), classificazione (obbligatorio, desiderabile, opzionale) e numero del requisito.
+
+\section{Requisiti funzionali}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| c | X | c | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Classificazione}} & \textbf{\textcolor{white}{Fonte}}\\
+    \hline
+    \endhead
+    RFO-1 & L’utente deve poter accedere alla parte del sistema relativa alla gestione della documentazione. & Obbligatorio & UC-1 \\
+    \hline
+    RFO-2 & L’utente deve poter accedere alla parte del sistema relativa al chatbot. & Obbligatorio & UC-2 \\
+    \hline
+    RFO-3 & L’utente deve poter visualizzare la lista dei documenti presenti nel sistema. & Obbligatorio & UC-3 \\
+    \hline
+    RFO-3.1 & L’utente deve poter visualizzare un particolare documento presente nel sistema. & Obbligatorio & UC-3.1 \\
+    \hline
+    RFO-3.1.1 & L'utente deve poter visualizzare il nome del documento di interesse. & Obbligatorio & UC-3.1.1 \\
+    \hline
+    RFO-3.1.2 & L’utente deve poter visualizzare la data di inserimento del documento di interesse. & Obbligatorio & UC-3.1.2 \\
+    \hline
+    RFZ-3.1.3 & L’utente deve poter visualizzare i tag applicati al documento di interesse. & Opzionale & UC-3.1.3 \\
+    \hline
+    RFO-3.1.4 & L’utente deve poter visualizzare la preview del documento di interesse. & Obbligatorio & UC-3.1.4 \\
+    \hline
+    RFO-4.1 & L’utente deve poter ricercare un documento per nome. & Obbligatorio & UC-4.1 \\
+    \hline
+    RFO-4.2 & L’utente deve poter ricercare un documento per data di inserimento. & Obbligatorio & UC-4.2 \\
+    \hline
+    RFZ-4.3 & L’utente deve poter ricercare un documento per il proprio tag. & Opzionale & UC-4.3 \\
+    \hline
+    RFZ-5 & L’utente deve poter aggiungere un tag ad un documento. & Opzionale & UC-5 \\
+    \hline
+    RFZ-6 & L’utente deve poter rimuovere un tag da un documento. & Opzionale & UC-6 \\
+    \hline
+    RFZ-7 & L’utente deve poter creare un nuovo tag. & Opzionale & UC-7 \\
+    \hline
+    RFZ-7.1 & L’utente deve poter aggiungere un nome nella creazione del tag. & Opzionale & UC-7.1 \\
+    \hline
+    RFZ-7.2 & L’utente deve poter aggiungere un colore nella creazione del tag. & Opzionale & UC-7.2 \\
+    \hline
+    RFZ-7.3 & L’utente deve poter aggiungere una descrizione nella creazione del tag. & Opzionale & UC-7.3 \\
+    \hline
+    RFZ-8 & L’utente deve poter visualizzare la lista di tutti i tag creati. & Opzionale & UC-8 \\
+    \hline
+    RFZ-8.1 & L’utente deve poter visualizzare uno dei tag creati. & Opzionale & UC-8.1 \\
+    \hline
+    RFZ-8.1.1 & L’utente deve poter visualizzare il nome del tag di interesse. & Opzionale & UC-8.1.1 \\
+    \hline
+    RFZ-8.1.2 & L’utente deve poter visualizzare il colore del tag di interesse. & Opzionale & UC-8.1.2 \\
+    \hline
+    RFZ-8.1.3 & L’utente deve poter visualizzare la descrizione del tag di interesse. & Opzionale & UC-8.1.3 \\
+    \hline
+    RFZ-9 & L’utente deve poter eliminare uno dei tag presenti nel sistema. & Opzionale & UC-9 \\
+    \hline
+    RFO-10 & L’utente deve poter eliminare uno dei documenti presenti nel sistema. & Obbligatorio & UC-10 \\
+    \hline
+    RFO-10.1 & L’utente deve poter confermare l’eliminazione di uno dei documenti presenti nel sistema. & Obbligatorio & UC-10.1 \\
+    \hline
+    RFO-11 & L'utente deve poter visualizzare un messaggio che lo notifica che c'è stato un errore nell'eliminazione di un documento. & Obbligatorio & UC-11 \\
+    \hline
+    RFD-12.1 & L’utente deve poter aggiungere un documento nel sistema tramite trascinamento. & Desiderabile & UC-12.1 \\
+    \hline
+    RFO-12.2 & L’utente deve poter aggiungere un documento nel sistema tramite navigazione del file system. & Obbligatorio & UC-12.2 \\
+    \hline
+    RFD-13 & L’utente, dopo aver tentato di aggiungere nel sistema un documento che non può essere inserito, deve visualizzare un messaggio di errore. & Desiderabile & UC-13 \\
+    \hline
+    RFD-13.1 & Deve essere visualizzato un messaggio di errore per aver tentato di inserire un documento con un nome già in uso. & Desiderabile & UC-13.1 \\
+    \hline
+    RFD-13.2 & Deve essere visualizzato un messaggio di errore per aver tentato di inserire un documento con un formato non supportato. & Desiderabile & UC-13.2 \\
+    \hline
+    RFD-13.3 & Deve essere visualizzato un messaggio di errore per aver tentato di inserire un documento in un file corrotto. & Desiderabile & UC-13.3 \\
+    \hline
+    RFD-14 & L’utente deve poter visualizzare la lista delle lingue supportate dal chatbot. & Desiderabile & UC-14 \\
+    \hline
+    RFD-15 & L’utente deve poter selezionare la lingua del sistema. & Desiderabile & UC-15 \\
+    \hline
+    RFO-16 & L’utente deve poter inserire una domanda per il chatbot. & Obbligatorio & UC-16 \\
+    \hline
+    RFO-16.1 & L’utente deve poter digitare la domanda da porgere al chatbot. & Obbligatorio & UC-16.1 \\
+    \hline
+    RFD-16.2 & L’utente deve poter inserire tramite microfono la domanda da porgere al sistema. & Desiderabile & UC-16.2 \\
+    \hline
+    RFD-17 & L’utente dopo aver tentato di inserire senza successo la domanda da porre al sistema tramite input vocale deve visualizzare un messaggio di errore. & Desiderabile & UC-17 \\
+    \hline
+    RFO-18 & L’utente deve poter inviare una domanda al sistema. & Obbligatorio & UC-18 \\
+    \hline
+    RFO-19 & L’utente deve visualizzare un messaggio che lo informa che si è verificato un errore durante l'invio della domanda. & Obbligatorio & UC-19 \\
+    \hline
+    RFO-20 & L’utente deve poter visualizzare la risposta alla domanda che ha inviato in precedenza. & Obbligatorio & UC-20 \\
+    \hline
+    RF0-21 & L'utente deve poter visualizza un messaggio che lo informa che c'è stato un errore nel ricevere la risposta. & Obbligatorio & UC-21 \\
+    \hline
+    RFD-22 & L’utente deve poter creare una nuova sessione di conversazione col chatbot. & Desiderabile & UC-22 \\
+    \hline
+    RFD-23 & L'utente deve poter visualizza un messaggio che lo notifica che c'è stato un errore nella creazione di una nuova sessione. & Desiderabile & UC-23 \\
+    \hline
+    RFD-24 & L’utente deve poter visualizzare la lista delle sessioni di conversazione col chatbot aperte. & Desiderabile & UC-21 \\
+    \hline
+    RFD-24.1 & L’utente deve poter visualizzare una delle sessioni di conversazione col chatbot. & Desiderabile & UC-21.1 \\
+    \hline
+    RFD-25 & L'utente deve poter visualizza un messaggio che lo notifica che c'è stato un errore nella visualizzazione delle sessioni aperte. & Desiderabile & UC-25 \\
+    \hline
+    RFD-26 & L’utente deve poter eliminare una delle sessioni di conversazioni attive nel sistema. & Desiderabile & UC-26 \\
+    \hline
+    RFD-27 & L'utente deve poter visualizza un messaggio che lo notifica che c'è stato un errore nell'eliminazione di una sessione. & Desiderabile & UC-27 \\
+    \hline
+    RFD-28 & L’utente deve poter visualizzare lo scambio di domande e risposte avvenuto in precedenza con il sistema in una sessione. & Desiderabile & UC-28 \\
+    \hline
+    RFD-29 & L'utente deve poter visualizza un messaggio che lo notifica che c'è stato un errore nella visualizzazione della chat history. & Desiderabile & UC-29 \\
+    \hline
+    RFD-30 & L’utente deve poter eliminare lo scambio di domande e risposte, avvenuto in precedenza con il chatbot, dalla sessione del sistema. & Desiderabile & UC-30 \\
+    \hline
+    RFD-31 & L'utente deve poter visualizza un messaggio che lo notifica che c'è stato un errore nell'eliminazione della chat history. & Desiderabile & UC-31 \\
+    \hline
+    RFD-32 & L’utente deve poter visualizzare le informazioni del documento da cui deriva la risposta ricevuta. & Desiderabile & UC-32 \\
+    \hline
+    RFD-32.1 & L’utente deve poter visualizzare il nome del documento da cui deriva la risposta. & Desiderabile & UC-32.1 \\
+    \hline
+    RFD-32.2 & L’utente deve poter visualizzare una preview del documento da cui deriva la risposta. & Desiderabile & UC-32.2 \\
+    \hline
+    RFD-33 & L’utente deve poter sentire la lettura della risposta ricevuta. & Desiderabile & UC-33 \\
+    \hline
+    \rowcolor{white} \caption{Requisiti funzionali del prodotto}
+    \label{tab:reqfun}
+\end{xltabular}
+\endgroup
+
+\section{Requisiti di qualità}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| c | X | c | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Classificazione}} & \textbf{\textcolor{white}{Fonte}}\\
+    \hline
+    \endhead
+    RQO-1 & Deve essere fornito un documento di analisi dei costi, rischi e tecnologie. & Obbligatorio & Proponente \\
+    \hline
+    RQO-2 & Deve essere fornito un documento che descrive le attività di bug reporting effettuate. & Obbligatorio & Capitolato \\
+    \hline
+    ... & ... & ... & ... \\
+    \hline
+    \rowcolor{white} \caption{Requisiti di qualità del prodotto}
+    \label{tab:reqqua}
+\end{xltabular}
+\endgroup
+
+\section{Requisiti di vincolo}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| c | X | c | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Classificazione}} & \textbf{\textcolor{white}{Fonte}}\\
+    \hline
+    \endhead
+    RVO-1 & Il sistema deve supportare i file PDF. & Obbligatorio & Proponente \\
+    \hline
+    RVD-2 & Il sistema deve supportare i file Word. & Desiderabile & Proponente \\
+    \hline
+    RVZ-3 & Il sistema deve supportare i file video. & Opzionale & Proponente \\
+    \hline
+    RVO-4 & Il sistema non deve rispondere a domande non pertinenti al contesto di utilizzo. & Obbligatorio & Proponente \\
+    \hline
+    RVO-5 & Il sistema deve rispondere con una risposta di cortesia a domande la cui risposta non è contenuta in nessun documento. & Obbligatorio & Proponente \\
+    \hline
+    RVO-6 & Il sistema deve assicurare la piena sicurezza dei dati contenuti nei documenti. & Obbligatorio & Proponente \\
+    \hline
+    \rowcolor{white} \caption{Requisiti di vincolo del prodotto}
+    \label{tab:reqvin}
+\end{xltabular}
+\endgroup
+
+\section{Requisiti prestazionali}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| c | X | c | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Classificazione}} & \textbf{\textcolor{white}{Fonte}}\\
+    \hline
+    \endhead
+    RP-1 & ... & ... & ... \\
+    \hline
+    ... & ... & ... & ... \\
+    \hline
+    \rowcolor{white} \caption{Requisiti prestazionali del prodotto}
+    \label{tab:reqpre}
+\end{xltabular}
+\endgroup
+
+\section{Riepilogo}
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| X | c | c | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Requisito}} & \textbf{\textcolor{white}{Obbligatorio}} & \textbf{\textcolor{white}{Desiderabile}} & \textbf{\textcolor{white}{Opzionale}}\\
+    \hline
+    \endhead
+    Funzionale & 0 & 0 & 0 \\
+    \hline
+    Di qualità & 0 & 0 & 0 \\
+    \hline
+    Di vincolo & 0 & 0 & 0 \\
+    \hline
+    Prestazionali & 0 & 0 & 0 \\
+    \hline
+    \cellcolor{headerrow} \textbf{\textcolor{white}{Totale}} & 0 & 0 & 0 \\
+    \hline
+    
+    \rowcolor{white} \caption{Riepilogo dei requisiti}
+    \label{tab:riepilogo}
+\end{xltabular}
+\endgroup
