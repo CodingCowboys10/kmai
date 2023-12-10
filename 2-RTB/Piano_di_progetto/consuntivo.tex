@@ -7,17 +7,14 @@ Nel consuntivo orario, così come per i preventivi, i ruoli vengono riportati co
     \item Am.: amministratore;
     \item Pj.: progettista;
     \item An.: analista;
-    \item Pg.: progettista;
+    \item Pg.: programmatore;
     \item V.: verificatore.
 \end{itemize}
 Ogni consuntivo di periodo è accompagnato da un'analisi retrospettiva elaborata durante una riunione interna di fine sprint, le cui considerazioni saranno riflesse in aggiornamenti della pianificazione, dei tempi e dei costi preventivati qualora necessario.
 \newpage
 
-
 \section{Requirements and Technology Baseline}
-
 \subsection{Primo sprint: 2023/11/06 - 2023/11/19}
-
 \subsubsection{Consuntivo orario}
 {
 \setlength{\tabcolsep}{10pt}
@@ -29,11 +26,7 @@ Ogni consuntivo di periodo è accompagnato da un'analisi retrospettiva elaborata
         \hline
         \rowcolor{headerrow} \textbf{\textcolor{white}{Membro}} & \textbf{\textcolor{white}{R.}} & \textbf{\textcolor{white}{Am.}} & \textbf{\textcolor{white}{Pj.}} & \textbf{\textcolor{white}{An.}} & \textbf{\textcolor{white}{Pg.}} & \textbf{\textcolor{white}{V.}} & \textbf{\textcolor{white}{Totale}} \\
         \hline
-        Anna Nordio & - & 2 & - & 2 & - & 5 & \textbf{9} \\
-        \hline
-        Giovanni Menon & 7 & - & - & 1 & - & - & \textbf{8} \\
-        \hline
-        Leonardo Lago & - & 2 & - & 6 & - & 1 & \textbf{9} \\
+        Andrea Cecchin & - & 1 & - & 8 & - & 1 & \textbf{10} \\
         \hline
         Marco Dolzan & - & 1 & - & 6 & - & 2 & \textbf{9} \\
         \hline
@@ -41,7 +34,11 @@ Ogni consuntivo di periodo è accompagnato da un'analisi retrospettiva elaborata
         \hline  
         Francesco Giacomuzzo & - & 1 & - & 2 & - & 4 & \textbf{7} \\
         \hline
-        Andrea Cecchin & - & 1 & - & 8 & - & 1 & \textbf{10} \\
+        Leonardo Lago & - & 2 & - & 6 & - & 1 & \textbf{9} \\
+        \hline
+        Giovanni Menon & 7 & - & - & 1 & - & - & \textbf{8} \\
+        \hline
+        Anna Nordio & - & 2 & - & 2 & - & 5 & \textbf{9} \\
         \hline
     \cellcolor{headerrow} \textbf{\textcolor{white}{Totale}} & \textbf{7} & \textbf{16} & - & \textbf{25} & - & \textbf{14} & \textbf{62} \\
         \hline
@@ -50,16 +47,15 @@ Ogni consuntivo di periodo è accompagnato da un'analisi retrospettiva elaborata
     \label{tab:consuntivoorarioprimosprint}
 \end{table}
 }
-{
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{cons1ruoli.png}
+    \includegraphics[width=0.75\textwidth]{cons1ruoli.png}
     \caption{Ruoli effettivi primo sprint}
     \label{fig:consuntivootarioprimosprint}
 \end{figure}
-}
-\newpage
 
+\newpage
 \subsubsection{Consuntivo economico}
 {
 \setlength{\tabcolsep}{10pt}
@@ -92,37 +88,113 @@ Ogni consuntivo di periodo è accompagnato da un'analisi retrospettiva elaborata
     \label{tab:consuntivocostiprimosprint}
 \end{table}
 }
-{
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{cons1costo.png}
     \caption{Costo primo sprint e rimanente}
     \label{fig:consuntivocostoprimosprint}
 \end{figure}
-}
-\newpage
 
+\newpage
 \subsubsection{Analisi retrospettiva}
 Analizzando le ore impiegate nel primo sprint, in relazione allo stato di avanzamento del progetto, il precedente periodo risulta essere positivo nel suo complesso. Da un'analisi collettiva è emersa una difficoltà da parte dei verificatori di svolgere il loro lavoro minimizzando quanto più il discostamento tra ore produttive e di orologio: questo a causa di una non sempre ottimale comunicazione interna al gruppo. Non è tuttavia ritenuta una questione di cui allarmarsi, in quanto l'elevato numero di ore impiegate nel ruolo di amministratore hanno portato alla realizzazione di \ccgloss{automazioni} a sostegno del lavoro di ogni membro. Con la possibilità di utilizzare l'ambiente di project management di \ccgloss{Jira} al massimo del suo potenziale nel prossimo sprint, si è sicuri di ottimizzare la distribuzione di task e diminuire il rapporto tra ore produttive e ore di orologio già citato.\\
-Il massiccio impiego di analisti ha portato il documento di Analisi dei requisiti ad un ottimo punto, tanto che è stato fin da subito possibile esporre il lavoro fatto al proponente ricevendo feedback a riguardo.
+Il massiccio impiego di analisti ha portato il documento di analisi dei requisiti (Analisi\_dei\_Requisiti\_0.6) ad un ottimo punto, tanto che è stato fin da subito possibile esporre il lavoro fatto al proponente ricevendo feedback a riguardo.
 \newpage
 
 \subsection{Secondo sprint: 2023/11/20 - 2023/12/03}
 
 \subsubsection{Consuntivo orario}
+{
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | c | c | c | c | c | c | X |}
+        \hline
+        \rowcolor{headerrow} \textbf{\textcolor{white}{Membro}} & \textbf{\textcolor{white}{R.}} & \textbf{\textcolor{white}{Am.}} & \textbf{\textcolor{white}{Pj.}} & \textbf{\textcolor{white}{An.}} & \textbf{\textcolor{white}{Pg.}} & \textbf{\textcolor{white}{V.}} & \textbf{\textcolor{white}{Totale}} \\
+        \hline
+        Andrea Cecchin & - & 4 & 2 & - & 3 & - & \textbf{9} \\
+        \hline
+        Marco Dolzan & - & - & - & 1 & 6 & 3 & \textbf{10} \\
+        \hline
+        Francesco Ferraioli & - & - & 3 & 4 & - & 2 & \textbf{9} \\
+        \hline  
+        Francesco Giacomuzzo & 7 & - & - & - & - & 2 & \textbf{9} \\
+        \hline
+        Leonardo Lago & - & 4 & 2 & - & - & 3 & \textbf{9} \\
+        \hline
+        Giovanni Menon & - & - & 3 & 2 & 6 & - & \textbf{11} \\
+        \hline
+        Anna Nordio & - & 2 & - & 2 & 5 & - & \textbf{9} \\
+        \hline
+    \cellcolor{headerrow} \textbf{\textcolor{white}{Totale}} & \textbf{7} & \textbf{10} & \textbf{10} & \textbf{9} & \textbf{20} & \textbf{10} & \textbf{66} \\
+        \hline
+    \end{tabularx} 
+    \caption{Consuntivo orario secondo sprint}
+    \label{tab:consuntivoorariosecondosprint}
+\end{table}
+}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cons2ruoli.png}
+    \caption{Ruoli effettivi secondo sprint}
+    \label{fig:consuntivootariosecondosprint}
+\end{figure}
+
+\newpage
 \subsubsection{Consuntivo economico}
+{
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{table}[h]
+    \centering
+    \begin{tabularx}{\textwidth}{| l | l | l | X |}
+        \hline
+        \rowcolor{headerrow} \textbf{\textcolor{white}{Ruolo}} & \textbf{\textcolor{white}{Costo orario}} & \textbf{\textcolor{white}{Ore impiegate}} & \textbf{\textcolor{white}{Costo €}} \\
+        \hline
+        Responsabile & 30 & 7 & 210\\
+        \hline
+        Amministratore & 20 & 10 & 200\\
+        \hline
+        Progettista& 25 & 10 & 250\\
+        \hline
+        Analista & 25 & 9 & 225\\
+        \hline
+        Programmatore & 15 & 20 & 300\\
+        \hline
+        Verificatore & 15 & 10 & 150\\
+        \hline
+        \cellcolor{headerrow} \textbf{\textcolor{white}{Totale}} &  &  & \textbf{1335}\\
+        \hline
+        \cellcolor{headerrow} \textbf{\textcolor{white}{Rimanente}} &  &  & \textbf{10285}\\
+        \hline
+    \end{tabularx}
+    \caption{Consuntivo economico secondo sprint}
+    \label{tab:consuntivocostisecondoosprint}
+\end{table}
+}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cons2costo.png}
+    \caption{Costo secondo sprint e rimanente}
+    \label{fig:consuntivocostosecondosprint}
+\end{figure}
+
+\newpage
 \subsubsection{Analisi retrospettiva}
-
+Analizzando le ore utilizzate nel secondo sprint, in relazione allo stato di avanzamento del progetto, il precedente periodo risulta essere positivo nel suo complesso. In particolare l'elevato impegno orario nei ruoli di progettista e programmatore ha portato alla realizzazione di una PoC nel quale vengono impiegate le più rilevanti tecnologie trovate dal gruppo (langchain, Next.js, ChromaDB, Ollama e OpenAI). Il PoC fino a questo momento realizzato non può però definirsi completo in quanto manca l'integrazione di un database relazionale che permetta l'archivio dei documenti caricati nell'applicativo. Inoltre, è stata raggiunta una versione stabile del glossario (Glossario\_v0.14) contenente quindi tutti i termini e acronimi che potrebbero essere ambigui; tale versione non è però da considerarsi definitiva in quanto dovrà essere aggiornato con nuovi vocaboli che risultano poco chiari ad un lettore esterno. Il gruppo ha avanzato nella stesura del Way of Working (Norme\_di\_Progetto\_v0.8); sono ancora assenti per contenuti le sezioni dedicate ai processi di verifica (§3.4),  validazione (§3.5) e gestione delle infrastrutture tecniche (§4.2). Dall'altro lato il piano di qualifica (Piano\_di\_Qualifica\_v0.1) non ha ricevuto significativi avanzamenti. Il documento di analisi dei requisiti (Analisi\_dei\_Requisiti\_v0.9) è stato aggiornato con i diagrammi UML e la stesura dei requisiti funzionali; mancano ancora le sezioni relative ai requisiti di qualità, vincolo e prestazionali. Questa assenza è dovuta ad una pianificazione debole che ha sottostimato il quantitativo orario dedicato alla programmazione del PoC e quindi ha assegnato un impegno temporale irrealistico all'attività di analisi. Da una riflessione collettiva è poi emerso una difficoltà nella suddivisione dei compiti, in issue assegnabili ad una singola persona, in particolare le issue risultano essere troppo "grandi" e generiche. Per questo motivo il gruppo ha deciso di aumentare il numero di issue create, diminuendo il carico di lavoro per ciascuna di esse. Un'altra problematica emersa riguarda la difficoltà di lavorare con i modelli scelti, in quanto richiedono, durante l'esecuzione, un elevato numero di risorse che i dispositivi di alcuni membri del gruppo non riescono a fornire. Ciò è stato risolto con l'utilizzo delle tecnologie messe a disposizione dall'azienda, in particolare un account OpenAI che permette l'utilizzo di modelli attraverso chiamate API riducendo al minimo la richiesta di risorse ai dispositivi.
+\newpage
 
 \subsection{Terzo sprint}
-
 \subsubsection{Consuntivo orario}
 
 \subsubsection{Consuntivo economico}
 
 \subsubsection{Analisi retrospettiva}
-
 
 \newpage
