@@ -1,6 +1,6 @@
 
 
-<h1 align="center">Documentazione Coding Cowboys </h1>
+<h1 align="center">Repository Coding Cowboys </h1>
 
 <p align="center">
     <img src="asset/logo.png" style="width:275px;height:auto">
