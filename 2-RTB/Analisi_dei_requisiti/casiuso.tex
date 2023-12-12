@@ -694,6 +694,11 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema mostra la lista delle lingue supportate.
     \item[Post condizioni:] Il sistema aggiorna la lingua del chatbot.
     \item[Scenario:] L'utente visualizza la lista delle lingue del chatbot;\\L'utente seleziona una delle lingua disponibili.
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente seleziona la lingua del chatbot tra quelle supportate.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -710,7 +715,16 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema mostra l'interfaccia del chatbot.
     \item[Post condizioni:] Il sistema presenta la domanda dell'utente nello spazio relativo.
     \item[Scenario:] L'utente inserisce la domanda da rivolgere al sistema digitandola o attraverso un input vocale.
-    \item[Generalizzazioni:] Digita domanda (UC-15.1);\\Input vocale della domanda (UC-15.2) 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot.
+    \end{enumerate}
+    \item[Generalizzazioni:] 
+    \begin{itemize}
+        \item Digita domanda (\textbf{UC-15.1});
+        \item Input vocale della domanda (\textbf{UC-15.2}) .
+    \end{itemize}
 \end{description}
 
 \subsection{UC-16.1 Digita domanda}
@@ -720,6 +734,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema mostra l'interfaccia del chatbot.
     \item[Post condizioni:] Il sistema presenta la domanda digitata dall'utente nello spazio relativo.
     \item[Scenario:] L'utente inserisce la domanda da rivolgere al sistema digitandola.
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente inserisce la domanda da rivolgere al sistema digitandola.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-16.2 Input vocale della domanda}
@@ -728,8 +748,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l'interfaccia del chatbot.
     \item[Post condizioni:] Il sistema presenta la domanda posta a voce dall'utente nello spazio relativo.
-    \item[Scenario:] L'utente inserisce la domanda da rivolgere al chatbot tramite input vocale.
-    \item[Scenario alternativo:] Visualizza errore nell'inserimento della domanda tramite input vocale (UC-16).
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente inserisce la domanda da rivolgere al chatbot tramite input vocale.
+    \end{enumerate}
+    \item[Scenario alternativo:] Visualizza errore nell'inserimento della domanda tramite input vocale (\textbf{UC-17}).
 \end{description}
 
 \subsection{UC-17 Visualizza errore input vocale}
@@ -738,7 +764,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente tenta di inserire la domanda tramite input vocale.
     \item[Post condizioni:] Il sistema non presenta la domanda posta a voce dall'utente nello spazio relativo.
-    \item[Scenario:] L'utente visualizza un messaggio di errore, a seguito di un tentativo fallito di inserire tramite voce la domanda da porre al sistema.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente inserisce la domanda da rivolgere al chatbot tramite input vocale (\textbf{UC-16.2}).
+        \item L'utente visualizza un messaggio di errore, a seguito di un tentativo fallito di inserire tramite input vocale la domanda da porre al sistema.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -754,8 +787,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta la domanda posta dall'utente.
     \item[Post condizioni:] Il sistema ha processato correttamente la domanda inserita dall'utente.
-    \item[Scenario:] L'utente seleziona l'invio della domanda al sistema.
-    \item[Scenario alternativo:] Visualizza errore invio domanda (UC-19).
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema.
+    \end{enumerate}
+    \item[Scenario alternativo:] Visualizza errore invio domanda (\textbf{UC-19}).
 \end{description}
 
 \subsection{UC-19 Visualizza errore invio domanda}
@@ -764,7 +803,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente ha tentato di inviare una domanda.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e non invia la domanda.
-    \item[Scenario:] L'utente visualizza un messaggio di errore, a seguito di un tentativo di inviare una domanda.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema (\textbf{UC-18}).
+        \item L'utente visualizza un messaggio di errore, a seguito di un tentativo di inviare una domanda.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -781,8 +827,15 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore secondario:] Modello LLM. 
     \item[Pre condizioni:] Il sistema ha ricevuto e processato la domanda posta dall'utente.
     \item[Post condizioni:] Il sistema restituisce una risposta all'utente.
-    \item[Scenario:] L'utente inserisce una domanda;\\L'utente invia una domanda;\\L'utente visualizza la risposta alla domanda posta al sistema.
-    \item[Scenario alternativo:] UC-21
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema (\textbf{UC-18}).
+        \item L'utente visualizza la risposta alla domanda posta al sistema.
+    \end{enumerate}
+    \item[Scenario alternativo:] Visualizza un errore risposta (\textbf{UC-21}).
 \end{description}
 
 \subsection{UC-21 Visualizza errore risposta}
@@ -792,6 +845,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] 
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e non restituisce la risposta.
     \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema (\textbf{UC-18}).
+        \item L'utente visualizza un errore nella visualizzazione della risposta.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -807,8 +867,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non presenta la nuova sessione di interesse dell'utente.
     \item[Post condizioni:] Il sistema inizializza una nuova sessione.
-    \item[Scenario:] L'utente crea una nuova sessione di conversazione nel sistema.
-    \item[Scenario alternativo:] UC-23
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente crea una nuova sessione di conversazione nel sistema.
+    \end{enumerate}
+    \item[Scenario alternativo:] Visualizza errore creazione sessione (\textbf{UC-23})
 \end{description}
 
 \subsection{UC-23 Visualizza errore creazione sessione}
@@ -818,6 +883,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] L'utente ha tentato di creare una nuova sessione.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e non crea una nuova sessione.
     \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente crea una nuova sessione di conversazione nel sistema (\textbf{UC-22}).
+        \item L'utente visualizza un messaggio di errore e non viene creata una nuova sessione.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -833,8 +904,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l'interfaccia relativa al chatbot.
     \item[Post condizioni:] Il sistema mostra la lista delle sessioni attive.
-    \item[Scenario:] L'utente visualizza la lista delle sessioni attive;\\L'utente visualizza una delle sessioni attive di conversazione col chatbot.
-    \item[Scenario alternativo:] UC-25
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza la lista delle sessioni attive.
+    \end{enumerate}
+    \item[Scenario alternativo:] Visualizza errore sessioni aperte (\textbf{UC-25})
 \end{description}
 
 \subsection{UC-24.1 Visualizza singola sessione}
@@ -843,7 +919,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra la lista delle sessioni attive.
         \item[Post condizioni:] Il sistema mostra una particolare sessione attiva.
-    \item[Scenario:] L'utente visualizza una delle sessioni attive nel sistema
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza la lista delle sessioni attive (\textbf{UC-24}).
+        \item L'utente visualizza una delle sessioni attive nel sistema.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-25 Visualizza errore sessioni aperte }
@@ -853,6 +935,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema ha tentato di visualizzare le sessioni aperte.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e non visualizza le sessioni aperte.
     \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza la lista delle sessioni attive (\textbf{UC-24}).
+        \item L'utente visualizza un messaggio di errore e non viene visualizzata la lista delle sessioni aperte.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -868,8 +956,15 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta la sessione che l'utente vuole eliminare.
     \item[Post condizioni:] Il sistema non presenta più la sessione eliminata dall'utente.
-    \item[Scenario:] L'utente elimina dal sistema la sessione di conversazione con il chatbot desiderata.
-    \item[Scenario alternativo:] UC-27
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza la lista delle sessioni attive (\textbf{UC-24}).
+        \item L'utente visualizza una delle sessioni attive nel sistema (\textbf{UC-24.1}).
+        \item L'utente elimina dal sistema la sessione di conversazione con il chatbot desiderata.
+    \end{enumerate}
+    \item[Scenario alternativo:] Visualizza errore eliminazione sessione (\textbf{UC-27}).
 \end{description}
 
 \subsection{UC-27 Visualizza errore eliminazione sessione }
@@ -878,7 +973,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente ha tentato di eliminare una sessione.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e non elimina la sessione.
-    \item[Scenario:] 
+    \item[Scenario:] \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza la lista delle sessioni attive (\textbf{UC-24}).
+        \item L'utente visualizza una delle sessioni attive nel sistema (\textbf{UC-24.1}).
+        \item L'utente elimina dal sistema la sessione di conversazione con il chatbot desiderata (\textbf{UC-26}).
+        \item L'utente visualizza un messaggio di errore e non viene eliminata la sessione selezionata.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -894,8 +996,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema ha in precedenza ricevuto una o più domande a cui ha fornito risposte.
     \item[Post condizioni:] Il sistema mostra lo storico delle conversazioni dell'utente
-    \item[Scenario:] L'utente visualizza lo scambio di domande e risposte in una sessione con il sistema.
-    \item[Scenario alternativo:] UC-29
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza lo scambio di domande e risposte in una sessione con il sistema.
+    \end{enumerate}
+    
+    \item[Scenario alternativo:] Visualizza errore chat history (\textbf{UC-29})
 \end{description} 
 
 \subsection{UC-29 Visualizza errore chat history }
@@ -905,6 +1013,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema ha tentato di visualizzare la chat history.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e non visualizza la chat history.
     \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza lo scambio di domande e risposte in una sessione con il sistema (\textbf{UC-28}).
+        \item L'utente visualizza un messaggio di errore e non viene mostrata la chat history.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -920,8 +1034,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta la chat history.
     \item[Post condizioni:] Il sistema non presenta più alcuna chat history in quella sessione.
-    \item[Scenario:] L'utente elimina la chat history della sessione corrente.
-    \item[Scenario alternativo:] UC-31
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente elimina la chat history della sessione corrente.
+    \end{enumerate}
+    \item[Scenario alternativo:] Visualizza errore eliminazione chat history (\textbf{UC-31}).
 \end{description}
 
 \subsection{UC-31 Visualizza errore eliminazione chat history }
@@ -931,6 +1050,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] L'utente ha tentato di eliminare la chat history.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e non elimina la chat history.
     \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente elimina la chat history della sessione corrente (\textbf{UC-30}).
+        \item L'utente visualizza un messaggio di errore e non viene eliminata la chat history.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -946,7 +1071,15 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra la risposta ad una domanda dell'utente.
     \item[Post condizioni:] Il sistema mostra le informazioni riguardanti la fonte della risposta.
-    \item[Scenario:] L'utente inserisce una domanda.\\L'utente invia una domanda.\\L'utente visualizza una risposta.\\L'utente visualizza le informazioni sul documento fonte della risposta.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema (\textbf{UC-18}).
+        \item L'utente visualizza la risposta alla domanda posta al sistema (\textbf{UC-20}).
+        \item L'utente visualizza le informazioni sul documento fonte della risposta.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -963,7 +1096,16 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore secondario:] Modello LLM.
     \item[Pre condizioni:] Il sistema non visualizza il nome del documento.
     \item[Post condizioni:] Il sistema visualizza il nome del documento.
-    \item[Scenario:] L'utente visualizza il nome del documento.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema (\textbf{UC-18}).
+        \item L'utente visualizza la risposta alla domanda posta al sistema (\textbf{UC-20}).
+        \item L'utente visualizza le informazioni sul documento fonte della risposta (\textbf{UC-32}).
+        \item L'utente visualizza il nome del documento.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-32.2 Visualizza pagina del documento}
@@ -973,7 +1115,16 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore secondario:] Modello LLM.
     \item[Pre condizioni:] Il sistema non visualizza la pagina del documento.
     \item[Post condizioni:] Il sistema visualizza la pagina del documento.
-    \item[Scenario:] L'utente visualizza la pagina del documento.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema (\textbf{UC-18}).
+        \item L'utente visualizza la risposta alla domanda posta al sistema (\textbf{UC-20}).
+        \item L'utente visualizza le informazioni sul documento fonte della risposta (\textbf{UC-32}).
+        \item L'utente visualizza la pagina del documento.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-32.3 Visualizza preview del documento}
@@ -982,7 +1133,17 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non presenta il preview del documento.
     \item[Post condizioni:] Il sistema visualizza il preview del documento.
-    \item[Scenario:] L'utente seleziona il documento voluto. \\L'utente visualizza il documento.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema (\textbf{UC-18}).
+        \item L'utente visualizza la risposta alla domanda posta al sistema (\textbf{UC-20}).
+        \item L'utente visualizza le informazioni sul documento fonte della risposta (\textbf{UC-32}).
+        \item L'utente seleziona il documento voluto. 
+        \item L'utente visualizza il documento.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -999,7 +1160,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore secondario:] Modello LLM.
     \item[Pre condizioni:] Il sistema mostra la risposta ad una domanda dell'utente.
     \item[Post condizioni:] Il sistema riproduce la risposta con un audio.
-    \item[Scenario:] L'utente inserisce una domanda.\\L'utente invia una domanda.\\L'utente ascolta la risposta ricevuta dal sistema.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L’utente pone una domanda al chatbot (\textbf{UC-16}).
+        \item L'utente invia la domanda al sistema (\textbf{UC-18}).
+        \item L'utente ascolta la risposta ricevuta dal sistema.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
