@@ -26,7 +26,11 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:]  Il sistema è stato inizializzato.
     \item[Post condizioni:] Il sistema mostra l’area di gestione dei documenti.
-    \item[Scenario:] Il sistema è inizializzato e l’utente ha accesso all’interfaccia di gestione della documentazione.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente ha accesso all’interfaccia di gestione della documentazione.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-2 Visualizza interfaccia chatbot}
@@ -35,12 +39,16 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema è stato inizializzato.
     \item[Post condizioni:] Il sistema mostra l’interfaccia del chatbot.
-    \item[Scenario:] Il sistema è inizializzato e l’utente ha accesso all’interfaccia del chatbot.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente ha accesso all’interfaccia del chatbot.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{UC1-2.PNG}
+    \includegraphics[width=0.66\linewidth]{UC1-2.PNG}
     \caption{Diagramma UML dei casi d'uso UC-1 e UC-2}
     \label{fig:UC1-2}
 \end{figure}
@@ -51,7 +59,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’interfaccia di gestione documenti.
     \item[Post condizioni:] Il sistema mostra l’intera lista di documenti.
-    \item[Scenario:] L’utente visualizza i documenti nella sezione di gestione dei documenti.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -67,7 +80,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra il documento di interesse.
-    \item[Scenario:] L'utente visualizza il nome del documento;\\L'utente visualizza la data di inserimento del documento;\\L'utente visualizza i tag del documento;\\L'utente visualizza la preview del documento.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente visualizza il singolo documento.
+    \end{enumerate} 
 \end{description}
 
 \begin{figure}[H]
@@ -83,7 +102,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra il nome del documento selezionato.
-    \item[Scenario:] L'utente visualizza il nome del documento voluto.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente visualizza il singolo documento (\textbf{UC-3.1}).
+        \item L'utente visualizza il nome del documento.
+    \end{enumerate} 
 \end{description}
 
 \subsection{UC-3.1.2 Visualizza data di inserimento del documento}
@@ -92,7 +118,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra la data di inserimento del documento selezionato.
-    \item[Scenario:] L'utente visualizza la data di inserimento del documento voluto.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente visualizza il singolo documento (\textbf{UC-3.1}).
+        \item L'utente visualizza la data di inserimento del documento voluto.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-3.1.3 Visualizza tag del documento}
@@ -101,7 +134,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra i tag del documento selezionato.
-    \item[Scenario:] L'utente visualizza i tag applicati al documento voluto.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente visualizza il singolo documento (\textbf{UC-3.1}).
+        \item L'utente visualizza i tag applicati al documento voluto.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-3.1.4 Visualizza preview del documento}
@@ -110,7 +150,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra il preview del documento selezionato.
-    \item[Scenario:] L'utente visualizza il preview del documento voluto.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente visualizza il singolo documento (\textbf{UC-3.1}).
+        \item L'utente visualizza il preview del documento voluto.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -126,7 +173,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra la lista di documenti che soddisfano la ricerca.
-    \item[Scenario:] L’utente inserisce il nome del file, il tag e/o la data di inserimento.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente seleziona la barra di ricerca per cercare un documento.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -142,7 +194,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra la lista di documenti che contengono il nome inserito.
-    \item[Scenario:] L’utente inserisce il nome del file da cercare.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente seleziona la barra di ricerca per cercare un documento (\textbf{UC-4}).
+        \item L’utente inserisce il nome del file da cercare.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-4.2 Ricerca documento per data}
@@ -151,7 +209,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra la lista di documenti che sono stati inseriti dopo una certa data.
-    \item[Scenario:] L’utente inserisce la data da cercare.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente seleziona la barra di ricerca per cercare un documento (\textbf{UC-4}).
+        \item L’utente inserisce la data di caricamento da cercare.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-4.3 Ricerca documento per tag}
@@ -160,7 +224,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra la lista di documenti che hanno quel tag.
-    \item[Scenario:] L’utente inserisce il tag da cercare.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente seleziona la barra di ricerca per cercare un documento (\textbf{UC-4}).
+        \item L’utente inserisce il tag da cercare.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -176,7 +246,15 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il documento non ha il tag voluto dall’utente.
     \item[Post condizioni:] Il documento ha il nuovo tag selezionato dall’utente.
-    \item[Scenario:] L’utente seleziona il documento;\\L’utente visualizza la lista di tag;\\L’utente seleziona il tag da aggiungere.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente seleziona il documento.
+        \item L’utente visualizza la lista di tag possibili.
+        \item L’utente seleziona il tag da aggiungere.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -192,7 +270,15 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il documento ha associato il tag non più voluto dall’utente.
     \item[Post condizioni:] Il documento non ha più associato il tag non voluto dall’utente.
-    \item[Scenario:] L’utente seleziona il documento;\\L’utente visualizza la lista di tag associati a quel documento;\\L’utente seleziona il tag da rimuovere.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente seleziona il documento.
+        \item L’utente visualizza la lista di tag associati a quel documento.
+        \item L’utente seleziona il tag da rimuovere.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -208,7 +294,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non presenta il nuovo tag voluto dall’utente.
     \item[Post condizioni:] Il sistema presenta il tag voluto dall’utente.
-    \item[Scenario:] L’utente inserisce il nome del tag;\\L’utente inserisce il colore del tag.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente aggiunge un tag alla lista.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -225,6 +317,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema non conosce il nome  il tag voluto dall’utente e il nome associato.
     \item[Post condizioni:] Il sistema conosce il nome del tag voluto dall’utente.
     \item[Scenario:] L’utente inserisce il nome del tag.
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente aggiunge un tag alla lista (\textbf{UC-7}.
+        \item L'utente inserisce il nome del nuovo tag.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-7.2 Aggiungi colore del tag}
@@ -233,7 +332,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non conosce il colore il tag voluto dall’utente.
     \item[Post condizioni:] Il sistema conosce il tag voluto dall’utente.
-    \item[Scenario:] L’utente inserisce il colore del tag.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente aggiunge un tag alla lista (\textbf{UC-7}).
+        \item L'utente inserisce il colore del nuovo tag.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-7.3 Aggiungi descrizione del tag}
@@ -242,7 +348,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non conosce la descrizione  del tag voluto dall’utente.
     \item[Post condizioni:] Il sistema conosce la descrizione del tag voluto dall’utente.
-    \item[Scenario:] L’utente inserisce la descrizione del tag.
+    \item[Scenario:].
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente aggiunge un tag alla lista (\textbf{UC-7}).
+        \item L'utente inserisce la descrizione del nuovo tag.
+    \end{enumerate}
 \end{description}
 \begin{figure}[H]
     \centering
@@ -258,6 +371,11 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema mostra l'interfaccia di gestione dei documenti.
     \item[Post condizioni:] Il sistema mostra la lista dei tag creati.
     \item[Scenario:] L'utente visualizza ogni tag creato;\\L'utente visualizza il singolo tag creato.
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag.
+    \end{enumerate}
 \end{description}
 \begin{figure}[H]
     \centering
@@ -273,6 +391,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema mostra la lista dei tag creati.
     \item[Post condizioni:] Il sistema mostra il tag di interesse.
     \item[Scenario:] L'utente visualizza il nome del tag;\\L'utente visualizza il colore del tag;\\L'utente visualizza la descrizione del tag.
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente visualizza un singolo tag.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -288,6 +412,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema mostra la lista dei tag creati.
     \item[Post condizioni:] Il sistema mostra il nome del tag selezionato.
     \item[Scenario:] L'utente visualizza il nome del tag selezionato.
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente visualizza un singolo tag (\textbf{UC-8.1}).
+        \item L'utente visualizza il nome del tag.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-8.1.2 Visualizza colore del tag}
@@ -296,7 +427,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra la lista dei tag creati.
     \item[Post condizioni:] Il sistema mostra il colore del tag selezionato.
-    \item[Scenario:] L'utente visualizza il colore del tag selezionato.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente visualizza un singolo tag (\textbf{UC-8.1}).
+        \item L'utente visualizza il colore del tag.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-8.1.3 Visualizza descrizione del tag}
@@ -305,7 +443,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra la lista dei tag creati.
     \item[Post condizioni:] Il sistema mostra la descrizione del tag selezionato.
-    \item[Scenario:] L'utente visualizza la descrizione del tag selezionato.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente visualizza un singolo tag (\textbf{UC-8.1}).
+        \item L'utente visualizza la descrizione del tag.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -322,6 +467,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] Il sistema presenta il tag non desiderato.
     \item[Post condizioni:] Il sistema non presenta più il tag indesiderato.
     \item[Scenario:] L'utente elimina uno dei tag presenti nel sistema.
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
+        \item L'utente visualizza un singolo tag (\textbf{UC-8.1}).
+        \item L'utente elimina il tag visualizzato.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -337,8 +489,15 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta il documento non desiderato.
     \item[Post condizioni:] Il sistema non presenta più il documento indesiderato.
-    \item[Scenario:] L'utente elimina il documento di interesse;\\L'utente conferma l'eliminazione del documento dal sistema.
-    \item[Scenario alternativo:] Visualizza errore nell'eliminazione di un documento (UC-11).
+    \item[Scenario:] L'utente elimina il documento di interesse;\\L'utente conferma l'eliminazione del documento dal sistema
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente visualizza il singolo documento (\textbf{UC-3.1}).
+        \item L'utente elimina il documento d'interesse.
+    \end{enumerate} 
+    \item[Scenario alternativo:] Visualizza errore nell'eliminazione di un documento (\textbf{UC-11}).
 \end{description}
 
 \subsection{UC-10.1 Conferma eliminazione documento}
@@ -347,7 +506,16 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta il documento non desiderato.
     \item[Post condizioni:] Il sistema non presenta più il documento indesiderato.
-    \item[Scenario:] L'utente conferma l'eliminazione del documento dal sistema.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente visualizza il singolo documento (\textbf{UC-3.1}).
+        \item L'utente elimina il documento d'interesse (\textbf{UC-10}).
+        \item L'utente conferma l'eliminazione del documento dal sistema.
+    \end{enumerate}
+    
 \end{description}
 
 \subsection{UC-11 Visualizza errore eliminazione documento}
@@ -357,6 +525,15 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Pre condizioni:] L'utente tenta di eliminare un documento
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene eliminato.
     \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente visualizza la lista di tutti documenti (\textbf{UC-3}).
+        \item L'utente visualizza il singolo documento (\textbf{UC-3.1}).
+        \item L'utente elimina il documento d'interesse (\textbf{UC-10}).
+        \item L'utente conferma l'eliminazione del documento dal sistema (\textbf{UC-10.1}.
+        \item Il sistema notifica un messaggio di errore.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -372,9 +549,19 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non presenta il documento di interesse.
     \item[Post condizioni:] Nel sistema è presente un nuovo documento.
-    \item[Scenario:] L'utente aggiunge un nuovo documento tramite trascinamento o tramite file system.
-    \item[Generalizzazioni:] Aggiungi documento tramite trascinamento (UC-12.1);\\Aggiungi documento tramite file system (UC-12.2).
-    \item[Scenario alternativo:] Visualizza errore nell'inserimento di un documento (UC-13).
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente aggiunge un nuovo documento.
+    \end{enumerate}
+    \item[Generalizzazioni:] 
+    \begin{itemize}
+        \item[] 
+        \item Aggiungi documento tramite trascinamento (\textbf{UC-12.1});
+        \item Aggiungi documento tramite file system (\textbf{UC-12.2}).
+    \end{itemize} 
+    \item[Scenario alternativo:] Visualizza errore nell'inserimento di un documento (\textbf{UC-13}).
 \end{description}
 
 \subsection{UC-12.1 Aggiungi documento tramite trascinamento}
@@ -383,7 +570,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non presenta il documento di interesse.
     \item[Post condizioni:] Nel sistema è presente un nuovo documento.
-    \item[Scenario:] L'utente aggiunge un nuovo documento nel sistema tramite trascinamento.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente aggiunge un nuovo documento (\textbf{UC-12}).
+        \item L'utente aggiunge un nuovo documento nel sistema tramite trascinamento.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-12.2 Aggiungi documento tramite file system}
@@ -392,7 +585,13 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non presenta il documento di interesse.
     \item[Post condizioni:] Nel sistema è presente un nuovo documento.
-    \item[Scenario:] L'utente aggiunge un nuovo documento nel sistema tramite navigazione del file system.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente aggiunge un nuovo documento (\textbf{UC-12}).
+        \item L'utente aggiunge un nuovo documento nel sistema tramite navigazione del file system.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-13 Visualizza errore inserimento documento}
@@ -401,8 +600,20 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente tenta di inserire un documento nel sistema.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene inserito nel sistema.
-    \item[Scenario:] L'utente visualizza un messaggio di errore, a seguito di un tentativo di aggiungere un nuovo documento a sistema con un nome già in uso o di un formato non supportato o un file corrotto.
-    \item[Generalizzazioni:] Visualizza errore nome file già presente (UC-12.1);\\Visualizza errore formato file (UC-12.2);\\Visualizza errore file corrotto (UC-12.3).
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente aggiunge un nuovo documento (\textbf{UC-12}).
+        \item L'utente visualizza un messaggio d'errore.
+    \end{enumerate}
+    \item[Generalizzazioni:]
+    \begin{itemize}
+        \item[] 
+        \item Visualizza errore nome file già presente (\textbf{UC-12.1});
+        \item Visualizza errore formato file (\textbf{UC-12.2});
+        \item Visualizza errore file corrotto (\textbf{UC-12.3}).
+    \end{itemize}
 \end{description}
 
 \subsection{UC-13.1 Visualizza errore nome file già presente}
@@ -411,7 +622,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente tenta di inserire nel sistema un documento con un nome già in uso.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene inserito nel sistema.
-    \item[Scenario:] L'utente visualizza un messaggio di errore, a seguito di un tentativo di aggiungere un nuovo documento a sistema con un nome già in uso.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente aggiunge un nuovo documento (\textbf{UC-12}).
+        \item L'utente visualizza un messaggio d'errore (\textbf{UC-13}).
+        \item L'utente visualizza un messaggio d'errore a seguito di un tentativo di aggiungere un nuovo documento a sistema con un nome già in uso.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-13.2 Visualizza errore formato file}
@@ -420,7 +638,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente tenta di inserire nel sistema un documento con un formato non supportato.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene inserito nel sistema.
-    \item[Scenario:] L'utente visualizza un messaggio di errore, a seguito di un tentativo di aggiungere un nuovo documento a sistema con un formato non supportato.
+    \item[Scenario:] 
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente aggiunge un nuovo documento (\textbf{UC-12}).
+        \item L'utente visualizza un messaggio d'errore (\textbf{UC-13}).
+        \item L'utente visualizza un messaggio di errore, a seguito di un tentativo di aggiungere un nuovo documento a sistema con un formato non supportato.
+    \end{enumerate}
 \end{description}
 
 \subsection{UC-13.3 Visualizza errore file corrotto}
@@ -429,7 +654,14 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente tenta di inserire nel sistema un documento corrotto.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e il documento non viene inserito nel sistema.
-    \item[Scenario:] L'utente visualizza un messaggio di errore, a seguito di un tentativo di aggiungere un nuovo documento a sistema tramite un file corrotto.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[] 
+        \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
+        \item L’utente aggiunge un nuovo documento (\textbf{UC-12}).
+        \item L'utente visualizza un messaggio d'errore (\textbf{UC-13}).
+        \item L'utente visualizza un messaggio di errore, a seguito di un tentativo di aggiungere un nuovo documento a sistema tramite un file corrotto.
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
