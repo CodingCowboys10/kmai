@@ -316,12 +316,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non conosce il nome  il tag voluto dall’utente e il nome associato.
     \item[Post condizioni:] Il sistema conosce il nome del tag voluto dall’utente.
-    \item[Scenario:] L’utente inserisce il nome del tag.
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
         \item L’utente visualizza la lista di tutti i tag (\textbf{UC-8}).
-        \item L'utente aggiunge un tag alla lista (\textbf{UC-7}.
+        \item L'utente aggiunge un tag alla lista (\textbf{UC-7}).
         \item L'utente inserisce il nome del nuovo tag.
     \end{enumerate}
 \end{description}
@@ -348,7 +348,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema non conosce la descrizione  del tag voluto dall’utente.
     \item[Post condizioni:] Il sistema conosce la descrizione del tag voluto dall’utente.
-    \item[Scenario:].
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
@@ -370,7 +370,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l'interfaccia di gestione dei documenti.
     \item[Post condizioni:] Il sistema mostra la lista dei tag creati.
-    \item[Scenario:] L'utente visualizza ogni tag creato;\\L'utente visualizza il singolo tag creato.
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
@@ -390,7 +390,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra la lista dei tag creati.
     \item[Post condizioni:] Il sistema mostra il tag di interesse.
-    \item[Scenario:] L'utente visualizza il nome del tag;\\L'utente visualizza il colore del tag;\\L'utente visualizza la descrizione del tag.
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
@@ -411,7 +411,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra la lista dei tag creati.
     \item[Post condizioni:] Il sistema mostra il nome del tag selezionato.
-    \item[Scenario:] L'utente visualizza il nome del tag selezionato.
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
@@ -466,7 +466,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta il tag non desiderato.
     \item[Post condizioni:] Il sistema non presenta più il tag indesiderato.
-    \item[Scenario:] L'utente elimina uno dei tag presenti nel sistema.
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
@@ -489,7 +489,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta il documento non desiderato.
     \item[Post condizioni:] Il sistema non presenta più il documento indesiderato.
-    \item[Scenario:] L'utente elimina il documento di interesse;\\L'utente conferma l'eliminazione del documento dal sistema
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia per la gestione dei documenti (\textbf{UC-1}).
@@ -677,7 +677,12 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l'interfaccia del chatbot.
     \item[Post condizioni:] Il sistema mostra la lista delle lingue supportate.
-    \item[Scenario:] L'utente visualizza tutte le lingue utilizzabili nell'interfaccia del chatbot.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[]
+        \item L'utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza la lista delle lingue supportate
+    \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
@@ -693,10 +698,11 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra la lista delle lingue supportate.
     \item[Post condizioni:] Il sistema aggiorna la lingua del chatbot.
-    \item[Scenario:] L'utente visualizza la lista delle lingue del chatbot;\\L'utente seleziona una delle lingua disponibili.
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
+        \item L'utente visualizza la lista delle lingue supportate (\textbf{UC-14})
         \item L’utente seleziona la lingua del chatbot tra quelle supportate.
     \end{enumerate}
 \end{description}
@@ -714,7 +720,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l'interfaccia del chatbot.
     \item[Post condizioni:] Il sistema presenta la domanda dell'utente nello spazio relativo.
-    \item[Scenario:] L'utente inserisce la domanda da rivolgere al sistema digitandola o attraverso un input vocale.
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
@@ -733,7 +739,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l'interfaccia del chatbot.
     \item[Post condizioni:] Il sistema presenta la domanda digitata dall'utente nello spazio relativo.
-    \item[Scenario:] L'utente inserisce la domanda da rivolgere al sistema digitandola.
+    \item[Scenario:]
     \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
@@ -973,7 +979,8 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] L'utente ha tentato di eliminare una sessione.
     \item[Post condizioni:] Il sistema notifica un messaggio di errore e non elimina la sessione.
-    \item[Scenario:] \begin{enumerate}
+    \item[Scenario:] 
+    \begin{enumerate}
         \item[] 
         \item L’utente visualizza l'interfaccia del chatbot (\textbf{UC-2}).
         \item L'utente visualizza la lista delle sessioni attive (\textbf{UC-24}).
