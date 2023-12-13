@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Chatbot from "@/app/components/chat_components/chatbot";
+import Chatbot from "./chat_components/chatbot";
 
 export default function Page() {
   return (
