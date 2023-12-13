@@ -10,7 +10,7 @@ npm run dev
 
 create un file .env dentro langchain_test e dentro inserite:
 ```dotenv
-#langchain_test/.env
+#langchain_test/.env.local
 OPENAI_API_KEY=sk-xxxx
 ```
 
@@ -19,7 +19,7 @@ Se ancora da errori :
 
 ```shell
 npm install -S langchain # Installa langchain
-npm install -S dotenv # Installa la libreria per .env
+npm install -S dotenv # Installa la libreria per .env.local
 npm install --save chromadb # Installa chroma db
 
 python3 -m venv .venv  # Crea un ambiente virtuale python in cui scaricare poi chroma db

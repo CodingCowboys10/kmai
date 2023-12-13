@@ -19,6 +19,7 @@
     "typeface-roboto": "^1.1.13"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
