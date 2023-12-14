@@ -10,7 +10,7 @@ npm run dev
 
 create un file .env dentro langchain_test e dentro inserite:
 ```dotenv
-#langchain_test/.env.local
+#poc/.env.local
 OPENAI_API_KEY=sk-xxxx
 ```
 
