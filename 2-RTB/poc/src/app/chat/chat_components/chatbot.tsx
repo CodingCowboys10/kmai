@@ -9,10 +9,10 @@ interface chatMessage{
 }
 function Chatbot (){
 
-    const ask:chatMessage = {id:0,text:"prova ask"};
-    const answer:chatMessage = {id:1,text:"prova answer"};
+    const ask:chatMessage = {id:0,text:"prova ask"};        //DA ELIMINARE (SOLO PER PROVA)
+    const answer:chatMessage = {id:1,text:"prova answer"};  //DA ELIMINARE (SOLO PER PROVA)
 
-    const [listElementChat,setListElementChat] = useState<chatMessage[]>([ask,answer])
+    const [listElementChat,setListElementChat] = useState<chatMessage[]>([ask,answer,ask,answer,ask,answer,ask,answer,ask,answer,ask,answer])
 
     const addPointList = (id : number, text : string)=>{
         let element : chatMessage  = {
@@ -20,6 +20,10 @@ function Chatbot (){
             text : text
         };
         setListElementChat([...listElementChat,element]);
+    }
+
+    const clearChat = () => {
+        setListElementChat([]);
     }
 
 
@@ -30,7 +34,7 @@ function Chatbot (){
             <div className="flex flex-col w-max">
 
                 <div className="relative">
-                    <Chat list={listElementChat}></Chat>
+                    <Chat list={listElementChat} clearChat={clearChat}></Chat>
                 </div>
 
 

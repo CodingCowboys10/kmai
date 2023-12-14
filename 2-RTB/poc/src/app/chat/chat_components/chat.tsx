@@ -10,8 +10,9 @@ interface chatMessage{
 
 interface ChatProps {
     list: chatMessage[];
+    clearChat : () => void;
 }
-function Chat({list}:ChatProps) {
+function Chat({list,clearChat}:ChatProps) {
     const chatStyle :Properties = {
         fontFamily: 'Roboto, sans-serif',
         minWidth: '60em',
@@ -27,18 +28,17 @@ function Chat({list}:ChatProps) {
     };
 
 
-
     return (
         <>
 
-            <div id="chatArea" className=" relative max-w-full h-min w-min" style={chatStyle}>
-                Chat Body Component
-                <>{list.map((value, index) => (
+            <div id="chatArea" style={chatStyle}>
+                <div className="mt-16">{list.map((value, index) => (
                     <React.Fragment key={index}>
                         {value.id === 0 && (<ChatMessageAsk text={value.text}/>)}
                         {value.id === 1 && (<ChatMessageAnswer text={value.text}/>)}
                     </React.Fragment>
-                ))}</>
+                ))}</div>
+                <button className="absolute top-4 right-8" onClick={clearChat}>Clear chat</button>
             </div>
 
         </>

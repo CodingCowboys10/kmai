@@ -1,5 +1,5 @@
-import {green} from "next/dist/lib/picocolors";
-
+import Image from "next/image";
+import profilePic from './ico/utente.png'
 interface chatAskProps{
     text:string
 }
@@ -7,11 +7,18 @@ interface chatAskProps{
 
 function ChatMessageAsk({text}:chatAskProps){
     return (
-        <>
-            <div style={{backgroundColor : "#87CEFA"}}>
+        <div className="p-1.5 ml-5 flex flex-row-reverse">
+            <Image
+                className="h-12 w-12"
+                src={profilePic}
+                alt=""
+                width={50}
+                height={50}
+            />
+            <div className="p-3 ml-auto bg-sky-400 rounded-2xl">
                 ChatMessageAsk : {text}
             </div>
-        </>
+        </div>
     );
 }
 
