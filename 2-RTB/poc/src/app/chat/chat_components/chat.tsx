@@ -2,44 +2,13 @@
 import {Properties} from "csstype";
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 import { FormEvent, useCallback, useState } from 'react';
+'use client';
 
+import { useChat } from 'ai/react';
 export const runtime = 'edge';
 
 function Chat() {
-    const [stream, setStream] = useState(true);
-
-    const [input, setInput] = useState('');
-    const [output, setOutput] = useState('');
-    const [inflight, setInflight] = useState(false);
-    const onSubmit = useCallback(
-        async (e: FormEvent) => {
-            e.preventDefault();
-
-            // Prevent multiple requests at once
-            if (inflight) return;
-
-            // Reset output
-            setInflight(true);
-            setOutput('');
-
-            try {
-                await fetchEventSource(`/api/chat`, {
-                    method: 'POST',
-                    body: JSON.stringify({input : "scrivimi una funzione python"}), //nostra domanda
-                    headers: { 'Content-Type': 'application/json' },
-                    onmessage(ev) {
-                        setOutput((o) => o + ev.data);
-                    },
-                });
-                setInput('');
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setInflight(false);
-            }
-        },
-        [input, stream, inflight]
-    );
+    const { messages, input, handleInputChange, handleSubmit } = useChat();
 
     const chatStyle :Properties = {
         fontFamily: 'Roboto, sans-serif',
@@ -54,14 +23,28 @@ function Chat() {
         border : "solid",
     };
 
-
     return (
-        <>
-            <div id="chatArea" className=" p-10 relative max-w-full h-min w-min" style={chatStyle}>
-                {output}
-                <button onClick={onSubmit}></button>
-            </div>
-        </>
+        <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
+            {messages.map(m => (
+                <div key={m.id}>
+                    {m.role === 'user' ? 'User: ' : 'AI: '}
+                    {m.content}
+                </div>
+            ))}
+
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Say something...
+                    <input
+                        className="fixed w-full max-w-md bottom-0 border border-gray-300 rounded mb-8 shadow-xl p-2"
+                        value={input}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+
     );
 }
 
