@@ -23,28 +23,15 @@ function Chat() {
             setOutput('');
 
             try {
-                if (stream) {
-                    console.log('streaming');
-                    // If streaming, we need to use fetchEventSource directly
-                    await fetchEventSource(`/api/chat`, {
-                        method: 'POST',
-                        body: JSON.stringify({ input }),
-                        headers: { 'Content-Type': 'application/json' },
-                        onmessage(ev) {
-                            setOutput((o) => o + ev.data);
-                        },
-                    });
-                    setInput('');
-                } else {
-                    // If not streaming, we can use the supabase client
-                    const res = await fetch(`/api/chat`, {
-                        method: 'POST',
-                        body: JSON.stringify({ input }),
-                    });
-                    const data = await res.json();
-                    setOutput(data.text);
-                    setInput('');
-                }
+                await fetchEventSource(`/api/chat`, {
+                    method: 'POST',
+                    body: JSON.stringify({input : "scrivimi una funzione python"}), //nostra domanda
+                    headers: { 'Content-Type': 'application/json' },
+                    onmessage(ev) {
+                        setOutput((o) => o + ev.data);
+                    },
+                });
+                setInput('');
             } catch (error) {
                 console.error(error);
             } finally {
@@ -65,15 +52,12 @@ function Chat() {
         msOverflowStyle: 'none',
         borderRadius: "10px",
         border : "solid",
-        padding : "10px"
     };
-
 
 
     return (
         <>
-
-            <div id="chatArea" className=" relative max-w-full h-min w-min" style={chatStyle}>
+            <div id="chatArea" className=" p-10 relative max-w-full h-min w-min" style={chatStyle}>
                 {output}
                 <button onClick={onSubmit}></button>
             </div>
