@@ -1,10 +1,9 @@
 "use client"
 import {useState,useEffect} from "react";
-import Chat from "./chat"
-import {element} from "prop-types";
+import ChatBody from "./chatBody";
 
 interface chatMessage{
-    id : number,
+    id : number,    // 0 == ask / 1 == answer
     text : string
 }
 function Chatbot (){
@@ -34,7 +33,7 @@ function Chatbot (){
             <div className="flex flex-col w-max">
 
                 <div className="relative">
-                    <Chat list={listElementChat} clearChat={clearChat}></Chat>
+                    <ChatBody list={listElementChat} clearChat={clearChat}></ChatBody>
                 </div>
 
 

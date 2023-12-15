@@ -4,7 +4,7 @@ import ChatMessageAsk from "@/app/chat/chat_components/chatMessageAsk";
 import ChatMessageAnswer from "@/app/chat/chat_components/chatMessageAnswer";
 
 interface chatMessage{
-    id : number,
+    id : number,    // 0 == ask / 1 == answer
     text : string
 }
 
@@ -12,7 +12,7 @@ interface ChatProps {
     list: chatMessage[];
     clearChat : () => void;
 }
-function Chat({list,clearChat}:ChatProps) {
+function ChatBody({list,clearChat}:ChatProps) {
     const chatStyle :Properties = {
         fontFamily: 'Roboto, sans-serif',
         minWidth: '60em',
@@ -45,4 +45,4 @@ function Chat({list,clearChat}:ChatProps) {
     );
 }
 
-export default Chat;
+export default ChatBody;
