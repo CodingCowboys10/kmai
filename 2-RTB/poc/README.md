@@ -1,7 +1,7 @@
 # Come Runnare
 
 ```shell
-npm install # Installa le dipendenze
+npm install --force # Installa le dipendenze e forza l'installazione
 
 npm run dev
 ```

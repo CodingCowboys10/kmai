@@ -4,7 +4,7 @@ import { Message as VercelChatMessage, StreamingTextResponse } from 'ai';
 import { BytesOutputParser } from 'langchain/schema/output_parser';
 import { PromptTemplate } from 'langchain/prompts';
 import {ChatOllama} from "langchain/chat_models/ollama";
-
+import {ChromaClient} from "chromadb";
 
 export const runtime = 'edge';
 
@@ -20,8 +20,8 @@ User: {input}
 AI:`;
 
 export async function POST(req: NextRequest) {
+    const vectorStore = new ChromaClient({path : 'http://localhost:8000'});
 
-    
     const body = await req.json();
     const messages = body.messages ?? [];
     const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
