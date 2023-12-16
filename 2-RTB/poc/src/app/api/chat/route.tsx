@@ -1,49 +1,72 @@
 import { NextRequest } from 'next/server';
-import { Message as VercelChatMessage, StreamingTextResponse } from 'ai';
 
-import { BytesOutputParser } from 'langchain/schema/output_parser';
+import { StreamingTextResponse, LangChainStream, Message } from 'ai';
 import { PromptTemplate } from 'langchain/prompts';
+import { CallbackManager } from 'langchain/callbacks';
+import { ChatOpenAI } from 'langchain/chat_models/openai';
+import { AIChatMessage, HumanChatMessage } from 'langchain/schema';
+import { ConversationalRetrievalQAChain } from 'langchain/chains';
+import { Chroma } from 'langchain/vectorstores/chroma';
+import {collections, embeddings, models, setPrompt} from "@/utils/chat_utils";
 import {ChatOllama} from "langchain/chat_models/ollama";
-import {ChromaClient} from "chromadb";
+
+
+type ChatApiBodyParams = {
+    messages: Message[];
+};
 
 export const runtime = 'edge';
 
-const formatMessage = (message: VercelChatMessage) => {
-    return `${message.role}: ${message.content}`;
-};
+export async function POST(
+    request: NextRequest
+) {
+    const { messages }: ChatApiBodyParams = await request.json();
+    const { stream, handlers } = LangChainStream();
 
-const TEMPLATE = `You are an assistant. You are helping a people with their problem.
-Current conversation:
-{chat_history}
- 
-User: {input}
-AI:`;
-
-export async function POST(req: NextRequest) {
-    const vectorStore = new ChromaClient({path : 'http://localhost:8000'});
-
-    const body = await req.json();
-    const messages = body.messages ?? [];
-    const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
-    const currentMessageContent = messages[messages.length - 1].content;
-
-    const prompt = PromptTemplate.fromTemplate(TEMPLATE);
-
-    // Funziona anche con ollama cosi a caso
-    const model = new ChatOllama({
-            model: 'llama2',
-            temperature : 0,
-            baseUrl : 'http://localhost:11434'
-        })
-
-    const outputParser = new BytesOutputParser();
-
-    const chain = prompt.pipe(model).pipe(outputParser);
-
-    const stream = await chain.stream({
-        chat_history: formattedPreviousMessages.join('\n'),
-        input: currentMessageContent,
+    const llm = new ChatOpenAI({
+        streaming: true,
+        callbacks: CallbackManager.fromHandlers(handlers),
     });
+
+    //const questionLlm = new ChatOpenAI({});
+    const questionLlm = new ChatOllama({
+        model: 'openchat:7b-v3.5',
+        temperature : 0,
+        baseUrl : 'http://localhost:11434'
+    })
+
+    const chatHistory = ConversationalRetrievalQAChain.getChatHistoryString(
+        messages.map((m) => {
+            if (m.role == 'user') {
+                return new HumanChatMessage(m.content);
+            }
+            return new AIChatMessage(m.content);
+        })
+    );
+
+    const chain = ConversationalRetrievalQAChain.fromLLM(
+        questionLlm,
+        (await Chroma.fromExistingCollection(embeddings["openChat"], {collectionName: collections["openChat"]})).asRetriever(),
+        {
+            qaChainOptions: {
+                type: "stuff",
+                prompt: PromptTemplate.fromTemplate(setPrompt()),
+            },
+            returnSourceDocuments: true,
+
+            questionGeneratorChainOptions: {
+                llm: questionLlm,
+            },
+        }
+    );
+
+    const question = messages[messages.length - 1].content;
+    chain
+        .call({
+            question,
+            chat_history: chatHistory,
+        })
+        .catch(console.error)
 
     return new StreamingTextResponse(stream);
 }
