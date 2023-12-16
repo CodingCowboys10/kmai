@@ -4,7 +4,78 @@
 
 \section{Qualità di processo}
 
-\section{Qualità di prodotto}
+\section{Qualità di prodotto} \label{sec:qualityprod}
+\subsection{Indice di Gulpease}
+\begin{description}
+    \item[Codice:] MPD-1
+    \item[Processo:] Documentazione.
+    \item[Formula:] 
+    \begin{equation}
+    89 +
+    \frac{300 * (numeroFrasi) - 10 * (numeroLettere)}{numeroParole}
+    \label{MPD-1}
+    \end{equation}
+    \item[Descrizione:] L'indice di Gulpease misura il grado di leggibilità di un testo, stimando la difficoltà di lettura per una persona in base alla sua istruzione. Calcolato su una scala da 1 a 100, un indice superiore a 80 identifica un testo facilmente comprensibile per chiunque con un'istruzione elementare. Un valore pari o superiore a 60 identifica un testo comprensible per le persone con istruzione media. Un punteggio superiore a 40 indica che il testo è comprensibile alle persone con un'istruzione superiore, dunque al target di questo progetto.\\Il valore minimo accettato farà dunque riferimento a quest'ultima soglia, con un valore preferibile fissato a 60 o più.
+\end{description}
+
+\subsection{Requisiti obbligatori soddisfatti}
+\begin{description}
+    \item[Codice:] MPD-2
+    \item[Processo:] Sviluppo.
+    \item[Formula:]
+    \begin{equation}
+        \frac{(numeroRequisitiObbligatoriSoddisfatti) * 100}{numeroRequisitiObbligatori}
+    \end{equation}
+    \item[Descrizione:] Indica la percentuale dei requisiti obbligatori soddisfatti.\\ In quanto obbligatori, non è definita alcuna soglia di tolleranza tra valore accettabile e preferibile. È necessario giungere al 100\% di completamento.
+\end{description}
+
+\subsection{Requisiti desiderabili soddisfatti}
+\begin{description}
+    \item[Codice:] MPD-3
+    \item[Processo:] Sviluppo.
+    \item[Formula:]
+    \begin{equation}
+        \frac{(numeroRequisitiDesiderabiliSoddisfatti) * 100}{numeroRequisitiDesiderabili}
+    \end{equation}
+    \item[Descrizione:] Indica la percentuale dei requisiti desiderabili soddisfatti.\\ In quanto non obbligatori, il valore accettabile è fissato a 0\%, con valore preferibile 100\%.
+\end{description}
+
+\subsection{Requisiti opzionali soddisfatti}
+\begin{description}
+    \item[Codice:] MPD-4
+    \item[Processo:] Sviluppo.
+    \item[Formula:]
+    \begin{equation}
+        \frac{(numeroRequisitiOpzionaliSoddisfatti) * 100}{numeroRequisitiOpzionali}
+    \end{equation}
+    \item[Descrizione:] Indica la percentuale dei requisiti opzionali soddisfatti.\\ In quanto non obbligatori, il valore accettabile è fissato a 0\%, con valore preferibile 100\%.
+\end{description}
+
+\subsection{Riepilogo}
+{
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| l | X | c | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Nome}} & \textbf{\textcolor{white}{Accettabile}} & \textbf{\textcolor{white}{Preferibile}} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Nome}} & \textbf{\textcolor{white}{Accettabile}} & \textbf{\textcolor{white}{Preferibile}} \\ 
+    \endhead
+    MPD-1 & Indice di Gulpease & \ge 40 & \ge 80 \\
+    \hline
+    MPD-2 & Requisiti obbligatori soddisfatti & 100\% & 100\% \\
+    \hline
+    MPD-3 & Requisiti desiderabili soddisfatti & \ge 0\% & 100\% \\
+    \hline
+    MPD-4 & Requisiti opzionali soddisfatti & \ge 0\% & 100\% \\
+    \hline
+    \rowcolor{white} \caption{Metriche di qualità di prodotto}
+    \label{tab:mpd}
+\end{xltabular}
+}
 
 \section{Insieme dei test} \label{sec:test}
 In questa sezione vengono definiti i test finalizzati a dimostrare l'adempimento, da parte del prodotto del progetto, ai requisiti individuati nella relativa fase di analisi.\\
