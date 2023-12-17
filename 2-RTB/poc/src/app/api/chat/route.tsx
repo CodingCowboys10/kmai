@@ -35,6 +35,8 @@ export async function POST(
         baseUrl : 'http://localhost:11434'
     })
 
+    const questionLlm2 = new ChatOpenAI({});
+
     const chatHistory = ConversationalRetrievalQAChain.getChatHistoryString(
         messages.map((m) => {
             if (m.role == 'user') {
@@ -45,8 +47,8 @@ export async function POST(
     );
 
     const chain = ConversationalRetrievalQAChain.fromLLM(
-        questionLlm,
-        (await Chroma.fromExistingCollection(embeddings["openChat"], {collectionName: collections["openChat"]})).asRetriever(),
+        llm,
+        (await Chroma.fromExistingCollection(embeddings["openAi"], {collectionName: collections["openAi"]})).asRetriever(),
         {
             qaChainOptions: {
                 type: "stuff",
@@ -55,7 +57,7 @@ export async function POST(
             returnSourceDocuments: true,
 
             questionGeneratorChainOptions: {
-                llm: questionLlm,
+                llm: questionLlm2,
             },
         }
     );
