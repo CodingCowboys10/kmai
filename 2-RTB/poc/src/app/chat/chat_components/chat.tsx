@@ -1,15 +1,14 @@
 "use client"
 import {Properties} from "csstype";
-import { fetchEventSource } from '@microsoft/fetch-event-source';
-import { FormEvent, useCallback, useState } from 'react';
 'use client';
 
 import { useChat } from 'ai/react';
+import {useState} from "react";
 export const runtime = 'edge';
 
 function Chat() {
     const { messages, input, handleInputChange, handleSubmit } = useChat();
-
+    const [model_name,setModel_name] = useState("openAi")
     const chatStyle :Properties = {
         fontFamily: 'Roboto, sans-serif',
         minWidth: '60em',
@@ -22,6 +21,7 @@ function Chat() {
         borderRadius: "10px",
         border : "solid",
     };
+
 
     return (
         <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
