@@ -2,9 +2,10 @@ import {OllamaEmbeddings} from "langchain/embeddings/ollama";
 import {OpenAIEmbeddings} from "langchain/embeddings/openai";
 import {ChatOllama} from "langchain/chat_models/ollama";
 import {OpenAI} from "langchain/llms/openai";
+import {Chroma} from "langchain/vectorstores/chroma";
 
 
-console.log(process.env.OPENAI_API_KEY) //
+
 export const models : Record<string, any> = {
     // Ollama Model
     llama2 : new ChatOllama({
@@ -79,6 +80,7 @@ export function setPrompt(){
     La chat history : {chat_history},
     La tua risposta ( in italiano ) : `;
 }
+
 
 
 

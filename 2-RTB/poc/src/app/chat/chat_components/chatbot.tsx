@@ -1,4 +1,3 @@
-"use client"
 import Chat from "./chat"
 
 function Chatbot (){
