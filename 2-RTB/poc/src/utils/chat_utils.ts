@@ -2,7 +2,6 @@ import {OllamaEmbeddings} from "langchain/embeddings/ollama";
 import {OpenAIEmbeddings} from "langchain/embeddings/openai";
 import {ChatOllama} from "langchain/chat_models/ollama";
 import {OpenAI} from "langchain/llms/openai";
-import {Chroma} from "langchain/vectorstores/chroma";
 import {CallbackManager} from "langchain/callbacks";
 
 

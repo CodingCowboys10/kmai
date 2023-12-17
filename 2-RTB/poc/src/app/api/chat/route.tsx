@@ -16,6 +16,9 @@ type ChatApiBodyParams = {
     model_name: string;
 };
 
+// Scelta del runtime : 1) Edge 2) NextJs. Se usiamo edge abbiamo maggiore velocita' ma vengono create delle dipendenze nei pacchetti.
+// Ignorabili se usiamo --force in ogni comando
+
 export const runtime = 'edge';
 
 export async function POST(
@@ -26,7 +29,7 @@ export async function POST(
 
 
     // Otteniamo il modello LLM , useremo model_name ma per ora usiamo una stringa.
-    const llm = getLLM("openChat",handlers)
+    const llm = getLLM("starling",handlers)
 
     // Questo modello serve ad ottimizzare la catena delle domande. // Si deve usare un modello senza handler, preferibilemnte veloce.
     const questionllm = new ChatOpenAI({});
@@ -42,7 +45,7 @@ export async function POST(
 
     const chain = ConversationalRetrievalQAChain.fromLLM(
         llm,
-        (await Chroma.fromExistingCollection(embeddings[model_name], {collectionName: collections[model_name]})).asRetriever(),
+        (await Chroma.fromExistingCollection(embeddings["starling"], {collectionName: collections["starling"]})).asRetriever(),
         {
             qaChainOptions: {
                 type: "stuff",
