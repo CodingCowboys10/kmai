@@ -13,25 +13,12 @@ interface ChatProps {
     clearChat : () => void;
 }
 function ChatBody({list,clearChat}:ChatProps) {
-    const chatStyle :Properties = {
-        fontFamily: 'Roboto, sans-serif',
-        minWidth: '60em',
-        minHeight: '38em',
-        maxWidth: '60em',
-        maxHeight: '38em',
-        overflowY: 'scroll',
-        scrollbarWidth: 'none',
-        msOverflowStyle: 'none',
-        borderRadius: "10px",
-        border : "solid",
-        padding : "10px"
-    };
 
 
     return (
         <>
 
-            <div id="chatArea" style={chatStyle}>
+            <div id="chatArea" className="font-sans overflow-y-scroll border-2 rounded-xl border-slate-900 p-2" style={{minWidth: '55em',minHeight: '32em',maxWidth: '55em',maxHeight: '32em'}}>
                 <div className="mt-16">{list.map((value, index) => (
                     <React.Fragment key={index}>
                         {value.id === 0 && (<ChatMessageAsk text={value.text}/>)}
