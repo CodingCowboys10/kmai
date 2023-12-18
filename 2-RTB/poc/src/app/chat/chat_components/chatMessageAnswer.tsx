@@ -15,7 +15,7 @@ function ChatMessageAnswer({text}:chatAnswerProps){
                 height={50}
             />
             <div className="flex-row mr-auto p-3 bg-green-400 rounded-2xl">
-                ChatMessageAnswer : {text}
+               {text}
             </div>
         </div>
     );
