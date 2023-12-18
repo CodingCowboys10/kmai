@@ -16,7 +16,7 @@ function ChatMessageAsk({text}:chatAskProps){
                 height={50}
             />
             <div className="p-3 ml-auto bg-sky-400 rounded-2xl">
-                ChatMessageAsk : {text}
+                {text}
             </div>
         </div>
     );
