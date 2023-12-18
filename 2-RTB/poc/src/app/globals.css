@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* https://www.realtimecolors.com/?colors=0b171e-ecf4f9-1b4d69-76bae5-1a7ebc&fonts=Poppins-Poppins*/
+/* https://www.realtimecolors.com/?colors=ffffff-000000-96c7e4-1a5f89-43a7e5&fonts=Poppins-Poppins */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -17,11 +17,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --text: #e1edf4;
-  --background: #000;
+  --text: #ffffff;
+  --background: #000000;
   --primary: #96c7e4;
   --secondary: #1a5f89;
   --accent: #43a7e5;
+
 
 
 }
@@ -65,6 +66,7 @@ h1 {
 }
 
 button {
+
   color: var(--text);
   transition: all 0.25s;
 
@@ -82,8 +84,8 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --text: #0b171e;
-    --background: #ecf4f9;
+    --text: #000000;
+    --background: #ffffff;
     --primary: #1b4d69;
     --secondary: #76bae5;
     --accent: #1a7ebc;
@@ -92,6 +94,6 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+
   }
 }
