@@ -50,9 +50,8 @@ function Chatbot (){
 
 
     return(
-        <div className="flex flex-row h-max ">
 
-            <div className="flex flex-col w-max">
+            <div className="flex flex-col content-end align-bottom  mx-auto my-auto">
 
                 <div className="relative">
                     <ChatBody list={listElementChat} clearChat={clearChat}></ChatBody>
@@ -61,8 +60,6 @@ function Chatbot (){
                 <TextInputComponent Request={Request}/>
 
             </div>
-
-        </div>
     );
 }
 
