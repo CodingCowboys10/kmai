@@ -8,30 +8,29 @@ const roboto = Roboto({
 
 
 export default function Page() {
+    const btn =`text-2xl flex flex-row justify-evenly gap-5 p-10 py-8 mx-auto w-4/12 h-full border-2 rounded-2xl
+    transition duration-300 ease-out hover:scale-105 shadow-2xl p-3 text-[--text-button] bg-[--primary] border-[--primary] `
+
     return (
-        <main className={`${roboto.className} justify-around `}>
-            <h1 className="text-6xl mx-auto font-medium "><span className="font-bold text-sky-500 gradient-blue">K</span>nowledge <span
-                className="font-bold text-sky-500 gradient-blue">M</span>anagement <span
-                className="font-bold text-sky-500 gradient-blue">AI</span></h1>
-            <div className="grid grid-cols-2 gap-20 px-12">
+        <main className={`${roboto.className} flex-row justify-between  `}>
+            <h1 className="text-6xl my-auto mx-auto font-medium text-left dark:text-sky-50 text-blue-950 ">
+                <span className="font-bold text-sky-500 gradient-blue">K</span>nowledge <span
+                className="font-bold text-sky-500 gradient-blue">M</span>anagement<span className="font-bold text-8xl text-sky-500 gradient-blue"> AI</span></h1>
+            <div className="flex flex-col-reverse justify-center gap-10 h-full w-full rounded-2xl shadow-2xl bg-[--background-contrast]  ">
                 
                 <Link href="/documents">
-                    <button className="text-2xl flex flex-col justify-evenly gap-5 h-full w-full border-white border-2 rounded-2xl border-opacity-20
-                    transition duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:border-cyan-600 p-3">
-                        <span className="gradient-blue h-20"> <i className="mt-10 fa-solid fa-database fa-2xl"></i></span>
-                        <p className="text-2xl mt-3 ">Archivio Documenti</p>
+                    <button className={btn}>
+                         <i className=" my-10 fa-solid fa-database fa-2xl"></i>
                     </button>
                 </Link>
 
 
                 <Link href="/chat">
-                    <button className="text-2xl flex flex-col justify-evenly gap-5 w-full h-full border-white border-2 rounded-2xl border-opacity-20
-                    transition duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:border-cyan-600 p-3">
-                        <span className="gradient-blue h-20"> <i className=" mt-10 fa-solid fa-comments fa-2xl"></i></span>
-                        <p className="text-2xl my-3"><span>Chat</span></p>
+                    <button className={btn}>
+                         <i className=" my-10 fa-solid fa-comments fa-2xl"></i>
+
                     </button>
                 </Link>
-
 
             </div>
 

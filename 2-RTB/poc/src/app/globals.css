@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* https://www.realtimecolors.com/?colors=ffffff-000000-96c7e4-1a5f89-43a7e5&fonts=Poppins-Poppins */
+/*https://www.realtimecolors.com/?colors=0f131a-f5f7fa-0262f2-8987cf-745b9f&fonts=Poppins-Poppins */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -17,11 +17,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --text: #ffffff;
-  --background-root: #000000;
-  --primary: #96c7e4;
-  --secondary: #1a5f89;
-  --accent: #43a7e5;
+  --text: #edeff2;
+  --text-button : #fff;
+
+  --background: #212529;
+  --background-contrast: #2b3035;
+  --background-input: #343a40;
+
+  --primary: #0d6dfd;
+
+
+  --secondary: #c09569;
+  --accent: #1a55ad;
+
 }
 *{
   padding: 0;
@@ -61,12 +69,12 @@ main{
 
   width: 100%;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 25px;
   padding: 1rem;
 
 
 
-  background-color: #05070a;
+  background-color: var(--background);
   margin: auto;
 
 
@@ -76,6 +84,14 @@ main{
   background: linear-gradient(180deg, rgba(63,94,251,1) 0%, rgba(70,252,187,1) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+a:hover {
+  color: var(--primary);
+}
+
+.btn{
+  background-color: var(--background);
+  border-color: var(--background);
 }
 
 
@@ -116,14 +132,15 @@ button:focus-visible {
 */
 @media (prefers-color-scheme: light) {
   :root {
-    --text: #000000;
-    --background: #ffffff;
-    --primary: #1b4d69;
-    --secondary: #76bae5;
-    --accent: #1a7ebc;
-  }
-  a:hover {
-    color: #747bff;
+    --text: #0d0f12;
+
+    --background: #f5f7fa;
+    --background-contrast: #f8f9fa;
+    --background-input: #fcfcfd;
+
+    --primary: #0262f2;
+    --secondary: #976b3f;
+    --accent: #528de5;
   }
 
 }
