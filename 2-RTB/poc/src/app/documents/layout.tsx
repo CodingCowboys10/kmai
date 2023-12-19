@@ -6,7 +6,7 @@ import 'typeface-roboto';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'KMAI | Chat',
+  title: 'KMAI | Docs',
   description: 'Capitolato 1 - IS 2023/2024',
 }
 

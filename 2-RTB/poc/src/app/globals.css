@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* https://www.realtimecolors.com/?colors=ffffff-000000-96c7e4-1a5f89-43a7e5&fonts=Poppins-Poppins */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,6 +16,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --text: #ffffff;
+  --background: #000000;
+  --primary: #96c7e4;
+  --secondary: #1a5f89;
+  --accent: #43a7e5;
+
+
+
 }
 *{
   padding: 0;
@@ -42,6 +52,7 @@ a:hover {
 }
 
 body {
+  background: var(--background);
   margin: 0;
   display: flex;
   place-items: center;
@@ -55,33 +66,32 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+
+  color: var(--text);
+  transition: all 0.25s;
+
 }
 button:hover {
-  border-color: #646cff;
+  color: var(--accent);
+  border-color: var(--accent);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --text: #000000;
+    --background: #ffffff;
+    --primary: #1b4d69;
+    --secondary: #76bae5;
+    --accent: #1a7ebc;
   }
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+
 }
