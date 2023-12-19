@@ -4,14 +4,16 @@ import ListDoc from "./components/listDoc";
 
 export default function Page(){
     return (
-        <main id='root'>
-            <Link className="w-fit bg-blue-500 text-lg rounded-lg p-3 text-black
-          hover:scale-105 hover:shadow-2xl animation duration-300 ease-out hover:ease-in" href="/chat">
-                <button className="text-left">
+        <main id='root' className="flex flex-col gap-5">
+            <div className="flex flex-row justify-between ">
+            <Link className="w-fit h-fit bg-blue-500 font-medium rounded-xl p-3
+          hover:scale-105 hover:shadow-2xl animation duration-300 ease-out " href="/chat">
+                <button className="text-[--text-button]">
                     Chat
                 </button>
             </Link>
-            <UploadDoc />
+            <UploadDoc/>
+            </div>
             <ListDoc />
         </main>
     )

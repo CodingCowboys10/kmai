@@ -1,6 +1,6 @@
 import React , {useRef, useEffect} from "react";
-import ChatMessageAsk from "@/app/chat/chat_components/chatMessageAsk";
-import ChatMessageAnswer from "@/app/chat/chat_components/chatMessageAnswer";
+import ChatMessageAsk from "@/app/chat/components/chatMessageAsk";
+import ChatMessageAnswer from "@/app/chat/components/chatMessageAnswer";
 
 interface chatMessage{
     id : number,    // 0 == ask / 1 == answer

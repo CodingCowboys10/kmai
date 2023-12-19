@@ -35,9 +35,11 @@ function ListDoc (){
 
     return(
         <div>
-            <p className="centered-text p-5">I tuoi documenti:</p>
-            <ul className="flex flex-wrap">
-            {dati.map((item, index) => <DocCard key={index} name={item.name} path={item.path} date={item.date}/>)}    
+
+            <p className="text-[--text-button] text-xl font-medium text-center">
+                Il tuo Archivio </p>
+            <ul className="flex flex-wrap flex-row w-full">
+                {dati.map((item, index) => <DocCard key={index} name={item.name} path={item.path} date={item.date}/>)}
             </ul>
         </div>
     );

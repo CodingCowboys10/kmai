@@ -1,7 +1,7 @@
 "use client"
 import {useState,useEffect} from "react";
 import ChatBody from "./chatBody";
-import TextInputComponent from "@/app/chat/chat_components/textInputComponent";
+import TextInputComponent from "@/app/chat/components/textInputComponent";
 
 interface chatMessage{
     id : number,    // 0 == ask / 1 == answer

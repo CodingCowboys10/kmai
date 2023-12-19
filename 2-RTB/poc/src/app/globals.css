@@ -21,7 +21,7 @@
   --text-button : #fff;
 
   --background: #212529;
-  --background-contrast: #2b3035;
+  --background-contrast: #1a1d20;
   --background-input: #343a40;
 
   --primary: #0d6dfd;
@@ -89,9 +89,8 @@ a:hover {
   color: var(--primary);
 }
 
-.btn{
-  background-color: var(--background);
-  border-color: var(--background);
+.transition-component{
+    animation: all 0.25ms ease-in-out;
 }
 
 
@@ -135,8 +134,8 @@ button:focus-visible {
     --text: #0d0f12;
 
     --background: #f5f7fa;
-    --background-contrast: #f8f9fa;
-    --background-input: #fcfcfd;
+    --background-contrast: #2b3035;
+    /*--background-contrast: #f0f0f3;*/
 
     --primary: #0262f2;
     --secondary: #976b3f;
