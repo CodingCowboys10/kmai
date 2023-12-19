@@ -4,10 +4,14 @@ import Chatbot from "./chat_components/chatbot";
 export default function Page() {
   return (
       <main id="root">
-        <button className="absolute top-0 left-0 ms-1 mt-1">
-          <Link href="/documents">Documents</Link>
-        </button>
-        <Chatbot/>
+          <Link className="w-fit bg-blue-500 text-lg rounded-lg p-3 text-black
+          hover:scale-105 hover:shadow-2xl animation duration-300 ease-out hover:ease-in " href="/documents">
+              <button className="text-left">
+                  Documents
+              </button>
+          </Link>
+
+    <Chatbot/>
       </main>
   )
 }

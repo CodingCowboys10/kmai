@@ -5,9 +5,12 @@ import ListDoc from "./components/listDoc";
 export default function Page(){
     return (
         <main id='root'>
-            <button className="absolute top-0 left-0 ms-1 mt-1">
-                <Link href="/chat">Chatbot</Link>
-            </button>
+            <Link className="w-fit bg-blue-500 text-lg rounded-lg p-3 text-black
+          hover:scale-105 hover:shadow-2xl animation duration-300 ease-out hover:ease-in" href="/chat">
+                <button className="text-left">
+                    Chat
+                </button>
+            </Link>
             <UploadDoc />
             <ListDoc />
         </main>
