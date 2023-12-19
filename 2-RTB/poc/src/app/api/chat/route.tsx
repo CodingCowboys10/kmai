@@ -27,9 +27,8 @@ export async function POST(
     const { messages, model_name}: ChatApiBodyParams = await request.json();
     const { stream, handlers } = LangChainStream();
 
-
     // Otteniamo il modello LLM , useremo model_name ma per ora usiamo una stringa.
-    const llm = getLLM("starling",handlers)
+    const llm = getLLM(model_name, handlers)
 
     // Questo modello serve ad ottimizzare la catena delle domande. // Si deve usare un modello senza handler, preferibilemnte veloce.
     const questionllm = new ChatOpenAI({});
@@ -45,7 +44,7 @@ export async function POST(
 
     const chain = ConversationalRetrievalQAChain.fromLLM(
         llm,
-        (await Chroma.fromExistingCollection(embeddings["starling"], {collectionName: collections["starling"]})).asRetriever(),
+        (await Chroma.fromExistingCollection(embeddings[model_name], {collectionName: collections[model_name]})).asRetriever(),
         {
             qaChainOptions: {
                 type: "stuff",
