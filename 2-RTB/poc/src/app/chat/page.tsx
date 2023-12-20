@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Chatbot from "./chat_components/chatbot";
+import LlmMenuBox from "./llm_menu/llm_menu_box";
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
           <Link href="/documents">Documents</Link>
         </button>
         <Chatbot/>
+        <LlmMenuBox/>
       </main>
   )
 }
