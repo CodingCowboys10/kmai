@@ -7,7 +7,6 @@
  * Created by Francesco Ferraioli on 20/12/23
  */
 
-import { Properties } from "csstype";
 import { useState } from "react"; // importa useState per poter gestire lo stato dei bottoni
 
 //interfaccia per i bottoni per poter lavorare con un array di bottoni(map)
@@ -30,23 +29,6 @@ function LlmMenuComponents() {
         { id: "bottone5", label: "Bottone5" }, //per aggiungere un bottone basta aggiungere una riga con id e label
     ];
 
-    // Stile dei bottoni
-    const llmMenuComponentsStyle: Properties = {
-        fontFamily: "Roboto, sans-serif",
-        minWidth: "15em",
-        minHeight: "5em",
-        maxWidth: "15em",
-        maxHeight: "5em",
-        borderRadius: "1em",
-        border: "solid",
-        borderColor: "white",
-        padding: "1em",
-        margin: "1em",
-        backgroundColor: "black",
-        color: "white",
-        fontWeight: "bold",
-    };
-
     // Event handlers per il cambio di colore dei bottoni in base all'hover e alla selezione
     const handleMouseOver = (buttonId: string) => {
         setHoveredButton(buttonId); // setta il bottone su cui è il mouse
@@ -68,11 +50,11 @@ function LlmMenuComponents() {
                 <button
                     key={button.id} 
                     id={button.id}  // id del bottone
-                    style={{
-                        ...llmMenuComponentsStyle,  // stile del bottone, i tre ... servono a mantenere le proprietà di llmMenuComponentsStyle e aggiungere quelle sotto
-                        backgroundColor: selectedButton === button.id ? "red" : hoveredButton === button.id ? "gray" : "black", // colore del bottone in base alla selezione e all'hover
-                        color: selectedButton === button.id ? "black" : hoveredButton === button.id ? "purple" : "white", // colore del testo del bottone in base alla selezione e all'hover
-                    }}
+                    className={ //caratteristiche: si dimensioni bottoni 15x5 rem, bordo bianco, margine 4, sfondo nero, testo grassetto,bordo arrotondato
+                    `min-w-15rem min-h-5rem max-w-15rem max-h-5rem text-white
+                    rounded-xl border-white border-2 m-4 bg-black font-bold 
+                    ${selectedButton === button.id ? "bg-green-500 text-black" //se il bottone è quello selezionato allora è verde e testo nero
+                    : hoveredButton === button.id ? "bg-gray-500 text-red-500" : ""}`} //se il bottone è quello con hover allora è grigio e testo rosso
                     onMouseOver={() => handleMouseOver(button.id)} // event handler per l'hover
                     onMouseLeave={handleMouseLeave} // event handler per l'hover perso
                     onClick={() => handleButtonClick(button.id)} // event handler per la selezione
