@@ -1,12 +1,12 @@
 /**
- * llm_menu_box.tsx è un componente che contiene il box del menu,
+ * llmModels.tsx è un componente che contiene il box del menu,
  * viene utilizzato da page.tsx per la selezione degli LLM da utilizzare.
  * Il box si autodimensiona in base al contenuto, rimane sempre una colonna singola.
  * 
  * Created by Francesco Ferraioli on 20/12/23
  */
 "use client"
-import LlmMenuComponents from "./llm_menu_components"; // importa il componente che contiene i bottoni
+import LlmMenuComponents from "./llmBody"; // importa il componente che contiene i bottoni
 
 
 function LlmMenuBox (){

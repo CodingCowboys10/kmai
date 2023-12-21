@@ -1,6 +1,6 @@
 /**
- * llm_menu_components.tsx è un componente che contiene i bottoni del menu.
- * viene utilizzato da llm_menu_box.tsx in esso i bottoni vengono creati e gestiti mediante map,
+ * llmBody.tsx è un componente che contiene i bottoni del menu.
+ * viene utilizzato da llmModels.tsx in esso i bottoni vengono creati e gestiti mediante map,
  * gli handler servono a gestire i casi particolari quali hover del mouse e selezione,
  * il bottone di default è il primo.
  * 
@@ -67,4 +67,4 @@ function LlmMenuComponents() {
     );
 }
 
-export default LlmMenuComponents; // esporta il componente per poterlo utilizzare su llm_menu_box.tsx
+export default LlmMenuComponents; // esporta il componente per poterlo utilizzare su llmModels.tsx
