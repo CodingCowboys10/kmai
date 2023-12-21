@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import {useState} from "react";
+import React, {useState} from "react";
 import ChatBody from "@/app/chat/components/chatBody";
 import ChatInput from "@/app/chat/components/chatInput";
 
@@ -49,17 +49,26 @@ export default function Page() {
     }
   return (
       <main className="w-full">
-          <Link className="w-fit bg-blue-500 text-lg rounded-lg p-3 text-black
-          hover:scale-105 hover:shadow-2xl animation duration-300 ease-out hover:ease-in " href="/documents">
-              <button className="text-left">
-                  Archivio
-              </button>
-          </Link>
+
           <div className="flex flex-row w-full h-full justify-around">
+
+              <div className="w-3/12">
+                  <Link className="" href="/documents">
+                      <button className="w-fit h-fit bg-[--primary] m-0  font-medium rounded-xl p-3
+          hover:scale-105 hover:shadow-2xl animation duration-300 ease-out  text-[--text-button]">
+                          Archivio
+                      </button>
+                  </Link>
+              </div>
 
               <div className="flex flex-col w-6/12">
                   <ChatBody list={listElementChat} clearChat={clearChat}></ChatBody>
                   <ChatInput Request={Request}/>
+              </div>
+              <div className=" w-3/12 h-full">
+                  {listElementChat.length!=0 && (<button className="text-xl p-2 " onClick={clearChat}>
+                      <i className="py-2 rounded-2xl w-10/12 text-center bg-[--background-contrast] fa-solid fa-broom"></i>
+                  </button>)}
               </div>
           </div>
       </main>

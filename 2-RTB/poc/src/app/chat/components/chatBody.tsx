@@ -22,7 +22,7 @@ function ChatBody({list,clearChat}:ChatProps) {
     return (
         <>
 
-            <div className={`${list.length == 0 ? "justify-around" : "" } overflow-scroll h-full rounded-2xl p-2 mb-5 text-center flex flex-col`}>
+            <div className={`${list.length == 0 ? "justify-around" : "" } overflow-scroll h-full  rounded-2xl p-2 mb-5 text-center flex flex-col`}>
 
                 {list.length ==0 && (<div className="text-[--text] opacity-70 font-medium text-2xl mt-32 transition duration-300 ease-in">Ancora nessun Messaggio</div>)}
 
@@ -34,9 +34,6 @@ function ChatBody({list,clearChat}:ChatProps) {
                     </React.Fragment>
                 ))}</div>
 
-                {list.length!=0 && (<button className="text-xl p-2 " onClick={clearChat}>
-                    <i className="py-2 rounded-2xl w-10/12 text-center bg-[--background-contrast] fa-solid fa-broom"></i>
-                </button>)}
                 <div ref={chatboxRef}></div>
             </div>
 
