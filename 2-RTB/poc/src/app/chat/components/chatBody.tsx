@@ -21,7 +21,7 @@ function ChatBody({ messages, clearChat }: ChatProps) {
 
                 {messages.length ==0 && (<div className="text-[--text] opacity-70 font-medium text-2xl mt-32 transition duration-300 ease-in">Ancora nessun Messaggio</div>)}
 
-                <div className="flex flex-col ">
+                <div className="flex flex-col gap-5 ">
                     {messages.map((value, index) => (
                     <React.Fragment key={index}>
                         {value.role === 'user' ? (<ChatMessage isGenerated={false} text={value.content}/>) : (<ChatMessage isGenerated={true} text={value.content}/>)}
