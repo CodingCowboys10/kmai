@@ -34,11 +34,11 @@ function ListDoc (){
     }, []);
 
     return(
-        <div>
+        <div className="overflow-scroll ">
 
             <p className="text-[--text-button] text-xl font-medium text-center">
                 Il tuo Archivio </p>
-            <ul className="flex flex-wrap flex-row w-full">
+            <ul className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-5 overflow-clip  p-5 ">
                 {dati.map((item, index) => <DocCard key={index} name={item.name} path={item.path} date={item.date}/>)}
             </ul>
         </div>

@@ -26,7 +26,7 @@ function UploadDoc (){
 
   //form con cui permetto l'upload dei solo pdf, definito dal accept=".pdf"
   return (
-    <form className="bg-[--background-contrast] lg:w-3/12 w-8/12 flex flex-col gap-5 rounded-xl p-4 shadow-2xl " onSubmit={onSubmit} >
+    <form className="bg-[--background-contrast] lg:w-3/12 md:w-6/12 w-9/12 flex lg:mx-0 md:mx-0 mx-auto flex-col gap-5 rounded-xl p-4 shadow-2xl " onSubmit={onSubmit} >
       <label className="text-[--text-button] text-xl font-medium text-center">
           Upload a Document </label>
       <input
