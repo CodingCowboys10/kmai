@@ -1,51 +1,36 @@
 "use client"
 import Link from "next/link";
-import React, {useState} from "react";
+import { useChat } from 'ai/react';
+import React, {useState, FormEvent} from "react";
 import ChatBody from "@/app/chat/components/chatBody";
 import ChatInput from "@/app/chat/components/chatInput";
 
-interface chatMessage{
-    id : number,    // 0 == ask / 1 == answer
-    text : any
-}
+
 export default function Page() {
 
-    const [listElementChat,setListElementChat] = useState<chatMessage[]>([])
-    const [Stop, setStop] = useState(false);
-
-    function createQuestion(text : string){
-        let element : chatMessage  = {
-            id: 0,
-            text : text
-        };
-        return element;
-    }
-
-    function createAnswer(text : any){
-        let element : chatMessage  = {
-            id: 1,
-            text : text
-        };
-        return element;
-    }
-
-    const clearChat = () => {
-        setListElementChat([]);
-    }
-
-    const Request = (text: string) => {
-        if(!Stop) {
-            setStop(true);
-
-            const question = createQuestion(text);
-            setListElementChat([...listElementChat,question]);
-
-
-
-            const answer = createAnswer(<div>risposta : {text}</div>)
-            setListElementChat([...listElementChat,question,answer]);
-            setStop(false);
+    const [model_name,setModel_name] = useState("openAi")
+    const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+        headers: {
+            "Content-type": "text/html"
+        },
+        body: {
+            model_name: model_name
         }
+    });
+   
+    const clearChat = () => {
+        setMessages([]);
+    }
+
+    async function sendMessage(e:FormEvent<HTMLFormElement>){
+        e.preventDefault();
+        if (!messages.length) {
+            await new Promise(resolve => setTimeout(resolve, 300));
+        }
+        if (isLoading) {
+            return;
+        }
+        handleSubmit(e);
     }
   return (
       <main className="w-full">
@@ -62,11 +47,11 @@ export default function Page() {
               </div>
 
               <div className="flex flex-col w-6/12">
-                  <ChatBody list={listElementChat} clearChat={clearChat}></ChatBody>
-                  <ChatInput Request={Request}/>
+                  <ChatBody messages={messages} clearChat={clearChat}></ChatBody>
+                  <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
               </div>
               <div className=" w-3/12 h-full">
-                  {listElementChat.length!=0 && (<button className="text-xl p-2 " onClick={clearChat}>
+                  {messages.length!=0 && (<button className="text-xl p-2 " onClick={clearChat}>
                       <i className="py-2 rounded-2xl w-10/12 text-center bg-[--background-contrast] fa-solid fa-broom"></i>
                   </button>)}
               </div>
