@@ -1,43 +1,36 @@
 import React , {useRef, useEffect} from "react";
 import ChatMessage from "@/app/chat/components/chatMessage";
 
-interface chatMessage{
-    id : number,    // 0 == ask / 1 == answer
-    text : any
-}
+import {Message} from "ai"
 
 interface ChatProps {
-    list: chatMessage[];
+    messages: Message[];
     clearChat : () => void;
 }
-function ChatBody({list,clearChat}:ChatProps) {
-
+function ChatBody({ messages, clearChat }: ChatProps) {
 
     const chatboxRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         chatboxRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }, [list]);
+    }, [messages]);
 
     return (
-        <>
 
-            <div className={`${list.length == 0 ? "justify-around" : "" } overflow-scroll h-full  rounded-2xl p-2 mb-5 text-center flex flex-col`}>
+            <div className={`${messages.length == 0 ? "justify-around" : "" } overflow-scroll h-full  rounded-2xl p-2 mb-5 text-center flex flex-col`}>
 
-                {list.length ==0 && (<div className="text-[--text] opacity-70 font-medium text-2xl mt-32 transition duration-300 ease-in">Ancora nessun Messaggio</div>)}
+                {messages.length ==0 && (<div className="text-[--text] opacity-70 font-medium text-2xl mt-32 transition duration-300 ease-in">Ancora nessun Messaggio</div>)}
 
                 <div className="flex flex-col ">
-                    {list.map((value, index) => (
+                    {messages.map((value, index) => (
                     <React.Fragment key={index}>
-                        {value.id === 0 && (<ChatMessage isGenerated={false} text={value.text}/>)}
-                        {value.id === 1 && (<ChatMessage isGenerated={true} text={value.text}/>)}
+                        {value.role === 'user' ? (<ChatMessage isGenerated={false} text={value.content}/>) : (<ChatMessage isGenerated={true} text={value.content}/>)}
                     </React.Fragment>
                 ))}</div>
 
                 <div ref={chatboxRef}></div>
             </div>
 
-        </>
     );
 }
 

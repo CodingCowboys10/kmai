@@ -1,7 +1,7 @@
 # Come Runnare
 
 ```shell
-npm install # Installa le dipendenze
+npm install --force # Installa le dipendenze e forza l'installazione
 
 npm run dev
 ```
@@ -10,7 +10,7 @@ npm run dev
 
 create un file .env dentro langchain_test e dentro inserite:
 ```dotenv
-#langchain_test/.env.local
+#poc/.env.local
 OPENAI_API_KEY=sk-xxxx
 ```
 
