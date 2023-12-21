@@ -6,23 +6,13 @@
  * Created by Francesco Ferraioli on 20/12/23
  */
 "use client"
-import {Properties} from "csstype";
 import LlmMenuComponents from "./llm_menu_components"; // importa il componente che contiene i bottoni
 
 
 function LlmMenuBox (){
-    // Stile del box del menu
-    const llmMenuBoxStyle :Properties = {
-        borderRadius: "1em",
-        border: "solid",
-        margin: "1em",
-        width: "min-content", //il box si adatta al contenuto di dimensione minima
-        height: "min-content", //il box si adatta al contenuto di dimensione minima
-    };
-
     // Ritorna il box del menu e i bottoni al suo interno
-    return(
-        <div style={llmMenuBoxStyle}>
+    return( // il box è un div con bordi arrotondati e bordo bianco,margine di 4 e larghezza minima
+        <div className="rounded-xl border-white border-2 m-4 w-min h-min"> 
             <LlmMenuComponents/> 
         </div>
     );
