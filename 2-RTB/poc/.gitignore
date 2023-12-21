@@ -40,7 +40,3 @@ next-env.d.ts
 
 # idea
 *.idea
-
-.venv
-chroma_data
-chroma.log

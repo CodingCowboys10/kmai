@@ -10,7 +10,6 @@ import { Chroma } from 'langchain/vectorstores/chroma';
 import {collections, embeddings, getLLM, setPrompt} from "@/utils/chat_utils";
 
 
-
 type ChatApiBodyParams = {
     messages: Message[];
     model_name: string;
@@ -34,7 +33,7 @@ export async function POST(
     const questionllm = new ChatOpenAI({});
 
     const chatHistory = ConversationalRetrievalQAChain.getChatHistoryString(
-        messages.map((m) => {
+        messages.slice(0, -1).map((m) => {
             if (m.role == 'user') {
                 return new HumanChatMessage(m.content);
             }
@@ -58,6 +57,7 @@ export async function POST(
     );
 
     const question = messages[messages.length - 1].content;
+    
     chain
         .call({
             question,

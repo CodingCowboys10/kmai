@@ -1,40 +1,15 @@
-import { FormEvent } from "react";
-//import { useState } from 'react';
+import {FormEvent, useState} from "react";
 
 interface InsertProps{
-    //Request: (text: string) => void;
     input: string;
     handleInputChange: (e: any) => void;
-    handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+    sendMessage: (e: FormEvent<HTMLFormElement>) => void;
 }
-function TextInputComponent({ input, handleInputChange, handleSubmit }: InsertProps){
-
-    // const [newQuestion, setNewQuestion] = useState('');
-    // function handleClick(){
-    //     if(!(newQuestion === '')) {
-    //         Request(newQuestion);
-    //         setNewQuestion('');
-    //     }
-    // }
+function TextInputComponent({ input, handleInputChange, sendMessage }: InsertProps){
 
     return(
-        // <div className="insert relative m-2 " >
-        //     <textarea
-        //         id="questionArea"
-        //         className="w-full rounded-2xl p-2 shadow-xl pr-28 resize-none"
-        //         rows={3}
-        //         placeholder="Inserisci una domanda ..."
-        //         value={newQuestion}
-        //         onChange={(e) => setNewQuestion(e.target.value)}
-        //         onKeyDown={(e) => {if (e.key === 'Enter'){
-        //             e.preventDefault();
-        //             handleClick();
-        //         }}}
-        //     ></textarea>
-        //     <button className="button absolute right-4 top-5" onClick={handleClick}>Send</button>
-        // </div>
         <div className="insert relative m-2 " >
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={sendMessage} >
                 <textarea
                     id="questionArea"
                     className="w-full rounded-2xl p-2 shadow-xl pr-28 resize-none"
@@ -42,10 +17,10 @@ function TextInputComponent({ input, handleInputChange, handleSubmit }: InsertPr
                     placeholder="Inserisci una domanda ..."
                     value={input}
                     onChange={handleInputChange}
-                    // onKeyDown={(e) => {if (e.key === 'Enter'){
-                    //     e.preventDefault();
-                    //     handleSubmit();
-                    // }}}
+                    onKeyDown={(e) => {if (e.key === 'Enter'){
+                        e.preventDefault();
+                        sendMessage(e);
+                    }}}
                 ></textarea>
                 <button className="button absolute right-4 top-5" type="submit">Send</button>
             </form>
