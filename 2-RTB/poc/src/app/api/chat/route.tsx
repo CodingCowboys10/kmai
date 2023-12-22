@@ -23,6 +23,7 @@ export const runtime = 'edge';
 export async function POST(
     request: NextRequest
 ) {
+    if(true) return new StreamingTextResponse(ReadableStream.from("ciao")) // da rimuovere
     const { messages, model_name}: ChatApiBodyParams = await request.json();
     const { stream, handlers } = LangChainStream();
 

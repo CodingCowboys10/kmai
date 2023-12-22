@@ -4,6 +4,7 @@ import { useChat } from 'ai/react';
 import React, {useState, FormEvent} from "react";
 import ChatBody from "@/app/chat/components/chatBody";
 import ChatInput from "@/app/chat/components/chatInput";
+import LlmBody from "@/app/chat/components/llmBody";
 
 
 export default function Page() {
@@ -50,10 +51,12 @@ export default function Page() {
                     <ChatBody messages={messages} clearChat={clearChat}></ChatBody>
                     <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
                 </div>
-                <div className=" w-3/12 h-full">
-                    {messages.length!=0 && (<button className="text-xl p-2 " onClick={clearChat}>
-                        <i className="py-2 rounded-2xl w-10/12 text-center bg-[--background-contrast] fa-solid fa-broom"></i>
-                    </button>)}
+                <div className="flex flex-row w-3/12 h-full justify-center">
+                    <LlmBody>
+                        <button className={`animation duration-300 hover:scale-110 text-xl p-2 ${messages.length!=0 ? "opacity-100" : "opacity-20" }`} onClick={clearChat} >
+                        <i className="py-3 rounded-2xl w-10/12 text-center bg-[#6f303c] fa-solid fa-broom"></i>
+                    </button>
+                    </LlmBody>
                 </div>
             </div>
         </main>
