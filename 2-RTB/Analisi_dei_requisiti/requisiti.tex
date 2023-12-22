@@ -187,7 +187,7 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
 
 \section{Requisiti prestazionali}
 
-Durante l'analisi condotta dal nostro gruppo e nel confronto con il proponente, non sono emersi requisiti specifici riguardanti le prestazioni dell'applicazione. Questo è dovuto alla natura aleatoria delle prestazioni di un sistema in rete, influenzato da numerosi fattori non controllabili.\\Per quanto concerne la scelta del modello, è importante considerare che se l'utente opta per il modello OpenAI, richiedendo un modello online, ciò comporterà uno sforzo minimo da parte del gestore del servizio dell'applicazione. Al contrario, nel caso di modelli locali, la selezione e la scalabilità dipenderanno dalle risorse fisiche disponibili sul server gestore dell'applicazione.\\Data la natura della documentazione che va inserita nell'applicazione(manuali di istruzioni e documentazioni), spesso di grandi dimensioni, un requisito prestazionale implicito è quello di rendere il software funzionante e responsivo nonostante numerosi documenti potenzialmente di grandi dimensioni.
+Durante l'analisi condotta dal nostro gruppo e nel confronto con il proponente, non sono emersi requisiti specifici riguardanti le prestazioni dell'applicazione per quanto concerne le tempistiche. Questo è dovuto alla natura aleatoria delle prestazioni di un sistema in rete, influenzato da numerosi fattori non controllabili.\\Per quanto concerne la scelta del modello, è importante considerare che se l'utente opta per il modello OpenAI, richiedendo un modello online, ciò comporterà uno sforzo minimo da parte del gestore del servizio dell'applicazione. Al contrario, nel caso di modelli locali, la selezione e la scalabilità dipenderanno dalle risorse fisiche disponibili sul server gestore dell'applicazione.\\
 \begingroup
 \setlength{\tabcolsep}{10pt}
 \renewcommand{\arraystretch}{1.5}
@@ -197,9 +197,11 @@ Durante l'analisi condotta dal nostro gruppo e nel confronto con il proponente, 
     \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Classificazione}} & \textbf{\textcolor{white}{Fonte}}\\
     \hline
     \endhead
-    RPO-1 & Il sistema deve funzionare con numerosi documenti.  & Obbligatorio & Proponente\\
+    RPO-1 & Il sistema deve funzionare con almeno 1000 documenti.  & Obbligatorio & Proponente\\
     \hline
-    RPO-2 & Il sistema deve funzionare con documenti di grandi dimensioni. & Obbligatorio & Proponente\\
+    RPO-2 & Il sistema deve funzionare con documenti di dimensioni almeno tra i 500Kb e 1Mb. & Obbligatorio & Proponente\\
+    \hline
+    RPO-3 & Il sistema deve essere scalabile. & Obbligatorio & Proponente\\
     \hline
     \rowcolor{white} \caption{Requisiti prestazionali del prodotto}
     \label{tab:reqpre}
