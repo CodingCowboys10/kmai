@@ -38,7 +38,7 @@ export default function Page() {
 
             <div className="flex flex-row w-full h-full justify-around">
 
-                <div className="w-3/12">
+                <div className="hidden lg:block lg:w-3/12">
                     <Link className="" href="/documents">
                         <button className="w-fit h-fit bg-[--primary] m-0  font-medium rounded-xl p-3
           hover:scale-105 hover:shadow-2xl animation duration-300 ease-out  text-[--text-button]">
@@ -47,12 +47,12 @@ export default function Page() {
                     </Link>
                 </div>
 
-                <div className="flex flex-col w-6/12">
+                <div className="flex flex-col w-10/12 lg:w-6/12">
                     <ChatBody messages={messages} clearChat={clearChat}></ChatBody>
                     <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
                 </div>
                 <div className="flex flex-row w-3/12 h-full justify-center">
-                    <LlmBody>
+                    <LlmBody> 
                         <button className={`animation duration-300 hover:scale-110 text-xl p-2 ${messages.length!=0 ? "opacity-100" : "opacity-20" }`} onClick={clearChat} >
                         <i className="py-3 rounded-2xl w-10/12 text-center bg-[#6f303c] fa-solid fa-broom"></i>
                     </button>
