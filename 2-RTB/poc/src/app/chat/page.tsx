@@ -34,22 +34,21 @@ export default function Page() {
         handleSubmit(e);
     }
     return (
-        <main className="w-full">
+        <main className="flex flex-row w-full h-full justify-around">
 
-            <div className="flex flex-row w-full h-full justify-around">
+            <div className="flex flex-col justify-between h-full lg:block lg:w-3/12">
 
-                <div className="hidden lg:block lg:w-3/12">
-                    <Link className="" href="/documents">
-                        <button className="w-fit h-fit bg-[--primary] m-0  font-medium rounded-xl p-3
+                <Link className="" href="/documents">
+                    <button className="my-auto w-fit h-fit bg-[--primary]  font-medium rounded-xl p-3
           hover:scale-105 hover:shadow-2xl animation duration-300 ease-out  text-[--text-button]">
-                            Archivio
-                        </button>
-                    </Link>
-                </div>
+                        Archivio
+                    </button>
+                </Link>
+            </div>
 
-                <div className="flex flex-col w-10/12 lg:w-6/12">
-                    <ChatBody messages={messages} clearChat={clearChat}></ChatBody>
-                    <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
+            <div className="flex flex-col w-10/12 lg:w-6/12">
+                <ChatBody messages={messages} clearChat={clearChat}></ChatBody>
+                <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
                 </div>
                 <div className="flex flex-row w-3/12 h-full justify-center">
                     <LlmBody> 
@@ -58,7 +57,7 @@ export default function Page() {
                     </button>
                     </LlmBody>
                 </div>
-            </div>
+
         </main>
     )
 }

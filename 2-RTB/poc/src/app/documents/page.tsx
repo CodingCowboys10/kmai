@@ -1,20 +1,44 @@
 import Link from "next/link";
 import UploadDoc from "./components/uploadDoc";
 import ListDoc from "./components/listDoc";
+import DocMenu from "./components/docMenu";
+import React from "react";
 
 export default function Page(){
     return (
-        <main id='root' className="flex flex-col gap-5 overflow-scroll lg:overflow-hidden">
-            <div className="flex flex-row justify-between ">
-            <Link className="w-fit h-fit bg-[--primary] font-medium rounded-xl p-3
-          hover:scale-105 hover:shadow-2xl animation duration-300 ease-out" href="/chat">
-                <button className="text-[--text-button]">
-                    Chat
-                </button>
-            </Link>
-            <UploadDoc/>
-            </div>
-            <ListDoc />
-        </main>
+            <main id='root' className=" overflow-hidden relative flex flex-row bg-[--background-contrast] rounded-xl h-full gap-2 ">
+                <DocMenu/>
+                <div className="flex flex-col relative w-full gap-1 ">
+                    <div className='flex flex-row w-full justify-between text-center p-1 gap-2 rounded-xl'>
+                        <input type="text" className="bg-[--background-input] w-3/12 h-fit rounded-lg p-2  focus:outline-none"
+                               placeholder="Cerca Documento"></input>
+                        <div className='grid grid-cols-5 gap-5 ' >
+                            <button type='button'
+                                    className="w-full border-2 border-[--background-contrast] rounded-xl hover:border-2 hover:border-[white]">Modello
+                                1
+                            </button>
+                            <button type='button'
+                                    className="w-full border-2 border-[--background-contrast] rounded-xl hover:border-2 hover:border-[white]">Modello
+                                2
+                            </button>
+                            <button type='button'
+                                    className="w-full border-2 border-[--background-contrast] rounded-xl hover:border-2 hover:border-[white]">Modello
+                                3
+                            </button>
+                            <button type='button'
+                                    className="w-full border-2 border-[--background-contrast] rounded-xl hover:border-2 hover:border-[white]">Modello
+                                4
+                            </button>
+                            <button type='button'
+                                    className="w-full border-2 border-[--background-contrast] rounded-xl hover:border-2 hover:border-[white]">Modello
+                                5
+                            </button>
+                        </div>
+                    </div>
+
+                    <ListDoc/>
+                </div>
+
+            </main>
     )
 }
