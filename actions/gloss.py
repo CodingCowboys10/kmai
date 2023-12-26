@@ -2,15 +2,15 @@ import re
 import os
 
 glossario = list()
-currentDirectory='/home/anna/Scrivania/Verbale 2023-12-04/' #directory dove si trova il file a cui mettere le g di glossario
+currentDirectory='/a/beautiful/file/path/' #directory dove si trova il file a cui mettere le g di glossario
 
 def build_file_path_letters(): #prende tutti i file delle lettere e salva in una lista i vari path
     fp=list()
-    for (files) in os.walk('/home/anna/Scrivania/Glossario/', topdown=True): 
+    for (files) in os.walk('/the/magnificent/glossary/path/', topdown=True): #path alla cartella che contiene i file del glossario
         for n in range(len(files[2])):
             match = re.search(r'lettera([\w]).tex', files[2][n])
             if match:
-                path="/home/anna/Scrivania/Glossario/lettera"+match.group(1)+".tex"
+                path="/the/magnificent/glossary/lettera"+match.group(1)+".tex" #path alla cartella che contiene i file del glossario + un qualsiasi file lettera (mantenere la parte "/lettera" quando si va a modificare il path 
                 fp.append(path)
 
     return fp
