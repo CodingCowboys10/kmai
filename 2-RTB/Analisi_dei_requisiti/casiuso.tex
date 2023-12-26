@@ -971,11 +971,24 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \end{enumerate}
 \end{description}
 
+\subsection{UC-25.1 Conferma eliminazione chat history}
+\begin{description}
+    \item[Descrizione:] L'utente vuole eliminare lo scambio di domande e risposte, avvenuto in precedenza con il chatbot, dalla sessione del sistema.
+    \item[Attore primario:] Utente generico.
+    \item[Pre condizioni:] Il sistema presenta la chat history.
+    \item[Post condizioni:] Il sistema non presenta più alcuna chat history in quella sessione.
+    \item[Scenario:]
+    \begin{enumerate}
+        \item[]
+        \item L'utente elimina la chat history della sessione corrente (\textbf{UC-25}).
+        \item L'utente conferma l'eliminazione della chat history della sessione corrente dal sistema.
+    \end{enumerate}
+\end{description}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{UC25.png} %da modificare
-    \caption{Diagramma UML dei casi d'uso UC-25}
+    \includegraphics[width=0.9\linewidth]{UC25.png} %da modificare e aggiungere 25.1
+    \caption{Diagramma UML dei casi d'uso UC-25 e 25.1}
     \label{fig:UC30-31}
 \end{figure}
 
