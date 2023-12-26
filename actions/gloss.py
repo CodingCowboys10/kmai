@@ -75,8 +75,7 @@ def add_g(f):
                         glossario.remove(word.capitalize()) 
                 if word.lower() == "jira" and "jira software" in glossario: #sempre caso specifico
                         glossario.remove("jira software")
-        print(content)
-        # Scrivi il contenuto modificato nel file
+       
         file.seek(0)
         file.write(content)
         file.truncate()   
