@@ -11,7 +11,7 @@ interface DocCardProps{
 
 function DocCard ({ name, path, date }: DocCardProps) {                           //creo le card dei documenti pdf del db, mostrando nome, data di inserimento e costruendo un bottone per eliminare quel documento dal db
   return (
-    <li className=' bg-[--background-contrast] border border-[--background-contrast] hover:border-[--primary]  rounded-xl m-1 w-full h-full '>
+    <li className=' bg-[--background-contrast] border border-[--background-contrast] hover:border-[--primary]  rounded-xl w-full h-full '>
         <div className='flex items-center justify-center py-2 bg-[--background] rounded-t-xl' >
             <Image src={icon} alt='PDF'  />
         </div>
@@ -20,7 +20,7 @@ function DocCard ({ name, path, date }: DocCardProps) {                         
             <p>  Descrizione del Documento </p>
         </div>
 
-        <div className='flex flex-row items-center justify-between px-2'>
+        <div className='flex flex-row items-center justify-between px-2 py-2'>
             <p className='text-[--primary]'>{date}</p>
             <DeleteDoc name={name}/>
         </div>

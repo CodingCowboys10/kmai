@@ -6,7 +6,7 @@ import React from "react";
 
 export default function Page(){
     return (
-            <main id='root' className=" overflow-hidden relative flex flex-row bg-[--background-contrast] rounded-xl h-full gap-2 ">
+            <main id='root' className=" overflow-hidden relative flex flex-row bg-[--background-contrast]  h-full gap-2 ">
                 <DocMenu/>
                 <div className="flex flex-col relative w-full gap-1 ">
                     <div className='flex flex-row w-full justify-between text-center p-1 gap-2 rounded-xl'>

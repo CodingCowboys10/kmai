@@ -19,7 +19,7 @@ function DocMenu ({ name, path, date }: DocMenuProps) {                         
             <UploadDoc/>
 
 
-            <Link className=" h-fit bg-[--primary] font-medium rounded-xl p-3
+            <Link className=" text-center w-3/12 h-fit bg-[--primary] font-medium rounded-xl p-3
                   hover:scale-105 hover:shadow-2xl animation duration-300 ease-out" href="/chat">
                 <button className="text-[--text-button]">
                     Chat

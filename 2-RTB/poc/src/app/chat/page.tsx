@@ -36,10 +36,9 @@ export default function Page() {
     return (
         <main className="flex flex-row w-full h-full justify-around">
 
-            <div className="flex flex-col justify-between h-full lg:block lg:w-3/12">
-
+            <div className="flex flex-col justify-end  h-full lg:w-3/12">
                 <Link className="" href="/documents">
-                    <button className="my-auto w-fit h-fit bg-[--primary]  font-medium rounded-xl p-3
+                    <button className=" w-fit h-fit bg-[--primary]  font-medium rounded-xl p-3
           hover:scale-105 hover:shadow-2xl animation duration-300 ease-out  text-[--text-button]">
                         Archivio
                     </button>
@@ -49,14 +48,16 @@ export default function Page() {
             <div className="flex flex-col w-10/12 lg:w-6/12">
                 <ChatBody messages={messages} clearChat={clearChat}></ChatBody>
                 <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
-                </div>
-                <div className="flex flex-row w-3/12 h-full justify-center">
-                    <LlmBody> 
-                        <button className={`animation duration-300 hover:scale-110 text-xl p-2 ${messages.length!=0 ? "opacity-100" : "opacity-20" }`} onClick={clearChat} >
+            </div>
+            <div className="flex flex-row w-3/12 h-full justify-center">
+                <LlmBody>
+                    <button
+                        className={`animation duration-300 hover:scale-110 text-xl p-2 ${messages.length != 0 ? "opacity-100" : "opacity-20"}`}
+                        onClick={clearChat}>
                         <i className="py-3 rounded-2xl w-10/12 text-center bg-[#6f303c] fa-solid fa-broom"></i>
                     </button>
-                    </LlmBody>
-                </div>
+                </LlmBody>
+            </div>
 
         </main>
     )
