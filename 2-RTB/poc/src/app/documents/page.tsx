@@ -10,8 +10,6 @@ export default function Page(){
                 <DocMenu/>
                 <div className="flex flex-col relative w-full gap-1 ">
                     <div className='flex flex-row w-full justify-between text-center p-1 gap-2 rounded-xl'>
-                        <input type="text" className="bg-[--background-input] w-3/12 h-fit rounded-lg p-2  focus:outline-none"
-                               placeholder="Cerca Documento"></input>
                         <div className='grid grid-cols-5 gap-5 ' >
                             <button type='button'
                                     className="w-full border-2 border-[--background-contrast] rounded-xl hover:border-2 hover:border-[white]">Modello
