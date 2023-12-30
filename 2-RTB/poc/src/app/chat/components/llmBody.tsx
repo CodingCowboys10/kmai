@@ -32,7 +32,6 @@ function LlmBody({classProp, updateModel,   children } : LlmBodyProps) {
             setSelectedButton(index); // imposta selectedButton al valore del bottone cliccato
             updateModel(models[index])
         };
-        console.log(models)
         return (
             <div 
             className={classProp}>

@@ -63,7 +63,6 @@ export default function Page() {
                     </button>
                 </LlmBody>
             </div>
-            <Toaster/>
         </main>
     )
 }
