@@ -6,7 +6,6 @@ import ChatBody from "@/app/chat/components/chatBody";
 import ChatInput from "@/app/chat/components/chatInput";
 import LlmBody from "@/app/chat/components/llmBody";
 
-
 export default function Page() {
 
     const [model_name,setModel_name] = useState("openAi")
@@ -19,6 +18,9 @@ export default function Page() {
         }
     });
 
+    const updateModel = (newModelName: string) => {
+        setModel_name(newModelName);
+    }
     const clearChat = () => {
         setMessages([]);
     }
@@ -50,7 +52,10 @@ export default function Page() {
                 <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
             </div>
             <div className="flex flex-row w-3/12 h-full justify-center">
-                <LlmBody>
+                <LlmBody classProp="flex flex-col shadow-2xl w-1/2 bg-[--background-contrast] p-4 rounded-2xl
+                h-fit my-auto justify-evenly gap-3 "
+                updateModel={updateModel}
+                >
                     <button
                         className={`animation duration-300 hover:scale-110 text-xl p-2 ${messages.length != 0 ? "opacity-100" : "opacity-20"}`}
                         onClick={clearChat}>
@@ -58,7 +63,7 @@ export default function Page() {
                     </button>
                 </LlmBody>
             </div>
-
+            <Toaster/>
         </main>
     )
 }

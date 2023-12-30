@@ -11,17 +11,18 @@ import React from "react";
 interface LlmModelProps { //interfaccia che definisce le proprietà del bottone tramite props
   isSelected: boolean; // Indica se il bottone è selezionato
   onClick: () => void; // Funzione che viene chiamata quando il bottone viene cliccato
+  text: string; // Testo del bottone
 }
 
-function LlmModel({ isSelected, onClick }: LlmModelProps) { 
+function LlmModel({ isSelected, onClick , text }: LlmModelProps) {
   return (
     <button
-      className={`${isSelected ? "scale-105 bg-[#4c9cac] border-[#4c9cac] cursor-default" : "" }
-         border-2 border-[--background] font-medium text-[--text]  shadow w-full px-0 py-6 rounded-2xl
+      className={`${isSelected ? "scale-105 bg-[--primary] border-[--primary] cursor-default" : "" }
+         border-2 border-[white] border-opacity-20  dark:border-[--background]  font-medium text-[--text-button] w-full px-2 py-2 rounded-xl
          hover:scale-105 transition duration-150 ease-in hover:ease-out`}
       onClick={onClick} // Gestisci il click chiamando la funzione fornita
     >
-      starling-lm
+      {text}
     </button>
   );
 }
