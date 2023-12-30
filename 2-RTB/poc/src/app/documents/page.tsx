@@ -16,7 +16,7 @@ export default function Page(){
                 <DocMenu/>
                 <div className="flex flex-col relative w-full gap-1 px-2  ">
                    <LlmBody
-                       classProp="flex flex-row w-fit gap-2 bg-[--background-contrast] p-2 rounded-xl"
+                       classProp="flex flex-row w-fit gap-2  p-2 rounded-xl"
                        updateModel={updateModel}
                    />
                     <ListDoc/>

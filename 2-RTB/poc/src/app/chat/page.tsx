@@ -53,12 +53,13 @@ export default function Page() {
             </div>
             <div className="flex flex-row w-3/12 h-full justify-center">
                 <LlmBody classProp="flex flex-col shadow-2xl w-1/2 bg-[--background-contrast] p-4 rounded-2xl
-                h-fit my-auto justify-evenly gap-3 "
+                h-fit my-auto justify-evenly gap-4"
                 updateModel={updateModel}
                 >
                     <button
                         className={`animation duration-300 hover:scale-110 text-xl p-2 ${messages.length != 0 ? "opacity-100" : "opacity-20"}`}
-                        onClick={clearChat}>
+                        onClick={clearChat}
+                        disabled={messages.length == 0}>
                         <i className="py-3 rounded-2xl w-10/12 text-center bg-[#6f303c] fa-solid fa-broom"></i>
                     </button>
                 </LlmBody>

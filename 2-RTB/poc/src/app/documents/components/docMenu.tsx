@@ -12,7 +12,7 @@ interface DocMenuProps{
 
 function DocMenu ({ name, path, date }: DocMenuProps) {                           //creo le card dei documenti pdf del db, mostrando nome, data di inserimento e costruendo un bottone per eliminare quel documento dal db
     return (
-        <div className='h-full flex flex-col justify-between pt-2 lg:w-3/12 md:5/12 w-full'>
+        <div className='h-full flex flex-col justify-between pt-2 lg:w-3/12 md:5/12 w-full shadow-lg rounded-xl p-2 '>
 
 
 

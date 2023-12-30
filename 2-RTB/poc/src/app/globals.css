@@ -10,7 +10,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -101,8 +100,8 @@ a:hover {
     --text: #0d0f12;
 
     --background: #f5f7fa;
-    --background-contrast: #2b3035;
-    /*--background-contrast: #f0f0f3;*/
+    --background-contrast: #f0f0f3;
+    --background-input: #C8C8C9;
 
     --primary: #0262f2;
     --secondary: #976b3f;
