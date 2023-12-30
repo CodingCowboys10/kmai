@@ -2,7 +2,210 @@
 
 \section{Introduzione}
 
-\section{Qualità di processo}
+\section{Qualità di processo} \label{sec:qualityproc}
+\subsection{Varianza di Budget}
+\begin{description}
+    \item[Codice:] MPC-1
+    \item[Processo:] Fornitura.
+    \item[Formula:] 
+    \begin{equation}
+        100\biggl(\frac{\text{Budget Consuntivato} - \text{Budget Preventivato}}{\text{Budget Preventivato}}\biggr)
+    \end{equation}
+    \item[Descrizione:] Questa metrica valuta la percentuale di variazione del budget tra preventivo e consuntivo in uno sprint. Il valore è positivo quando viene preventivato un budget inferiore a quello effettivamente utilizzato, mentre è negativo quando viene preventivato un budget maggiore a quello effettivamente utilizzato.
+\end{description}
+
+\subsection{Varianza dell’impegno orario}
+\begin{description}
+    \item[Codice:] MPC-2
+    \item[Processo:] Fornitura.
+    \item[Formula:]
+    \begin{equation}
+        100\biggl(\frac{\text{Ore Consuntivate} - \text{Ore Preventivate}}{\text{Ore Preventivate}}\biggr)
+    \end{equation}
+    \item[Descrizione:] Questa metrica valuta la percentuale di variazione dell'impegno orario complessivo tra preventivo e consuntivo in uno sprint. Il valore è positivo quando viene preventivato un impegno orario inferiore a quello effettivamente svolto, mentre è negativo quando viene preventivato un impegno orario maggiore a quello effettivamente svolto.
+\end{description}
+
+\subsection{Earned Value}
+\begin{description}
+    \item[Codice:] MPC-3
+    \item[Processo:] Fornitura.
+    \item[Formula:]
+    \begin{equation}
+        \text{Budget Preventivato} * \% \text{Completamento di Attività Sprint} 
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta il valore effettivo del lavoro realizzato alla fine di uno sprint. Il valore è sempre positivo e deve essere comparato a quello dell'actual cost (MPC-4):
+    \begin{itemize}
+        \item se l'earned value è maggiore significa che è stato speso di meno di quello preventivato per lo sprint;
+        \item se l'earned value è minore significa che è stato speso di più di quello preventivato per lo sprint.
+    \end{itemize}
+\end{description}
+
+\subsection{Actual Cost}
+\begin{description}
+    \item[Codice:] MPC-4
+    \item[Processo:] Fornitura.
+    \item[Formula:]
+    \begin{equation}
+        \sum_{i=1}^{nSprint} \text{Budget Consuntivato}_{i}
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta il costo totale effettivamente sostenuto in base al lavoro eseguito nello sprint.
+\end{description}
+
+\subsection{Planned Value}
+\begin{description}
+    \item[Codice:] MPC-5
+    \item[Processo:] Fornitura.
+    \item[Formula:]
+    \begin{equation}
+        \text{Acutal Cost}_{sprint - 1} + \text{Budget Preventivato}_{sprint} 
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta il totale dei costi pianificati allo sprint e viene calcolata prima che esso inizi.
+\end{description}
+
+\subsection{Cost Variance}
+\begin{description}
+    \item[Codice:] MPC-6
+    \item[Processo:] Fornitura.
+    \item[Formula:] 
+    \begin{equation}
+        \text{Earned Value} - \text{Actual Cost}
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta lo scostamento dai costi pianificati. Un valore positivo indica che il lavoro effettivamente prodotto è costato meno di quello preventivato. Un valore negativo indica che il progetto sta costando più del previsto.
+\end{description}
+
+\subsection{Schedule Variance}
+\begin{description}
+    \item[Codice:] MPC-7
+    \item[Processo:] Fornitura.
+    \item[Formula:]
+    \begin{equation}
+        \text{Earned Value} - \text{Planned Value}
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta lo scostamento dai tempi pianificati. Un valore positivo indica che il progetto è in anticipo rispetto a quanto preventivato. Un valore negativo indica che si è svolto meno lavoro rispetto a quello previsto.
+\end{description}
+
+\subsection{Cost Performance Index}
+\begin{description}
+    \item[Codice:] MPC-8
+    \item[Processo:] Fornitura.
+    \item[Formula:]
+    \begin{equation}
+        \frac{\text{Earned Value}}{\text{Actual Cost}}
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta l'indice di efficienza economica del progetto. Un valore inferiore ad 1 indica che il progetto è in sovra-budget ovvero che sta richiedendo un budget maggiore rispetto a quello preventivato. Un valore superiore ad 1 indica che il progetto è in sotto-budget ovvero che sta richiedendo un budget minore rispetto a quello preventivato.
+\end{description}
+
+\subsection{Schedule Performance Index}
+\begin{description}
+    \item[Codice:] MPC-9
+    \item[Processo:] Fornitura.
+    \item[Formula:]
+    \begin{equation}
+        \frac{\text{Earned Value}}{\text{Planned Value}}
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta l'indice di efficienza temporale del progetto. Un valore inferiore ad 1 indica che il progetto sta procedendo più lentamente di quanto preventivato. Un valore superiore ad 1 indica che il progetto sta procedendo più velocemente di quanto preventivato.
+\end{description}
+
+\subsection{Estimate to Complete}
+\begin{description}
+    \item[Codice:] MPC-10
+    \item[Processo:] Fornitura.
+    \item[Formula:] 
+    \begin{equation}
+        \frac{\text{Budget at Completion} - \text{Earned Value}}{\text{Cost Performance Index}}
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta il costo totale ancora da sostenere per il completamento del progetto.
+\end{description}
+
+\subsection{Estimate at Completion}
+\begin{description}
+    \item[Codice:] MPC-11
+    \item[Processo:] Fornitura.
+    \item[Formula:]
+    \begin{equation}
+        \text{Actual Cost} + \text{Estimate to Complete}
+    \end{equation}
+    \item[Descrizione:] Questa metrica rappresenta il costo totale alla fine del progetto in base all'andamento attuale.
+\end{description}
+
+\subsection{Budget at Completion}
+\begin{description}
+    \item[Codice:] MPC-12
+    \item[Processo:] Fornitura.
+    \item[Formula:] Non è presenta una formula.
+    \item[Descrizione:] Questa metrica rappresenta il budget totale del progetto.
+\end{description}
+
+\subsection{Code Coverage}
+\begin{description}
+    \item[Codice:] MPC-13
+    \item[Processo:] Sviluppo.
+    \item[Formula:] Non è presenta una formula.
+    \item[Descrizione:] Questa metrica rappresenta la percentuale di codice attraversato dei test rispetto al totale della code base.
+\end{description}
+
+\subsection{Misure di mitigazione insufficienti}
+\begin{description}
+    \item[Codice:] MPC-14
+    \item[Processo:] Risoluzione dei problemi.
+    \item[Formula:] Non è presenta una formula.
+    \item[Descrizione:] Questa metrica rappresenta il numero totale di misure di mitigazione previste che si sono rivelate insufficienti.
+\end{description}
+
+\subsection{Rischi inattesi}
+\begin{description}
+    \item[Codice:] MPC-15
+    \item[Processo:] Risoluzione dei problemi.
+    \item[Formula:] Non è presenta una formula.
+    \item[Descrizione:] Questa metrica rappresenta il numero totale di rischi inattesi (non analizzati) che si sono verificati.
+\end{description}
+
+{
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| l | X | c | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Nome}} & \textbf{\textcolor{white}{Accettabile}} & \textbf{\textcolor{white}{Preferibile}} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Nome}} & \textbf{\textcolor{white}{Accettabile}} & \textbf{\textcolor{white}{Preferibile}} \\ 
+    \endhead
+    MPC-1 & Varianza di Budget & \pm 10\% & \pm 0\% \\
+    \hline
+    MPC-2 & Varianza dell’impegno orario & \pm 5\% & \pm 0\% \\
+    \hline
+    MPC-3 & Earned Value & >= MPC-4 &  \\
+    \hline
+    MPC-4 & Actual Cost & - & - \\
+    \hline
+    MPC-5 & Planned Value & - & - \\
+    \hline
+    MPC-6 & Cost Variance & \pm 150 & 0 \\
+    \hline
+    MPC-7 & Schedule Variance & \pm 150 & 0 \\
+    \hline
+    MPC-8 & Cost Performance Index & 1 \pm 0.1 & 1 \\
+    \hline
+    MPC-9 & Schedule Performance Index & 1 \pm 0.1 & 1 \\
+    \hline
+    MPC-10 & Estimate to Complete & - & -\\
+    \hline
+    MPC-11 & Estimate at Completion & \pm5\% di MPC-12 & MPC-12 \\
+    \hline
+    MPC-12 & Budget at Completion & - & - \\
+    \hline
+    MPC-13 & Code Coverage & 75\% & 100\% \\
+    \hline
+    MPC-14 & Misure di mitigazione insufficienti & 3 & 0 \\
+    \hline
+    MPC-15 & Rischi inattesi & 3 & 0 \\
+    \hline
+    \rowcolor{white} \caption{Metriche di qualità di processo}
+    \label{tab:mpc}
+\end{xltabular}
+}
 
 \section{Qualità di prodotto} \label{sec:qualityprod}
 \subsection{Indice di Gulpease}
