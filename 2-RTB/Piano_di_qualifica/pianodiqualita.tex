@@ -215,7 +215,7 @@
     \item[Formula:] 
     \begin{equation}
     89 +
-    \frac{300 * (numeroFrasi) - 10 * (numeroLettere)}{numeroParole}
+    \frac{\text{300 (numero Frasi) - 10 (numero Lettere)}}{\text{numero Parole}}
     \label{MPD-1}
     \end{equation}
     \item[Descrizione:] L'indice di Gulpease misura il grado di leggibilità di un testo, stimando la difficoltà di lettura per una persona in base alla sua istruzione. Calcolato su una scala da 1 a 100, un indice superiore a 80 identifica un testo facilmente comprensibile per chiunque con un'istruzione elementare. Un valore pari o superiore a 60 identifica un testo comprensible per le persone con istruzione media. Un punteggio superiore a 40 indica che il testo è comprensibile alle persone con un'istruzione superiore, dunque al target di questo progetto.\\Il valore minimo accettato farà dunque riferimento a quest'ultima soglia, con un valore preferibile fissato a 60 o più.
@@ -227,7 +227,7 @@
     \item[Processo:] Sviluppo.
     \item[Formula:]
     \begin{equation}
-        \frac{(numeroRequisitiObbligatoriSoddisfatti) * 100}{numeroRequisitiObbligatori}
+        100\biggl(\frac{\text{numero Requisiti Obbligatori Soddisfatti}}{\text{numero Requisiti Obbligatori}}\biggr)
     \end{equation}
     \item[Descrizione:] Indica la percentuale dei requisiti obbligatori soddisfatti.\\ In quanto obbligatori, non è definita alcuna soglia di tolleranza tra valore accettabile e preferibile. È necessario giungere al 100\% di completamento.
 \end{description}
@@ -238,7 +238,7 @@
     \item[Processo:] Sviluppo.
     \item[Formula:]
     \begin{equation}
-        \frac{(numeroRequisitiDesiderabiliSoddisfatti) * 100}{numeroRequisitiDesiderabili}
+        100\biggl(\frac{\text{numero Requisiti Desiderabili Soddisfatti}}{\text{numero Requisiti Desiderabili}}\biggr)
     \end{equation}
     \item[Descrizione:] Indica la percentuale dei requisiti desiderabili soddisfatti.\\ In quanto non obbligatori, il valore accettabile è fissato a 0\%, con valore preferibile 100\%.
 \end{description}
@@ -249,12 +249,12 @@
     \item[Processo:] Sviluppo.
     \item[Formula:]
     \begin{equation}
-        \frac{(numeroRequisitiOpzionaliSoddisfatti) * 100}{numeroRequisitiOpzionali}
+        100\biggl(\frac{\text{numero Requisiti Opzionali Soddisfatti}}{\text{numero Requisiti Opzionali}}\biggr)
     \end{equation}
     \item[Descrizione:] Indica la percentuale dei requisiti opzionali soddisfatti.\\ In quanto non obbligatori, il valore accettabile è fissato a 0\%, con valore preferibile 100\%.
 \end{description}
 
-\subsection{Riepilogo}
+
 {
 \setlength{\tabcolsep}{10pt}
 \renewcommand{\arraystretch}{1.5}
