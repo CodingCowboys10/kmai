@@ -5,9 +5,9 @@ import {Message} from "ai"
 
 interface ChatProps {
     messages: Message[];
-    clearChat : () => void;
+    model: string;
 }
-function ChatBody({ messages, clearChat }: ChatProps) {
+function ChatBody({ messages, model}: ChatProps) {
 
     const chatboxRef = useRef<HTMLInputElement | null>(null);
 
@@ -24,7 +24,7 @@ function ChatBody({ messages, clearChat }: ChatProps) {
                 <div className="flex flex-col gap-5 ">
                     {messages.map((value, index) => (
                     <React.Fragment key={index}>
-                        {value.role === 'user' ? (<ChatMessage isGenerated={false} text={value.content}/>) : (<ChatMessage isGenerated={true} text={value.content}/>)}
+                        <ChatMessage isGenerated={value.role === 'user' ? false : true} text={value.content} model={model}/>
                     </React.Fragment>
                 ))}</div>
 

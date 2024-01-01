@@ -8,18 +8,18 @@ import LlmBody from "@/app/chat/components/llmBody";
 
 export default function Page() {
 
-    const [model_name,setModel_name] = useState("openAi")
+    const [modelName,setModelName] = useState("openAi")
     const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading } = useChat({
         headers: {
             "Content-type": "text/html"
         },
         body: {
-            model_name: model_name
+            modelName: modelName
         }
     });
 
     const updateModel = (newModelName: string) => {
-        setModel_name(newModelName);
+        setModelName(newModelName);
     }
     const clearChat = () => {
         setMessages([]);
@@ -48,7 +48,7 @@ export default function Page() {
             </div>
 
             <div className="flex flex-col w-10/12 lg:w-6/12">
-                <ChatBody messages={messages} clearChat={clearChat}></ChatBody>
+                <ChatBody messages={messages} model={modelName} clearChat={clearChat}></ChatBody>
                 <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
             </div>
             <div className="flex flex-row w-3/12 h-full justify-center">
