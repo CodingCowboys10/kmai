@@ -11,16 +11,19 @@ interface DocCardProps{
 
 function DocCard ({ name, path, date }: DocCardProps) {                           //creo le card dei documenti pdf del db, mostrando nome, data di inserimento e costruendo un bottone per eliminare quel documento dal db
   return (
-    <li className='flex-1 bg-zinc-900 p-4 border border-solid border-indigo-500 rounded-lg m-1 w-64 h-90 basis-1/5'>
-      <div className='flex items-center justify-center p-5'>
-        <Image src={icon} alt='PDF' width={100} height={100} />
-      </div>
-      <div className='text-center'>
-        <p className='text-center whitespace-pre-line break-all'>{name}</p>
-        <p className='pt-2 text-indigo-500'>Inserito il:</p>
-        <p className='text-indigo-500'>{date}</p>
-      </div>
-      <DeleteDoc name={name}/>                                                    
+    <li className=' bg-[--background-contrast] border-4 border-[--background-contrast] hover:border-[--primary]  rounded-xl w-full h-full text-[--text]'>
+        <div className='flex items-center justify-center py-2 bg-[--background] rounded-t-xl rounded-b-lg' >
+            <Image src={icon} alt='PDF'  />
+        </div>
+        <div className="flex flex-col text-center px-2 py-2">
+            <h1 className='text-xl font-medium text-center whitespace-pre-line break-all'>{name}</h1>
+            <p>  Descrizione del Documento </p>
+        </div>
+
+        <div className='flex flex-row items-center justify-between px-2 py-2'>
+            <p className='text-[--primary]'>{date}</p>
+            <DeleteDoc name={name}/>
+        </div>
     </li>
   );
 };
