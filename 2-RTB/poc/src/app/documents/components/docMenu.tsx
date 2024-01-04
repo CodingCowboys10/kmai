@@ -14,7 +14,7 @@ function DocMenu ({ model }: DocMenuProps) {                           //creo le
         <div className='h-full flex flex-col justify-between pt-2 lg:w-3/12 md:5/12 w-full shadow-lg rounded-xl p-2 '>
 
 
-            <UploadDoc />
+            <UploadDoc/>
 
 
             <Link className=" text-center w-3/12 h-fit bg-[--primary] font-medium rounded-xl p-3

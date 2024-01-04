@@ -6,6 +6,7 @@ import icon from '../../../../public/pdficon.png';                              
 interface DocCardProps{
   name: string;
   date: string;
+  path: string;
 }
 
 function DocCard ({ name, date }: DocCardProps) {                           //creo le card dei documenti pdf del db, mostrando nome, data di inserimento e costruendo un bottone per eliminare quel documento dal db
