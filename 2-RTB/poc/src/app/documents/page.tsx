@@ -13,13 +13,13 @@ export default function Page(){
 
     return (
             <main id='root' className=" overflow-hidden relative flex flex-row  h-full gap-2 ">
-                <DocMenu/>
+                <DocMenu model={model_name}/>
                 <div className="flex flex-col relative w-full gap-1 px-2  ">
                    <LlmBody
                        classProp="flex flex-row w-fit gap-2  p-2 rounded-xl"
                        updateModel={updateModel}
                    />
-                    <ListDoc/>
+                    <ListDoc model={model_name} />
                 </div>
 
             </main>

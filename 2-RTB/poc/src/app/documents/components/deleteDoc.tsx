@@ -24,7 +24,7 @@ function DeleteDoc ({ name }){            //creo il bottone per l'eliminazione, 
     
 
     return (
-        <button type="button" className="rounded-lg bg-[--accent] hover:scale-105 w-fit h-fit p-2  animation duration-300 ease-out" onClick={handleClick}>Elimina</button>
+        <button type="button" disabled className="rounded-lg bg-[--accent] hover:scale-105 w-fit h-fit p-2  animation duration-300 ease-out" onClick={handleClick}>Elimina</button>
     );
   };
   

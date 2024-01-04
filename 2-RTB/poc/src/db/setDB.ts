@@ -10,7 +10,13 @@ const db = new sqlite3.Database("./databaseDoc.db", sqlite3.OPEN_READWRITE, (err
 */
 
 /*
-sql = 'CREATE TABLE documents(name TEXT PRIMARY KEY, path TEXT, date DATE DEFAULT CURRENT_DATE)';
+sql = 'CREATE TABLE openAI(name TEXT PRIMARY KEY, path TEXT, date DATE DEFAULT CURRENT_DATE);
+CREATE TABLE llama2(name TEXT PRIMARY KEY, path TEXT, date DATE DEFAULT CURRENT_DATE);
+CREATE TABLE openChat(name TEXT PRIMARY KEY, path TEXT, date DATE DEFAULT CURRENT_DATE);
+CREATE TABLE mistral(name TEXT PRIMARY KEY, path TEXT, date DATE DEFAULT CURRENT_DATE);
+CREATE TABLE mixtral(name TEXT PRIMARY KEY, path TEXT, date DATE DEFAULT CURRENT_DATE);
+CREATE TABLE starling(name TEXT PRIMARY KEY, path TEXT, date DATE DEFAULT CURRENT_DATE);
+';
 db.run(sql);
 */
 
