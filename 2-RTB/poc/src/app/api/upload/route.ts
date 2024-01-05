@@ -1,12 +1,13 @@
 import { writeFile } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function POST(request: NextRequest) {      
-                                      //chiamato per inserire nuovi documenti nel databse
-  const data = await request.formData();
- // const model = await request.formData().then((formData) => formData.get('model')) as string;
-  const model: string | null = data.get('model') as unknown as string;
-  const file: File | null = data.get('file') as unknown as File;
+export async function POST(request: NextRequest) {                                          //chiamato per inserire nuovi documenti nel databse
+  
+  const data = await request.formData()
+  const file: File | null = data.get('file') as unknown as File
+  const modello = data.get('model')
+
+  //console.log(modello)        // dentro a modello è contenuta la stringa corretta del llm di interesse, ora si può usare per le operazioni su chroma
 
   if (!file) {
     return NextResponse.json({ success: false })
@@ -23,19 +24,14 @@ export async function POST(request: NextRequest) {
   await writeFile(path, buffer)
   //console.log(`open ${path} to see the uploaded file`)                                      //decommentare per verificare il funzionamento
 
-  //prima di qua deve esserci l'embedding su chroma, necessiti model name, script txt, puff da costruire, 
-  // model name passato dalla route
+
   let sql;
   const sqlite3 = require('sqlite3').verbose();
   const db = new sqlite3.Database("./src/db/databaseDoc.db", sqlite3.OPEN_READWRITE, (err) => {
       if (err) return console.error(err.message);
   });
-  
-  console.log(model);
-  
-  //sql = `INSERT INTO ${model} (name,path) VALUES (?,?)`;                                      //query per inserire il nuovo documento
-  sql = `INSERT INTO openAi (name,path) VALUES (?,?)`;                                      //query per inserire il nuovo documento
-
+  // messo di default openAi, fin che non capiamo il perché del comportamento della stringa model
+  sql = 'INSERT INTO openAi(name,path) VALUES (?,?)';                                      //query per inserire il nuovo documento
   db.run(
     sql,
     [doc,path],

@@ -11,12 +11,14 @@ interface RisultatoQuery{
   }
 
 
-function ListDoc (model:string){
+function ListDoc ({ model }){
+    console.log(model);
     const [dati, setDati] = useState<RisultatoQuery[]>([]);
     useEffect(() => {
         async function fetchData (){
         try {
-            const response = await fetch(`/api/${model}/read`, {method: 'GET',});    //chiamata per leggere il database dei documenti
+            //const response = await fetch('/api/read', {method: 'GET',});    //chiamata per leggere il database dei documenti
+            const response = await fetch(`/api/${model}/read`, {method: 'GET',}); 
             if (response.ok) {
             const result = await response.json();
             setDati(result);                                                //imposta i dati con cui creare le card dei documenti, sulla base del risultato della query
@@ -29,8 +31,8 @@ function ListDoc (model:string){
         };
 
         fetchData();                                            //esegue la chiamata GET per leggere il db dei documenti
-    //    const intervalId = setInterval(fetchData, 1000);        //esegue la chiamata GET per leggere il database ogni secondo, per avere la tabella documenti sempre aggiornata
-   //     return () => clearInterval(intervalId);                 //quando il componente si scompone, viene fermato il timer
+        const intervalId = setInterval(fetchData, 1000);        //esegue la chiamata GET per leggere il database ogni secondo, per avere la tabella documenti sempre aggiornata
+        return () => clearInterval(intervalId);                 //quando il componente si scompone, viene fermato il timer
     }, []);
 
     return(

@@ -7,7 +7,6 @@ interface ChatProps {
     messages: Message[];
     model: string;
 }
-
 function ChatBody({ messages, model}: ChatProps) {
 
     const chatboxRef = useRef<HTMLInputElement | null>(null);
