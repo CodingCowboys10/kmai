@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {                              
   
   const data = await request.formData()
   const file: File | null = data.get('file') as unknown as File
-  const modello = data.get('model')
+  const model = data.get('model')
 
   //console.log(modello)        // dentro a modello è contenuta la stringa corretta del llm di interesse, ora si può usare per le operazioni su chroma
 
@@ -31,7 +31,9 @@ export async function POST(request: NextRequest) {                              
       if (err) return console.error(err.message);
   });
   // messo di default openAi, fin che non capiamo il perché del comportamento della stringa model
-  sql = 'INSERT INTO openAi(name,path) VALUES (?,?)';                                      //query per inserire il nuovo documento
+  //sql = 'INSERT INTO openAi(name,path) VALUES (?,?)';                                      //query per inserire il nuovo documento
+  sql = `INSERT INTO ${model}(name,path) VALUES (?,?)`;                                      //query per inserire il nuovo documento
+
   db.run(
     sql,
     [doc,path],

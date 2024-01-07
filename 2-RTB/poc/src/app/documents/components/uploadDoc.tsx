@@ -1,9 +1,7 @@
-'use client'
-import { useState } from 'react'
+"use client";
+import { useState } from "react";
 
-
-function UploadDoc ({ model }){
-
+function UploadDoc({ model }) {
   const [file, setFile] = useState();
 
   const onSubmit = async (e) => {
@@ -12,12 +10,11 @@ function UploadDoc ({ model }){
 
     try {
       const data = new FormData();
-      data.set('file', file);
-      //
-      data.set('model', model)
+      data.append("file", file);
+      data.append("model", model); // Include the model in the FormData
 
-      const res = await fetch('/api/upload', {      //chiamata per aggiungere il nuovo documento quando clicco su upload
-        method: 'POST',
+      const res = await fetch("/api/upload", {
+        method: "POST",
         body: data,
       });
 
@@ -29,9 +26,13 @@ function UploadDoc ({ model }){
 
   //form con cui permetto l'upload dei solo pdf, definito dal accept=".pdf"
   return (
-    <form className=" bg-[--background-contrast] lg:w-full flex lg:mx-0 md:mx-0 mx-auto flex-col gap-5 rounded-xl p-4 shadow-2xl " onSubmit={onSubmit} >
+    <form
+      className=" bg-[--background-contrast] lg:w-full flex lg:mx-0 md:mx-0 mx-auto flex-col gap-5 rounded-xl p-4 shadow-2xl "
+      onSubmit={onSubmit}
+    >
       <label className="text-sky-950 dark:text-sky-50 text-xl font-medium text-center">
-          Upload a Document </label>
+        Upload a Document{" "}
+      </label>
       <input
         type="file"
         name="file"
@@ -39,8 +40,12 @@ function UploadDoc ({ model }){
         className="bg-[--background-input] rounded-lg p-2 text-left cursor-pointer"
         onChange={(e) => setFile(e.target.files?.[0])}
       />
-      <input type="submit" value="Upload" className="cursor-pointer bg-[--primary] w-full p-2 mx-auto rounded-lg hover:scale-105
-      animation duration-300 ease-out" />
+      <input
+        type="submit"
+        value="Upload"
+        className="cursor-pointer bg-[--primary] w-full p-2 mx-auto rounded-lg hover:scale-105
+      animation duration-300 ease-out"
+      />
     </form>
   );
 }
