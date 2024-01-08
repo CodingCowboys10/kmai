@@ -1,28 +1,27 @@
-"use client";
+"use client"
 import ListDoc from "./components/listDoc";
 import DocMenu from "./components/docMenu";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import LlmBody from "@/app/chat/components/llmBody";
-export default function Page() {
-  const [model_name, setModel_name] = useState("openAi");
 
-  const updateModel = (newModelName: string) => {
-    setModel_name(newModelName);
-  };
+export default function Page(){
+    const [model_name,setModel_name] = useState("openAi")
 
-  return (
-    <main
-      id="root"
-      className="overflow-hidden relative flex flex-row h-full gap-2 "
-    >
-      <DocMenu model={model_name} />
-      <div className="flex flex-col relative w-full gap-1 px-2">
-        <LlmBody
-          classProp="flex flex-row w-fit gap-2 p-2 rounded-xl"
-          updateModel={updateModel}
-        />
-        <ListDoc key={model_name} model={model_name} /> {/* Add a key prop */}
-      </div>
-    </main>
-  );
+    const updateModel = (newModelName: string) => {
+        setModel_name(newModelName);
+    }
+
+    return (
+            <main id='root' className=" overflow-hidden relative flex flex-row  h-full gap-2 ">
+                <DocMenu model={model_name}/>
+                <div className="flex flex-col relative w-full gap-1 px-2  ">
+                   <LlmBody
+                       classProp="flex flex-row w-fit gap-2  p-2 rounded-xl"
+                       updateModel={updateModel}
+                   />
+                    <ListDoc model={model_name}/>
+                </div>
+
+            </main>
+    )
 }
