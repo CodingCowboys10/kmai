@@ -81,12 +81,12 @@ export const embeddings: Record<string, any>   = {
 }
 
 export const collections : Record<string, string>  = {
-    llama2 : "test_29_11_llama2",
-    openChat : "test_29_11_openChat",
-    mistral : "test_29_11_mistral",
-    mixtral : "test_29_11_mixtral",
-    starling : "test_29_11_starling",
-    openAi : "test_29_11_openAi",
+    llama2 : "llama2_poc_collections",
+    openChat : "openChat_poc_collections",
+    mistral : "mistral_poc_collections",
+    mixtral : "mixtral_poc_collections",
+    starling : "starling_poc_collections",
+    openAi : "openAi_poc_collections",
 }
 
 export function setPrompt(){
