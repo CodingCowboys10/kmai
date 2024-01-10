@@ -4,16 +4,16 @@ import os
 glossary = list()
 singolare=list()
 plurale=list()
-currentDirectory='/path/directory/files/da/glossificare' #path directory dove si trovano i files a cui mettere le g di glossario
-
+currentDirectory = os.environ['CURRENT_DIRECTORY']  # Usa la variabile di ambiente per la directory corrente
+glossarioPath = os.environ['GLOSSARIO_PATH']
 def build_file_path_letters(): #prende tutti i file delle lettere e salva in una lista i vari path
 
     fp=list()
-    for (files) in os.walk('/path/directory/con/glossario/', topdown=True): #path directory dove si trovano i file del glossario
+    for (files) in os.walk(glossarioPath, topdown=True): #path directory dove si trovano i file del glossario
         for n in range(len(files[2])):
             match = re.search(r'lettera([\w]).tex', files[2][n])
             if match:
-                path="/path/directory/con/glossario/lettera"+match.group(1)+".tex" #path directory dove si trovano i file tipo lettera del glossario
+                path=glossarioPath+"lettera"+match.group(1)+".tex" #path directory dove si trovano i file tipo lettera del glossario
                 fp.append(path)
 
     return fp
