@@ -12,9 +12,6 @@ on:
       directory-glossario:
         description: 'Directory files glossario'
         required: true
-      glossary-branch:
-        description: 'Branch da cui prendere i termini del glossario'
-        required: true
 
 jobs:
   glossify:
@@ -35,7 +32,7 @@ jobs:
       - name: Run gloss.py
         run: python actions/gloss.py ${{ inputs.directory-sorgente }}
         env:
-          GLOSSARIO_PATH: ${{ inputs.directory-glossario }}/${{ inputs.glossary-branch }}
+          GLOSSARIO_PATH: ${{ inputs.directory-glossario }}
           CURRENT_DIRECTORY: ${{ inputs.directory-sorgente }}
 
       - name: Commit and push changes
@@ -44,5 +41,5 @@ jobs:
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add '*.tex'
           git commit -m "Glossified .tex"
-          git push origin prova
+          git push origin HEAD:${{ github.ref }}
         working-directory: ${{ inputs.directory-destinazione }}
