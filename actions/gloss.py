@@ -4,7 +4,7 @@ import os
 glossary = list()
 singolare=list()
 plurale=list()
-currentDirectory = os.environ['CURRENT_DIRECTORY']  # Usa la variabile di ambiente per la directory corrente
+currentDirectory = os.environ['CURRENT_DIRECTORY']
 glossarioPath = os.environ['GLOSSARIO_PATH']
 def build_file_path_letters(): #prende tutti i file delle lettere e salva in una lista i vari path
 
