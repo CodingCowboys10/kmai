@@ -1,16 +1,19 @@
 import re
 import os
 
-glossario = list()
-currentDirectory='/a/beautiful/file/path/' #directory dove si trova il file a cui mettere le g di glossario
+glossary = list()
+singolare=list()
+plurale=list()
+currentDirectory='/home/anna/Scrivania/Verbale 2023-12-04/' #path directory dove si trovano i files a cui mettere le g di glossario
 
 def build_file_path_letters(): #prende tutti i file delle lettere e salva in una lista i vari path
+
     fp=list()
-    for (files) in os.walk('/the/magnificent/glossary/path/', topdown=True): #path alla cartella che contiene i file del glossario
+    for (files) in os.walk('/home/anna/Scrivania/Glossario/', topdown=True): #path directory dove si trovano i file del glossario
         for n in range(len(files[2])):
             match = re.search(r'lettera([\w]).tex', files[2][n])
             if match:
-                path="/the/magnificent/glossary/lettera"+match.group(1)+".tex" #path alla cartella che contiene i file del glossario + un qualsiasi file lettera (mantenere la parte "/lettera" quando si va a modificare il path 
+                path="/home/anna/Scrivania/Glossario/lettera"+match.group(1)+".tex" #path directory dove si trovano i file tipo lettera del glossario
                 fp.append(path)
 
     return fp
@@ -21,16 +24,22 @@ def build_gloss(file_path): #scorre tutti i path dei files lettera#.tex, prende 
         with open(fp, 'r') as file:
             for line in file:
                 match = re.search(r'\\section{([\w\d\.\s\'-\\]*)}', line)
+                match_label = re.search(r'\\label{sec:([\w\d\.\s\'-\\]*)}', line)
                 if match:
                     word=match.group(1)
                     if '\\' in word:
                         word=word.replace("\\", "")
-                    glossario.append(word)
-                    if word.lower() == "jira software": #caso specifico, o modifichiamo il glossario con jira soltanto o resta così
-                        glossario.append("jira")
-    return glossario
+                    singolare.append(word)
+                    if match_label:
+                        plural=match_label.group(1)
+                        plurale.append(plural)
+                    else:
+                        plurale.append("")
+    glossary.append(list(zip(singolare,plurale)))
+    return glossary
 
 def glossify(): #va a inserire le G a pedice (qua lavoro su un verbale)
+
     input=list()
     for (files) in os.walk(currentDirectory, topdown=True): 
         for f in (files[2]):
@@ -51,35 +60,7 @@ def glossify(): #va a inserire le G a pedice (qua lavoro su un verbale)
     for n in range (len(input)):
         if input[n]!= "frontespizio" and input[n] !="log":
             path=currentDirectory+input[n]+".tex"
-
             add_g(path)
-       
-            
-def add_g(f):
-    with open(f, 'r+') as file:
-        content = file.read()
-        print('\n')
-        match = re.compile(r'\b(?:' + '|'.join(re.escape(word) for word in glossario) + r')\b', re.IGNORECASE)
-        matches = set()  # set per evitare duplicati
-
-        for word in match.findall(content):
-            if word.lower() not in matches:
-                matches.add(word.lower())
-                title_match = re.search(r'\\text\w{.*' + re.escape(word) + '.*}', content)
-                
-                if not title_match:
-                    content = content.replace(word, "\\ccgloss{" + word + "}", 1)
-                if word.upper() in glossario:
-                    glossario.remove(word.upper()) 
-                elif word.capitalize() in glossario: 
-                        glossario.remove(word.capitalize()) 
-                if word.lower() == "jira" and "jira software" in glossario: #sempre caso specifico
-                        glossario.remove("jira software")
-       
-        file.seek(0)
-        file.write(content)
-        file.truncate()   
-        file.close
 
 def remove_g(f): #rimuove eventuali g presenti nei documenti prima della compilazione in modo da uniformare tutto
 
@@ -91,17 +72,65 @@ def remove_g(f): #rimuove eventuali g presenti nei documenti prima della compila
         match_ccgloss = re.findall(ccgloss, content)
 
         for n in range(len(match_emph)):
-            content=content.replace("\\emph{"+match_emph[n]+"\\ped{G}}", match_emph[n])
+            word_to_remove = match_ccgloss[n]
+            if word_to_remove != "":
+                content=content.replace("\\emph{"+match_emph[n]+"\\ped{G}}", match_emph[n])
         for n in range(len(match_ccgloss)):
-            content=content.replace("\\ccgloss{"+match_ccgloss[n]+"}", match_ccgloss[n])
+            word_to_remove = match_ccgloss[n]
+            if word_to_remove != "":
+                content=content.replace("\\ccgloss{"+match_ccgloss[n]+"}", match_ccgloss[n])
+    
+        file.seek(0)
+        file.write(content)
+        file.truncate() 
+        file.close   
+
+def add_g(f): #cerca nel testo di ogni file le parole del glossario, alla prima occorenza le salva in una lista, elimina la coppia singolare-plurale dal glossario e poi sostituisce nel content prendendo dalla lista
+
+    global glossary
+    with open(f, 'r+') as file:
+        content = file.read()
+        matches = set()
+        already_changed = []
+        words_in_content = re.findall(r'\b[\w-]+\b', content)
+        max_words=get_max_spaces(glossary)
+
+        for i, _ in enumerate(words_in_content):
+            for j in range(i, min(i + max_words, len(words_in_content))): #cercando parola per parola, termini come "way of working" (composti da più parole) non matchano mai, così cerca anche per blocchi di parole composti al massimo da tante parole quante quelle del il termine composto da più parole in glossario
+                current_term = ' '.join(words_in_content[i:j + 1])
+                for word_tuple in glossary:
+                        for word in word_tuple:
+                            for n in range(2):  
+                                if word not in already_changed and current_term.lower() == word[n].lower():                                 
+                                    matches.add(current_term)
+                                    already_changed.append(word)                                
+                                    remove_from_gloss(word)
+
+        for match in matches:     
+            replacement = "\\ccgloss{" + match + "}"
+            content = content.replace(match, replacement, 1) #sostituisce la prima occorenza di match con la versione \ccgloss
         
         file.seek(0)
         file.write(content)
-        file.truncate()   
-        file.close
+        file.truncate()
+        file.close()
 
-            
+def get_max_spaces(glossario): #cerca quale termine del glossario è composto da più parole in assoluto per poi cercare a gruppi di max quel n di parole nel testo
 
+    max_spaces = 0
+    for word_tuple in glossario:
+        for word in word_tuple:
+            for n in range(2):
+                spaces_count = word[n].count(' ')
+                max_spaces = max(max_spaces, spaces_count)
+    return max_spaces + 1
+
+def remove_from_gloss(word_tup): #elimina dal glossario la tupla che contiene un termine trovato 
+
+    for glossary_tuple in glossary:
+                for tup in glossary_tuple:
+                    if tup==word_tup:
+                        glossary_tuple.remove(tup)        
                 
 def main():
     
@@ -110,7 +139,5 @@ def main():
     build_gloss(file_path)
     glossify()
 
-
 if __name__ == "__main__":
     main()
-
