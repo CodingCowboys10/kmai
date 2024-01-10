@@ -6,9 +6,6 @@ on:
       directory-sorgente:
         description: 'Directory file sorgente'
         required: true
-      directory-destinazione:
-        description: 'Directory destinazione file sorgente'
-        required: true
       directory-glossario:
         description: 'Directory files glossario'
         required: true
@@ -42,4 +39,4 @@ jobs:
           git add '*.tex'
           git commit -m "Glossified .tex"
           git push origin HEAD:${{ github.ref }}
-        working-directory: ${{ inputs.directory-destinazione }}
+        working-directory: ${{ inputs.directory-sorgente }}
