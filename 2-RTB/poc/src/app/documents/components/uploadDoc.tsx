@@ -1,7 +1,8 @@
 'use client'
 import { useState } from 'react'
 
-function UploadDoc (){
+
+function UploadDoc ({ model }){
 
   const [file, setFile] = useState();
 
@@ -12,6 +13,8 @@ function UploadDoc (){
     try {
       const data = new FormData();
       data.set('file', file);
+      //
+      data.set('model', model)
 
       const res = await fetch('/api/upload', {      //chiamata per aggiungere il nuovo documento quando clicco su upload
         method: 'POST',

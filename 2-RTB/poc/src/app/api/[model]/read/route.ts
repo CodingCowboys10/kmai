@@ -5,7 +5,8 @@ interface RisultatoQuery{
 }
 
 let result = [];
-export async function GET(req: Request) {                                       //chiamato per prendere dal database le info sui documenti
+export async function GET(req: Request, { params }: { params: { model: string } }) {                                       //chiamato per prendere dal database le info sui documenti
+const model = params.model;
 
 let sql;
 const sqlite3 = require('sqlite3').verbose();
@@ -14,7 +15,7 @@ const db = new sqlite3.Database("./src/db/databaseDoc.db", sqlite3.OPEN_READWRIT
     if (err) return console.error(err.message);
 });
 
-sql = 'SELECT * FROM documents';                                                //query per avere le info dei documenti in database
+sql = `SELECT * FROM ${model}`;                                                //query per avere le info dei documenti in database
 db.all(sql, [], (err, rows: RisultatoQuery[]) =>  {
     if (err) return console.error(err.message);
     result = rows;
