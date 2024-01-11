@@ -4,71 +4,80 @@ import { NextRequest, NextResponse } from 'next/server'
 import {Chroma} from "langchain/vectorstores/chroma"
 import {embeddings , collections} from "@/utils/chat_utils"
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
+import * as fs from "fs/promises";
+import * as path from 'path';
 
 
 export async function POST(request: NextRequest) {                                          //chiamato per inserire nuovi documenti nel databse
-  
-  const data = await request.formData()
-  const file: File | null = data.get('file') as unknown as File
-  const model_name = data.get('model')
 
-  if (!file) {
-    return NextResponse.json({ success: false })
-  }
-
-  const bytes = await file.arrayBuffer()
-  const buffer = Buffer.from(bytes)
-
-  // È stato inserito in buffer il file in bytes
-  // Ora è possibile scrivere il file nel path che vogliamo noi, ovvero dove abbiamo tutti i documenti
-
-  const document = `${file.name}`                                                             //nome del documento che avrò in database
-  const path = `./src/db/docs/${file.name}`                                                   //path completo del documento che avrò in database
-  await writeFile(path, buffer)
-  //console.log(`open ${path} to see the uploaded file`)                                      //decommentare per verificare il funzionamento del writeFile
-
-  //operazioni per embeddizzare il file ------------------------------
-  const loader = new PDFLoader(path, {
-    splitPages: true,
-    parsedItemSeparator: "",
-  });
-  let docs = await loader.load();
-  docs = docs.map(doc => ({
-    ...doc,
-    metadata: {
-        page: doc.metadata.loc.pageNumber,
-        source: doc.metadata.source,
-    }
-  }))
-  const ids = docs.map((doc => document + "_" + doc.metadata.page))
-  console.log(ids)
-  try {
-    const vectorStore = new Chroma(embeddings[model_name], {
-        collectionName: collections[model_name],
-        collectionMetadata: {
-            "hnsw:space": "cosine",
+        // Salvo il file
+        const data = await request.formData()
+        const modelName = data.get('model')!.toString()
+        const file: File | null = data.get('file') as unknown as File
+        if (!file) {
+            return NextResponse.json({ success: false })
         }
-    });
 
-    await vectorStore.addDocuments(docs, {
-            ids: ids,
+        const bytes = await file.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+
+        const documentName = `${file.name}`
+
+        const folderPath : string = `./src/db/docs/${modelName}`;
+        let fileSizeInBytes : number
+        try {
+            await fs.access(folderPath);
+        } catch (error) {
+            try {
+                await fs.mkdir(folderPath, { recursive: true });
+            }catch (mkdirError) {
+            console.error('Errore durante la creazione della cartella:', mkdirError);
+            return NextResponse.json({ success: false, error: 'Errore durante la creazione della cartella' });
+            }
         }
-    )
+        const filePath = path.join(folderPath, documentName);
+        await fs.writeFile(filePath, buffer).then(() => {
+            return fs.stat(filePath);
+        }).then((stats) => {
+            fileSizeInBytes = stats.size;
+        })
 
-  } catch (e) {
-    console.log(e)
-  }
-  let sql;
-  const sqlite3 = require('sqlite3').verbose();
-  const db = new sqlite3.Database("./src/db/databaseDoc.db", sqlite3.OPEN_READWRITE, (err) => {
-      if (err) return console.error(err.message);
-  });
-  sql = `INSERT INTO ${model_name}(name,path) VALUES (?,?)`;                                      //query per inserire il nuovo documento
-  db.run(
-    sql,
-    [document,path],
-    (err) => {
-        if (err) return console.error(err.message);
-  });
-  return NextResponse.json({ success: true })
+        try {
+            // ChromaDbUpload
+            const loader = new PDFLoader(filePath, {
+                splitPages: true,
+                parsedItemSeparator: "",
+            });
+
+
+            let docs = await loader.load();
+            docs = docs.map(doc => ({
+                ...doc,
+                metadata: {
+                    page: doc.metadata.loc.pageNumber,
+                    source: filePath,
+                    visibility: "visible",
+                    date : new Date().toLocaleString(),
+                    size : fileSizeInBytes,
+                    name : documentName,
+                }
+            }))
+            const ids = docs.map((doc => documentName + "_" + doc.metadata.page))
+            const vectorStore = new Chroma(embeddings[modelName], {
+                collectionName: collections[modelName],
+                collectionMetadata: {
+                    "hnsw:space": "cosine",
+                }
+            });
+
+            await vectorStore.addDocuments(docs, {
+                    ids: ids,
+                }
+            )
+            console.log("terminato")
+            return NextResponse.json({ success: true })
+        }catch (e) {
+            return NextResponse.json({ success: false })
+        }
+
 }

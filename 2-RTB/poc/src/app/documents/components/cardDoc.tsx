@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image'
-import DeleteDoc from './deleteDoc';
+import DeleteDocButton from './deleteDocButton';
 import icon from '../../../../public/pdficon.png';                               //immagine icon dei documenti pdf, di default per tutti
 
 interface DocCardProps{
@@ -22,7 +22,7 @@ function DocCard ({ name, path, date }: DocCardProps) {                         
 
         <div className='flex flex-row items-center justify-between px-2 py-2'>
             <p className='text-[--primary]'>{date}</p>
-            <DeleteDoc name={name}/>
+            <DeleteDocButton name={name}/>
         </div>
     </li>
   );

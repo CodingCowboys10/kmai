@@ -1,30 +1,49 @@
+import {ChromaClient, IncludeEnum} from "chromadb";
+import {collections} from "@/utils/chat_utils";
+import {Metadata} from "next";
+
 interface RisultatoQuery{
     name: string;
     path: string;
     date: string;
+    size : number;
 }
 
-let result = [];
+interface Metadata {
+    name: string;
+    source: string;
+    date: string;
+    size: number;
+    page: number; // Assuming there's a 'page' property in the Metadata interface
+}
+
+
 export async function GET(req: Request, { params }: { params: { model: string } }) {                                       //chiamato per prendere dal database le info sui documenti
-const model = params.model;
+    const model = params.model;
+    let result :  RisultatoQuery[] = [];
 
-let sql;
-const sqlite3 = require('sqlite3').verbose();
+    try {
+        const client = new ChromaClient()
+        const collection = await client.getCollection({name: collections[model]})
+        const response = await collection.get(
+            {
+                include: [IncludeEnum.Metadatas]
+            }
+        )
 
-const db = new sqlite3.Database("./src/db/databaseDoc.db", sqlite3.OPEN_READWRITE, (err) => {
-    if (err) return console.error(err.message);
-});
+        result = response.metadatas.filter((obj : any)  => obj.page === 1) // Filter out entries where page is not equal to 1
+            .map((obj : any) => ({
+                name: obj.name,
+                path: obj.source,
+                date: obj.date,
+                size: obj.size,
+            }));
 
-sql = `SELECT * FROM ${model}`;                                                //query per avere le info dei documenti in database
-db.all(sql, [], (err, rows: RisultatoQuery[]) =>  {
-    if (err) return console.error(err.message);
-    result = rows;
-});
-db.close((err) => {                                                             //chiusura del db quando ho finito di operare su di lui
-    if (err) {
-        return console.error(err.message);
     }
-    //console.log("Closed the database connection after read.");                //decommentare per verificare il funzionamento
-});
-return Response.json(result);
+    catch (e){
+        console.log(e)
+    }
+
+
+    return Response.json(result);
 }
