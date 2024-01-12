@@ -1,7 +1,8 @@
 'use client'
 import { useState } from 'react'
 
-function UploadDoc (){
+
+function UploadDoc ({ model }){
 
   const [file, setFile] = useState();
 
@@ -12,6 +13,8 @@ function UploadDoc (){
     try {
       const data = new FormData();
       data.set('file', file);
+      //
+      data.set('model', model)
 
       const res = await fetch('/api/upload', {      //chiamata per aggiungere il nuovo documento quando clicco su upload
         method: 'POST',
@@ -24,7 +27,6 @@ function UploadDoc (){
     }
   };
 
-  //form con cui permetto l'upload dei solo pdf, definito dal accept=".pdf"
   return (
     <form className=" bg-[--background-contrast] lg:w-full flex lg:mx-0 md:mx-0 mx-auto flex-col gap-5 rounded-xl p-4 shadow-2xl " onSubmit={onSubmit} >
       <label className="text-sky-950 dark:text-sky-50 text-xl font-medium text-center">

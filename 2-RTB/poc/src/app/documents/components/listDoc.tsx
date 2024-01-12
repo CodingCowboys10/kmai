@@ -11,27 +11,30 @@ interface RisultatoQuery{
   }
 
 
-function ListDoc (){
+function ListDoc ({ model } : {model : string}){
     const [dati, setDati] = useState<RisultatoQuery[]>([]);
-    useEffect(() => {
-        async function fetchData (){
-        try {
-            const response = await fetch('/api/read', {method: 'GET',});    //chiamata per leggere il database dei documenti
-            if (response.ok) {
-            const result = await response.json();
-            setDati(result);                                                //imposta i dati con cui creare le card dei documenti, sulla base del risultato della query
-            } else {
-            console.error('Errore nel recupero dei dati');
-            }
-        } catch (error) {
-            console.error('Errore durante la richiesta:', error);
-        }
-        };
 
-        fetchData();                                            //esegue la chiamata GET per leggere il db dei documenti
-        const intervalId = setInterval(fetchData, 1000);        //esegue la chiamata GET per leggere il database ogni secondo, per avere la tabella documenti sempre aggiornata
-        return () => clearInterval(intervalId);                 //quando il componente si scompone, viene fermato il timer
-    }, []);
+    useEffect(() => {
+        let isMounted = true;
+        async function fetchDBdoc(){
+            try {
+                const response = await fetch(`/api/${model}/read`, {method: 'GET',});
+                const result = await response.json();
+
+                if (isMounted) {
+                    setDati(result);
+                }
+            }catch (e){
+                console.error('Errore durante la richiesta:', e);
+            }
+
+
+        }
+        fetchDBdoc().then(r => console.log("Dati ottenuti con successo"))
+        return () => {
+            isMounted = false;
+        };
+    }, [model , ]);
 
     return(
         <div className="w-full p-5 overflow-y-scroll h-full bg-[--background]  shadow-xl rounded-xl ">
