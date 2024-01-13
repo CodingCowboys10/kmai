@@ -1,6 +1,5 @@
 import {ChromaClient, IncludeEnum} from "chromadb";
 import {collections} from "@/utils/chat_utils";
-import {Metadata} from "next";
 
 interface RisultatoQuery{
     name: string;
@@ -31,7 +30,7 @@ export async function GET(req: Request, { params }: { params: { model: string } 
             }
         )
 
-        result = response.metadatas.filter((obj : any)  => obj.page === 1) // Filter out entries where page is not equal to 1
+        result = response.metadatas.filter((obj : any)  => obj.page === 1)
             .map((obj : any) => ({
                 name: obj.name,
                 path: obj.source,

@@ -6,11 +6,11 @@ import axios from "axios";
 const errors = []
 
 // Controllo ChromaDb
-const checkService = (port, serviceName) => {
-    return new Promise((resolve, reject) => {
+const checkService = (port) => {
+    return new Promise((resolve) => {
         exec(`lsof -i :${port} -sTCP:LISTEN`, (error) => {
             if (error) {
-                errors.push("× | ChromaDb non e' in esecuzione")
+                errors.push("× | ChromaDB non e' in esecuzione")
             } else {
                 console.log("✔ | ChromaDb e' in Esecuzione. ");
             }
@@ -44,9 +44,9 @@ const checkOpenAi = async() => {
 }
 
 const checkServices = async () => {
-    await checkService(8000, 'Chroma DB');
+    await checkService(8000);
     await checkOllama();
-    await checkOpenAi();
+     checkOpenAi();
 };
 
 checkServices().then(() => {

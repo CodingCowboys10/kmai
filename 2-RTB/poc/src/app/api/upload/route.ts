@@ -6,16 +6,19 @@ import {embeddings , collections} from "@/utils/chat_utils"
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 import * as fs from "fs/promises";
 import * as path from 'path';
+import {NextApiResponse} from "next";
 
 
-export async function POST(request: NextRequest) {                                          //chiamato per inserire nuovi documenti nel databse
+export async function POST(request: NextRequest , res : NextResponse) {
+
+
 
         // Salvo il file
         const data = await request.formData()
         const modelName = data.get('model')!.toString()
         const file: File | null = data.get('file') as unknown as File
         if (!file) {
-            return NextResponse.json({ success: false })
+             return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
         }
 
         const bytes = await file.arrayBuffer()
@@ -31,8 +34,8 @@ export async function POST(request: NextRequest) {                              
             try {
                 await fs.mkdir(folderPath, { recursive: true });
             }catch (mkdirError) {
-            console.error('Errore durante la creazione della cartella:', mkdirError);
-            return NextResponse.json({ success: false, error: 'Errore durante la creazione della cartella' });
+                console.error('Errore durante la creazione della cartella:', mkdirError);
+                return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
             }
         }
         const filePath = path.join(folderPath, documentName);
@@ -70,14 +73,13 @@ export async function POST(request: NextRequest) {                              
                 }
             });
 
+
             await vectorStore.addDocuments(docs, {
                     ids: ids,
                 }
             )
-            console.log("terminato")
-            return NextResponse.json({ success: true })
+            return NextResponse.json({ message: 'Documento Aggiunto' }, { status: 200 })
         }catch (e) {
-            return NextResponse.json({ success: false })
+            return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
         }
-
 }

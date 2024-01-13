@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import {NextResponse} from "next/server";
 
 function UploadDoc ({ model } : { model: string}){
 
@@ -19,24 +20,25 @@ function UploadDoc ({ model } : { model: string}){
     try {
       const data = new FormData();
       data.set('file', file);
-      //
       data.set('model', model)
-
-      const res = await fetch('/api/upload', {      //chiamata per aggiungere il nuovo documento quando clicco su upload
+      console.log("-----------errore ricevuto")
+      const res = await fetch('/api/upload', {
         method: 'POST',
         body: data,
       });
 
-      console.log(res.json())
+
       if (res.ok) {
-          toast.success("Success Notification !", {
+          toast.success("Documento Caricato", {
+              position: "top-center"
+          })
+      }else{
+          toast.error("Errore durante il caricamento!", {
               position: "top-center"
           });
-      }else{
-          console.log("-----------errore ricevuto")
       }
     } catch (e) {
-        toast.error("Error Notification !", {
+        toast.error("Errore durante il caricamento!", {
             position: "top-center"
         });
       console.error(e);
