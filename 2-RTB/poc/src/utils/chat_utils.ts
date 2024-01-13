@@ -43,7 +43,7 @@ export function getLLM(model: string , handlers: any  ){
 
         // Gpt Model
         openAi : new OpenAI({
-            modelName: "gpt-3.5-turbo-instruct", // Defaults to "gpt-3.5-turbo-instruct" if no model provided.
+            modelName: "gpt-3.5-turbo-instruct",
             temperature: 0,
             callbacks: CallbackManager.fromHandlers(handlers),
             streaming: true,
