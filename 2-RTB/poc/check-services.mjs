@@ -14,10 +14,10 @@ const collections  = {
 
 const ollamaModels = [
    "llama2:latest",
-    "openchat:7b-v3.5",
-    "mistral",
+    "openchat:7b-v3.5-1210",
+    "mistral:latest",
     "mixtral:8x7b",
-    "starling-lm"
+    "starling-lm:latest"
 ];
 
 
@@ -25,22 +25,20 @@ const ollamaModels = [
 const errors = []
 
 // Controllo ChromaDb
-const checkService = (port) => {
-    return new Promise((resolve) => {
-        exec(`lsof -i :${port} -sTCP:LISTEN`, (error) => {
-            if (error) {
-                errors.push("× | ChromaDB non e' in esecuzione");
-            } else {
-                console.log("✔ | ChromaDb e' in Esecuzione. ");
-            }
-            resolve();
+const checkChroma = () => {
+    // Da rifare
+    try{
+        /*
+         const client = new ChromaClient();
+         checkChromaCollections(client)
 
-        });
-    });
+         */
+    }catch (e) {
+        // aggiungo che non va
+    }
 };
 
-const checkChromaCollections = async () =>{
-    const client = new ChromaClient();
+const checkChromaCollections = async (client) =>{
     for(const key in collections){
         try {
             await client.getOrCreateCollection({
@@ -67,7 +65,7 @@ const checkOllama= async () => {
             });
             ollamaModels.forEach((model) =>{
                 if(installedModels.includes(model)){
-                    console.log(`✔ | Il modello ${model} è presente`);
+                    console.log(`\t✔ | Il modello ${model} è presente`);
                 }else{
                     errors.push(`× | Il modello ${model} non è presente`);
                 }
@@ -79,18 +77,19 @@ const checkOllama= async () => {
 }
 
 const checkOpenAi = () => {
+    /*
     const openaiApiKey = process.env.OPENAI_API_KEY;
     if (openaiApiKey) {
         console.log(`✔ | OPENAI_API_KEY trovata: ${openaiApiKey}`);
     } else {
         errors.push('× | OPENAI_API_KEY non trovata');
     }
+
+     */
 }
 
 const checkServices = async () => {
-    if(await checkService(8000)){
-        await checkChromaCollections();
-    }
+    await checkChroma();
     await checkOllama();
     checkOpenAi();
 };

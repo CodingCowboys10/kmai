@@ -1,7 +1,7 @@
 'use client'
-import React from "react";
+import React, {useEffect , useState} from "react";
 import DocCard from "./cardDoc";
-import { useEffect, useState } from 'react';
+
 
 
 interface RisultatoQuery{
@@ -25,17 +25,18 @@ function ListDoc ({ model } : {model : string}){
                 if (isMounted) {
                     setDati(result);
                 }
+                if(!response.ok){
+                    setDati([])
+                }
             }catch (e){
                 console.error('Errore durante la richiesta:', e);
             }
-
-
         }
         fetchDBdoc().then(r => console.log("Dati ottenuti con successo"))
         return () => {
             isMounted = false;
         };
-    }, [model , ]);
+    }, [model]);
 
     return(
         <div className="w-full p-5 overflow-y-scroll h-full bg-[--background]  shadow-xl rounded-xl ">

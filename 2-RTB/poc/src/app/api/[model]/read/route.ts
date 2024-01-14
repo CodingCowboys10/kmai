@@ -30,7 +30,6 @@ export async function GET(req: NextRequest, { params }: { params: { model: strin
                 include: [IncludeEnum.Metadatas]
             }
         )
-
         result = response.metadatas.filter((obj : any)  => obj.page === 1)
             .map((obj : any) => ({
                 name: obj.name,
@@ -38,13 +37,10 @@ export async function GET(req: NextRequest, { params }: { params: { model: strin
                 date: obj.date,
                 size: obj.size,
             }));
-
     }
     catch (e){
         console.log(e)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
-
-
     return NextResponse.json(result, {status: 200});
 }
