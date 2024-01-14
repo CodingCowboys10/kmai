@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { sqlite3 } from 'sqlite3';
 
 import { StreamingTextResponse, LangChainStream, Message } from 'ai';
 
@@ -64,7 +65,6 @@ export async function POST(
             chat_history: chatHistory,
         })
         .catch(console.error)
-
     return new StreamingTextResponse(stream, {status: 200});
 }
 

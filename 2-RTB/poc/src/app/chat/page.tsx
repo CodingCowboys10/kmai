@@ -1,10 +1,11 @@
 "use client"
 import Link from "next/link";
 import { useChat } from 'ai/react';
-import React, {useState, FormEvent} from "react";
+import React, {useState, FormEvent, useEffect} from "react";
 import ChatBody from "@/app/chat/components/chatBody";
 import ChatInput from "@/app/chat/components/chatInput";
 import LlmBody from "@/app/chat/components/llmBody";
+
 
 export default function Page() {
 
@@ -23,6 +24,17 @@ export default function Page() {
     }
     const clearChat = () => {
         setMessages([]);
+        try {
+            const res = fetch('/api/chatHistoryDelete', {  
+                method: 'POST',
+                headers: {
+                    "Content-type": "application/json"
+                },
+            });
+            if (!res.ok) throw new Error(res.text());
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     async function sendMessage(e:FormEvent<HTMLFormElement>){
@@ -30,11 +42,35 @@ export default function Page() {
         if (!messages.length) {
             await new Promise(resolve => setTimeout(resolve, 300));
         }
+        
         if (isLoading) {
             return;
         }
         handleSubmit(e);
     }
+
+    useEffect(() => {
+        if (messages.length){
+            let newMessage = messages[messages.length - 1];
+            const inviaMessaggio = async () => {
+                try {
+                    const res = await fetch('/api/chatHistoryWrite', {
+                    method: 'POST',
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        newMessage: newMessage
+                    }),
+                    });
+                    } catch (e) {
+                    console.error(e);
+                }
+            };
+            inviaMessaggio();
+        }
+    }, [messages]);
+
     return (
         <main className="flex flex-row w-full h-full justify-around">
 
