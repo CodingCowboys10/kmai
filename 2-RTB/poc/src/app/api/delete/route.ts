@@ -2,8 +2,9 @@ import { promises as fsPromises } from 'fs';
 import { join } from 'path';
 import { ChromaClient } from 'chromadb'
 import { collections } from "@/utils/chat_utils"
+import {NextRequest, NextResponse} from "next/server";
 
-export async function POST(request: Request) {                                      //chiamato per eliminare un documento specifico
+export async function POST(request: NextRequest) {                                      //chiamato per eliminare un documento specifico
     const body = await request.json();
     const model = body.name;         //da utilizzare se vogliamo eliminare un doc specifico
 
@@ -20,8 +21,9 @@ export async function POST(request: Request) {                                  
         const responseId = (await collection.get()).ids
         await collection.delete({ids : responseId})
     } catch (e) {
-      console.log(e)
+        console.log(e);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
   
-    return Response.json({ success: true })                                         //chiamata eseguita correttamente
+    return NextResponse.json({ success: true, message: 'Documento Eliminato' }, { status: 200 })                                    //chiamata eseguita correttamente
   }

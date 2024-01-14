@@ -1,5 +1,6 @@
 import {ChromaClient, IncludeEnum} from "chromadb";
 import {collections} from "@/utils/chat_utils";
+import {NextRequest, NextResponse} from "next/server";
 
 interface RisultatoQuery{
     name: string;
@@ -17,7 +18,7 @@ interface Metadata {
 }
 
 
-export async function GET(req: Request, { params }: { params: { model: string } }) {                                       //chiamato per prendere dal database le info sui documenti
+export async function GET(req: NextRequest, { params }: { params: { model: string } }) {                                       //chiamato per prendere dal database le info sui documenti
     const model = params.model;
     let result :  RisultatoQuery[] = [];
 
@@ -41,8 +42,9 @@ export async function GET(req: Request, { params }: { params: { model: string } 
     }
     catch (e){
         console.log(e)
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 
 
-    return Response.json(result);
+    return NextResponse.json(result, {status: 200});
 }

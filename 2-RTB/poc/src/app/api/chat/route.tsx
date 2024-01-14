@@ -65,7 +65,7 @@ export async function POST(
         })
         .catch(console.error)
 
-    return new StreamingTextResponse(stream);
+    return new StreamingTextResponse(stream, {status: 200});
 }
 
 
