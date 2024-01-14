@@ -25,31 +25,32 @@ const ollamaModels = [
 const errors = []
 
 // Controllo ChromaDb
-const checkChroma = () => {
-    // Da rifare
+const checkChroma = async () => {
     try{
-        /*
          const client = new ChromaClient();
-         checkChromaCollections(client)
-
-         */
+         await client.version();
+         console.log("✔ | ChromaDB è in esecuzione.")
+         await checkChromaCollections(client);
     }catch (e) {
-        // aggiungo che non va
+        errors.push("× | ChromaDB non è in esecuzione.");
     }
 };
 
 const checkChromaCollections = async (client) =>{
-    for(const key in collections){
-        try {
+
+    try {
+        for(const key in collections) {
             await client.getOrCreateCollection({
                 name: collections[key]
             });
-            //console.log(`✔ | La collezione ${collections[key]} è presente.`);
-        } catch (e){
-            errors.push("× | Errore nella lettura o creazione delle collezioni");
         }
+        console.log("\t✔ | Sono presenti tutte le collezioni. ");
+        //console.log(`✔ | La collezione ${collections[key]} è presente.`);
+    } catch (e){
+        errors.push("\t× | Errore nella lettura o creazione delle collezioni");
     }
-    console.log("✔ | Sono presenti tutte le collezioni. ");
+
+
 };
 
 // Controllo Ollama
@@ -57,7 +58,7 @@ const checkChromaCollections = async (client) =>{
 const checkOllama= async () => {
     try {
         const response = await axios.get('http://localhost:11434/api/tags');
-        console.log("✔ | Ollama e' in Esecuzione.")
+        console.log("✔ | Ollama è in esecuzione.")
         if (Array.isArray(response.data.models)) {
             let installedModels = [];
             response.data.models.forEach( (model) =>{
@@ -77,21 +78,18 @@ const checkOllama= async () => {
 }
 
 const checkOpenAi = () => {
-    /*
     const openaiApiKey = process.env.OPENAI_API_KEY;
     if (openaiApiKey) {
         console.log(`✔ | OPENAI_API_KEY trovata: ${openaiApiKey}`);
     } else {
         errors.push('× | OPENAI_API_KEY non trovata');
     }
-
-     */
 }
 
 const checkServices = async () => {
     await checkChroma();
     await checkOllama();
-    checkOpenAi();
+    //checkOpenAi();
 };
 
 checkServices().then(() => {

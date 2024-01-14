@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import {NextResponse} from "next/server";
 
-function UploadDoc ({ model } : { model: string}){
+function UploadDoc ({ model, setDocsChanged } : { model: string, setDocsChanged: (docsChanged: boolean) => void}){
 
   const [file, setFile] = useState();
 
@@ -29,6 +29,7 @@ function UploadDoc ({ model } : { model: string}){
 
 
       if (res.ok) {
+          setDocsChanged(true);
           toast.success("Documento Caricato", {
               position: "top-center"
           })

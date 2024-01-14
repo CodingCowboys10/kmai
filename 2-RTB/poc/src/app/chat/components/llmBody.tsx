@@ -22,7 +22,7 @@ export const models = [
 interface LlmBodyProps {
     classProp: string;
     updateModel: (newModelName: string) => void;
-    children : any
+    children? : any
 }
 
 function LlmBody({classProp, updateModel,   children } : LlmBodyProps) {

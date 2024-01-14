@@ -12,7 +12,7 @@ interface RisultatoQuery{
   }
 
 
-function ListDoc ({ model } : {model : string}){
+function ListDoc ({ model, docsChanged, setDocsChanged } : {model : string, docsChanged: boolean, setDocsChanged: (docsChanged: boolean) => void}){
     const [dati, setDati] = useState<RisultatoQuery[]>([]);
 
     useEffect(() => {
@@ -24,19 +24,23 @@ function ListDoc ({ model } : {model : string}){
 
                 if (isMounted) {
                     setDati(result);
+                    console.log("Ciao 1");
                 }
                 if(!response.ok){
                     setDati([])
+                    console.log("Ciao 2");
                 }
             }catch (e){
+                setDocsChanged(false);
                 console.error('Errore durante la richiesta:', e);
             }
         }
-        fetchDBdoc().then(r => console.log("Dati ottenuti con successo"))
+        fetchDBdoc().then(r => console.log("Dati ottenuti con successo"));
+        setDocsChanged(false);
         return () => {
             isMounted = false;
         };
-    }, [model]);
+    }, [model, docsChanged]);
 
     return(
         <div className="w-full p-5 overflow-y-scroll h-full bg-[--background]  shadow-xl rounded-xl ">
