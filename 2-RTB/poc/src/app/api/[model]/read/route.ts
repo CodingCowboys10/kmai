@@ -25,12 +25,15 @@ export async function GET(req: NextRequest, { params }: { params: { model: strin
     try {
         const client = new ChromaClient()
         let collection
-        // se non esite e no la creo, dà errore
+        collection = await client.getCollection({name: collections[model]})
+        /*
+        // se non esite e no la creo, dà errore. Sotto, il codice che ho usato per far partire il tutto
         try {
             collection = await client.getCollection({name: collections[model]})
         } catch (e) {
             collection = await client.createCollection({name: collections[model]})
         }
+        */
         const response = await collection.get(
             {
                 include: [IncludeEnum.Metadatas]
