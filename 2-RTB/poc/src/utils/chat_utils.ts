@@ -17,9 +17,10 @@ export function getLLM(model: string , handlers: any  ){
         }),
         //openChat Model
         openChat : new ChatOllama({
-            model: 'openchat:7b-v3.5',
+            model: 'openchat:latest',
             temperature : 0,
             baseUrl : 'http://localhost:11434',
+            callbacks: CallbackManager.fromHandlers(handlers),
         }),
         //mistral Model
         mistral : new ChatOllama({
@@ -29,7 +30,7 @@ export function getLLM(model: string , handlers: any  ){
             callbacks: CallbackManager.fromHandlers(handlers),
         }),
         mixtral : new ChatOllama({
-            model: 'mixtral:8x7b',
+            model: 'mixtral:latest',
             baseUrl : 'http://localhost:11434',
             callbacks: CallbackManager.fromHandlers(handlers),
         }),
@@ -64,11 +65,11 @@ export const embeddings: Record<string, any>   = {
         baseUrl : 'http://localhost:11434'
     }),
     mixtral : new OllamaEmbeddings({
-        model: 'mixtral:8x7b',
+        model: 'mixtral:latest',
         baseUrl : 'http://localhost:11434'
     }),
     openChat : new OllamaEmbeddings({
-        model: 'openchat:7b-v3.5',
+        model: 'openchat:latest',
         baseUrl:'http://localhost:11434'
     }),
     starling : new OllamaEmbeddings({

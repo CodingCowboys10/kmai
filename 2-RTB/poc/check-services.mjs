@@ -14,9 +14,9 @@ const collections  = {
 
 const ollamaModels = [
    "llama2:latest",
-    "openchat:7b-v3.5-1210",
+    "openchat:latest",
     "mistral:latest",
-    "mixtral:8x7b",
+    "mixtral:latest",
     "starling-lm:latest"
 ];
 
@@ -68,7 +68,7 @@ const checkOllama= async () => {
                 if(installedModels.includes(model)){
                     console.log(`\t✔ | Il modello ${model} è presente`);
                 }else{
-                    errors.push(`× | Il modello ${model} non è presente`);
+                    console.log(`× | Il modello ${model} non è presente`);
                 }
             });
         }

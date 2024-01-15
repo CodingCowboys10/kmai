@@ -2,6 +2,8 @@ import {ChromaClient, IncludeEnum} from "chromadb";
 import {collections} from "@/utils/chat_utils";
 import {NextRequest, NextResponse} from "next/server";
 
+
+export const runtime = 'edge';
 interface RisultatoQuery{
     name: string;
     path: string;
@@ -30,6 +32,7 @@ export async function GET(req: NextRequest, { params }: { params: { model: strin
                 include: [IncludeEnum.Metadatas]
             }
         )
+        
         result = response.metadatas.filter((obj : any)  => obj.page === 1)
             .map((obj : any) => ({
                 name: obj.name,

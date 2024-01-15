@@ -23,12 +23,13 @@ function ListDoc ({ model, docsChanged, setDocsChanged } : {model : string, docs
                 const result = await response.json();
 
                 if (isMounted) {
+                    console.log("corretto")
                     setDati(result);
-                    console.log("Ciao 1");
                 }
+                
                 if(!response.ok){
+                    console.log("errore")
                     setDati([])
-                    console.log("Ciao 2");
                 }
             }catch (e){
                 setDocsChanged(false);
@@ -40,7 +41,7 @@ function ListDoc ({ model, docsChanged, setDocsChanged } : {model : string, docs
         return () => {
             isMounted = false;
         };
-    }, [model, docsChanged]);
+    }, [model, docsChanged, setDocsChanged]);
 
     return(
         <div className="w-full p-5 overflow-y-scroll h-full bg-[--background]  shadow-xl rounded-xl ">
