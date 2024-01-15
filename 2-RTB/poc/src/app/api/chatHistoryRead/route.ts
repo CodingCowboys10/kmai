@@ -9,20 +9,19 @@ export async function GET(request: NextRequest) {
         }
     });
     let messagesArray;
-    db.all('SELECT * FROM ChatHistory', (err, rows) => {
+    db.all('SELECT message FROM ChatHistory', (err, rows) => {
         if (err) {
             console.error(err.message);
             return NextResponse.json({ success: false, error: err.message }, { status: 500 });
         }
-        messagesArray = rows.map(row => JSON.parse(row.message));
     });
-    db.close((err) => {
+    await db.close((err) => {
         if (err) {
             console.error(err.message);
             return NextResponse.json({ success: false, error: err.message }, { status: 500 });
         }
     });
 
-    return NextResponse.json({ success: true, messages: messagesArray }, { status: 200 });
+    return NextResponse.json({messages: messagesArray}, { status: 200 });
     
 }
