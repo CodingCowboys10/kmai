@@ -7,6 +7,8 @@ import ChatInput from "@/app/chat/components/chatInput";
 import LlmBody from "@/app/chat/components/llmBody";
 
 
+
+
 export default function Page() {
 
     const [modelName,setModelName] = useState("openAi")
@@ -18,7 +20,16 @@ export default function Page() {
             modelName: modelName
         }
     });
+/*
+    async function fetchChatHistory(){
+        const response = await fetch('/api/chatHistoryRead', {method: 'GET',});
+        const result = await response.json();
+        return result.messages;
+    }
 
+    const chatHistory = fetchChatHistory();
+    setMessages(chatHistory);
+*/
     const updateModel = (newModelName: string) => {
         setModelName(newModelName);
     }
