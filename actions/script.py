@@ -4,6 +4,7 @@ import os
 import sys
 from datetime import date
 
+headlog = "\\rowcolor{headerrow} \\textbf{\\textcolor{white}{Versione}} & \\textbf{\\textcolor{white}{Data}} & \\textbf{\\textcolor{white}{Autori}} & \\textbf{\\textcolor{white}{Verificatori}} & \\textbf{\\textcolor{white}{Descrizione}} \\\\"
 hline = "\n    \\hline\n    "
 sep = ' & '
 
@@ -43,12 +44,12 @@ def directory_list(args) :
             directory.add(d.group(1))
     return directory
 
-def build_ver(data, approve, headlog):
+def build_ver(data, approve):
     num = ""
     lines = data.splitlines()
     for l in range(len(lines)) :
         if headlog in lines[l]:
-            num = re.search('(\d+)\.(\d+)', lines[l+2])
+            num = re.search('(\d)\.(\d)', lines[l+2])
             break
     if approve and num:
         ver = str(int(num.group(1)) + 1) + ".0"
@@ -74,19 +75,12 @@ def main():
     runned = False
     for dire in directory:
         ver = ""
-        filename_log = os.path.join(dire, "log.tex")
-        filename_frontespizio = os.path.join(dire, "frontespizio.tex")
-       
+        filename = dire + "log.tex"
         try:
-            with open(filename_log, 'r') as file:
+            with open(filename, 'r') as file:
                 data = file.read()
-            headlog = ""
-            if "\\endhead" in data:
-                headlog = "\\endhead"
-            else:
-                headlog = "\\rowcolor{headerrow} \\textbf{\\textcolor{white}{Versione}} & \\textbf{\\textcolor{white}{Data}} & \\textbf{\\textcolor{white}{Autori}} & \\textbf{\\textcolor{white}{Verificatori}} & \\textbf{\\textcolor{white}{Descrizione}} \\\\"
-            
-            ver = build_ver(data, approve, headlog)
+
+            ver = build_ver(data, approve)
 
             replace_str = headlog + hline + ver + sep + date.today().strftime("%Y/%m/%d") + sep + author + sep + reviser + sep + comment + '\\\\'
             newdata = data.replace(headlog, replace_str)
@@ -99,8 +93,9 @@ def main():
         except FileNotFoundError:
             pass
         
+        filename = dire + "frontespizio.tex"
         try:
-            with open(filename_frontespizio, 'r') as file:
+            with open(filename, 'r') as file:
                 data = file.read()
             str_to_replace_match = re.search(r"selectfont Versione \w+\.\w+", data)
             if str_to_replace_match:
