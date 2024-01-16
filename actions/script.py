@@ -74,9 +74,11 @@ def main():
     runned = False
     for dire in directory:
         ver = ""
-        filename = dire + "log.tex"
+        filename_log = os.path.join(dire, "log.tex")
+        filename_frontespizio = os.path.join(dire, "frontespizio.tex")
+       
         try:
-            with open(filename, 'r') as file:
+            with open(filename_log, 'r') as file:
                 data = file.read()
             headlog = ""
             if "\\endhead" in data:
@@ -97,9 +99,8 @@ def main():
         except FileNotFoundError:
             pass
         
-        filename = dire + "frontespizio.tex"
         try:
-            with open(filename, 'r') as file:
+            with open(filename_frontespizio, 'r') as file:
                 data = file.read()
             str_to_replace_match = re.search(r"selectfont Versione \w+\.\w+", data)
             if str_to_replace_match:
