@@ -87,7 +87,7 @@ def main():
 
             if newdata != data:
                 runned = True
-                with open(filename, 'w') as file:
+                with open(filename_log, 'w') as file:
                     file.write(newdata)
 
         except FileNotFoundError:
@@ -104,7 +104,7 @@ def main():
                 newdata = data.replace(str_to_replace, replace_front)
                 if newdata != data:
                     runned = True
-                    with open(filename, 'w') as file:
+                    with open(filename_frontespizio, 'w') as file:
                         file.write(newdata)
 
         except FileNotFoundError:

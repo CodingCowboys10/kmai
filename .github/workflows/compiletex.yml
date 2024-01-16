@@ -12,6 +12,9 @@ on:
       nome-pdf: 
         description: 'Nome del pdf da creare'
         required: true
+      directory-glossario:
+        description: 'Directory files glossario'
+        required: true
       elimina-sorgenti:
         description: 'Elimina i file sorgenti'
         type: boolean
@@ -32,7 +35,22 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' 
+          python-version: '3.10'
+          
+      - name: Run gloss.py
+        run: python actions/gloss.py ${{ inputs.directory-sorgente }}
+        env:
+          GLOSSARIO_PATH: ${{ inputs.directory-glossario }}
+          CURRENT_DIRECTORY: ${{ inputs.directory-sorgente }}
+
+      - name: Commit and push changes
+        run: | 
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add '*.tex'
+          git commit -m "Glossified .tex"
+          git push origin HEAD:${{ github.ref }}
+        working-directory: ${{ inputs.directory-sorgente }}
   
       - name: Run script
         id: script-runned
