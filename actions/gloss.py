@@ -4,7 +4,7 @@ import os
 glossary = list()
 singolare=list()
 plurale=list()
-currentDirectory = os.environ['CURRENT_DIRECTORY']
+currentDirectory = os.environ['CURRENT_DIRECTORY']  
 glossarioPath = os.environ['GLOSSARIO_PATH']
 def build_file_path_letters(): #prende tutti i file delle lettere e salva in una lista i vari path
 
@@ -13,7 +13,7 @@ def build_file_path_letters(): #prende tutti i file delle lettere e salva in una
         for n in range(len(files[2])):
             match = re.search(r'lettera([\w]).tex', files[2][n])
             if match:
-                path = os.path.join(glossarioPath, "lettera" + match.group(1) + ".tex")
+                path=glossarioPath+"lettera"+match.group(1)+".tex" #path directory dove si trovano i file tipo lettera del glossario
                 fp.append(path)
 
     return fp
@@ -48,7 +48,7 @@ def glossify(): #va a inserire le G a pedice (qua lavoro su un verbale)
             log = re.search('log.tex', f)
             tex = re.search(r'([\w\d\.\s\'-\\]).tex', f)
             if main:
-                path = os.path.join(currentDirectory, f)
+                path=currentDirectory+f
                 inputFile=r'\\input{([\w\d\.\s\'-\\]*)}'
                 with open(path, 'r+') as file:
                     content = file.read()
