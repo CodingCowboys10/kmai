@@ -10,7 +10,7 @@ const db = new sqlite3.Database("./databaseMess.db", sqlite3.OPEN_READWRITE, (er
 
 
 /*
-sql = 'CREATE TABLE ChatHistory(id TEXT PRIMARY KEY, message TEXT)';
+sql = 'CREATE TABLE ChatHistory(id TEXT PRIMARY KEY, message TEXT, role TEXT, model TEXT, date TIMESTAMP)';
 db.run(sql);
 */
 
@@ -36,7 +36,7 @@ db.all(sql, [], (err, rows) =>  {
 
 //db.run('DROP TABLE ChatHistory');
 
-db.run('DELETE FROM ChatHistory');
+//db.run('DELETE FROM ChatHistory');
 
 /*
 // rimuovere un documento dal database

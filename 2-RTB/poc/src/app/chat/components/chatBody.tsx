@@ -5,7 +5,7 @@ import {Message} from "ai"
 
 interface ChatProps {
     messages: Message[];
-    model: string;
+    model: string[];
 }
 function ChatBody({ messages, model}: ChatProps) {
 

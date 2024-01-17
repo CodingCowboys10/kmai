@@ -5,14 +5,14 @@ import React, {useState, FormEvent, useEffect} from "react";
 import ChatBody from "@/app/chat/components/chatBody";
 import ChatInput from "@/app/chat/components/chatInput";
 import LlmBody from "@/app/chat/components/llmBody";
-
-
+import {Message} from "ai";
 
 
 export default function Page() {
-
+    const [initialMessages, setInitialMessages] = useState<Message[]>([]);
     const [modelName,setModelName] = useState("openAi")
     const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+        initialMessages: initialMessages,
         headers: {
             "Content-type": "text/html"
         },
@@ -20,24 +20,28 @@ export default function Page() {
             modelName: modelName
         }
     });
-/*
-    async function fetchChatHistory(){
-        const response = await fetch('/api/chatHistoryRead', {method: 'GET',});
-        const result = await response.json();
-        return result.messages;
-    }
 
-    const chatHistory = fetchChatHistory();
-    setMessages(chatHistory);
-*/
+    useEffect(() => {
+        async function fetchChatHistory(){
+            const response = await fetch('/api/chatHistory', {method: 'GET'});
+            const result = await response.json();
+            console.log(result.messages);
+            return result.messages;
+        }
+
+        fetchChatHistory().then((chatHistory) => setInitialMessages(chatHistory));
+    }, []);
+
+
     const updateModel = (newModelName: string) => {
         setModelName(newModelName);
     }
-    const clearChat = () => {
+    const clearChat = async () => {
+        setInitialMessages([]);
         setMessages([]);
         try {
-            const res = fetch('/api/chatHistoryDelete', {  
-                method: 'POST',
+            const res = await fetch('/api/chatHistory', {
+                method: 'DELETE',
                 headers: {
                     "Content-type": "application/json"
                 },
@@ -53,7 +57,7 @@ export default function Page() {
         if (!messages.length) {
             await new Promise(resolve => setTimeout(resolve, 300));
         }
-        
+
         if (isLoading) {
             return;
         }
@@ -61,26 +65,31 @@ export default function Page() {
     }
 
     useEffect(() => {
-        if (messages.length){
-            let newMessage = messages[messages.length - 1];
-            const inviaMessaggio = async () => {
-                try {
-                    const res = await fetch('/api/chatHistoryWrite', {
+        const inviaMessaggio = async (newMessage:Message) => {
+            try {
+                const res = await fetch('/api/chatHistory', {
                     method: 'POST',
                     headers: {
                         "Content-type": "application/json"
                     },
                     body: JSON.stringify({
-                        newMessage: newMessage
+                        newMessage: newMessage,
+                        model: modelName
                     }),
-                    });
-                    } catch (e) {
-                    console.error(e);
-                }
-            };
-            inviaMessaggio();
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        console.log(isLoading);
+        if (messages.length && !isLoading){
+            let newMessages = messages.slice(-2);
+            newMessages.forEach((newMessage) => {
+                inviaMessaggio(newMessage).catch((e) => console.error(e.message));
+            });
         }
-    }, [messages]);
+    }, [messages, isLoading]);
 
     return (
         <main className="flex flex-row w-full h-full justify-around">
