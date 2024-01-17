@@ -30,17 +30,6 @@ export async function POST(
     // Otteniamo il modello LLM , useremo modelName ma per ora usiamo una stringa.
     const llm = getLLM(modelName, handlers)
 
-    // Questo modello serve ad ottimizzare la catena delle domande. // Si deve usare un modello senza handler, preferibilemnte veloce.
-    const questionllm = new ChatOpenAI({});
-
-    const chatHistory = ConversationalRetrievalQAChain.getChatHistoryString(
-        messages.slice(0, -1).map((m) => {
-            if (m.role == 'user') {
-                return new HumanChatMessage(m.content);
-            }
-            return new AIChatMessage(m.content);
-        })
-    );
 
     const chain = ConversationalRetrievalQAChain.fromLLM(
         llm,
@@ -51,9 +40,6 @@ export async function POST(
                 prompt: PromptTemplate.fromTemplate(setPrompt()),
             },
             returnSourceDocuments: true,
-            questionGeneratorChainOptions: {
-                llm: questionllm,
-            },
         }
     );
 
@@ -61,9 +47,10 @@ export async function POST(
     
     chain
         .call({
-            question,
-            chat_history: chatHistory,
-        })
+                question,
+                chat_history: [],
+            }
+        )
         .catch(console.error)
     return new StreamingTextResponse(stream, {status: 200});
 }

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node check-services.mjs && next dev",
     "check-service": "node check-services.mjs",
     "build": "next build",
     "start": "next start",

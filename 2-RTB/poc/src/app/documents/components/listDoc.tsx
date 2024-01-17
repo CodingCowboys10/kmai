@@ -1,7 +1,7 @@
 'use client'
-import React from "react";
+import React, {useEffect , useState} from "react";
 import DocCard from "./cardDoc";
-import { useEffect, useState } from 'react';
+
 
 
 interface RisultatoQuery{
@@ -12,7 +12,7 @@ interface RisultatoQuery{
   }
 
 
-function ListDoc ({ model } : {model : string}){
+function ListDoc ({ model, docsChanged, setDocsChanged } : {model : string, docsChanged: boolean, setDocsChanged: (docsChanged: boolean) => void}){
     const [dati, setDati] = useState<RisultatoQuery[]>([]);
 
     useEffect(() => {
@@ -23,19 +23,25 @@ function ListDoc ({ model } : {model : string}){
                 const result = await response.json();
 
                 if (isMounted) {
+                    console.log("corretto")
                     setDati(result);
                 }
+                
+                if(!response.ok){
+                    console.log("errore")
+                    setDati([])
+                }
             }catch (e){
+                setDocsChanged(false);
                 console.error('Errore durante la richiesta:', e);
             }
-
-
         }
-        fetchDBdoc().then(r => console.log("Dati ottenuti con successo"))
+        fetchDBdoc().then(r => console.log("Dati ottenuti con successo"));
+        setDocsChanged(false);
         return () => {
             isMounted = false;
         };
-    }, [model , ]);
+    }, [model, docsChanged, setDocsChanged]);
 
     return(
         <div className="w-full p-5 overflow-y-scroll h-full bg-[--background]  shadow-xl rounded-xl ">
