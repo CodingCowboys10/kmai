@@ -17,18 +17,14 @@ function ListDoc ({ model, docsChanged, setDocsChanged } : {model : string, docs
 
     useEffect(() => {
         let isMounted = true;
-        async function fetchDBdoc(){
+        const fetchDBdoc = async () => {
             try {
                 const response = await fetch(`/api/${model}/read`, {method: 'GET',});
                 const result = await response.json();
-
                 if (isMounted) {
-                    console.log("corretto")
                     setDati(result);
                 }
-                
                 if(!response.ok){
-                    console.log("errore")
                     setDati([])
                 }
             }catch (e){
@@ -36,7 +32,7 @@ function ListDoc ({ model, docsChanged, setDocsChanged } : {model : string, docs
                 console.error('Errore durante la richiesta:', e);
             }
         }
-        fetchDBdoc().then(r => console.log("Dati ottenuti con successo"));
+        fetchDBdoc().then(() => {})
         setDocsChanged(false);
         return () => {
             isMounted = false;

@@ -46,7 +46,7 @@ export default function Page() {
                     "Content-type": "application/json"
                 },
             });
-            if (!res.ok) throw new Error(res.text());
+            if (!res.ok) throw new Error(await res.text());
         } catch (e) {
             console.error(e);
         }
@@ -77,6 +77,7 @@ export default function Page() {
                         model: modelName
                     }),
                 });
+                if (!res.ok) throw new Error(await res.text());
             } catch (e) {
                 console.error(e);
             }
@@ -92,10 +93,10 @@ export default function Page() {
     }, [messages, isLoading]);
 
     return (
-        <main className="flex flex-row w-full h-full justify-around">
+        <main className="flex flex-row w-full h-full justify-around ">
 
-            <div className="flex flex-col justify-end  h-full lg:w-3/12">
-                <Link className="" href="/documents">
+            <div className="flex flex-col justify-end h-full lg:w-3/12 p-2">
+                <Link className="" href="../documents">
                     <button className=" w-fit h-fit bg-[--primary]  font-medium rounded-xl p-3
           hover:scale-105 hover:shadow-2xl animation duration-300 ease-out  text-[--text-button]">
                         Archivio
@@ -103,8 +104,8 @@ export default function Page() {
                 </Link>
             </div>
 
-            <div className="flex flex-col w-10/12 lg:w-6/12">
-                <ChatBody messages={messages} model={modelName} clearChat={clearChat}></ChatBody>
+            <div className="flex flex-col w-10/12 lg:w-6/12 ">
+                <ChatBody messages={messages} model={modelName}></ChatBody>
                 <ChatInput input={input} handleInputChange={handleInputChange} sendMessage={sendMessage}/>
             </div>
             <div className="flex flex-row w-3/12 h-full justify-center">

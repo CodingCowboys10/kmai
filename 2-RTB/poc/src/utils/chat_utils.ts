@@ -5,7 +5,6 @@ import {OpenAI} from "langchain/llms/openai";
 import {CallbackManager} from "langchain/callbacks";
 
 
-
 export function getLLM(model: string , handlers: any  ){
     const models : Record<string, any> = {
         // Ollama Model
@@ -52,8 +51,6 @@ export function getLLM(model: string , handlers: any  ){
     }
     return models[model];
 }
-
-
 
 export const embeddings: Record<string, any>   = {
     llama2 : new OllamaEmbeddings({

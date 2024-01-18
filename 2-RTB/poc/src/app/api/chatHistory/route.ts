@@ -3,7 +3,7 @@ import {Message} from "ai";
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
 
     const db = await open({
         filename: './src/db/databaseMess.db',
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     let messagesModel: string[] = [];
     try {
         const rows = await db.all("SELECT id, message, role, model, date FROM ChatHistory ORDER BY date DESC");
-        rows.forEach((row) => {
+        rows.forEach((row : any) => {
             messages = [{id: row.id, content: row.message, role: row.role, createdAt:Date(row.date)}, ...messages];
             messagesModel = [row.model, ...messagesModel];
         });
@@ -27,8 +27,8 @@ export async function GET(request: NextRequest) {
 
 }
 
-export async function POST(request: NextRequest) {
-    const body = await request.json();
+export async function POST(req: NextRequest) {
+    const body = await req.json();
     const newMessage = body.newMessage;
     const messageId: string= newMessage.id;
     const messageDate: Date = newMessage.createdAt;
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true}, { status: 200 })                                    //chiamata eseguita correttamente
 }
 
-export async function DELETE(request: NextRequest) {
+export async function DELETE(req: NextRequest) {
     try {
         const db = await open({
             filename: './src/db/databaseMess.db',

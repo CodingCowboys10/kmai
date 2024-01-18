@@ -1,14 +1,13 @@
 'use client'
-import { useState } from 'react'
+import React , { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import {NextResponse} from "next/server";
 
 function UploadDoc ({ model, setDocsChanged } : { model: string, setDocsChanged: (docsChanged: boolean) => void}){
 
-  const [file, setFile] = useState();
+  const [file, setFile] = useState<File | undefined>();
 
-  const onSubmit = async (e : Event) => {
+  const onSubmit = async (e :  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
         toast.warning("Selezionare un file!", {
@@ -21,7 +20,6 @@ function UploadDoc ({ model, setDocsChanged } : { model: string, setDocsChanged:
       const data = new FormData();
       data.set('file', file);
       data.set('model', model)
-      console.log("-----------errore ricevuto")
       const res = await fetch('/api/upload', {
         method: 'POST',
         body: data,
@@ -30,11 +28,11 @@ function UploadDoc ({ model, setDocsChanged } : { model: string, setDocsChanged:
 
       if (res.ok) {
           setDocsChanged(true);
-          toast.success("Documento Caricato", {
+          toast.success(`Documento Caricato in ${model}`, {
               position: "top-center"
           })
       }else{
-          toast.error("Errore durante il caricamento!", {
+          toast.error(`Errore durante il caricamento in ${model}!`, {
               position: "top-center"
           });
       }
@@ -49,7 +47,7 @@ function UploadDoc ({ model, setDocsChanged } : { model: string, setDocsChanged:
   return (
       <>
           <form
-              className=" bg-[--background-contrast] lg:w-full flex lg:mx-0 md:mx-0 mx-auto flex-col gap-5 rounded-xl p-4 shadow-2xl "
+              className="mx-auto bg-[--background-contrast] w-96 max-w-96 flex  flex-col gap-5 rounded-xl p-4 shadow-2xl "
               onSubmit={onSubmit}>
               <label className="text-sky-950 dark:text-sky-50 text-xl font-medium text-center">
                   Upload a Document </label>

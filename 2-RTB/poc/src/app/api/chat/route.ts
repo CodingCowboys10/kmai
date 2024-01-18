@@ -1,11 +1,6 @@
 import { NextRequest } from 'next/server';
-import { sqlite3 } from 'sqlite3';
-
 import { StreamingTextResponse, LangChainStream, Message } from 'ai';
-
 import { PromptTemplate } from 'langchain/prompts';
-import { ChatOpenAI } from 'langchain/chat_models/openai';
-import { AIChatMessage, HumanChatMessage } from 'langchain/schema';
 import { ConversationalRetrievalQAChain } from 'langchain/chains';
 import { Chroma } from 'langchain/vectorstores/chroma';
 import {collections, embeddings, getLLM, setPrompt} from "@/utils/chat_utils";
@@ -16,9 +11,6 @@ type ChatApiBodyParams = {
     modelName: string;
 };
 
-// Scelta del runtime : 1) Edge 2) NextJs. Se usiamo edge abbiamo maggiore velocita' ma vengono create delle dipendenze nei pacchetti.
-// Ignorabili se usiamo --force in ogni comando
-
 export const runtime = 'edge';
 
 export async function POST(
@@ -27,9 +19,7 @@ export async function POST(
     const { messages, modelName}: ChatApiBodyParams = await request.json();
     const { stream, handlers } = LangChainStream();
 
-    // Otteniamo il modello LLM , useremo modelName ma per ora usiamo una stringa.
     const llm = getLLM(modelName, handlers)
-
 
     const chain = ConversationalRetrievalQAChain.fromLLM(
         llm,

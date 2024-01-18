@@ -1,4 +1,3 @@
-import { writeFile } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
 
 import {Chroma} from "langchain/vectorstores/chroma"
@@ -6,10 +5,10 @@ import {embeddings , collections} from "@/utils/chat_utils"
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 import * as fs from "fs/promises";
 import * as path from 'path';
-import {NextApiResponse} from "next";
 
 
-export async function POST(request: NextRequest , res : NextResponse) {
+
+export async function POST(request: NextRequest) {
 
 
 
@@ -52,8 +51,6 @@ export async function POST(request: NextRequest , res : NextResponse) {
                 parsedItemSeparator: "",
             });
 
-
-
             let docs = await loader.load();
             docs = docs.map(doc => ({
                 ...doc,
@@ -73,7 +70,6 @@ export async function POST(request: NextRequest , res : NextResponse) {
                     "hnsw:space": "cosine",
                 }
             });
-
 
             await vectorStore.addDocuments(docs, {
                     ids: ids,

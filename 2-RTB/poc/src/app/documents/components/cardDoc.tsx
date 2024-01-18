@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image'
-import DeleteDocButton from './deleteDocButton';
-import icon from '../../../../public/pdficon.png';                               //immagine icon dei documenti pdf, di default per tutti
+import icon from '../../../../public/pdficon.png';
 
 interface DocCardProps{
   name: string;
@@ -10,7 +9,7 @@ interface DocCardProps{
   size: number
 }
 
-function DocCard ({ name, path, date , size}: DocCardProps) {                           //creo le card dei documenti pdf del db, mostrando nome, data di inserimento e costruendo un bottone per eliminare quel documento dal db
+function DocCard ({ name, path, date , size}: DocCardProps) {
   return (
     <li className=' bg-[--background-contrast] border-4 border-[--background-contrast] hover:border-[--primary]  rounded-xl w-full h-full text-[--text]'>
         <div className='flex items-center justify-center py-2 bg-[--background] rounded-t-xl rounded-b-lg' >
@@ -26,6 +25,6 @@ function DocCard ({ name, path, date , size}: DocCardProps) {                   
         </div>
     </li>
   );
-};
+}
 
 export default DocCard;

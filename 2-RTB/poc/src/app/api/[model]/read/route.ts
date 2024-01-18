@@ -11,16 +11,8 @@ interface RisultatoQuery{
     size : number;
 }
 
-interface Metadata {
-    name: string;
-    source: string;
-    date: string;
-    size: number;
-    page: number; // Assuming there's a 'page' property in the Metadata interface
-}
 
-
-export async function GET(req: NextRequest, { params }: { params: { model: string } }) {                                       //chiamato per prendere dal database le info sui documenti
+export async function GET(req: NextRequest, { params }: { params: { model: string } }) {
     const model = params.model;
     let result :  RisultatoQuery[] = [];
 
@@ -28,14 +20,7 @@ export async function GET(req: NextRequest, { params }: { params: { model: strin
         const client = new ChromaClient()
         let collection
         collection = await client.getCollection({name: collections[model]})
-        /*
-        // se non esite e no la creo, dà errore. Sotto, il codice che ho usato per far partire il tutto
-        try {
-            collection = await client.getCollection({name: collections[model]})
-        } catch (e) {
-            collection = await client.createCollection({name: collections[model]})
-        }
-        */
+
         const response = await collection.get(
             {
                 include: [IncludeEnum.Metadatas]
