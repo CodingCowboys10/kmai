@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node check-services.mjs && next dev",
+    "check-service": "node check-services.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,15 +12,17 @@
   "dependencies": {
     "@google/generative-ai": "^0.1.1",
     "ai": "^2.2.29",
+    "axios": "^1.6.5",
     "chromadb": "^1.6.1",
     "cohere-ai": "^7.6.2",
-    "dotenv": "^16.3.1",
     "langchain": "^0.0.208",
     "next": "14.0.3",
     "pdf-parse": "^1.1.1",
     "react": "^18",
     "react-dom": "^18",
-    "sqlite3": "^5.1.6",
+    "react-toastify": "^9.1.3",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
     "typeface-roboto": "^1.1.13"
   },
   "devDependencies": {

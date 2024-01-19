@@ -1,4 +1,3 @@
-import { writeFile } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
 
 import {Chroma} from "langchain/vectorstores/chroma"
@@ -8,14 +7,17 @@ import * as fs from "fs/promises";
 import * as path from 'path';
 
 
-export async function POST(request: NextRequest) {                                          //chiamato per inserire nuovi documenti nel databse
+
+export async function POST(request: NextRequest) {
+
+
 
         // Salvo il file
         const data = await request.formData()
         const modelName = data.get('model')!.toString()
         const file: File | null = data.get('file') as unknown as File
         if (!file) {
-            return NextResponse.json({ success: false })
+             return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
         }
 
         const bytes = await file.arrayBuffer()
@@ -31,8 +33,8 @@ export async function POST(request: NextRequest) {                              
             try {
                 await fs.mkdir(folderPath, { recursive: true });
             }catch (mkdirError) {
-            console.error('Errore durante la creazione della cartella:', mkdirError);
-            return NextResponse.json({ success: false, error: 'Errore durante la creazione della cartella' });
+                console.error('Errore durante la creazione della cartella:', mkdirError);
+                return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
             }
         }
         const filePath = path.join(folderPath, documentName);
@@ -48,7 +50,6 @@ export async function POST(request: NextRequest) {                              
                 splitPages: true,
                 parsedItemSeparator: "",
             });
-
 
             let docs = await loader.load();
             docs = docs.map(doc => ({
@@ -74,10 +75,8 @@ export async function POST(request: NextRequest) {                              
                     ids: ids,
                 }
             )
-            console.log("terminato")
-            return NextResponse.json({ success: true })
+            return NextResponse.json({ message: 'Documento Aggiunto' }, { status: 200 })
         }catch (e) {
-            return NextResponse.json({ success: false })
+            return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
         }
-
 }

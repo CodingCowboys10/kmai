@@ -1,17 +1,11 @@
-import { useState } from 'react';
-
-import {FormEvent} from "react";
+import React from "react";
 
 interface InsertProps{
     input: string;
     handleInputChange: (e: any) => void;
-    sendMessage: (e: FormEvent<HTMLFormElement>) => void;
+    sendMessage: (e : any) => void;
 }
 function ChatInput({ input, handleInputChange, sendMessage }: InsertProps){
-
-
-    const [newQuestion, setNewQuestion] = useState('');
-
     return (
         <div className="w-full h-1/12 relative">
             <form onSubmit={sendMessage}>

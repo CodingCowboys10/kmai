@@ -19,14 +19,14 @@ export default function Page() {
                 className="  font-bold text-sky-500 gradient-blue">M</span>anagement<span className="font-bold lg:text-8xl text:3xl text-sky-500 gradient-blue"> AI</span></h1>
             <div className="flex flex-col-reverse justify-center gap-20 h-full w-full rounded-xl shadow-2xl bg-[--background-contrast]  ">
                 
-                <Link className={btn} href="/documents">
+                <Link className={btn} href="documents">
                     <button>
                          <i className=" text-[--text-button] my-10 fa-solid fa-database fa-2xl"></i>
                     </button>
                 </Link>
 
 
-                <Link className={btn} href="/chat">
+                <Link className={btn} href="chat">
                     <button >
                          <i className=" text-[--text-button] my-10 fa-solid fa-comments fa-2xl"></i>
 
