@@ -11,6 +11,7 @@ const s3 = new AWS.S3({
     secretAccessKey : "hU5zNnQquAMOB0UCK19NodZUkKUOMQmEy6Uqb5Xs",
     s3ForcePathStyle: true,
 });
+
 export async function POST(request: NextRequest) {
 
         // Salvo il file
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest) {
         const documentName = `${file.name}`
 
         try {
-            // AWS Upload
+            // MinIO Upload
             await s3.putObject({
                 Body:  buffer,
                 Bucket: collections[modelName],

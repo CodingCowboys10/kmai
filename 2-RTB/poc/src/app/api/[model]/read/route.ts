@@ -1,43 +1,47 @@
-import {ChromaClient, IncludeEnum} from "chromadb";
+
 import {collections} from "@/utils/chat_utils";
 import {NextRequest, NextResponse} from "next/server";
+import AWS from "aws-sdk";
+AWS.lib.maintenance_mode_message.suppress = true;
 
+export const runtime = 'nodejs';
 
-export const runtime = 'edge';
 interface RisultatoQuery{
     name: string;
-    path: string;
     date: string;
     size : number;
 }
 
 
+
 export async function GET(req: NextRequest, { params }: { params: { model: string } }) {
     const model = params.model;
-    let result :  RisultatoQuery[] = [];
 
     try {
-        const client = new ChromaClient()
-        let collection
-        collection = await client.getCollection({name: collections[model]})
+        const s3 = new AWS.S3({
+            endpoint: 'http://172.17.0.2:9000',
+            accessKeyId: "mh4FLEcxIO5m1HaAZdA4" ,
+            secretAccessKey : "hU5zNnQquAMOB0UCK19NodZUkKUOMQmEy6Uqb5Xs",
+            s3ForcePathStyle: true,
+        });
 
-        const response = await collection.get(
-            {
-                include: [IncludeEnum.Metadatas]
-            }
-        )
-        
-        result = response.metadatas.filter((obj : any)  => obj.page === 1)
-            .map((obj : any) => ({
-                name: obj.name,
-                path: obj.source,
-                date: obj.date,
-                size: obj.size,
-            }));
+        const bucket = await s3.listObjects({
+            Bucket: collections[model],
+        }).promise()
+
+        const response = bucket.Contents!
+
+        const result: RisultatoQuery[] = response.map((doc: any) => ({
+            name: doc.Key,
+            date: doc.LastModified.toISOString(),
+            size: doc.Size,
+        }));
+
+        return NextResponse.json(result, {status: 200});
     }
     catch (e){
         console.log(e)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
-    return NextResponse.json(result, {status: 200});
+
 }
