@@ -4,7 +4,6 @@ import {ChatOllama} from "langchain/chat_models/ollama";
 import {OpenAI} from "langchain/llms/openai";
 import {CallbackManager} from "langchain/callbacks";
 
-
 export function getLLM(model: string , handlers: any  ){
     const models : Record<string, any> = {
         // Ollama Model
@@ -79,12 +78,12 @@ export const embeddings: Record<string, any>   = {
 }
 
 export const collections : Record<string, string>  = {
-    llama2 : "llama2_poc_collections",
-    openChat : "openChat_poc_collections",
-    mistral : "mistral_poc_collections",
-    mixtral : "mixtral_poc_collections",
-    starling : "starling_poc_collections",
-    openAi : "openAi_poc_collections",
+        llama2 : "llama2-poc-collections",
+        openChat : "openchat-poc-collections",
+        mistral : "mistral-poc-collections",
+        mixtral : "mixtral-poc-collections",
+        starling : "starling-poc-collections",
+        openAi : "openai-poc-collections",
 }
 
 export function setPrompt(){

@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 import {Chroma} from "langchain/vectorstores/chroma"
-import {embeddings , collections} from "@/utils/chat_utils"
+import {embeddings , collections } from "@/utils/chat_utils"
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
-import * as fs from "fs/promises";
-import * as path from 'path';
+import AWS from "aws-sdk";
 
-
-
+const s3 = new AWS.S3({
+    endpoint: 'http://172.17.0.2:9000',
+    accessKeyId: "mh4FLEcxIO5m1HaAZdA4" ,
+    secretAccessKey : "hU5zNnQquAMOB0UCK19NodZUkKUOMQmEy6Uqb5Xs",
+    s3ForcePathStyle: true,
+});
 export async function POST(request: NextRequest) {
-
-
 
         // Salvo il file
         const data = await request.formData()
@@ -22,44 +23,37 @@ export async function POST(request: NextRequest) {
 
         const bytes = await file.arrayBuffer()
         const buffer = Buffer.from(bytes)
-
         const documentName = `${file.name}`
 
-        const folderPath : string = `./src/db/docs/${modelName}`;
-        let fileSizeInBytes : number
         try {
-            await fs.access(folderPath);
-        } catch (error) {
-            try {
-                await fs.mkdir(folderPath, { recursive: true });
-            }catch (mkdirError) {
-                console.error('Errore durante la creazione della cartella:', mkdirError);
-                return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
-            }
+            // AWS Upload
+            await s3.putObject({
+                Body:  buffer,
+                Bucket: collections[modelName],
+                Key : documentName,
+                Tagging: "visibility=visible"
+            }).promise()
+
+        }catch (e) {
+            console.error("errore in MinIo" , e)
         }
-        const filePath = path.join(folderPath, documentName);
-        await fs.writeFile(filePath, buffer).then(() => {
-            return fs.stat(filePath);
-        }).then((stats) => {
-            fileSizeInBytes = stats.size;
-        })
 
         try {
+            const bufferAsBlob = new Blob([buffer]);
             // ChromaDbUpload
-            const loader = new PDFLoader(filePath, {
+            const loader = new PDFLoader(bufferAsBlob, {
                 splitPages: true,
                 parsedItemSeparator: "",
             });
 
+
             let docs = await loader.load();
+
             docs = docs.map(doc => ({
                 ...doc,
                 metadata: {
                     page: doc.metadata.loc.pageNumber,
-                    source: filePath,
-                    visibility: "visible",
                     date : new Date().toLocaleString(),
-                    size : fileSizeInBytes,
                     name : documentName,
                 }
             }))

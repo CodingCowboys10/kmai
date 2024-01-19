@@ -1,16 +1,15 @@
-
-import { exec } from 'child_process';
 import axios from "axios";
 import {ChromaClient} from "chromadb";
+import AWS from "aws-sdk";
 
-const collections  = {
-    llama2 : "llama2_poc_collections",
-    openChat : "openChat_poc_collections",
-    mistral : "mistral_poc_collections",
-    mixtral : "mixtral_poc_collections",
-    starling : "starling_poc_collections",
-    openAi : "openAi_poc_collections",
-};
+const s3 = new AWS.S3({
+    endpoint: 'http://172.17.0.2:9000',
+    accessKeyId: "mh4FLEcxIO5m1HaAZdA4" ,
+    secretAccessKey : "hU5zNnQquAMOB0UCK19NodZUkKUOMQmEy6Uqb5Xs",
+    s3ForcePathStyle: true,
+});
+
+
 
 const ollamaModels = [
    "llama2:latest",
@@ -20,12 +19,43 @@ const ollamaModels = [
     "starling-lm:latest"
 ];
 
-
-
 const errors = []
 
+const collections  = {
+    llama2 : "llama2-poc-collections",
+    openChat : "openchat-poc-collections",
+    mistral : "mistral-poc-collections",
+    mixtral : "mixtral-poc-collections",
+    starling : "starling-poc-collections",
+    openAi : "openai-poc-collections",
+};
+
+// Controllo MinIo
+const checkMinIO = async () => {
+    s3.listBuckets( async (err) => {
+        if (err) {
+            throw "× | MinIO non è in esecuzione."
+        } else {
+            console.log("✔ | MinIO è in esecuzione.")
+            for (const collectionKey in collections) {
+                const params = {
+                    Bucket: collections[collectionKey],
+                }
+                try{
+                    await s3.createBucket(params).promise();
+                }catch(e){
+                    console.log(`\t✔ | Il bucket ${collections[collectionKey]} è presente`);
+                }
+            }
+            console.log("-----------------------\n")
+        }
+
+    })
+
+}
 // Controllo ChromaDb
 const checkChroma = async () => {
+
     try{
          const client = new ChromaClient();
          await client.version();
@@ -77,19 +107,16 @@ const checkOllama= async () => {
     }
 }
 
-const checkOpenAi = () => {
-    const openaiApiKey = process.env.OPENAI_API_KEY;
-    if (openaiApiKey) {
-        console.log(`✔ | OPENAI_API_KEY trovata: ${openaiApiKey}`);
-    } else {
-        errors.push('× | OPENAI_API_KEY non trovata');
-    }
-}
-
 const checkServices = async () => {
+    console.log("-----------------------\n")
     await checkChroma();
     await checkOllama();
-    //checkOpenAi();
+    try{
+        await checkMinIO();
+    }catch (e){
+        errors.push(e)
+    }
+
 };
 
 checkServices().then(() => {
@@ -98,6 +125,7 @@ checkServices().then(() => {
         console.log("\n")
         process.exit(1);
     }
-}).catch((error) => {
+
+}).catch(() => {
     process.exit(1);
 });
