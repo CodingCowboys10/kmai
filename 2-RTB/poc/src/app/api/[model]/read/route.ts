@@ -1,8 +1,6 @@
-
 import {collections} from "@/utils/chat_utils";
 import {NextRequest, NextResponse} from "next/server";
 import AWS from "aws-sdk";
-AWS.lib.maintenance_mode_message.suppress = true;
 
 export const runtime = 'nodejs';
 
