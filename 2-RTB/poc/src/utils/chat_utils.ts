@@ -4,6 +4,15 @@ import {ChatOllama} from "langchain/chat_models/ollama";
 import {OpenAI} from "langchain/llms/openai";
 import {CallbackManager} from "langchain/callbacks";
 
+
+
+export const AWSParams = {
+    endpoint: 'http://172.17.0.2:9000',
+    accessKeyId: "ROOTUSER" ,
+    secretAccessKey : "CHANGEME123",
+    s3ForcePathStyle: true,
+}
+
 export function getLLM(model: string , handlers: any  ){
     const models : Record<string, any> = {
         // Ollama Model

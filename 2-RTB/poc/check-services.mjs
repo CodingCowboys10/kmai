@@ -4,11 +4,10 @@ import AWS from "aws-sdk";
 
 const s3 = new AWS.S3({
     endpoint: 'http://172.17.0.2:9000',
-    accessKeyId: "mh4FLEcxIO5m1HaAZdA4" ,
-    secretAccessKey : "hU5zNnQquAMOB0UCK19NodZUkKUOMQmEy6Uqb5Xs",
+    accessKeyId: "ROOTUSER" ,
+    secretAccessKey : "CHANGEME123",
     s3ForcePathStyle: true,
 });
-
 
 
 const ollamaModels = [
@@ -32,27 +31,33 @@ const collections  = {
 
 // Controllo MinIo
 const checkMinIO = async () => {
-    s3.listBuckets( async (err) => {
-        if (err) {
-            throw "× | MinIO non è in esecuzione."
-        } else {
-            console.log("✔ | MinIO è in esecuzione.")
-            for (const collectionKey in collections) {
-                const params = {
-                    Bucket: collections[collectionKey],
-                }
-                try{
-                    await s3.createBucket(params).promise();
-                }catch(e){
-                    console.log(`\t✔ | Il bucket ${collections[collectionKey]} è presente`);
-                }
+    await new Promise((resolve, reject) => {
+        s3.listBuckets((err) => {
+            if (err) {
+                errors.push("× | MinIO non è in esecuzione.");
+                reject(err);
+            } else {
+                console.log("✔ | MinIO è in esecuzione.");
+                resolve();
             }
-            console.log("-----------------------\n")
+        });
+    });
+
+    for (const collectionKey in collections) {
+        const params = {
+            Bucket: collections[collectionKey],
+        };
+
+        try {
+            await s3.createBucket(params).promise();
+            console.log(`\t✔ | Il bucket ${collections[collectionKey]} è stato creato`);
+        } catch (e) {
+
         }
+    }
+    console.log("-----------------------\n");
 
-    })
-
-}
+};
 // Controllo ChromaDb
 const checkChroma = async () => {
 
@@ -75,7 +80,6 @@ const checkChromaCollections = async (client) =>{
             });
         }
         console.log("\t✔ | Sono presenti tutte le collezioni. ");
-        //console.log(`✔ | La collezione ${collections[key]} è presente.`);
     } catch (e){
         errors.push("\t× | Errore nella lettura o creazione delle collezioni");
     }
@@ -98,7 +102,7 @@ const checkOllama= async () => {
                 if(installedModels.includes(model)){
                     console.log(`\t✔ | Il modello ${model} è presente`);
                 }else{
-                    console.log(`× | Il modello ${model} non è presente`);
+                    console.log(`\t× | Il modello ${model} non è presente`);
                 }
             });
         }
@@ -111,12 +115,7 @@ const checkServices = async () => {
     console.log("-----------------------\n")
     await checkChroma();
     await checkOllama();
-    try{
-        await checkMinIO();
-    }catch (e){
-        errors.push(e)
-    }
-
+    await checkMinIO();
 };
 
 checkServices().then(() => {

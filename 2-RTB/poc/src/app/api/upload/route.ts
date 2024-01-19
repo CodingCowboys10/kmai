@@ -1,16 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 import {Chroma} from "langchain/vectorstores/chroma"
-import {embeddings , collections } from "@/utils/chat_utils"
+import {embeddings, collections, AWSParams} from "@/utils/chat_utils"
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
 import AWS from "aws-sdk";
 
-const s3 = new AWS.S3({
-    endpoint: 'http://172.17.0.2:9000',
-    accessKeyId: "mh4FLEcxIO5m1HaAZdA4" ,
-    secretAccessKey : "hU5zNnQquAMOB0UCK19NodZUkKUOMQmEy6Uqb5Xs",
-    s3ForcePathStyle: true,
-});
 
 export async function POST(request: NextRequest) {
 
@@ -28,6 +22,8 @@ export async function POST(request: NextRequest) {
 
         try {
             // MinIO Upload
+            const s3 = new AWS.S3(AWSParams);
+
             await s3.putObject({
                 Body:  buffer,
                 Bucket: collections[modelName],

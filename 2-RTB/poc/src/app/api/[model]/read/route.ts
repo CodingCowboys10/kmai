@@ -1,4 +1,4 @@
-import {collections} from "@/utils/chat_utils";
+import {collections, AWSParams} from "@/utils/chat_utils";
 import {NextRequest, NextResponse} from "next/server";
 import AWS from "aws-sdk";
 
@@ -16,12 +16,7 @@ export async function GET(req: NextRequest, { params }: { params: { model: strin
     const model = params.model;
 
     try {
-        const s3 = new AWS.S3({
-            endpoint: 'http://172.17.0.2:9000',
-            accessKeyId: "mh4FLEcxIO5m1HaAZdA4" ,
-            secretAccessKey : "hU5zNnQquAMOB0UCK19NodZUkKUOMQmEy6Uqb5Xs",
-            s3ForcePathStyle: true,
-        });
+        const s3 = new AWS.S3(AWSParams);
 
         const bucket = await s3.listObjects({
             Bucket: collections[model],
