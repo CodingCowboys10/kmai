@@ -17,7 +17,14 @@ Opzionale :
 
 ## Configurazione ambiente d'Esecuzione
 
-### MinIO
+- [MinIO](#installazione-di-MinIO)
+- [Ollama](#installazione-di-ollama)
+    - [GPU](#installazione-con-accelerazione-video--solo-nvidia-gpu-)
+    - [CPU](#Installazione-con-cpu-)
+    - [MODELLI](#modelli-e-requisiti)
+- [Chroma](#installazione-di-chroma)
+
+### Installazione di MinIO
 
 [MinIO](https://min.io/) è un server di archiviazione ad oggetti locale e opensource compatibile con l'API S3 di Amazon. 
 
@@ -35,11 +42,10 @@ docker run \
    quay.io/minio/minio server /data --console-address ":9001"
 ```
 
-### Ollama
+### Installazione di Ollama
 
-[Ollama](https://ollama.ai/) permette di eseguire e scaricare localmente gli LLM.
-
-#### [Con accelerazione Video (Solo NVIDIA GPU)](https://ollama.ai/blog/ollama-is-now-available-as-an-official-docker-image)
+[Ollama](https://ollama.ai/) permette di eseguire e scaricare localmente gli LLM. In base alla necessita' e all'ambiente ci sono due processi di installazione diversi.
+#### [Installazione Con accelerazione Video (Solo NVIDIA GPU)](https://ollama.ai/blog/ollama-is-now-available-as-an-official-docker-image)
 
 Installare il *[Nvidia container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installation)*.
 ```shell
@@ -50,7 +56,7 @@ docker run \
        -p 11434:11434 \
        --name ollama ollama/ollama
 ```
-#### Con CPU 
+#### Installazione Con CPU 
 
 ```shell
 docker run \
@@ -60,8 +66,7 @@ docker run \
       --name ollama ollama/ollama
 ```
 
-##### Modelli e Requisiti
-
+#### Modelli e Requisiti
 Per il PoC abbiamo scelto questi modelli.
 
 | **Modello**                                                                   | **Ram/VRam**     |
@@ -71,7 +76,7 @@ Per il PoC abbiamo scelto questi modelli.
 | [starling-lm:7b](https://ollama.ai/library/starling-lm:7b)  (7b)              | *4.1*       (Gb) |
 | [mistral:v0.2](https://ollama.ai/library/mistral:v0.2) (7b)                   | *4.1*       (Gb) |
 
-Una volta installato ollama si possono installare i modelli che si vogliono eseguire :
+Per installare i modelli :
 ```shell
 #llama2
 docker exec -it ollama ollama run llama2:7b
@@ -83,7 +88,7 @@ docker exec -it ollama ollama run starling-lm:7b
 docker exec -it ollama ollama run mistral:v0.2
 ```
 
-### Chroma
+### Installazione di Chroma
 
 [Chroma](https://www.trychroma.com/) e' un database vettoriale locale in cui conservare i vari documenti embeddizzati.
 
