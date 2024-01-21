@@ -1,7 +1,7 @@
 # KMAI 
 
 - [Requisiti](#requisiti)
-- [Configurazione ambiente d'Esecuzione](#configurazione-ambiente-desecuzione)
+- [Configurazione ambiente d'esecuzione](#configurazione-ambiente-desecuzione)
 - [Esecuzione](#esecuzione)
 
 ## Requisiti
