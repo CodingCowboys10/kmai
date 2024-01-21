@@ -1,7 +1,7 @@
-﻿\chapter{Casi d'uso}\label{sec:casi}
+\chapter{Casi d'uso}\label{sec:casi}
 \section{Introduzione}
 In questa sezione del documento vengono riportati tutti i casi d'uso relativi al prodotto del progetto.\\
-Ogni caso d'uso sarà identificato da un codice alfanumerico, composto dall'acronimo "UC" di use case e seguito da dei numeri. Per ottenere una gerarchizzazione ad albero dei casi d'uso, con cui segnalare un sotto caso d'uso di un altro, i numeri saranno seguiti da uno o più punti, con cui sarà facile identificare il sotto caso d'uso rispetto al suo padre.\\
+Ogni caso d'uso sarà identificato da un codice alfanumerico, composto dall'acronimo "UC" di use case e seguito da dei numeri. Per ottenere una gerarchizzazione ad albero dei casi d'uso, con cui segnalare un sotto caso d'uso di un altro, i numeri saranno seguiti da uno o più punti, con cui sarà facile identificare il sotto caso d'uso rispetto al padre.\\
 Ogni use case sarà inoltre corredato dalle informazioni riguardanti descrizione generale, \emph{attore\ped{G}} principale, pre condizioni, post condizioni e scenario, oltre ad attori secondari, generalizzazioni ed estensioni qualora presenti.
 
 \section{Attori}
@@ -151,6 +151,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema mostra l’intera lista di documenti.
     \item[Post condizioni:] Il sistema mostra il contenuto del documento selezionato.
+    \newpage
     \item[Scenario:]
     \begin{enumerate}
         \item[]
@@ -685,6 +686,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta un documento di cui non può fornire informazioni mediante chatbot perché bloccato.
     \item[Post condizioni:] Il sistema presenta un documento di cui può fornire informazioni mediante chatbot.
+    \newpage
     \item[Scenario:]
     \begin{enumerate}
         \item[]
@@ -817,6 +819,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore secondario:] Modello LLM. 
     \item[Pre condizioni:] Il sistema ha ricevuto e processato la domanda posta dall'utente.
     \item[Post condizioni:] Il sistema restituisce una risposta all'utente.
+    \newpage
     \item[Scenario:]
     \begin{enumerate}
         \item[]
@@ -882,7 +885,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{UC19.PNG} 
+    \includegraphics[width=0.77\linewidth]{UC19.PNG} 
     \caption{Diagramma UML dei casi d'uso UC-19, UC-19.1, UC-19.2 e UC-20}
 \end{figure}
 
@@ -1026,6 +1029,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta la chat history.
     \item[Post condizioni:] Il sistema non presenta più alcuna chat history in quella sessione.
+    \newpage
     \item[Scenario:]
     \begin{enumerate}
         \item[]

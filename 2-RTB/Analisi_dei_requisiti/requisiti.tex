@@ -142,7 +142,7 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \label{tab:reqqua}
 \end{xltabular}
 \endgroup
-
+\newpage
 \section{Requisiti di vincolo}
 
 \begingroup
@@ -186,7 +186,7 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \hline
     RVO-16 & Dev'essere utilizzato \ccgloss{MinIO} 8.4.3 per l'archiviazione dei documenti. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-17 & Dev'essere utilizzato \ccgloss{Docker} 24.0.7 per lo sviluppo del prodotto. & Obbligatorio & Interna \\
+    RVO-17 & Dev'essere utilizzato \ccgloss{Docker} 24.0.7 per l'esecuzione del prodotto. & Obbligatorio & Interna \\
     \hline
     \rowcolor{white} \caption{Requisiti di vincolo del prodotto}
     \label{tab:reqvin}
@@ -263,9 +263,9 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
 \section{Requisiti di sistema}
 Tutti i requisiti riportati in precedenza sono da ritenersi validi solo in osservanza di determinati requisiti di sistema.\\
 Per poter utilizzare un Large Language Model fornito da OpenAI è necessario il possesso di una chiave API valida, oltre ad una connessione ad Internet.\\
-Per l'utilizzo di Ollama è necessaria la sua installazione ed esecuzione tramite l'immagine Docker ufficiale reperibile a \href{https://ollama.ai/blog/ollama-is-now-available-as-an-official-docker-image}{questo link}.
-Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente influenzate dal sistema che la esegue. Per poter soddisfare i requisiti individuati, è necessario l'utilizzo di un modello che richiede non meno di 16GB di RAM. Ogni sistema che non soddisfa questo requisito, è quindi da ritenersi improprio all'utilizzo dell'applicazione tramite tecnologie in locale, e non può essere garantito il corretto funzionamento del prodotto. Inoltre, le tecnologie individuate per l'utilizzo di LLM locali richiedono l'adozione di un sistema operativo Linux o MacOS.
-
+Per l'utilizzo di Ollama e di MinIO sono necessarie le loro installazioni ed esecuzioni tramite le immagini Docker ufficiali reperibili a \href{https://ollama.ai/blog/ollama-is-now-available-as-an-official-docker-image}{questo link} per Ollama e a \href{https://min.io/docs/minio/container/index.html}{questo link} per MinIO.
+Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente influenzate dal sistema che la esegue. Per poter soddisfare i requisiti individuati, è necessario l'utilizzo di un sistema dotato non meno di 16GB di RAM. Ogni sistema che non soddisfa questo requisito, è quindi da ritenersi improprio all'utilizzo dell'applicazione tramite tecnologie in locale, e non può essere garantito il corretto funzionamento del prodotto. Inoltre, le tecnologie individuate per l'utilizzo di LLM locali richiedono l'adozione di un sistema operativo Linux o MacOS 11 o superiori.
+\newpage
 \section{Riepilogo}
 \begingroup
 \setlength{\tabcolsep}{10pt}
