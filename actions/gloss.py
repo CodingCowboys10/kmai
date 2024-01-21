@@ -4,8 +4,9 @@ import os
 glossary = list()
 singolare=list()
 plurale=list()
-currentDirectory = os.environ['CURRENT_DIRECTORY']  
-glossarioPath = os.environ['GLOSSARIO_PATH']
+currentDirectory = os.environ['CURRENT_DIRECTORY']+"/"
+glossarioPath = os.environ['GLOSSARIO_PATH']+"/"
+
 def build_file_path_letters(): #prende tutti i file delle lettere e salva in una lista i vari path
 
     fp=list()
@@ -37,8 +38,8 @@ def build_gloss(file_path): #scorre tutti i path dei files lettera#.tex, prende 
                         plurale.append("")
     glossary.append(list(zip(singolare,plurale)))
     return glossary
-
-def glossify(): #va a inserire le G a pedice (qua lavoro su un verbale)
+  
+def glossify(): #va a inserire le G a pedice 
 
     input=list()
     for (files) in os.walk(currentDirectory, topdown=True): 
@@ -49,7 +50,7 @@ def glossify(): #va a inserire le G a pedice (qua lavoro su un verbale)
             tex = re.search(r'([\w\d\.\s\'-\\]).tex', f)
             if main:
                 path=currentDirectory+f
-                inputFile=r'\\input{([\w\d\.\s\'-\\]*)}'
+                inputFile=r'(?<!%)\\input{([\w\d\.\s\'-\\]*)}'
                 with open(path, 'r+') as file:
                     content = file.read()
                     input = re.findall(inputFile, content) #mette in una lista ordinata sfruttando gli input nel main i file che compongono il documento
@@ -72,7 +73,7 @@ def remove_g(f): #rimuove eventuali g presenti nei documenti prima della compila
         match_ccgloss = re.findall(ccgloss, content)
 
         for n in range(len(match_emph)):
-            word_to_remove = match_ccgloss[n]
+            word_to_remove = match_emph[n]
             if word_to_remove != "":
                 content=content.replace("\\emph{"+match_emph[n]+"\\ped{G}}", match_emph[n])
         for n in range(len(match_ccgloss)):
@@ -83,32 +84,42 @@ def remove_g(f): #rimuove eventuali g presenti nei documenti prima della compila
         file.seek(0)
         file.write(content)
         file.truncate() 
-        file.close   
+        file.close
 
-def add_g(f): #cerca nel testo di ogni file le parole del glossario, alla prima occorenza le salva in una lista, elimina la coppia singolare-plurale dal glossario e poi sostituisce nel content prendendo dalla lista
-
+def add_g(f):
     global glossary
+    section_title=""
+    label_title=""
     with open(f, 'r+') as file:
         content = file.read()
         matches = set()
         already_changed = []
+        
         words_in_content = re.findall(r'\b[\w-]+\b', content)
-        max_words=get_max_spaces(glossary)
+        max_words = get_max_spaces(glossary)
 
         for i, _ in enumerate(words_in_content):
-            for j in range(i, min(i + max_words, len(words_in_content))): #cercando parola per parola, termini come "way of working" (composti da più parole) non matchano mai, così cerca anche per blocchi di parole composti al massimo da tante parole quante quelle del il termine composto da più parole in glossario
+            for j in range(i, min(i + max_words, len(words_in_content))):
                 current_term = ' '.join(words_in_content[i:j + 1])
-                for word_tuple in glossary:
-                        for word in word_tuple:
-                            for n in range(2):  
-                                if word not in already_changed and current_term.lower() == word[n].lower():                                 
-                                    matches.add(current_term)
-                                    already_changed.append(word)                                
-                                    remove_from_gloss(word)
 
-        for match in matches:     
+                if is_inside_section(content, current_term) or is_inside_label(content, current_term):
+                    if is_inside_section(content, current_term):
+                        section_title=current_term
+                    else:
+                        label_title=current_term
+                    continue  
+                
+                for word_tuple in glossary:
+                    for word in word_tuple:
+                        for n in range(2):
+                            if word not in already_changed and word[n].lower()!=section_title.lower() and word[n].lower()!= label_title.lower() and current_term.lower() == word[n].lower():
+                                matches.add(current_term)
+                                already_changed.append(word)
+                                remove_from_gloss(word)
+
+        for match in matches:
             replacement = "\\ccgloss{" + match + "}"
-            content = content.replace(match, replacement, 1) #sostituisce la prima occorenza di match con la versione \ccgloss
+            content = content.replace(match, replacement, 1)
         
         file.seek(0)
         file.write(content)
@@ -124,6 +135,14 @@ def get_max_spaces(glossario): #cerca quale termine del glossario è composto da
                 spaces_count = word[n].count(' ')
                 max_spaces = max(max_spaces, spaces_count)
     return max_spaces + 1
+
+def is_inside_section(content, term):
+    pattern = r'\\section{\s*' + re.escape(term) + r'\s*}'
+    return re.search(pattern, content) is not None
+
+def is_inside_label(content, term):
+    pattern = r'\\label{sec:' + re.escape(term) + r'}'
+    return re.search(pattern, content) is not None
 
 def remove_from_gloss(word_tup): #elimina dal glossario la tupla che contiene un termine trovato 
 

@@ -12,6 +12,9 @@ on:
       nome-pdf: 
         description: 'Nome del pdf da creare'
         required: true
+      directory-glossario:
+        description: 'Directory files glossario'
+        required: true
       elimina-sorgenti:
         description: 'Elimina i file sorgenti'
         type: boolean
@@ -32,15 +35,26 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' 
-  
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v40
+          python-version: '3.10'
+          
+      - name: Run gloss.py
+        run: python actions/gloss.py ${{ inputs.directory-sorgente }}
+        env:
+          GLOSSARIO_PATH: ${{ inputs.directory-glossario }}
+          CURRENT_DIRECTORY: ${{ inputs.directory-sorgente }}
+
+      - name: Commit and push changes
+        run: | 
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add '*.tex'
+          git commit -m "Glossified .tex"
+          git push origin HEAD:${{ github.ref }}
+        working-directory: ${{ inputs.directory-sorgente }}
   
       - name: Run script
         id: script-runned
-        run: python actions/script.py -f "${{ steps.changed-files.outputs.all_changed_files }}" -a "${{ github.actor}}" -r "" -c "Approvazione documento" --approve
+        run: python actions/script.py -f "${{ inputs.directory-sorgente }}/main.tex" -a "${{ github.actor}}" -r "" -c "Approvazione documento" --approve
   
       - name: Compile
         uses: xu-cheng/latex-action@v3
