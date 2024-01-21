@@ -132,11 +132,11 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \endhead
     RQO-1 & Deve essere fornito un documento di analisi dei costi, rischi e tecnologie. & Obbligatorio & Proponente \\
     \hline
-    RQO-2 & Deve essere fornito un documento che descrive le attività di bug reporting effettuate. & Obbligatorio & Capitolato \\
+    RQO-2 & Deve essere fornito un documento che descrive le attività di \ccgloss{bug} reporting effettuate. & Obbligatorio & Capitolato \\
     \hline
     RQO-3 & Il progetto deve essere svolto seguendo le regole stabilite dal documento Norme\_di\_progetto. & Obbligatorio & Interna \\
     \hline
-    RQO-4 & Deve essere fornito al proponente il codice sorgente in un repository GitHub. & Obbligatorio & Proponente \\
+    RQO-4 & Deve essere fornito al proponente il codice sorgente in un \ccgloss{repository} GitHub. & Obbligatorio & Proponente \\
     \hline
     \rowcolor{white} \caption{Requisiti di qualità del prodotto}
     \label{tab:reqqua}
@@ -174,15 +174,15 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \hline
     RVO-10 & Dev'essere utilizzato il \ccgloss{framework} \ccgloss{Langchain} 0.0.208 per il collegamento al database vettoriale e al LLM. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-11 & Dev'essere utilizzato il database vettoriale \ccgloss{ChromaDB} 1.6.1 per la persistenza dei vettori \ccgloss{embedding} dei documenti. & Obbligatorio & Proponente, Interna \\
+    RVO-11 & Dev'essere utilizzato il database vettoriale ChromaDB 1.6.1 per la persistenza dei vettori \ccgloss{embedding} dei documenti. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-12 & Dev'essere utilizzato \ccgloss{Nodejs} 20.11.0 per lo sviluppo del back-end. & Obbligatorio & Proponente, Interna \\
+    RVO-12 & Dev'essere utilizzato Nodejs 20.11.0 per lo sviluppo del \ccgloss{back-end}. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-13 & Dev'essere utilizzato il framework \ccgloss{Nextjs} versione 14.0.3 per lo sviluppo del back-end. & Obbligatorio & Proponente, Interna \\
+    RVO-13 & Dev'essere utilizzato il framework Nextjs versione 14.0.3 per lo sviluppo del back-end. & Obbligatorio & Proponente, Interna \\
     \hline
     RVO-14 & Dev'essere utilizzata la libreria \ccgloss{SQLite3} 5.1.6 per il salvataggio dei messaggi scambiati tra utente e chatbot. & Obbligatorio & Interna \\
     \hline
-    RVO-15 & Dev'essere utilizzato il framework \ccgloss{Tailwind} 3.3.0 per codificare lo stile del front-end. & Obbligatorio & Interna \\
+    RVO-15 & Dev'essere utilizzato il framework \ccgloss{Tailwind} 3.3.0 per codificare lo stile del \ccgloss{front-end}. & Obbligatorio & Interna \\
     \hline
     RVO-16 & Dev'essere utilizzato \ccgloss{MinIO} 8.4.3 per l'archiviazione dei documenti. & Obbligatorio & Proponente, Interna \\
     \hline
@@ -262,7 +262,7 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
 
 \section{Requisiti di sistema}
 Tutti i requisiti riportati in precedenza sono da ritenersi validi solo in osservanza di determinati requisiti di sistema.\\
-Per poter utilizzare un Large Language Model fornito da OpenAI è necessario il possesso di una chiave API valida, oltre ad una connessione ad Internet.\\
+Per poter utilizzare un Large Language Model fornito da OpenAI è necessario il possesso di una chiave \ccgloss{API} valida, oltre ad una connessione ad Internet.\\
 Per l'utilizzo di Ollama e di MinIO sono necessarie le loro installazioni ed esecuzioni tramite le immagini Docker ufficiali reperibili a \href{https://ollama.ai/blog/ollama-is-now-available-as-an-official-docker-image}{questo link} per Ollama e a \href{https://min.io/docs/minio/container/index.html}{questo link} per MinIO.
 Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente influenzate dal sistema che la esegue. Per poter soddisfare i requisiti individuati, è necessario l'utilizzo di un sistema dotato non meno di 16GB di RAM. Ogni sistema che non soddisfa questo requisito, è quindi da ritenersi improprio all'utilizzo dell'applicazione tramite tecnologie in locale, e non può essere garantito il corretto funzionamento del prodotto. Inoltre, le tecnologie individuate per l'utilizzo di LLM locali richiedono l'adozione di un sistema operativo Linux o MacOS 11 o superiori.
 \newpage

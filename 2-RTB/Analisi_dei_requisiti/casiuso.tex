@@ -1,12 +1,12 @@
 \chapter{Casi d'uso}\label{sec:casi}
 \section{Introduzione}
 In questa sezione del documento vengono riportati tutti i casi d'uso relativi al prodotto del progetto.\\
-Ogni caso d'uso sarà identificato da un codice alfanumerico, composto dall'acronimo "UC" di use case e seguito da dei numeri. Per ottenere una gerarchizzazione ad albero dei casi d'uso, con cui segnalare un sotto caso d'uso di un altro, i numeri saranno seguiti da uno o più punti, con cui sarà facile identificare il sotto caso d'uso rispetto al padre.\\
-Ogni use case sarà inoltre corredato dalle informazioni riguardanti descrizione generale, \emph{attore\ped{G}} principale, pre condizioni, post condizioni e scenario, oltre ad attori secondari, generalizzazioni ed estensioni qualora presenti.
+Ogni caso d'uso sarà identificato da un codice alfanumerico, composto dall'acronimo "UC" di \ccgloss{use case} e seguito da dei numeri. Per ottenere una gerarchizzazione ad albero dei casi d'uso, con cui segnalare un sotto caso d'uso di un altro, i numeri saranno seguiti da uno o più punti, con cui sarà facile identificare il sotto caso d'uso rispetto al padre.\\
+Ogni use case sarà inoltre corredato dalle informazioni riguardanti descrizione generale, \ccgloss{attore} principale, pre condizioni, post condizioni e scenario, oltre ad attori secondari, generalizzazioni ed estensioni qualora presenti.
 
 \section{Attori}
-A seguito della richiesta esplicita da parte del proponente di non implementare alcun meccanismo di autenticazione, non vengono distinti nell'analisi dei casi d'uso utenti autenticati o meno, né utenti amministratori.\\
-Per questo motivo, l'unico attore principale di tutti i casi d'uso sarà un utente generico, definito "user" negli UML dei casi d'uso.\\
+A seguito della richiesta esplicita da parte del proponente di non implementare alcun meccanismo di autenticazione, non vengono distinti nell'analisi dei casi d'uso utenti autenticati o meno, né utenti \ccgloss{amministratori}.\\
+Per questo motivo, l'unico attore principale di tutti i casi d'uso sarà un utente generico, definito "user" negli \ccgloss{UML} dei casi d'uso.\\
 L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modello large language che è alla base del funzionamento del chatbot e delle funzionalità che permettono l'interazione dell'utente con esso. Il modello è identificato come attore secondario, e non come parte del sistema stesso, in quanto non sarà allenato dal sistema né il sistema avrà alcun potere su di esso.
 
 \begin{figure}[H]
@@ -984,7 +984,7 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \caption{Diagramma UML dei casi d'uso UC-23 e UC-23.1}
 \end{figure}
 
-\subsection{UC-24 Visualizza chat history}
+\subsection{UC-24 Visualizza \ccgloss{chat history}}
 \begin{description}
     \item[Descrizione:] L'utente vuole visualizzare lo scambio di domande e risposte avvenuto in precedenza con il sistema in una sessione.
     \item[Attore primario:] Utente generico.
