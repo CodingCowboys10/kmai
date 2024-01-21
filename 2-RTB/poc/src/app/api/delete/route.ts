@@ -1,27 +1,44 @@
-import { promises as fsPromises } from 'fs';
-import { join } from 'path';
 import { ChromaClient } from 'chromadb'
-import { collections } from "@/utils/chat_utils"
+import {AWSParams, collections} from "@/utils/chat_utils"
+import {NextRequest, NextResponse} from "next/server";
+import AWS from "aws-sdk";
 
-export async function POST(request: Request) {                                      //chiamato per eliminare un documento specifico
-    const body = await request.json();
-    const model = body.name;         //da utilizzare se vogliamo eliminare un doc specifico
 
-    const directoryPath = `./src/db/docs/${model}`;
-    const files = await fsPromises.readdir(directoryPath);
-    // Elimina ogni file uno per uno
-    for (const file of files) {
-        const filePath = join(directoryPath, file); // Costruisci il percorso completo del file
-        await fsPromises.unlink(filePath);          // Elimina il file
+export async function POST(req: NextRequest) {
+    const body = await req.json();
+    const model = body.name;
+
+    try{
+        // MinIO
+        const s3 = new AWS.S3(AWSParams);
+        const objects = await s3.listObjects({ Bucket: collections[model] }).promise();
+        const objectsToDelete = objects.Contents!.map(obj => ({
+            Key: obj.Key || ''
+        }));
+
+        s3.deleteObjects({
+            Bucket: collections[model],
+            Delete: { Objects: objectsToDelete }
+        }, (err) => {
+            if (err) {
+                throw err
+            }
+        });
+
+    }catch (err){
+        console.error(err);
+        return NextResponse.json({ error:  err }, { status: 500 })
     }
+
     try {
+        // ChromaDb
         const client = new ChromaClient()
         const collection = await client.getCollection({name : collections[model]})
         const responseId = (await collection.get()).ids
         await collection.delete({ids : responseId})
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+        console.error(err);
+        return NextResponse.json({ error: err }, { status: 500 })
     }
-  
-    return Response.json({ success: true })                                         //chiamata eseguita correttamente
+    return NextResponse.json({ success: true, message: 'Documento Eliminato' }, { status: 200 })
   }

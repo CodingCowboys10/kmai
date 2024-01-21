@@ -4,30 +4,28 @@
 let sql;
 const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.Database("./databaseDoc.db", sqlite3.OPEN_READWRITE, (err) => {
+const db = new sqlite3.Database("./databaseMess.db", sqlite3.OPEN_READWRITE, (err : any) => {
     if (err) return console.error(err.message);
 });
 
 
 /*
-sql = 'CREATE TABLE openAi(name TEXT PRIMARY KEY, path TEXT, date DATE DEFAULT CURRENT_DATE)';
+sql = 'CREATE TABLE ChatHistory(id TEXT PRIMARY KEY, message TEXT, role TEXT, model TEXT, date TIMESTAMP)';
 db.run(sql);
 */
 
 /*
-// per inserire un nuovo documento in database
-sql = 'INSERT INTO documents(name,path) VALUES (?,?)';
+sql = 'INSERT INTO ChatHistory(message) VALUES (?)';
 db.run(
     sql,
-    ['tabella.pdf','./src/db/docs/tabella.pdf'],
+    ['Domanda?'],
     (err) => {
         if (err) return console.error(err.message);
     });
 */
 
 /*
-// restituisce tutti i documenti in database
-sql = 'SELECT * FROM openAi';
+sql = 'SELECT * FROM ChatHistory';
 db.all(sql, [], (err, rows) =>  {
     if (err) return console.error(err.message);
     rows.forEach((row) => {
@@ -36,26 +34,9 @@ db.all(sql, [], (err, rows) =>  {
 })
 */
 
+//db.run('DROP TABLE ChatHistory');
 
-/*
-let results = [];
-sql = 'SELECT * FROM documents';
-db.all(sql, [], (err, rows) =>  {
-    if (err) return console.error(err.message);
-    
-    // Aggiungi ogni riga ai risultati
-    rows.forEach((row) => {
-        results.push(row);
-    });
-
-    // Ora results contiene tutti i risultati della query
-    console.log(results);
-});
-*/
-
-
-//db.run('DROP TABLE starling');
-
+//db.run('DELETE FROM ChatHistory');
 
 /*
 // rimuovere un documento dal database
@@ -69,7 +50,7 @@ db.run(
 */
 
 
-db.close((err) => {
+db.close((err : any) => {
     if (err) {
       return console.error(err.message);
     }

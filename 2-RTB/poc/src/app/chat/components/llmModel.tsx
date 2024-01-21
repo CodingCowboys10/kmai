@@ -1,17 +1,10 @@
-/**
- * llmModel.tsx è un componente che contiene il bottone
- * viene utilizzato da llmBody.tsx,
- * gli handler servono a gestire i casi particolari quali hover del mouse e selezione,
- * 
- * Created by Francesco Ferraioli on 20/12/23
- */
 "use client"
 import React from "react";
 
-interface LlmModelProps { //interfaccia che definisce le proprietà del bottone tramite props
-  isSelected: boolean; // Indica se il bottone è selezionato
-  onClick: () => void; // Funzione che viene chiamata quando il bottone viene cliccato
-  text: string; // Testo del bottone
+interface LlmModelProps {
+  isSelected: boolean;
+  onClick: () => void;
+  text: string; 
 }
 
 function LlmModel({ isSelected, onClick , text }: LlmModelProps) {
