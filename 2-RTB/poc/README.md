@@ -15,7 +15,7 @@ Opzionale :
 
 - [OPENAI_API_KEY](https://platform.openai.com/api-keys) (Necessaria per usare le API di OpenAI)
 
-## Configurazione ambiente d'Esecuzione
+## Configurazione ambiente d'esecuzione
 
 - [MinIO](#installazione-di-MinIO)
 - [Ollama](#installazione-di-ollama)
