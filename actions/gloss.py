@@ -6,6 +6,7 @@ singolare=list()
 plurale=list()
 currentDirectory = os.environ['CURRENT_DIRECTORY']+"/"
 glossarioPath = os.environ['GLOSSARIO_PATH']+"/"
+
 def build_file_path_letters(): #prende tutti i file delle lettere e salva in una lista i vari path
 
     fp=list()
@@ -37,7 +38,7 @@ def build_gloss(file_path): #scorre tutti i path dei files lettera#.tex, prende 
                         plurale.append("")
     glossary.append(list(zip(singolare,plurale)))
     return glossary
-
+  
 def glossify(): #va a inserire le G a pedice 
 
     input=list()
@@ -124,7 +125,6 @@ def add_g(f):
         file.write(content)
         file.truncate()
         file.close()
-        print(content)
 
 def get_max_spaces(glossario): #cerca quale termine del glossario è composto da più parole in assoluto per poi cercare a gruppi di max quel n di parole nel testo
 
