@@ -90,7 +90,7 @@ docker exec -it ollama ollama run mistral:v0.2
 
 ### Installazione di Chroma
 
-[Chroma](https://www.trychroma.com/) e' un database vettoriale locale in cui conservare i vari documenti embeddizzati.
+[Chroma](https://www.trychroma.com/) è un database vettoriale locale in cui conservare i vari documenti embeddizzati.
 
 ```shell
 # Creiamo un ambiente virtuale in cui eseguire Chroma
