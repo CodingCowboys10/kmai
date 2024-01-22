@@ -97,7 +97,7 @@ docker exec -it ollama ollama run mistral:v0.2
 python3 -m venv .venv  
 
 # Attiviamo l'ambiente virtuale
-.venv/bin/activate.fish 
+. .venv/bin/activate
 
 # Installiamo ed eseguiamo Chroma
 pip install chromadb 
