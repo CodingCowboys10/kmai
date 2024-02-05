@@ -284,85 +284,220 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
     \label{tab:reqimp}
 \end{xltabular}
 \endgroup
-
+\newpage
 \section{Tracciamento requisiti}
 
 \subsection{Fonte-Requisiti}
 \renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{oddrow}{evenrow}
-\begin{xltabular}{\textwidth}{|c | X |}
+\begin{xltabular}{\textwidth}{|x| X |}
     \hline
     \rowcolor{headerrow} \textbf{\textcolor{white}{Fonte}} & \textbf{\textcolor{white}{Requisiti}}\\
     \hline
     \endhead
-    Proponente & RFO-58, \newline 
-                RQO-1, \newline 
+    Proponente & RFO-58, \newline
+                RQO-1, \newline
                 RQO-4, \newline
-                RV0-1, \newline
+                RVO-1, \newline
                 RVD-3, \newline
                 RVZ-4, \newline
                 RVZ-5, \newline
-                RV0-6, \newline
-                RV0-7, \newline
-                RV0-8, \newline
-                RV0-9, \newline
-                RV0-10, \newline
-                RV0-11, \newline
-                RV0-12, \newline
-                RV0-13, \newline
-                RV0-16, \newline
-                RV0-18, \newline
-                RV0-19, \newline
+                RVO-6, \newline
+                RVO-7, \newline
+                RVO-8, \newline
+                RVO-9, \newline
+                RVO-10, \newline
+                RVO-11, \newline
+                RVO-12, \newline
+                RVO-13, \newline
+                RVO-16, \newline
+                RVO-18, \newline
+                RVO-19, \newline
                 RVZ-20, \newline
-                RV0-21, \newline
-                RV0-22, \newline
-                RV0-23, \newline
-                RV0-24, \newline
-                RI0-2, \newline
-                RI0-4 \newline
-
-                
-    \\
+                RVO-21, \newline
+                RVO-22, \newline
+                RVO-23, \newline
+                RVO-24, \newline
+                RIO-2, \newline
+                RIO-4 \\
     \hline
      Interna & RFD-59, \newline 
                 RVD-2, \newline 
                 RVZ-4, \newline
                 RVZ-5, \newline
                 RV0-6, \newline
-                RV0-7, \newline
-                RV0-8, \newline
-                RV0-9, \newline
-                RV0-10, \newline
-                RV0-11, \newline
-                RV0-12, \newline
-                RV0-13, \newline
-                RV0-14, \newline
-                RV0-15, \newline
-                RV0-17, \newline
-                RV0-21, \newline
-                RV0-22, \newline
-                RV0-23, \newline
-                RV0-24, \newline
-                RI0-1, \newline
-                RI0-3 \newline
-                
-    \\
+                RVO-7, \newline
+                RVO-8, \newline
+                RVO-9, \newline
+                RVO-10, \newline
+                RVO-11, \newline
+                RVO-12, \newline
+                RVO-13, \newline
+                RVO-14, \newline
+                RVO-15, \newline
+                RVO-17, \newline
+                RVO-21, \newline
+                RVO-22, \newline
+                RVO-23, \newline
+                RVO-24, \newline
+                RIO-1, \newline
+                RIO-3\\
     \hline
-         Capitolato & RQO-2 \newline 
-                
-    \\
+    Capitolato & RQO-2\\
+    \hline
+    UC-1 & RFO-1  \\
+    \hline
+    UC-2 & RFO-2  \\
+    \hline
+    UC-3 & RFO-3  \\
+    \hline
+    UC-4 & RFO-4 \\
+    \hline
+    UC-4.1 & RFO-5\\
+    \hline
+    UC-4.2 & RFO-6\\
+    \hline
+    UC-4.3 & RFZ-7 \\
+    \hline
+    UC-4.4 & RFO-8\\ 
+    \hline
+    UC-4.5 & RFD-9\\
+    \hline
+    UC-4.6 & RFO-10\\
+    \hline
+    UC-5 & RFO-11\\
+    \hline
+    UC-5.1 & RFO-12\\
+    \hline
+    UC-5.2 & RFO-13\\
+    \hline
+    UC-5.3 & RFZ-14 \\
+    \hline
+    UC-6 & RFZ-15\\
+    \hline
+    UC-7 & RFZ-16 \\
+    \hline
+    UC-8 & RFZ-17\\
+    \hline
+    UC-8.1 & RFZ-18\\
+    \hline
+    UC-8.2 & RFZ-19\\
+    \hline
+    UC-8.3 & RFZ-20\\
+    \hline
+    UC-9 & RFZ-21\\
+    \hline
+    UC-10 & RFZ-22\\
+    \hline
+    UC-10.1 & RFZ-23 \\
+    \hline
+    UC-10.2 & RFZ-24 \\
+    \hline
+    UC-10.3 & RFZ-25 \\
+    \hline
+    UC-11 & RFZ-26 \\
+    \hline
+    UC-12 & RFO-27\\
+    \hline
+    UC-13 & RFO-28\\
+    \hline
+    UC-13.1 & RFO-29 \\
+    \hline
+    UC-13.2 & RFD-30\\
+    \hline
+    UC-14 & RFO-31 \\
+    \hline
+    UC-14.1 & RFD-32  \\
+    \hline
+    UC-14.2 & RFD-33\\
+    \hline
+    UC-14.3 & RFD-34\\
+    \hline
+    UC-15 & RFD-35 \\
+    \hline
+    UC-16 & RFD-36\\
+    \hline
+    UC-17 & RFD-37 \\
+    \hline
+    UC-18 & RFD-38,\newline RFO-60  \\
+    \hline
+    UC-19 & RFO-39 \\
+    \hline
+    UC-19.1 & RFO-40, \newline RFO-64 \\
+    \hline
+    UC-19.2 & RFD-41,\newline RFD-61 \\
+    \hline
+    UC-20 & RFD-42 \\
+    \hline
+    UC-21 & RFO-43, \newline RFO-63 \\
+    \hline
+    UC-21.1 & RFO-44 \\
+    \hline
+    UC-21.2 & RFO-45 \\
+    \hline
+    UC-22 & RFO-46  \\
+    \hline
+    UC-23 & RFD-47 \\
+    \hline
+    UC-24 & RFD-48, \newline RFO-62 \\
+    \hline
+    UC-25 & RFD-49  \\
+    \hline
+    UC-25.1 & RFD-50  \\
+    \hline
+    UC-26 & RFO-51 \\
+    \hline
+    UC-27 & RFO-52  \\
+    \hline
+    UC-27.1 & RFO-53 \\
+    \hline
+    UC-28 & RFO-54  \\
+    \hline
+    UC-28.1 & RFO-55 \\
+    \hline
+    UC-28.2 & RFD-56 \\
+    \hline
+    UC-29 & RFD-57 \\
     \hline
     \rowcolor{white} \caption{Tracciamento fonte-requisiti}
     \label{tab:riepilogo}
 \end{xltabular}
+
 \subsection{Requisiti-Fonte}
 \renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{oddrow}{evenrow}
-\begin{xltabular}{\textwidth}{|c | c |}
+\begin{xltabular}{\textwidth}{|X | X|}
     \hline
     \rowcolor{headerrow} \textbf{\textcolor{white}{Requisiti}} & \textbf{\textcolor{white}{Fonte}}\\
     \hline
     \endhead
+    
+    \makecell[l]{RFO-58,\\ RQO-1,\\ RQO-4,\\ RV0-1,\\ RVD-3,\\ RVZ-4,\\ RVZ-5,\\ RV0-6,\\ RV0-7,\\ RV0-8,\\ RV0-9,\\ RV0-10,\\ RV0-11,\\ RV0-12,\\ RV0-13,\\ RV0-16,\\ RV0-18,\\ RV0-19,\\ RVZ-20,\\ RV0-21,\\ RV0-22,\\ RV0-23,\\ RV0-24,\\ RI0-2,\\ RI0-4} & Proponente \\
+    \hline
+    \makecell[l]{RFD-59, \\ 
+                RVD-2, \\ 
+                RVZ-4, \\
+                RVZ-5, \\
+                RVO-6, \\
+                RVO-7, \\
+                RVO-8, \\
+                RVO-9, \\
+                RVO-10, \\
+                RVO-11, \\
+                RVO-12, \\
+                RVO-13, \\
+                RVO-14, \\
+                RVO-15, \\
+                RVO-17, \\
+                RVO-21, \\
+                RVO-22, \\
+                RVO-23, \\
+                RVO-24, \\
+                RIO-1, \\
+                RIO-3} & Interna \\
+    \hline
+    RQO-2 & Capitolato \\
+    \hline
     RFO-1 & UC-1  \\
     \hline
     RFO-2 & UC-2  \\
