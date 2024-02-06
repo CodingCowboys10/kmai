@@ -313,7 +313,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
         \item visualizzare il contenuto del documento;
         \item visualizzare lo stato del documento;
         \item visualizzare la dimensione del documento.
-    \end{enumerate} & UC-3.1, \newline UC-3.1.1,\newline UC-3.1.2,\newline UC-3.1.3,\newline UC-3.1.4,\newline UC-3.1.5,\newline UC-3.1.6 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    \end{enumerate} & UC-4, \newline UC-4.1,\newline UC-4.2,\newline UC-4.3,\newline UC-4.4,\newline UC-4.5,\newline UC-4.6 & \textcolor{xmarkcolor}{\ding{55}}  \\
     \hline
     TA-4 & Verificare che l’utente quando effettua una ricerca tra i documenti visualizzati possa:
     \begin{enumerate}
@@ -321,7 +321,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
         \item inserire il nome del documento;
         \item inserire la data di caricamento del documento;
         \item inserire il tag del documento.
-    \end{enumerate}& UC-4, \newline UC4.1,\newline UC4.2,\newline UC4.3 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    \end{enumerate}& UC-5, \newline UC-5.1,\newline UC-5.2,\newline UC-5.3 & \textcolor{xmarkcolor}{\ding{55}}  \\
     \hline
      TA-5 & Verificare che l’utente quando voglia assegnare un tag ad un documento possa:
     \begin{enumerate}
@@ -329,22 +329,22 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
         \item selezionare un documento senza tag;
         \item visualizzare la lista di tag presenti;
         \item inserire il tag al documento.
-    \end{enumerate}& UC-5 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    \end{enumerate}& UC-6 & \textcolor{xmarkcolor}{\ding{55}}  \\
     \hline
     TA-6 & Verificare che l’utente, quando voglia rimuovere un tag ad un documento, possa:
     \begin{enumerate}
         \item visualizzare i documenti caricati;
         \item selezionare un documento con un tag associato;
         \item rimuovere il tag al documento.
-    \end{enumerate}& UC-6 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    \end{enumerate}& UC-7 & \textcolor{xmarkcolor}{\ding{55}}  \\
     \hline
      TA-7 & Verificare che l’utente quando voglia creare un tag possa:
     \begin{enumerate}
         \item visualizzare i tag già esistenti nel sistema;
         \item inserire il nome del nuovo tag;
         \item inserire il colore del nuovo tag;
-        \item inserire la descrizione del nuovo tag;
-    \end{enumerate}& UC-7,\newline UC-7.1,\newline UC-7.2, \newline UC-7.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+        \item inserire la descrizione del nuovo tag.
+    \end{enumerate}& UC-8,\newline UC-8.1,\newline UC-8.2, \newline UC-8.3 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
     TA-8 & Verificare che l’utente possa:
     \begin{enumerate}
@@ -352,7 +352,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
         \item visualizzare un singolo;
         \item visualizzare il colore del tag;
         \item visualizzare la descrizione del tag.
-    \end{enumerate}& UC-8,\newline UC-8.1,\newline UC-8.1.1,\newline UC-8.1.2,\newline UC-8.1.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-9,\newline UC-10,\newline UC-10.1,\newline UC-10.2,\newline UC-10.3 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
      TA-9 & Verificare che l’utente possa:
     \begin{enumerate}
@@ -360,67 +360,64 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
         \item selezionare un singolo tag;
         \item rimuovere il tag selezionato dal sistema.
         
-    \end{enumerate}& UC-9 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-11 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
      TA-10 & Verificare che l’utente possa:
     \begin{enumerate}
         \item rimuovere un documento presente nel sistema;
         \item confermare la rimozione del documento.
         
-    \end{enumerate}& UC-10,\newline UC-10.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-12,\newline UC-12.1 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
     TA-11 & Verificare che l’utente, quando carica un documento, possa:
     \begin{enumerate}
         \item caricare un documento tramite file system;
         \item caricare un documento tramite trascinamento.
         
-    \end{enumerate}& UC-11,\newline UC-11.1,\newline UC-11.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-13,\newline UC-13.1,\newline UC-13.2 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TA-12 & Verificare che l’utente, dopo aver tentato di caricare un documento, visualizzi un messaggio d'errore nel caso il caricamento non sia andato a buon fine.
-        & UC-2,\newline UC-11.2,\newline UC-12 & \textcolor{xmarkcolor}{\ding{55}} \\
-    \hline
-     TA-13 & Verificare che il sistema, quando deve inviare un messaggio d'errore in caricamento file all'utente, possa:
+    TA-12 & Verificare che il sistema, quando deve inviare un messaggio d'errore in caricamento file all'utente, possa:
     \begin{enumerate}
         \item mostrare un messaggio d'errore nel caso il nome del file sia già presente;
         \item mostrare un messaggio d'errore nel caso il formato del file non sia accettato;
         \item mostrare un messaggio d'errore nel caso il file sia corrotto.
         
-    \end{enumerate}& UC-12.1,\newline UC-12.2,\newline UC-12.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-14, \newline UC-14.1,\newline UC-14.2,\newline UC-14.3 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
 
-    TA-14 & Verificare che l’utente, quando deve modificare lo stato di un documento, possa:
+    TA-13 & Verificare che l’utente, quando deve modificare lo stato di un documento, possa:
     \begin{enumerate}
         \item bloccare un documento;
         \item sbloccare un documento.
         
-    \end{enumerate}& UC-13,\newline UC-14 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-15,\newline UC-16 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
     
-    TA-15 & Verificare che l’utente, prima di inviare domande al chatbot, possa:
+    TA-14 & Verificare che l’utente, prima di inviare domande al chatbot, possa:
     \begin{enumerate}
         \item visualizzare la lista delle lingue supportate;
         \item selezionare una lingua.
         
-    \end{enumerate}& UC-15,\newline UC-16 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-17,\newline UC-18 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
 
-    TA-16 & Verificare che l’utente, quando deve inviare domande al chatbot, possa:
+    TA-15 & Verificare che l’utente, quando deve inviare domande al chatbot, possa:
     \begin{enumerate}
         \item digitare la domanda in una barra di digitazione;
         \item inserire la domanda tramite input vocale;
         \item visualizzare un errore a causa della mancata ricezione dell'input vocale.
         
-    \end{enumerate}& UC-17,\newline UC-17.1,\newline UC-17.2,\newline UC-18 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-19,\newline UC-19.1,\newline UC-19.2,\newline UC-20 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TA-17 & Verificare che l’utente, una volta inviata una domanda, possa:
+    TA-16 & Verificare che l’utente, una volta inviata una domanda, possa:
     \begin{enumerate}
         \item visualizzare la risposta;
         \item visualizzare una risposta di cortesia;
-        \item visualizzare un errore a causa del mancato invio di una risposta;
+        \item visualizzare un errore a causa del mancato invio di una risposta.
 
-    \end{enumerate}& UC-19,\newline UC-19.1,\newline UC-19.2,\newline UC-20 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-21,\newline UC-21.1,\newline UC-21.2,\newline UC-22 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-     TA-18 & Verificare che l’utente possa:
+     TA-17 & Verificare che l’utente possa:
     \begin{enumerate}
         \item creare una nuova sessione;
         \item visualizzare la lista di sessioni aperte;
@@ -429,25 +426,25 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
         \item confermare l'eliminazione di una sessione.
         
         
-    \end{enumerate}& UC-21,\newline UC-22,\newline UC-22.1,\newline UC-23,\newline UC-23.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-23,\newline UC-24,\newline UC-24.1,\newline UC-25,\newline UC-25.1 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TA-19 & Verificare che l'utente, dopo aver selezionato una sessione, possa:
+    TA-18 & Verificare che l'utente, dopo aver selezionato una sessione, possa:
     \begin{enumerate}
         \item visualizzare la chat history;
         \item eliminare la chat history;
         \item confermare l'eliminazione della chat history.
         
-    \end{enumerate}& UC-24,\newline UC-25,\newline UC-25.1 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    \end{enumerate}& UC-26,\newline UC-27,\newline UC-27.1 & \textcolor{xmarkcolor}{\ding{55}}  \\
     \hline
     
-     TA-20 & Verificare che l'utente, visualizzando una risposta, possa:
+     TA-19 & Verificare che l'utente, visualizzando una risposta, possa:
     \begin{enumerate}
         \item visualizzare le informazioni della risposta;
         \item visualizzare il documento da cui sono tratte;
         \item visualizzare la pagina del documento da cui sono tratte;
         \item ascoltare la risposta.
         
-    \end{enumerate}& UC-26,\newline UC-26.1,\newline UC-26.2,\newline UC-27 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-28,\newline UC-28.1,\newline UC-28.2,\newline UC-29 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
 
     \rowcolor{white} \caption{Insieme dei test di accettazione} 
@@ -474,151 +471,167 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
     \hline
     TS-3 & Verificare che l'utente possa visualizzare la lista dei documenti presenti nel sistema & RFO-3 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-4 & Verificare che l’utente possa visualizzare il nome del documento di interesse. & RFO-4 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-4 & Verificare che l'utente possa visualizzare delle informazioni per ciascun documento presente nella lista & RFO-4 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-5 & Verificare che l’utente possa visualizzare la data di inserimento del documento di interesse. & RFO-5 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-5 & Verificare che l’utente possa visualizzare il nome del documento di interesse. & RFO-5 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-6 & Verificare che l’utente possa visualizzare i tag applicati al documento di interesse. & RFZ-6 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-6 & Verificare che l’utente possa visualizzare la data di inserimento del documento di interesse. & RFO-6 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-7 & Verificare che l’utente possa visualizzare il contenuto del documento di interesse. & RFO-7 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-7 & Verificare che l’utente possa visualizzare i tag applicati al documento di interesse. & RFZ-7 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-8 & Verificare che l’utente possa visualizzare lo stato del documento di interesse (bloccato o non bloccato). & RFD-8 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-8 & Verificare che l’utente possa visualizzare il contenuto del documento di interesse. & RFO-8 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-9 &  Verificare che l’utente possa visualizzare la dimensione del documento di interesse. & RFO-9 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-9 & Verificare che l’utente possa visualizzare lo stato del documento di interesse (bloccato o non bloccato). & RFD-9 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-10 & Verificare che l’utente possa ricercare un documento per nome. & RFO-10 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-10 &  Verificare che l’utente possa visualizzare la dimensione del documento di interesse. & RFO-10 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-11 & Verificare che l’utente possa ricercare un documento per data di inserimento nel sistema. & RFO-11 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-11 & Verificare che l’utente possa ricercare un documento. & RFO-11 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-12 & Verificare che l’utente possaricercare un documento per i propri tag. & RFZ-12 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-12 & Verificare che l’utente possa ricercare un documento per nome. & RFO-12 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-13 & Verificare che l’utente possa aggiungere un tag ad un documento. & RFZ-13 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-13 & Verificare che l’utente possa ricercare un documento per data di inserimento nel sistema. & RFO-13 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-14 & Verificare che l’utente possa rimuovere un tag da un documento a cui è associato. & RFZ-14 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-14 & Verificare che l’utente possaricercare un documento per i propri tag. & RFZ-14 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-15 & Verificare che l’utente possa creare un nuovo tag da salvare nel sistema. & RFZ-15 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-15 & Verificare che l’utente possa aggiungere un tag ad un documento. & RFZ-15 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-16 & Verificare che l’utente possaaggiungere un nome al tag durante la sua creazione. & RFZ-16 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-16 & Verificare che l’utente possa rimuovere un tag da un documento a cui è associato. & RFZ-16 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-17 & Verificare che l’utente possa aggiungere un colore al tag durante la sua creazione. & RFZ-17 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-17 & Verificare che l’utente possa creare un nuovo tag da salvare nel sistema. & RFZ-17 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-18 & Verificare che l’utente possa aggiungere una descrizione al tag durante la sua creazione. & RFZ-18 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-18 & Verificare che l’utente possa aggiungere un nome al tag durante la sua creazione. & RFZ-18 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-19 &  Verificare che l’utente possa visualizzare la lista di tutti i tag presenti nel sistema e associabili a un documento. & RFZ-19 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-19 & Verificare che l’utente possa aggiungere un colore al tag durante la sua creazione. & RFZ-19 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-20 & Verificare che l'utente possa visualizzare il nome di ogni tag presente nel sistema. & RFZ-20 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-20 & Verificare che l’utente possa aggiungere una descrizione al tag durante la sua creazione. & RFZ-20 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-21 & Verificare che l’utente possa visualizzare il colore di ogni tag presente nel sistema. & RFZ-21 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-21 &  Verificare che l’utente possa visualizzare la lista di tutti i tag presenti nel sistema e associabili a un documento. & RFZ-21 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-22 & Verificare che l’utente possa visualizzare la descrizione di ogni tag presente nel sistema. & RFZ-22 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-22 & Verificare che l'utente possa visualizzare delle informazione per ogni tag presente nel sistema. & RFZ-22 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-23 & Verificare che l’utente possa eliminare uno dei tag presenti nel sistema e con esso tutte le associazioni a ogni documento. & RFZ-23 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-23 & Verificare che l'utente possa visualizzare il nome di ogni tag presente nel sistema. & RFZ-23 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-24 & Verificare che l’utente possa eliminare uno dei documenti presenti nel sistema & RFO-24 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-24 & Verificare che l’utente possa visualizzare il colore di ogni tag presente nel sistema. & RFZ-24 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-25 & Verificare che l’utente possa confermare l’eliminazione di uno dei documenti presenti nel sistema, eliminando definitivamente  ogni informazione associata a quel documento. & RFO-25 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-25 & Verificare che l’utente possa visualizzare la descrizione di ogni tag presente nel sistema. & RFZ-25 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-26 & Verificare che l’utente possa aggiungere un documento nel sistema tramite trascinamento (drag and drop) & RFD-26 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-26 & Verificare che l’utente possa eliminare uno dei tag presenti nel sistema e con esso tutte le associazioni a ogni documento. & RFZ-26 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-27 & Verificare che l’utente possa aggiungere un documento nel sistema tramite navigazione del file system. & RFO-27 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-27 & Verificare che l’utente possa eliminare uno dei documenti presenti nel sistema & RFO-27 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-28 & Verificare che l'utente possa visualizzare un messaggio che lo informa che non è stato possibile inserire il documento a causa del nome del file già in uso. & RFD-28 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-28 & Verificare che l’utente possa confermare l’eliminazione di uno dei documenti presenti nel sistema, eliminando definitivamente  ogni informazione associata a quel documento. & RFO-28 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-29 & Verificare che l’utente possa visualizzare un messaggio che lo informa che non è stato possibile inserire il documento a causa del formato del file non supportato. & RFD-29 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-29 & Verificare che l’utente possa aggiungere un documento nel sistema. & RFO-29 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-30 & Verificare che l’utente possa visualizzare un messaggio che lo informa che non è stato possibile inserire il documento a causa della corruzione del file. & RFD-30 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-30 & Verificare che l’utente possa aggiungere un documento nel sistema tramite trascinamento (drag and drop). & RFD-30 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-31 & Verificare che l'utente possa bloccare un documento, così che il sistema non fornisca risposte su tale documento senza doverlo eliminare. & RFD-31 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-31 & Verificare che l’utente possa aggiungere un documento nel sistema tramite navigazione del file system. & RFO-31 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-32 & Verificare che l'utente possa sbloccare un documento in precedenza bloccato, così che il sistema possa nuovamente fornire risposte su quel particolare documento. & RFD-32 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-32 & Verificare che l'utente possa visualizzare un messaggio che lo informa che non è stato possibile inserire il documento. & RFD-32 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-33 & Verificare che l’utente possa visualizzare la lista delle lingue supportate dal chatbot. & RFD-33 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-33 & Verificare che l'utente possa visualizzare un messaggio che lo informa che non è stato possibile inserire il documento a causa del nome del file già in uso. & RFD-33 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-34 &  Verificare che l'utente possa selezionare la lingua utilizzata dal sistema nel fornire le risposte alle sue domande. & RFD-34 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-34 & Verificare che l’utente possa visualizzare un messaggio che lo informa che non è stato possibile inserire il documento a causa del formato del file non supportato. & RFD-34 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-35 & Verificare che l'utente possa digitare la domanda da porgere al chatbot tramite tastiera. & RFO-35 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-35 & Verificare che l’utente possa visualizzare un messaggio che lo informa che non è stato possibile inserire il documento a causa della corruzione del file. & RFD-35 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-36 & Verificare che l’utente possa inserire la domanda da porgere al chatbot tramite microfono. & RFD-36 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-36 & Verificare che l'utente possa bloccare un documento, così che il sistema non fornisca risposte su tale documento senza doverlo eliminare. & RFD-36 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-37 & Verificare che il sistema, dopo non aver registrato alcun input vocale nel tempo limite a seguito del tentativo da parte dell'utente di inserire una domanda tramite microfono, deve notificare un messaggio all'utente che avvisa la mancata trascrizione della domanda. & RFD-37 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-37 & Verificare che l'utente possa sbloccare un documento in precedenza bloccato, così che il sistema possa nuovamente fornire risposte su quel particolare documento. & RFD-37 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-38 & Verificare che l’utente possa visualizzare la risposta alla domanda che ha inviato in precedenza, qualora l'informazione sia contenuta all'interno di uno dei documenti presenti nel sistema. &  RFO-38 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-38 & Verificare che l’utente possa visualizzare la lista delle lingue supportate dal chatbot. & RFD-38 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-39 & Verificare che l’utente possa visualizzare una risposta di cortesia prodotta dal sistema dopo la ricezione di una domanda non pertinente con alcuna informazione presente in tutti i documenti. & RFO-39 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-39 &  Verificare che l'utente possa selezionare la lingua utilizzata dal sistema nel fornire le risposte alle sue domande. & RFD-39 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-40 & Verificare che l'utente possa visualizzare un messaggio che lo informa che c'è stato un errore nel ricevere la risposta entro il tempo limite. & RFO-40 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-40 & Verificare che l'utente possa inviare una domanda da porre al chatbot. & RFO-40 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-41 & Verificare che l'utente possa creare una nuova sessione di conversazione col chatbot. & RFD-41 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-41 & Verificare che l'utente possa digitare la domanda da porgere al chatbot tramite tastiera. & RFO-41 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-42 & Verificare che l'utente possa visualizzare la lista delle sessioni di conversazione col chatbot attive. & RFD-42 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-42 & Verificare che l’utente possa inserire la domanda da porgere al chatbot tramite microfono. & RFD-42 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-43 & Verificare che l'utente possa eliminare una delle sessioni di conversazioni attive nel sistema e con essa tutti i messaggi scambiati in quella conversazione. & RFD-43 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-43 & Verificare che il sistema, dopo non aver registrato alcun input vocale nel tempo limite a seguito del tentativo da parte dell'utente di inserire una domanda tramite microfono, deve notificare un messaggio all'utente che avvisa la mancata trascrizione della domanda. & RFD-43 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-44 & Verificare che l'utente possa confermare l’eliminazione di una sessione di conversazione e solo dopo deve avvenire l'eliminazione effettiva dei dati associati. & RFD-44 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-44 & Verificare che l’utente possa visualizzare la risposta alla domanda che ha inviato in precedenza. &  RFO-44 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-45 & Verificare che l'utente possa visualizzare lo scambio di domande e risposte avvenuto in precedenza con il sistema in una stessa sessione & RFO-45 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-45 & Verificare che l’utente possa visualizzare la risposta alla domanda che ha inviato in precedenza, qualora l'informazione sia contenuta all'interno di uno dei documenti presenti nel sistema. &  RFO-45 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-46 & Verificare che l'utente possa eliminare lo scambio di domande e risposte avvenuto in precedenza con il chatbot in una stessa sessione. & RFO-46 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-46 & Verificare che l’utente possa visualizzare una risposta di cortesia prodotta dal sistema dopo la ricezione di una domanda non pertinente con alcuna informazione presente in tutti i documenti. & RFO-46 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-47 & Verificare che l'utente possa confermare l'eliminazione dello scambio di domande e risposte, avvenuto in precedenza con il chatbot in una stessa sessione. & RFO-47 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-47 & Verificare che l'utente possa visualizzare un messaggio che lo informa che c'è stato un errore nel ricevere la risposta entro il tempo limite. & RFO-47 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-48 & Verificare che l'utente possa visualizzare il nome del documento da cui deriva la risposta. & RFO-48 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-48 & Verificare che l'utente possa creare una nuova sessione di conversazione col chatbot. & RFD-48 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-49 & Verificare che l'utente possa visualizzare il numero della pagina del documento da cui deriva la risposta. & RFD-49 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-49 & Verificare che l'utente possa visualizzare la lista delle sessioni di conversazione col chatbot attive. & RFD-49 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-50 & Verificare che l'utente possa sentire la lettura della risposta ricevuta. & RFD-50 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-50 & Verificare che l'utente possa eliminare una delle sessioni di conversazioni attive nel sistema e con essa tutti i messaggi scambiati in quella conversazione. & RFD-50 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-51 & Verificare che il sistema supporti il caricamento di file PDF. & RVO-1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-51 & Verificare che l'utente possa confermare l’eliminazione di una sessione di conversazione e solo dopo deve avvenire l'eliminazione effettiva dei dati associati. & RFD-51 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-52 & Verificare che il sistema supporti il caricamento di file PDF. & RVD-2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-52 & Verificare che l'utente possa visualizzare lo scambio di domande e risposte avvenuto in precedenza con il sistema in una stessa sessione & RFO-52 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-53 & Verificare che il sistema supporti il caricamento di file con formato .docx, prodotti con Microsoft Word 2007 e versioni successive. & RVD-3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-53 & Verificare che l'utente possa eliminare lo scambio di domande e risposte avvenuto in precedenza con il chatbot in una stessa sessione. & RFO-53 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-54 & Verificare che il sistema supporti il caricamento di file con formato .mp3. & RVZ-4 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-54 & Verificare che l'utente possa confermare l'eliminazione dello scambio di domande e risposte, avvenuto in precedenza con il chatbot in una stessa sessione. & RFO-54 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-55 & Verificare che il sistema supporti il caricamento di file con formato .mp4. & RVZ-5 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-55 & Verificare che l'utente possa visualizzare le fonti relative alla risposta. & RFO-55 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-56 & Verificare che il sistema permetta l'utilizzo di LLM tramite \ccgloss{OpenAI}. & RVO-6 & \textcolor{xmarkcolor}{\ding{55}}\\
+    TS-56 & Verificare che l'utente possa visualizzare il nome del documento da cui deriva la risposta. & RFO-56 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-57 & Verificare che il sistema permetta il riconoscimento vocale tramite \ccgloss{Whisper} di OpenAI. & RVD-7 & \textcolor{xmarkcolor}{\ding{55}}\\
+    TS-57 & Verificare che l'utente possa visualizzare il numero della pagina del documento da cui deriva la risposta. & RFD-57 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-58 & Verificare che il sistema permetta l'utilizzo di LLM locali tramite \ccgloss{Ollama}. & RVO-8 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-58 & Verificare che l'utente possa sentire la lettura della risposta ricevuta. & RFD-58 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-59 & Verificare che il sistema funzioni correttamente con la presenza di 1000 documenti, tra i formati supportati, in esso. & RPO-1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-59 & Verificare che il sistema garantisca la creazione di almeno una sessione di conversazione. & RFO-59 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-60 & Verificare che il sistema processi correttamente ogni documento, tra i formati supportati, con dimensione fino ai 500KB. & RPO-2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-60 & Verificare che il sistema garantisca la creazione di almeno due sessioni di conversazione. & RFD-60 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-61 & Verificare che il sistema processi correttamente file audio, tra i formati supportati, di dimensione fino a 5MB. & RPZ-3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-61 & Verificare che il sistema interrompa in modo automatico il processo di generazione della risposta ad una domanda, qualora esso dovesse impiegare un tempo superiore ai 30 secondi. & RFO-61 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-62 & Verificare che il sistema funzioni correttamente nel browser Google Chrome dalla versione 110 e successive. & RPO-4 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-62 & Verificare che il sistema interrompa in modo automatico la trascrizione della domanda via input vocale, qualora non fosse rilevato alcuna voce per 5 secondi. & RFD-62 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-63 & Verificare che il sistema funzioni correttamente nel browser Mozilla Firefox dalla versione 116 e successive. & RPO-5 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-63 & Verificare che il sistema salvi, in modo persistente, i messaggi scambiati tra utente e chatbot. & RFO-63 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-64 & Verificare che il sistema funzioni correttamente nel browser Opera dalla versione 96 e successive. & RPO-6 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-64 & Verificare che il sistema effettui correttamente una ricerca semantica (semantic search) tra la domanda posta dall'utente e i gli embedding dei documenti caricati restituendo il documento, o pagina di esso, inerente alla domanda. & RFO-64 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-65 & Verificare che il sistema funzioni correttamente nel browser Microsoft Edge dalla versione 110 e successive. & RPO-7 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-65 & Verificare che il sistema interroghi il LLM scelto in base alla domanda posta dall'utente e al relativo documento. & RFO-65 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-66 & Verificare che il sistema garantisca la creazione di almeno una sessione di conversazione. & RPO-8 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-66 & Verificare che il sistema supporti il caricamento di file PDF. & RFO-66 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-67 & Verificare che il sistema garantisca la creazione di almeno due sessioni di conversazione. & RPD-9 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-67 & Verificare che il sistema supporti il caricamento di file PDF/A. & RFD-67 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-68 & Verificare che il sistema processi i documenti che vengono caricati, creandone i loro embedding. & RIO-1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-68 & Verificare che il sistema supporti il caricamento di file con formato .docx, prodotti con Microsoft Word 2007 e versioni successive. & RFD-68 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-69 & Verificare che il sistema salvi, in modo persistente, i documenti caricati a sistema. & RIO-2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-69 & Verificare che il sistema supporti il caricamento di file con formato .mp3. & RFZ-69 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-70 & Verificare che il sistema salvi, in modo persistente, tutte le informazioni relative ai documenti presenti in esso. & RIO-3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-70 & Verificare che il sistema supporti il caricamento di file con formato .mp4. & RFZ-70 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-71 & Verificare che il sistema salvi, in modo persistente, i vettori dei documenti caricati ed embeddizzati dal sistema. & RIO-4 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-71 & Verificare che il sistema permetta l'utilizzo di LLM tramite \ccgloss{OpenAI}. & RVO-1 & \textcolor{xmarkcolor}{\ding{55}}\\
     \hline
-    TS-72 & Verificare che il sistema interrompa in modo automatico il processo di generazione della risposta ad una domanda, qualora esso dovesse impiegare un tempo superiore ai 30 secondi. & RIO-5 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-72 & Verificare che il sistema permetta il riconoscimento vocale tramite \ccgloss{Whisper} di OpenAI. & RVD-2 & \textcolor{xmarkcolor}{\ding{55}}\\
     \hline
-    TS-73 & Verificare che il sistema interrompa in modo automatico la trascrizione della domanda via input vocale, qualora non fosse rilevato alcuna voce per 5 secondi. & RID-6 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-73 & Verificare che il sistema permetta l'utilizzo di LLM locali tramite \ccgloss{Ollama}. & RVO-3 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-74 & Verificare che il sistema salvi, in modo persistente, i messaggi scambiati tra utente e chatbot. & RIO-7 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-74 & Verificare che il sistema funzioni correttamente con la presenza di 1000 documenti, tra i formati supportati, in esso. & RVO-13 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-75 & Verificare che il sistema effettui correttamente una ricerca semantica (semantic search) tra la domanda posta dall'utente e i gli embedding dei documenti caricati restituendo il documento, o pagina di esso, inerente alla domanda. & RIO-8 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-75 & Verificare che il sistema processi correttamente ogni documento, tra i formati supportati, con dimensione fino ai 500KB. & RVO-14 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-76 & Verificare che il sistema interroghi il LLM scelto in base alla domanda posta dall'utente e al relativo documento. & RIO-9 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-76 & Verificare che il sistema processi correttamente file audio, tra i formati supportati, di dimensione fino a 5MB. & RVZ-15 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-77 & Verificare che il sistema funzioni correttamente nel browser Google Chrome dalla versione 110 e successive. & RVO-16 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-78 & Verificare che il sistema funzioni correttamente nel browser Mozilla Firefox dalla versione 116 e successive. & RVO-17 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-79 & Verificare che il sistema funzioni correttamente nel browser Opera dalla versione 96 e successive. & RVO-18 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-80 & Verificare che il sistema funzioni correttamente nel browser Microsoft Edge dalla versione 110 e successive. & RVO-19 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-81 & Verificare che il sistema processi i documenti che vengono caricati, creandone i loro embedding. & RIO-1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-82 & Verificare che il sistema salvi, in modo persistente, i documenti caricati a sistema. & RIO-2 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-83 & Verificare che il sistema salvi, in modo persistente, tutte le informazioni relative ai documenti presenti in esso. & RIO-3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TS-84 & Verificare che il sistema salvi, in modo persistente, i vettori dei documenti caricati ed embeddizzati dal sistema. & RIO-4 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
     \rowcolor{white} \caption{Insieme dei test di sistema}
     \label{tab:test}
