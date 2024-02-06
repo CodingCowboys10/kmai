@@ -166,7 +166,7 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
 
 \begingroup
 \setlength{\tabcolsep}{10pt}
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{oddrow}{evenrow}
 \begin{xltabular}{\textwidth}{| c | X | c | c |}
     \hline
@@ -181,8 +181,9 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \hline
     RQO-4 & Deve essere fornito al proponente il codice sorgente in un \ccgloss{repository} GitHub. & Obbligatorio & Proponente \\
     \hline
-    RQO-5 & Deve essere fornito il manuale utente. & Obbligatorio & Interna \\
+    RQO-5 & Deve essere fornito il manuale utente. & Obbligatorio & Capitolato \\
     \hline
+    RQO-6 & Deve essere fornita la guida per gli sviluppatori. & Obbligatorio & Capitolato \\
     \rowcolor{white} \caption{Requisiti di qualità del prodotto}
     \label{tab:reqqua}
 \end{xltabular}
@@ -322,8 +323,6 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
                 RVO-18, \newline
                 RVO-19, \newline
                 RQO-1, \newline
-                RQO-4, \newline
-                RIO-2, \newline
                 RIO-4 \\
     \hline
      Interna &  RFD-60, \newline 
@@ -346,11 +345,14 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
                 RVO-18, \newline
                 RVO-19, \newline
                 RQO-3, \newline
-                RQO-5, \newline
+               
                 RIO-1, \newline
                 RIO-3 \\
     \hline
-    Capitolato & RQO-2\\
+    Capitolato & RQO-2, \newline 
+                 RQO-5, \newline 
+                 RQO-6, \newline 
+    \\
     \hline
     UC-1 & RFO-1  \\
     \hline
@@ -511,11 +513,13 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
                 RVO-18, \\
                 RVO-19, \\
                 RQO-3, \\
-                RQO-5, \\
                 RIO-1, \\
                 RIO-3} & Interna \\
     \hline
-    RQO-2 & Capitolato \\
+    \makecell[l]{
+    RQO-2, \\
+    RQO-5,\\
+    RQO-6 } & Capitolato \\
     \hline
     RFO-1 & UC-1  \\
     \hline
@@ -659,7 +663,7 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
     \endhead
     Funzionale & 32 & 22 & 16 \\
     \hline
-    Di qualità & 5 & 0 & 0 \\
+    Di qualità & 6 & 0 & 0 \\
     \hline
     Di vincolo & 17 & 1 & 1 \\
     \hline
@@ -667,7 +671,7 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
     \hline
     Implementativi & 4 & 0 & 0 \\
     \hline
-    \cellcolor{headerrow} \textbf{\textcolor{white}{Totale}} & 58 & 23 & 17 \\
+    \cellcolor{headerrow} \textbf{\textcolor{white}{Totale}} & 59 & 23 & 17 \\
     \hline
     \rowcolor{white} \caption{Riepilogo dei requisiti}
     \label{tab:riepilogo}
