@@ -13,7 +13,7 @@ La qualità di un progetto è fortemente influenzata dalla qualità dei processi
     \begin{equation}
         100\biggl(\frac{\text{Budget Consuntivato} - \text{Budget Preventivato}}{\text{Budget Preventivato}}\biggr)
     \end{equation}
-    \item[Descrizione:] Questa metrica valuta la percentuale di variazione del budget tra preventivo e consuntivo in uno sprint. Il valore è positivo quando viene preventivato un budget inferiore a quello effettivamente utilizzato, mentre è negativo quando viene preventivato un budget maggiore a quello effettivamente utilizzato.
+    \item[Descrizione:] Questa metrica valuta la percentuale di variazione del budget tra \ccgloss{preventivo} e \ccgloss{consuntivo} in uno \ccgloss{sprint}. Il valore è positivo quando viene preventivato un budget inferiore a quello effettivamente utilizzato, mentre è negativo quando viene preventivato un budget maggiore a quello effettivamente utilizzato.
 \end{description}
 
 \subsection{Varianza dell’impegno orario}
@@ -138,7 +138,7 @@ La qualità di un progetto è fortemente influenzata dalla qualità dei processi
     \item[Descrizione:] Questa metrica rappresenta il budget totale del progetto.
 \end{description}
 
-\subsection{Code Coverage}
+\subsection{\ccgloss{Code Coverage}}
 \begin{description}
     \item[Codice:] MPC-13
     \item[Processo:] Sviluppo.
@@ -223,7 +223,7 @@ La qualità di un progetto è fortemente influenzata dalla qualità dei processi
     \item[Descrizione:] L'indice di Gulpease misura il grado di leggibilità di un testo, stimando la difficoltà di lettura per una persona in base alla sua istruzione. Calcolato su una scala da 1 a 100, un indice superiore a 80 identifica un testo facilmente comprensibile per chiunque con un'istruzione elementare. Un valore pari o superiore a 60 identifica un testo comprensible per le persone con istruzione media. Un punteggio superiore a 40 indica che il testo è comprensibile alle persone con un'istruzione superiore, dunque al target di questo progetto.\\Il valore minimo accettato farà dunque riferimento a quest'ultima soglia, con un valore preferibile fissato a 60 o più.
 \end{description}
 
-\subsection{Requisiti obbligatori soddisfatti}
+\subsection{\ccgloss{Requisiti} obbligatori soddisfatti}
 \begin{description}
     \item[Codice:] MPD-2
     \item[Processo:] Sviluppo.
@@ -301,7 +301,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
 %%TA-0 & Verificare che l’utente, all'avvio dell'applicazione, possa selezionare se  recarsi nella parte di chat; recarsi nella parte dei documenti; & UC-0, UC-0.0 & \ding{55} \\
     \hline
     
-    TA-1 & Verificare che l’utente possa selezionare un modello di llm con cui interagire. & UC-1,\newline UC-2 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    TA-1 & Verificare che l’utente possa selezionare un modello di \ccgloss{llm} con cui interagire. & UC-1,\newline UC-2 & \textcolor{xmarkcolor}{\ding{55}}  \\
     \hline
     TA-2 & Verificare che l’utente possa visualizzare i documenti presenti sul modello selezionato.
      & UC-3 &\textcolor{xmarkcolor}{\ding{55}}  \\
@@ -393,7 +393,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
     \end{enumerate}& UC-15,\newline UC-16 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
     
-    TA-14 & Verificare che l’utente, prima di inviare domande al chatbot, possa:
+    TA-14 & Verificare che l’utente, prima di inviare domande al \ccgloss{chatbot}, possa:
     \begin{enumerate}
         \item visualizzare la lista delle lingue supportate;
         \item selezionare una lingua.
@@ -430,7 +430,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
     \hline
     TA-18 & Verificare che l'utente, dopo aver selezionato una sessione, possa:
     \begin{enumerate}
-        \item visualizzare la chat history;
+        \item visualizzare la \ccgloss{chat history};
         \item eliminare la chat history;
         \item confermare l'eliminazione della chat history.
         
@@ -591,7 +591,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
     \hline
     TS-63 & Verificare che il sistema salvi, in modo persistente, i messaggi scambiati tra utente e chatbot. & RFO-63 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-64 & Verificare che il sistema effettui correttamente una ricerca semantica (semantic search) tra la domanda posta dall'utente e i gli embedding dei documenti caricati restituendo il documento, o pagina di esso, inerente alla domanda. & RFO-64 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-64 & Verificare che il sistema effettui correttamente una ricerca semantica (semantic search) tra la domanda posta dall'utente e i gli \ccgloss{embedding} dei documenti caricati restituendo il documento, o pagina di esso, inerente alla domanda. & RFO-64 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
     TS-65 & Verificare che il sistema interroghi il LLM scelto in base alla domanda posta dall'utente e al relativo documento. & RFO-65 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
