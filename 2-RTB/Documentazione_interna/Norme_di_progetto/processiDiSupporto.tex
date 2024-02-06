@@ -75,7 +75,7 @@ La progettazione deve quindi:
 \paragraph{Redazione}
 La redazione deve seguire i seguenti standard di scrittura:
 \begin{itemize}
-    \item rispettare le norme tipografiche presenti nell'appendice §A del documento LaTeXpedia utilizzato per l'apprendimento dello strumento \ccgloss{\LaTeX};
+    \item rispettare le norme tipografiche presenti nell'appendice §A del documento \ccgloss{LaTeX}pedia utilizzato per l'apprendimento dello strumento \LaTeX;
     \item i termini e gli acronimi contenuti nel glossario devono essere riportati in corsivo e con a pedice la lettera "G", per evidenziarle rispetto al testo normale;
     \item i riferimenti ai documenti devono contenere la versione alla quale si fa riferimento;
     \item utilizzare un lessico appropriato al contesto di riferimento.
@@ -84,7 +84,7 @@ La redazione deve seguire i seguenti standard di scrittura:
 \subsubsection{Produzione}
 L'attività si articola nei seguenti compiti:
 \begin{enumerate}
-    \item I documenti devono essere prodotti in un file .pdf tramite la compilazione dei file sorgenti \LaTeX con l'utilizzo dello strumento \TeX. I documenti devono essere forniti ai destinatari attraverso l'esposizione di tali documenti PDF nello strumento \ccgloss{GitHub}. Il compito prevede l'utilizzo di automazioni che facilitino e velocizzino tale pratica.
+    \item I documenti devono essere prodotti in un file .pdf tramite la compilazione dei file sorgenti \LaTeX con l'utilizzo dello strumento \TeX. I documenti devono essere forniti ai destinatari attraverso l'esposizione di tali documenti PDF nello strumento \ccgloss{\ccgloss{Git}Hub}. Il compito prevede l'utilizzo di \ccgloss{automazioni} che facilitino e velocizzino tale pratica.
     \item Devono essere effettuati i controlli necessari in conformità con il processo di gestione della configurazione.
 \end{enumerate}
 \newpage
@@ -100,7 +100,7 @@ Durante lo svolgimento dei compiti vengono utilizzati i seguenti strumenti:
     \item \LaTeX per la progettazione e la redazione dei documenti;
     \item \TeX per la compilazione dei file sorgenti in un file PDF;
     \item GitHub per la gestione dei documenti prodotti;
-    \item \ccgloss{GitHub Actions} per l'\ccgloss{automazione} del compito di produzione e fornitura;
+    \item \ccgloss{GitHub Actions} per l'automazione del compito di produzione e fornitura;
 \end{itemize}
 
 \subsection{Metriche}
@@ -133,12 +133,12 @@ Il processo di gestione della configurazione si articola nelle seguenti attivit�
     \item rilascio, gestione e messa in produzione.
 \end{enumerate}
 \subsubsection{Istanziazione del processo}
-L'attività si articola nel compito di stabilire un piano per la gestione della configurazione. Il piano prevede l'utilizzo del software di controllo di versione \ccgloss{Git} attraverso la piattaforma GitHub. In particolare gli elementi posti sotto controllo di versione devono essere organizzati in un \ccgloss{repository} pubblico organizzato in cartelle. Nel repository devono essere presenti: 
+L'attività si articola nel compito di stabilire un piano per la gestione della configurazione. Il piano prevede l'utilizzo del software di controllo di versione Git attraverso la piattaforma GitHub. In particolare gli elementi posti sotto controllo di versione devono essere organizzati in un \ccgloss{repository} pubblico organizzato in cartelle. Nel repository devono essere presenti: 
 \begin{itemize}
     \item un file READ.me per la presentazione del repository stesso;
     \item la cartella .github/workflows contenente i file .yml per l'esecuzione delle GitHub Actions;
     \item la cartella 1-Candidatura contenente la documentazione relativa alla candidatura al \ccgloss{capitolato} scelto;
-    \item la cartella 2-RTB contenente la documentazione relativa al punto di revisione \ccgloss{Requirment and Technlogy} \ccgloss{Baseline};
+    \item la cartella 2-RTB contenente la documentazione relativa al punto di revisione Requirment and Technlogy \ccgloss{Baseline};
     \item la cartella assets contenente immagini utili al file READ.me;
     \item la cartella actions contenente file utili all'esecuzione delle GitHub Actions;
     \item all'interno delle cartelle 1-Candidatura e 2-RTB le cartelle "Documentazione\_interna" e "Documentazione\_esterna".
@@ -146,7 +146,7 @@ L'attività si articola nel compito di stabilire un piano per la gestione della 
 Il repository deve essere organizzato in \ccgloss{branch} per permettere lavoro asincrono e la verifica e la validazione degli elementi al suo interno. Devono essere sempre presenti due branch chiamati "main" e "develop", rispettivamente per il rilascio e per lo sviluppo delle funzionalità. Questi branch devono essere protetti tramite le branch protection rules che limitano e regolano e rendono sistematico l'apporto di modifiche.
 Le azioni possibili nel repository sono le seguenti:
 \begin{itemize}
-    \item Creazione di un branch. Viene creato un branch nel momento in cui si prende in carico una \ccgloss{issue} dal ITS. Il branch deve essere sempre creato a partire dal branch "develop".
+    \item Creazione di un branch. Viene creato un branch nel momento in cui si prende in carico una issue dal ITS. Il branch deve essere sempre creato a partire dal branch "develop".
     \item \ccgloss{Commit}. Nei branch diversi da "main" e "develop" è possibile creare commit in locale che racchiudono una o più modifiche apportate ad uno o più file.
     \item \ccgloss{Push}. Nei branch diversi da "main" e "develop" è possibile sincronizzare il repository con le modifiche locali poste sotto uno stesso commit, attraverso l'azione di push.
     \item Pull. È possibile sincronizzare la copia locale del repository con i commit presenti solo nel repository remoto attraverso l'azione di pull.
@@ -159,8 +159,8 @@ Le azioni possibili nel repository sono le seguenti:
 L'attività si articola nel compito di stabilire uno schema per l'identificazione degli elementi software e non, che devono essere posti sotto controllo di versione. Lo schema utilizzato è il seguente:
 \begin{itemize}
     \item è un file .tex o .pdf allora rientra nella documentazione e deve essere all'interno della relativa cartella (1-Candidatura o 2-RTB);
-    \item è un file .js, .ts, .tsx, .json e .css allora rientra nel codice e deve essere all'interno della relativa cartella (2-RTB/poc);
-    \item è un file .yml allora rientra nelle automazioni di GitHub Actions e deve essere all'interno della cartella .github/\ccgloss{workflows}.
+    \item è un file .js, .ts, .tsx, .json e .\ccgloss{css} allora rientra nel codice e deve essere all'interno della relativa cartella (2-RTB/poc);
+    \item è un file .yml allora rientra nelle automazioni di GitHub Actions e deve essere all'interno della cartella .github/workflows.
 \end{itemize}
 
 \subsubsection{Controllo della configurazione}
@@ -341,7 +341,7 @@ Questa attività consiste nei seguenti compiti:
     \item L'attività di verifica può portare a due risultati:
     \begin{itemize}
         \item Sono stati riscontrati dei problemi.\\
-        Il verificatore è chiamato a lasciare un commento, tramite apposita funzione di \ccgloss{GitHub}, al redattore di quel documento/codice, richiedendone le opportune modifiche.
+        Il verificatore è chiamato a lasciare un commento, tramite apposita funzione di GitHub, al redattore di quel documento/codice, richiedendone le opportune modifiche.
         \item Non è stato riscontrato alcun problema.\\
         Il verificatore valida le modifiche approvandole secondo ciò che è stabilito nel processo di Gestione della configurazione.
     \end{itemize}
@@ -351,8 +351,8 @@ Questa attività consiste nei seguenti compiti:
 Durante lo svolgimento dei compiti vengono utilizzati i seguenti strumenti:
 \begin{itemize}
     \item Microsoft Word per verificare la correttezza ortografica e sintattica;
-    \item \ccgloss{GitHub} per visualizzare gli elementi modificati e apporre commenti alle sezioni da modificare.
-    \item \ccgloss{Web Storm}per la verifica del codice e controllo di funzionamento.
+    \item GitHub per visualizzare gli elementi modificati e apporre commenti alle sezioni da modificare.
+    \item Web Stormper la verifica del codice e controllo di funzionamento.
 \end{itemize}
 \newpage
 
@@ -418,7 +418,7 @@ Il processo di verifiche ispettive interne si articola nelle seguenti attività:
 \subsubsection{Istanziazione del processo}
 Questa attività si articola nei seguenti compiti:
 \begin{enumerate}
-    \item Verifiche dell'operato del gruppo devono essere svolte in corrispondenza di predeterminate \ccgloss{milestone}. In particolare, una verifica dell'avanzamento del progetto dovrà essere sostenuta in corrispondenza della Requirements and Technology Baseline, della \ccgloss{Product Baseline} e, qualora prevista, del Customer Acceptance, in presenza dei committenti. La verifica ispettiva deve essere opportunamente richiesta dal gruppo tramite una richiesta formale inoltrata a entrambi i committenti, in due momenti diversi. Tale richiesta dovrà avvenire tramite l'invio di una lettera di candidatura alla verifica ispettiva, corredata dai riferimenti necessari per visionare la documentazione e i prodotti del progetto richiesti in quel momento.
+    \item Verifiche dell'operato del gruppo devono essere svolte in corrispondenza di predeterminate \ccgloss{milestone}. In particolare, una verifica dell'avanzamento del progetto dovrà essere sostenuta in corrispondenza della \ccgloss{Requirements and Technology Baseline}, della \ccgloss{Product Baseline} e, qualora prevista, del Customer Acceptance, in presenza dei committenti. La verifica ispettiva deve essere opportunamente richiesta dal gruppo tramite una richiesta formale inoltrata a entrambi i committenti, in due momenti diversi. Tale richiesta dovrà avvenire tramite l'invio di una lettera di candidatura alla verifica ispettiva, corredata dai riferimenti necessari per visionare la documentazione e i prodotti del progetto richiesti in quel momento.
     \item Tutti i documenti, i prodotti software e ogni genere di risorsa richiesti dai committenti devono essere opportunamente preparati e condivisi con tali figure, in rispetto a quanto sarà concordato di volta in volta. Per sostenere la verifica ispettiva relativa alla Requirements and Technology Baseline il team è chiamato a presentare:
     \begin{itemize}
         \item Analisi dei requisiti;
