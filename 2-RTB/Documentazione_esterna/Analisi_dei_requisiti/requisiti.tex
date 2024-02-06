@@ -230,7 +230,7 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \hline
     RVZ-15 & Il sistema deve garantire il suo funzionamento con audio, tra i formati supportati, di dimensione fino a 5MB. & Opzionale & Proponente\\
     \hline % vincolo
-    RVO-17 & Il sistema deve essere utilizzabile correttamente nel browser Google Chrome dalla versione 110 e successive. & Obbligatorio & Proponente, Interna\\  % vincolo
+    RVO-16 & Il sistema deve essere utilizzabile correttamente nel browser Google Chrome dalla versione 110 e successive. & Obbligatorio & Proponente, Interna\\  % vincolo
     \hline
     RVO-17 & Il sistema deve essere utilizzabile correttamente nel browser Mozilla Firefox dalla versione 116 e successive. & Obbligatorio & Proponente, Interna\\  % vincolo
     \hline
@@ -298,7 +298,7 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
     \rowcolor{headerrow} \textbf{\textcolor{white}{Fonte}} & \textbf{\textcolor{white}{Requisiti}}\\
     \hline
     \endhead
-    Proponente & RFO-58, \newline
+    Proponente & RFO-59, \newline
                 RFO-66, \newline
                 RFO-68, \newline
                 RFO-69, \newline
@@ -326,28 +326,25 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
                 RIO-2, \newline
                 RIO-4 \\
     \hline
-     Interna &  RFD-59, \newline 
+     Interna &  RFD-60, \newline 
                 RFO-67, \newline
                 RFO-69, \newline
                 RFO-70, \newline
-                RVD-2, \newline 
-                RVZ-4, \newline
-                RVZ-5, \newline
-                RV0-6, \newline
+                RVO-1, \newline 
+                RVD-2, \newline
+                RVO-3, \newline
+                RVO-4, \newline
+                RVO-5, \newline
+                RVO-6, \newline
                 RVO-7, \newline
                 RVO-8, \newline
                 RVO-9, \newline
                 RVO-10, \newline
                 RVO-11, \newline
                 RVO-12, \newline
-                RVO-13, \newline
-                RVO-14, \newline
-                RVO-15, \newline
                 RVO-17, \newline
-                RVO-21, \newline
-                RVO-22, \newline
-                RVO-23, \newline
-                RVO-24, \newline
+                RVO-18, \newline
+                RVO-19, \newline
                 RQO-3, \newline
                 RQO-5, \newline
                 RIO-1, \newline
@@ -443,7 +440,7 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
     \hline
     UC-21 & RFO-44, \newline RFO-65 \\
     \hline
-    UC-21.1 & RFO-45 \\
+    UC-21.1 & RFO-45, \newline RFO-64 \\
     \hline
     UC-21.2 & RFO-46 \\
     \hline
@@ -484,19 +481,25 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
     \hline
     \endhead
     
-    \makecell[l]{RFO-58,RFO-65,\\
-                RFO-67,\\
-                RFO-68,\\
-                RFO-68,\\ RQO-1,\\ RQO-4,\\ RVO-1,\\ RVD-3,\\ RVZ-4,\\ RVZ-5,\\ RVO-6,\\ RVO-7,\\ RVO-8,\\ RVO-9,\\ RVO-10,\\ RVO-11,\\ RVO-12,\\ RVO-13,\\ RVO-16,\\ RVO-18,\\ RVO-19,\\ RVZ-20,\\ RVO-21,\\ RVO-22,\\ RVO-23,\\ RVO-24,\\ RIO-2,\\ RIO-4} & Proponente \\
+    \makecell[l]{RFO-59,\\
+    RFO-66,\\
+    RFD-68,\\
+    RFZ-69,\\
+    RFZ-70,\\ RQO-1,\\ RQO-4,\\ RVO-1,\\ RVO-2,\\ RVO-4,\\ RVO-5,
+    \\ RVO-6,\\ RVO-7,\\ RVO-8,\\ RVO-11,\\ RVO-13,\\ RVO-14,
+    \\ RVZ-15,\\ RVO-16,\\ RVZ-17,\\ RVO-18,\\ RVO-19,\\ RIO-2,\\ RIO-4} & Proponente \\
+
     \hline
-    \makecell[l]{RFD-59, \\ 
-                RFO-65, \\
-                RFO-67, \\
-                RFO-68, \\
-                RFO-68, \\
-                RVD-2, \\ 
-                RVZ-4, \\
-                RVZ-5, \\
+
+    \makecell[l]{RFD-60, \\ 
+                RFD-67, \\
+                RFZ-69, \\
+                RFZ-70, \\
+                RVO-1, \\ 
+                RVD-2, \\
+                RVO-3, \\
+                RVO-4, \\
+                RVO-5, \\
                 RVO-6, \\
                 RVO-7, \\
                 RVO-8, \\
@@ -504,14 +507,11 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
                 RVO-10, \\
                 RVO-11, \\
                 RVO-12, \\
-                RVO-13, \\
-                RVO-14, \\
-                RVO-15, \\
                 RVO-17, \\
-                RVO-21, \\
-                RVO-22, \\
-                RVO-23, \\
-                RVO-24, \\
+                RVO-18, \\
+                RVO-19, \\
+                RQO-3, \\
+                RQO-5, \\
                 RIO-1, \\
                 RIO-3} & Interna \\
     \hline
@@ -571,75 +571,77 @@ Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente 
     \hline
     RFO-27 & UC-12 \\
     \hline
-    RFO-28 & UC-13 \\
+    RFO-28 & UC-12.1 \\
     \hline
-    RFO-29 & UC-13.1 \\
+    RFO-29 & UC-13 \\
     \hline
-    RFD-30 & UC-13.2 \\
+    RFO-30 & UC-13.1 \\
     \hline
-    RFO-31 & UC-14 \\
+    RFD-31 & UC-13.2 \\
     \hline
-    RFD-32 & UC-14.1 \\
+    RFO-32 & UC-14 \\
     \hline
-    RFD-33 & UC-14.2 \\
+    RFD-33 & UC-14.1 \\
     \hline
-    RFD-34 & UC-14.3 \\
+    RFD-34 & UC-14.2 \\
     \hline
-    RFD-35 & UC-15 \\
+    RFD-35 & UC-14.3 \\
     \hline
-    RFD-36 & UC-16 \\
+    RFD-36 & UC-15 \\
     \hline
-    RFD-37 & UC-17 \\
+    RFD-37 & UC-16 \\
     \hline
-    RFD-38 & UC-18 \\
+    RFD-38 & UC-17 \\
     \hline
-    RFO-39 & UC-19 \\
+    RFD-39 & UC-18 \\
     \hline
-    RFO-40 & UC-19.1 \\
+    RFO-40 & UC-19 \\
     \hline
-    RFD-41 & UC-19.2 \\
+    RFO-41 & UC-19.1 \\
     \hline
-    RFD-42 & UC-20 \\
+    RFD-42 & UC-19.2 \\
     \hline
-    RFO-43 & UC-21 \\
+    RFD-43 & UC-20 \\
     \hline
-    RFO-44 & UC-21.1 \\
+    RFO-44 & UC-21 \\
     \hline
-    RFO-45 & UC-21.2\\
+    RFO-45 & UC-21.1 \\
     \hline
-    RFO-46 & UC-22 \\
+    RFO-46 & UC-21.2\\
     \hline
-    RFD-47 & UC-23 \\
+    RFO-47 & UC-22 \\
     \hline
-    RFD-48 & UC-24 \\
+    RFD-48 & UC-23 \\
     \hline
-    RFD-49 & UC-25 \\
+    RFD-49 & UC-24 \\
     \hline
-    RFD-50 & UC-25.1 \\
+    RFD-50 & UC-25 \\
     \hline
-    RFO-51 & UC-26 \\
+    RFD-51 & UC-25.1 \\
     \hline
-    RFO-52 & UC-27 \\
+    RFO-52 & UC-26 \\
     \hline
-    RFO-53 & UC-27.1 \\
+    RFO-53 & UC-27 \\
     \hline
-    RFO-54 & UC-28 \\
+    RFO-54 & UC-27.1 \\
     \hline
-    RFO-55 & UC-28.1 \\
+    RFO-55 & UC-28 \\
     \hline
-    RFD-56 & UC-28.2 \\
+    RFO-56 & UC-28.1 \\
     \hline
-    RFD-57 & UC-29 \\
+    RFD-57 & UC-28.2 \\
     \hline
-    RFO-60 & UC-18 \\
+    RFD-58 & UC-29 \\
     \hline
-    RFD-61 & UC-19.2 \\
+    RFO-61 & UC-18 \\
     \hline
-    RFO-62 & UC-24 \\
+    RFD-62 & UC-19.2 \\
     \hline
-    RFO-63 & UC-21.1 \\
+    RFO-63 & UC-24 \\
     \hline
-    RFO-64 & UC-19 \\
+    RFO-64 & UC-21.1 \\
+    \hline
+    RFO-65 & UC-19\\
 \hline
     \rowcolor{white} \caption{Tracciamento requisiti-fonte}
     \label{tab:riepilogo}
