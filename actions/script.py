@@ -7,6 +7,7 @@ from datetime import date
 headlog = "\\rowcolor{headerrow} \\textbf{\\textcolor{white}{Versione}} & \\textbf{\\textcolor{white}{Data}} & \\textbf{\\textcolor{white}{Autori}} & \\textbf{\\textcolor{white}{Verificatori}} & \\textbf{\\textcolor{white}{Descrizione}} \\\\"
 hline = "\n    \\hline\n    "
 sep = ' & '
+headlog_doc = "    \\endhead"
 
 contributors = {
     "Lake020" : "Leonardo Lago",
@@ -45,19 +46,26 @@ def directory_list(args) :
     return directory
 
 def build_ver(data, approve):
+    is_doc = True
     num = ""
     lines = data.splitlines()
     for l in range(len(lines)) :
-        if headlog in lines[l]:
-            num = re.search('(\d)\.(\d)', lines[l+2])
+        if headlog_doc in lines[l]:
+            num = re.search('(\d+)\.(\d+)', lines[l+2])
             break
+    if not num:
+        for l in range(len(lines)) :
+            if headlog in lines[l]:
+                num = re.search('(\d+)\.(\d+)', lines[l+2])
+                is_doc = False
+                break
     if approve and num:
         ver = str(int(num.group(1)) + 1) + ".0"
     elif num :
         ver = num.group(1) + "." + str(int(num.group(2)) + 1)
     else :
         ver = "0.1"
-    return ver
+    return ver, is_doc
 
 def github_output(runned):
     name = 'runned'
@@ -80,10 +88,13 @@ def main():
             with open(filename, 'r') as file:
                 data = file.read()
 
-            ver = build_ver(data, approve)
-
-            replace_str = headlog + hline + ver + sep + date.today().strftime("%Y/%m/%d") + sep + author + sep + reviser + sep + comment + '\\\\'
-            newdata = data.replace(headlog, replace_str)
+            ver, is_doc = build_ver(data, approve)
+            if is_doc:
+                replace_str = headlog_doc + hline + ver + sep + date.today().strftime("%Y/%m/%d") + sep + author + sep + reviser + sep + comment + '\\\\'
+                newdata = data.replace(headlog_doc, replace_str)
+            else :
+                replace_str = headlog + hline + ver + sep + date.today().strftime("%Y/%m/%d") + sep + author + sep + reviser + sep + comment + '\\\\'
+                newdata = data.replace(headlog, replace_str)
 
             if newdata != data:
                 runned = True
