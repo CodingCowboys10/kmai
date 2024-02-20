@@ -1,1 +1,138 @@
 \chapter{Tecnologie} \label{cap:tech}
+Nella seguente sezione del documento, vengono elencate le tecnologie utilizzate nella realizzazione del prodotto. Esse sono corredate da una descrizione generale, dalla versione di riferimento, dalla descrizione del loro scopo e funzionamento nel prodotto, e i motivi che hanno portato alla loro scelta.
+
+\section{ChromaDB}
+\begin{description}
+\item[Descrizione:] Base di dati che permette l'archiviazione e la persistenza di vettori.
+\item[Versione:] 1.6.1
+\item[Utilizzo:] È stato utilizzato per memorizzare i vettori di embeddings, generati a partire dal contenuto di documenti testuali.
+\item[Motivazione:] Uno tra i vector database più diffusi ed utilizzati, è facilmente integrabile con LangChain, altra tecnologia utilizzata. A differenza di alternative come Pinecone, oltre ad essere completamente gratuito ed a permettere la creazione e gestione di un numero illimitato di collezioni di vettori, rende possibile associare dei metadati ai vettori archiviati.
+\end{description}
+
+\section{Docker}
+\begin{description}
+\item[Descrizione:] Piattaforma di sviluppo e gestione di applicazioni che permette di creare, distribuire e eseguire in  software in container virtualizzati.
+\item[Versione:] 24.0.7
+\item[Utilizzo:] Utilizzato nell'esecuzione delle immagini Docker ufficiali di Ollama e MinIO.
+\item[Motivazione:] Utilizzando delle immagini ufficiali per altre tecnologie impiegate, permette una più semplice preparazione ed esecuzione di esse.
+\end{description}
+
+\section{LangChain}
+\begin{description}
+\item[Descrizione:] Framework per lo sviluppo di applicazioni LLM-based.
+\item[Versione:] 0.0.208
+\item[Utilizzo:] Viene utilizzato per il parsing e lo splitting dei documenti testuali, oltre che per la generazione degli embeddings e il processo di information retrieval. 
+\item[Motivazione:] Oltre a permettere la gestione di moltissime funzionalità diverse tramite l'utilizzo di chain, offre l'integrazione con un'ampia varietà di altre tecnologie. 
+\end{description}
+
+\section{MinIO}
+\begin{description}
+\item[Descrizione:] Object store.
+\item[Versione:] 8.4.3
+\item[Utilizzo:] Utilizzato per lo store dei documenti testuali presenti nel sistema.
+\item[Motivazione:] È un object store gratuito, ad elevate prestazioni e completamente compatibile con il servizio di storage offerto da Amazon S3. Rispetto alla conservazione dei documenti nel file system, questa soluzione offre un maggiore livello di sicurezza offerta dagli elevati ed ottimizzati metodi di crittografia utilizzati durante il caricamento dei dati.
+\end{description}
+
+\section{Next.js}
+\begin{description}
+\item[Descrizione:] Framework per lo sviluppo di applicazioni web in React.
+\item[Versione:] 14.0.3
+\item[Utilizzo:] È stato utilizzato per lo sviluppo del prodotto.
+\item[Motivazione:] Offre soluzioni standard per la gestione di aspetti comuni, come il routing. Inoltre, permette di scegliere, tra diversi tipi, quale runtime utilizzare.
+\end{description}
+
+\section{Node.js}
+\begin{description}
+\item[Descrizione:] Runtime system per esecuzione di codice Javascript.
+\item[Versione:] 20.11.0
+\item[Utilizzo:] È utilizzato per l'esecuzione del prodotto.
+\item[Motivazione:] Principale sistema di esecuzione di codice Javascript per popolarità e prestazioni.
+\end{description}
+
+\section{Ollama}
+\begin{description}
+\item[Descrizione:] Framework per l'esecuzione di LLM locali.
+\item[Versione:] 0.1.19
+\item[Utilizzo:] È stato utilizzato per l'esecuzione in locale del LLM utilizzato nell'embedding dei documenti e per il funzionamento del chatbot integrato.
+\item[Motivazione:] Oltre ad essere completamente gratuito, Ollama offre una vastissima gamma, in continuo aggiornamento, di modelli open source tra cui scegliere.
+\end{description}
+
+\section{OpenAI}
+\begin{description}
+\item[Descrizione:] Fornitore di servizi legati all'intelligenza artificiale.
+\item[Versione:] -
+\item[Utilizzo:] Tramite le proprie API, viene utilizzato il LLM GPT-3.5 per l'embedding dei documenti e per il funzionamento del chatbot integrato.
+\item[Motivazione:] Leader indiscusso del settore, offre servizi a pagamento con le migliori prestazioni. La sua notorietà nel settore garantisce il suo supporto a praticamente qualsiasi tecnologia inerente all'ambito AI.
+\end{description}
+
+\section{React}
+\begin{description}
+\item[Descrizione:] Libreria Javascript per lo sviluppo di applicazioni web e interfacce utente.
+\item[Versione:] 18.2.0
+\item[Utilizzo:] È stato utilizzato per lo sviluppo del prodotto.
+\item[Motivazione:] Rispetto alla principale alternativa Angular ha una curva di apprendimento ridotta, che comporta una più semplice interazione.
+\end{description}
+
+\section{SQLite}
+\begin{description}
+\item[Descrizione:] Libreria per l'implementazione di database SQL.
+\item[Versione:] 5.1.6
+\item[Utilizzo:] Viene impiegato per l'archiviazione dei messaggi e di tutte le informazioni ad essi associate.
+\item[Motivazione:] Nonostante la facilità di utilizzo dello strumento, l'utilizzo di SQLite permette di ottenere elevate prestazioni, senza la necessità di un processo server per il suo utilizzo né di una sua configurazione iniziale.
+\end{description}
+
+\section{Tailwind}
+\begin{description}
+\item[Descrizione:] Framework CSS per lo sviluppo semplificato della presentazione di siti e applicazioni web.
+\item[Versione:] 3.3.0
+\item[Utilizzo:] Viene utilizzato per sviluppare l'aspetto dell'interfaccia del prodotto.
+\item[Motivazione:] Utilizzando delle classi standard preesistenti, permette la definizione semplificata e più rapida del codice CSS.
+\end{description}
+
+\section{Typescript}
+\begin{description}
+\item[Descrizione:] Linguaggio di programmazione, estensione di Javascript.
+\item[Versione:] -
+\item[Utilizzo:] Linguaggio utilizzato per lo sviluppo del prodotto.
+\item[Motivazione:] Grazie all'introduzione della tipizzazione statica rispetto a Javascript, Typescript permette il rilevamento di errori a tempo di compilazione.
+\end{description}
+
+\section{Riepilogo} \label{sec:riepilogotech}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{0.5\textwidth}{| X | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Nome tecnologia}} & \textbf{\textcolor{white}{Versione}} \\
+    \hline
+    \endhead
+    ChromaDB & 1.6.1\\
+    \hline
+    Docker & 24.0.7\\
+    \hline
+    LangChain & 0.0.208\\
+    \hline
+    MinIO & 8.4.3\\
+    \hline
+    Next.js & 14.0.3\\
+    \hline
+    Node.js & 20.11.0\\
+    \hline
+    Ollama & 0.1.19\\
+    \hline
+    OpenAI & -\\
+    \hline
+    React & 18.2.0\\
+    \hline
+    SQLite & 5.1.6\\
+    \hline
+    Tailwind & 3.3.0\\
+    \hline
+    Typescript & -\\
+    \hline
+    \rowcolor{white} \caption{Tecnologie utilizzate}
+    \label{tab:reqimp}
+\end{xltabular}
+\endgroup
