@@ -140,9 +140,10 @@ L'attività si articola nel compito di stabilire un piano per la gestione della 
     \item la cartella .github/workflows contenente i file .yml per l'esecuzione delle GitHub Actions;
     \item la cartella 1-Candidatura contenente la documentazione relativa alla candidatura al \ccgloss{capitolato} scelto;
     \item la cartella 2-RTB contenente la documentazione relativa al punto di revisione Requirment and Technlogy \ccgloss{Baseline};
+    \item la cartella 3-PB contenente la documentazione relativa al punto di revisione Product Baseline;
     \item la cartella assets contenente immagini utili al file READ.me;
     \item la cartella actions contenente file utili all'esecuzione delle GitHub Actions;
-    \item all'interno delle cartelle 1-Candidatura e 2-RTB le cartelle "Documentazione\_interna" e "Documentazione\_esterna".
+    \item all'interno delle cartelle 1-Candidatura, 2-RTB e 3-PB le cartelle "Documentazione\_interna" e "Documentazione\_esterna".
 \end{itemize}
 Il repository deve essere organizzato in \ccgloss{branch} per permettere lavoro asincrono e la verifica e la validazione degli elementi al suo interno. Devono essere sempre presenti due branch chiamati "main" e "develop", rispettivamente per il rilascio e per lo sviluppo delle funzionalità. Questi branch devono essere protetti tramite le branch protection rules che limitano e regolano e rendono sistematico l'apporto di modifiche.
 Le azioni possibili nel repository sono le seguenti:
@@ -159,8 +160,8 @@ Le azioni possibili nel repository sono le seguenti:
 \subsubsection{Identificazione della configurazione}
 L'attività si articola nel compito di stabilire uno schema per l'identificazione degli elementi software e non, che devono essere posti sotto controllo di versione. Lo schema utilizzato è il seguente:
 \begin{itemize}
-    \item è un file .tex o .pdf allora rientra nella documentazione e deve essere all'interno della relativa cartella (1-Candidatura o 2-RTB);
-    \item è un file .js, .ts, .tsx, .json e .\ccgloss{css} allora rientra nel codice e deve essere all'interno della relativa cartella (2-RTB/poc);
+    \item è un file .tex o .pdf allora rientra nella documentazione e deve essere all'interno della relativa cartella (1-Candidatura, 2-RTB o 3-PB);
+    \item è un file .js, .ts, .tsx, .json e .\ccgloss{css} allora rientra nel codice e deve essere all'interno della relativa cartella (2-RTB/poc o 3-PB/mvp);
     \item è un file .yml allora rientra nelle automazioni di GitHub Actions e deve essere all'interno della cartella .github/workflows.
 \end{itemize}
 
