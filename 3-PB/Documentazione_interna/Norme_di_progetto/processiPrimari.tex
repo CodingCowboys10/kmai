@@ -188,13 +188,26 @@ L'attività si articola nei seguenti compiti:
     \item Deve essere sviluppata una progettazione che tenga in considerazione l'interazione dei singoli componenti tra loro, verificando che ogni componente faccia riferimento a uno o più requisiti e viceversa.
     \item Devono essere identificati i test con cui verificare la soddisfazione dei requisiti che danno origine ai componenti, e devono essere riportati nel documento opportuno denominato Piano\_di\_qualifica\_v2.0.
     \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività. Il parere del proponente sarà inoltre necessario per la definizione dei componenti da progettare, e successivamente codificare e implementare, per la prima fase di studio di fattibilità del progetto e delle sue tecnologie, con la realizzazione di un prodotto software denominato \ccgloss{Proof of Concept}.
+    \item La progettazione deve portare alla produzione del documento Specifica\_architetturale\_v1.0, il quale conterrà:
+
+\begin{itemize}
+    \item una lista delle tecnologie utilizzate, che a sua volta, per ciascun elemento conterrà:
+    \begin{enumerate}
+        \item una breve descrizione del suo funzionamento;
+        \item la versione utilizzata;
+        \item come l'elemento viene integrato nel nostro progetto;
+        \item una motivazione riguardante il perché quello strumento è stato scelto.
+    \end{enumerate}
+    \item uno schema che rappresenta l'architettura logica del prodotto;
+    \item una lista dei design pattern implementati, con una descrizione dettagliata di come sono stati integrati nell'applicazione.
+\end{itemize}
 \end{enumerate}
 
 \subsubsection{Progettazione di dettaglio}
 L'attività si articola nei seguenti compiti:
 \begin{enumerate}
     \item Ogni singolo componente deve essere oggetto di una progettazione dettagliata, identificando le unità che lo compongono. La codifica, l'implementazione e il test di ogni unità software deve poter essere assegnabile ad un membro come task: questa direttiva rappresenterà il metro per identificare la grandezza e la complessità che ogni unità dovrà avere;
-    \item Una opportuna documentazione deve essere redatta per esporre le specifiche prodotte nelle fasi di progettazione;
+    \item Una opportuna documentazione deve essere redatta per esporre le specifiche prodotte nelle fasi di progettazione. In particolare, nel documento denominato Specifica\_architetturale\_v1.0 sarà redatta una sezione specifica che conterrà una descrizione dettagliata dell'architettura, approfondendo le relazioni tra i componenti e come interagiscono;
     \item Deve essere verificato che le unità progettate soddisfino i requisiti del prodotto;
     \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività.
 \end{enumerate}
@@ -215,23 +228,6 @@ L'attività si articola nei seguenti compiti:
     \item I componenti e le singole unità software devono essere integrati secondo quanto deciso dal relativo piano di integrazione, verificando che l'integrazione soddisfi i requisiti del prodotto.
     \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività. In riferimento alla fase di studio di fattibilità del progetto e delle tecnologie, l'incontro con il proponente sarà necessario all'esposizione del prodotto denominato Proof of Concept, con il quale dimostrare la fattibilità del prodotto richiesto dal progetto in relazione alle tecnologie adottate dal gruppo in accordo con il proponente stesso.
 \end{enumerate}
-
-
-\subsubsection{Specifica Architetturale}
-La progettazione deve produrre il documento \textit{Specifica Architetturale}, il quale conterrà:
-
-\begin{itemize}
-    \item una lista delle tecnologie utilizzate, che a sua volta, per ciascun elemento conterrà:
-    \begin{itemize}
-        \item una breve descrizione del suo funzionamento;
-        \item la versione utilizzata;
-        \item come l'elemento viene integrato nel nostro progetto;
-        \item una motivazione riguardante il perché quello strumento è stato scelto.
-    \end{itemize}
-    \item uno schema che rappresenta l'architettura logica del prodotto;
-    \item Una descrizione dettagliata dell'architettura, approfondendo le relazioni tra i componenti e come interagiscono;
-    \item Una lista dei design pattern implementati, con una descrizione dettagliata di come sono stati integrati nell'applicazione.
-\end{itemize}
 
 
 %\subsubsection{Collaudo}
