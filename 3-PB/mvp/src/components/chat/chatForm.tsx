@@ -1,0 +1,92 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+
+const FormSchema = z.object({
+  message: z.string().trim().min(1, {
+    message: "Il messaggio non puo' essere vuoto.",
+  }),
+});
+
+function ChatForm() {
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  });
+
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    toast(
+      <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+      </pre>,
+    );
+  }
+
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="mt-auto w-7/12 relative"
+      >
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Textarea
+                  placeholder="Chatta con KMAI...."
+                  className="resize-none pr-14"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription className={"text-center"}>
+                Le risposte fornite possono contenere dati errati, verificare
+                sempre le risposte.
+              </FormDescription>
+            </FormItem>
+          )}
+        />
+        <Button
+          className={"absolute right-0 top-0 m-3"}
+          size={"icon"}
+          variant={"secondary"}
+          type="submit"
+        >
+          <svg
+            className="with-icon_icon__MHUeb"
+            data-testid="geist-icon"
+            fill="none"
+            height="24"
+            shapeRendering="geometricPrecision"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+            viewBox="0 0 24 24"
+            width="24"
+            style={{
+              color: "var(--geist-foreground)",
+              width: "24px",
+              height: "24px",
+            }}
+          >
+            <path d="M12 19V5" />
+            <path d="M5 12l7-7 7 7" />
+          </svg>
+        </Button>
+      </form>
+    </Form>
+  );
+}
+
+export default ChatForm;
