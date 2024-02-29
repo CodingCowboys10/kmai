@@ -42,7 +42,7 @@ function Message({
             </h1>
             <div
               className={
-                "flex justify-between text-sm opacity-70 h-full items-center rounded-xl shadow-xl border border-white px-2 border-opacity-30"
+                "flex justify-between text-sm opacity-70 h-full items-center rounded-xl  border border-accent-foreground px-2 border-opacity-50"
               }
             >
               <p>{pageNumber}</p>
@@ -91,7 +91,9 @@ function Message({
         <div className={"h-full flex items-end"}>
           <Avatar>
             <AvatarImage src="" />
-            <AvatarFallback>TU</AvatarFallback>
+            <AvatarFallback className={"text-foreground font-medium"}>
+              TU
+            </AvatarFallback>
           </Avatar>
         </div>
       )}

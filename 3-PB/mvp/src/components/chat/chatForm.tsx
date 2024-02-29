@@ -18,25 +18,24 @@ const FormSchema = z.object({
   }),
 });
 
-function ChatForm() {
+interface ChatFormValueInterface {
+  handleSubmit: any;
+  input: string;
+  handleInputChange: any;
+}
+
+function ChatForm({
+  handleSubmit,
+  input,
+  handleInputChange,
+}: ChatFormValueInterface) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast(
-      <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-      </pre>,
-    );
-  }
-
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-auto w-7/12 relative"
-      >
+      <form onSubmit={handleSubmit} className="mt-auto w-7/12 relative">
         <FormField
           control={form.control}
           name="message"
@@ -44,9 +43,16 @@ function ChatForm() {
             <FormItem>
               <FormControl>
                 <Textarea
+                  value={input}
+                  onChange={handleInputChange}
                   placeholder="Chatta con KMAI...."
                   className="resize-none pr-14"
-                  {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleSubmit(e);
+                    }
+                  }}
                 />
               </FormControl>
               <FormDescription className={"text-xs text-center"}>
