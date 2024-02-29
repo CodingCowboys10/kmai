@@ -20,7 +20,10 @@ function Message({
       {isGenerated && (
         <div className={"h-full flex items-end"}>
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage
+              className={"dark:invert"}
+              src="https://raw.githubusercontent.com/ollama/ollama/a0a829bf7a29b532f4bebe00e7cb1304ff9f0190/app/src/ollama.svg"
+            />
             <AvatarFallback>AI</AvatarFallback>
           </Avatar>
         </div>
@@ -84,6 +87,14 @@ function Message({
           })}
         </p>
       </div>
+      {!isGenerated && (
+        <div className={"h-full flex items-end"}>
+          <Avatar>
+            <AvatarImage src="" />
+            <AvatarFallback>TU</AvatarFallback>
+          </Avatar>
+        </div>
+      )}
     </div>
   );
 }
