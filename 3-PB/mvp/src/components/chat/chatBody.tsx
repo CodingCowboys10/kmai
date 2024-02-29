@@ -10,7 +10,7 @@ function ChatBody() {
     <div
       className={"flex flex-col min-h-screen w-full p-2 gap-0.5 items-center"}
     >
-      <ChatMessages messages={[]}></ChatMessages>
+      <ChatMessages messages={messages}></ChatMessages>
       <ChatForm
         handleSubmit={handleSubmit}
         input={input}

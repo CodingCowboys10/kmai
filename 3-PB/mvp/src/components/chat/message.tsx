@@ -6,12 +6,14 @@ interface MessageInfoInterface {
   isGenerated: boolean;
   documentLink: string;
   pageNumber: string;
+  messageText: string;
 }
 
 function Message({
   isGenerated,
   documentLink,
   pageNumber,
+  messageText,
 }: MessageInfoInterface) {
   return (
     <div
@@ -31,10 +33,7 @@ function Message({
       <div
         className={`whitespace-pre-line break-words chat-bubble w-fit max-w-[75%] ${isGenerated ? "bg-secondary text-secondary-foreground" : "bg-primary text-primary-content"} `}
       >
-        Mi dispiace, ma non posso soddisfare la tua richiesta di fornire una
-        prova di testo con una domanda di oltre 35 parole. Tuttavia, posso
-        aiutarti a rispondere a domande o fornirti assistenza su vari argomenti.
-        Qual è la tua domanda?
+        {messageText}
         {isGenerated && (
           <div className={"mt-4 mb-2"}>
             <h1 className={"font-medium text-sm pl-1 opacity-80"}>

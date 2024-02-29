@@ -1,15 +1,17 @@
 import Message from "@/components/chat/message";
 import { Message as AiMessage } from "ai";
+import React from "react";
 
 interface ChatMessagesInterface {
   messages: AiMessage[];
 }
 
 function ChatMessages({ messages }: ChatMessagesInterface) {
-  messages = []; //In futuro da togliere e da modificare il diverso da zero nel messages.length != 0
   return (
-    <div className={"flex flex-col gap-2 w-8/12 h-full px-2 overflow-scroll"}>
-      {messages.length != 0 && (
+    <div
+      className={"flex flex-col gap-2 w-8/12 h-full pt-2 px-2 overflow-scroll"}
+    >
+      {messages.length == 0 && (
         <div
           className={
             "text-[--text] opacity-40 font-medium text-2xl transition duration-300 ease-in flex flex-col items-center justify-center h-full w-full align"
@@ -18,15 +20,18 @@ function ChatMessages({ messages }: ChatMessagesInterface) {
           Icona di Coding Cowboys
         </div>
       )}
-      {[...Array(2)].map((_, index) => (
-        <div key={index}>
-          <Message
-            pageNumber={"Pag. 0-1"}
-            documentLink={""}
-            isGenerated={index % 2 !== 0}
-          />
-        </div>
-      ))}
+      <div className="flex flex-col gap-5 ">
+        {messages.map((value, index) => (
+          <React.Fragment key={index}>
+            <Message
+              isGenerated={value.role !== "user"}
+              messageText={value.content}
+              documentLink={""}
+              pageNumber={""}
+            />
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 }
