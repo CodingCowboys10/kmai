@@ -8,7 +8,7 @@ interface ChatMessagesInterface {
 function ChatMessages({ messages }: ChatMessagesInterface) {
   messages = []; //In futuro da togliere e da modificare il diverso da zero nel messages.length != 0
   return (
-    <div className={"flex flex-col w-7/12 h-full px-2 overflow-scroll"}>
+    <div className={"flex flex-col gap-2 w-8/12 h-full px-2 overflow-scroll"}>
       {messages.length != 0 && (
         <div
           className={
@@ -18,9 +18,13 @@ function ChatMessages({ messages }: ChatMessagesInterface) {
           Icona di Coding Cowboys
         </div>
       )}
-      {[...Array(10)].map((_, index) => (
+      {[...Array(2)].map((_, index) => (
         <div key={index}>
-          <Message isGenerated={index % 2 !== 0} />
+          <Message
+            pageNumber={"Pag. 0-1"}
+            documentLink={""}
+            isGenerated={index % 2 !== 0}
+          />
         </div>
       ))}
     </div>

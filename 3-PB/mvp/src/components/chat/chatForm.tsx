@@ -49,7 +49,7 @@ function ChatForm() {
                   {...field}
                 />
               </FormControl>
-              <FormDescription className={"text-center"}>
+              <FormDescription className={"text-xs text-center"}>
                 Le risposte fornite possono contenere dati errati, verificare
                 sempre le risposte.
               </FormDescription>
