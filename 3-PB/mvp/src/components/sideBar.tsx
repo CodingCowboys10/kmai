@@ -4,9 +4,6 @@ import { Button } from "@/components/ui/button";
 
 function SideBar({ children }: { children: React.ReactNode }) {
   const [isCollapsed, setCollapsed] = useState(false);
-  let style = "";
-  useEffect(() => {}, [isCollapsed]);
-
   return (
     <div
       className={`relative transition ease-in-out duration-300 flex flex-col min-h-screen bg-accent w-2/12 ${isCollapsed ? "-translate-x-full" : "transition-x-0"}`}
