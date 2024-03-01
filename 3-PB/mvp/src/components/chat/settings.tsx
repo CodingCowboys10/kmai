@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,20 +8,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import * as React from "react";
-
-import { useTheme } from "next-themes";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDownIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import ThemeToggle from "@/components/chat/themeToggle";
+import ModelToggle from "@/components/chat/modelToggle";
 
 function Settings() {
-  const { theme, setTheme } = useTheme();
-
   return (
     <div className={"flex flex-row p-5 mt-auto justify-end"}>
       <Dialog>
@@ -55,37 +44,9 @@ function Settings() {
             <DialogDescription className={"text-sm"}>
               Modifica tutte le impostazioni della Chat.
             </DialogDescription>
-            <div className={"flex flex-col pt-5 "}>
-              <div className={"flex flex-row items-center justify-between"}>
-                <h2>Tema</h2>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="justify-start">
-                      {theme === "light" && (
-                        <div className="flex justify-between gap-3 w-full scale-100 dark:scale-0">
-                          <SunIcon className="w-5 h-5" />
-                          <ChevronDownIcon className="w-5 h-5" />
-                        </div>
-                      )}
-                      {theme === "dark" && (
-                        <div className=" flex justify-between gap-3  w-full scale-0 dark:scale-100">
-                          <MoonIcon className="w-5 h-5" />
-                          <ChevronDownIcon className="w-5 h-5" />
-                        </div>
-                      )}
-                      <span className="sr-only">Toggle theme</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="min-w-5">
-                    <DropdownMenuItem onClick={() => setTheme("light")}>
-                      <SunIcon className="w-5 h-5" />
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setTheme("dark")}>
-                      <MoonIcon className="w-5 h-5" />
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
+            <div className={"flex flex-col gap-4 pt-5 "}>
+              <ModelToggle />
+              <ThemeToggle />
             </div>
           </DialogHeader>
         </DialogContent>

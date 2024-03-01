@@ -1,25 +1,25 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Skeleton } from "@/components/ui/skeleton";
 
-interface MessageInfoInterface {
-  isGenerated: boolean;
-  documentLink: string;
-  pageNumber: string;
+type MessageInfoInterface = {
   messageText: string;
-}
+} & (
+  | {
+      isGenerated: true;
+      documentLink: string;
+      pageNumber: string;
+    }
+  | { isGenerated: false }
+);
 
-function Message({
-  isGenerated,
-  documentLink,
-  pageNumber,
-  messageText,
-}: MessageInfoInterface) {
+function Message(props: MessageInfoInterface) {
   return (
     <div
-      className={`text-white chat ${isGenerated ? "chat-start" : "chat-end"}`}
+      className={`text-white chat ${props.isGenerated ? "chat-start" : "chat-end"}`}
     >
-      {isGenerated && (
+      {props.isGenerated && (
         <div className={"h-full flex items-end"}>
           <Avatar>
             <AvatarImage
@@ -31,10 +31,10 @@ function Message({
         </div>
       )}
       <div
-        className={`whitespace-pre-line break-words chat-bubble w-fit max-w-[75%] ${isGenerated ? "bg-secondary text-secondary-foreground" : "bg-primary text-primary-content"} `}
+        className={`whitespace-pre-line break-words chat-bubble w-fit max-w-[75%] ${props.isGenerated ? "bg-secondary text-secondary-foreground" : "bg-primary text-primary-content"} `}
       >
-        {messageText}
-        {isGenerated && (
+        {props.messageText}
+        {props.isGenerated && (
           <div className={"mt-4 mb-2"}>
             <h1 className={"font-medium text-sm pl-1 opacity-80"}>
               Fonte della Risposta
@@ -44,14 +44,14 @@ function Message({
                 "flex justify-between text-sm opacity-70 h-full items-center rounded-xl  border border-accent-foreground px-2 border-opacity-50"
               }
             >
-              <p>{pageNumber}</p>
+              <p>{props.pageNumber}</p>
               <Button
                 className={"text-accent-foreground"}
                 variant={"link"}
                 size={"icon"}
                 asChild
               >
-                <Link href={documentLink}>
+                <Link href={props.documentLink}>
                   <svg
                     className="with-icon_icon__MHUeb"
                     data-testid="geist-icon"
@@ -86,7 +86,7 @@ function Message({
           })}
         </p>
       </div>
-      {!isGenerated && (
+      {!props.isGenerated && (
         <div className={"h-full flex items-end"}>
           <Avatar>
             <AvatarImage src="" />

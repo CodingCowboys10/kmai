@@ -23,12 +23,16 @@ function ChatMessages({ messages }: ChatMessagesInterface) {
       <div className="flex flex-col gap-5 ">
         {messages.map((value, index) => (
           <React.Fragment key={index}>
-            <Message
-              isGenerated={value.role !== "user"}
-              messageText={value.content}
-              documentLink={""}
-              pageNumber={""}
-            />
+            {value.role !== "user" ? (
+              <Message
+                isGenerated={true}
+                messageText={value.content}
+                documentLink={""}
+                pageNumber={""}
+              />
+            ) : (
+              <Message isGenerated={false} messageText={value.content} />
+            )}
           </React.Fragment>
         ))}
       </div>
