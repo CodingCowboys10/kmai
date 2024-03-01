@@ -22,10 +22,7 @@ function Message(props: MessageInfoInterface) {
       {props.isGenerated && (
         <div className={"h-full flex items-end"}>
           <Avatar>
-            <AvatarImage
-              className={"dark:invert"}
-              src="https://raw.githubusercontent.com/ollama/ollama/a0a829bf7a29b532f4bebe00e7cb1304ff9f0190/app/src/ollama.svg"
-            />
+            <AvatarImage className={"dark:invert"} src="/ollama.svg" />
             <AvatarFallback>AI</AvatarFallback>
           </Avatar>
         </div>

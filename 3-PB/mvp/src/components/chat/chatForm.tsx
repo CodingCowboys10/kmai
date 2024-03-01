@@ -10,7 +10,6 @@ import {
   FormItem,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
 
 const FormSchema = z.object({
   message: z.string().trim().min(1, {
