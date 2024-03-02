@@ -18,14 +18,14 @@ function ThemeToggle() {
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="justify-start">
             {model === "OpenAi" && (
-              <div className=" flex justify-between gap-3  w-full scale-0 dark:scale-100">
-                <p>OpenAi</p>
+              <div className=" flex justify-between gap-3 w-full scale-100 dark:scale-100">
+                <p className={"text-secondary-foreground"}>OpenAi</p>
                 <ChevronDownIcon className="w-5 h-5" />
               </div>
             )}
             {model === "Ollama" && (
-              <div className=" flex justify-between gap-3  w-full scale-0 dark:scale-100">
-                <p>Ollama</p>
+              <div className=" flex justify-between gap-3  w-full scale-100 dark:scale-100">
+                <p className={"text-secondary-foreground"}>Ollama</p>
                 <ChevronDownIcon className="w-5 h-5" />
               </div>
             )}
@@ -34,10 +34,10 @@ function ThemeToggle() {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="min-w-5">
           <DropdownMenuItem onClick={() => setModel("OpenAi")}>
-            <p>OpenAi</p>
+            <p className={"text-secondary-foreground"}>OpenAi</p>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setModel("Ollama")}>
-            <p>Ollama</p>
+            <p className={"text-secondary-foreground"}>Ollama</p>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
