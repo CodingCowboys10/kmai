@@ -7,7 +7,7 @@ import ListDoc from "@/components/documents/listDoc";
 
 export default function Page() {
   return (
-    <main className="flex flex-row w-full h-full">
+    <main className="relative flex flex-row w-full h-full">
       <SideBar>
         <UploadDoc/>
       </SideBar>
