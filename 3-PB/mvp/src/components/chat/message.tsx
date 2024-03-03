@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 type MessageInfoInterface = {
   messageText: string;
+  time: string;
 } & (
   | {
       isGenerated: true;
@@ -75,13 +76,7 @@ function Message(props: MessageInfoInterface) {
             </div>
           </div>
         )}
-        <p className={"w-full text-right text-sm  opacity-50"}>
-          {new Date().toLocaleTimeString([], {
-            hour12: false,
-            minute: "2-digit",
-            hour: "2-digit",
-          })}
-        </p>
+        <p className={"w-full text-right text-sm  opacity-50"}>{props.time}</p>
       </div>
       {!props.isGenerated && (
         <div className={"h-full flex items-end"}>
