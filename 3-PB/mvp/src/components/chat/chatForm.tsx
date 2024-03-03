@@ -10,6 +10,8 @@ import {
   FormItem,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+import React from "react";
 
 const FormSchema = z.object({
   message: z.string().trim().min(1, {
@@ -19,39 +21,41 @@ const FormSchema = z.object({
 
 interface ChatFormValueInterface {
   handleSubmit: any;
-  input: string;
   handleInputChange: any;
+  isLoading: boolean;
+  input: any;
 }
 
 function ChatForm({
   handleSubmit,
-  input,
   handleInputChange,
+  isLoading,
+  input,
 }: ChatFormValueInterface) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
+  const formSubmit = (values: any, event: { preventDefault: () => void }) => {
+    handleSubmit(event);
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit} className="mt-auto w-7/12 relative">
+      <form
+        onSubmit={form.handleSubmit(formSubmit)}
+        className="mt-auto w-7/12 relative"
+      >
         <FormField
           control={form.control}
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormControl>
+              <FormControl onChange={handleInputChange}>
                 <Textarea
-                  value={input}
-                  onChange={handleInputChange}
                   placeholder="Chatta con KMAI...."
                   className="resize-none pr-14"
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      handleSubmit(e);
-                    }
-                  }}
+                  onKeyDown={(e) => {}}
+                  {...field}
                 />
               </FormControl>
               <FormDescription className={"text-xs text-center"}>
@@ -67,27 +71,57 @@ function ChatForm({
           variant={"secondary"}
           type="submit"
         >
-          <svg
-            className="with-icon_icon__MHUeb"
-            data-testid="geist-icon"
-            fill="none"
-            height="24"
-            shapeRendering="geometricPrecision"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            viewBox="0 0 24 24"
-            width="24"
-            style={{
-              color: "var(--geist-foreground)",
-              width: "24px",
-              height: "24px",
-            }}
-          >
-            <path d="M12 19V5" />
-            <path d="M5 12l7-7 7 7" />
-          </svg>
+          {isLoading ? (
+            <svg
+              className="animate-spin-slow with-icon_icon__MHUeb"
+              data-testid="geist-icon"
+              fill="none"
+              height="24"
+              shapeRendering="geometricPrecision"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              width="24"
+              style={{
+                color: "var(--geist-foreground)",
+                width: "24px",
+                height: "24px",
+              }}
+            >
+              <path d="M12 2v4" />
+              <path d="M12 18v4" />
+              <path d="M4.93 4.93l2.83 2.83" />
+              <path d="M16.24 16.24l2.83 2.83" />
+              <path d="M2 12h4" />
+              <path d="M18 12h4" />
+              <path d="M4.93 19.07l2.83-2.83" />
+              <path d="M16.24 7.76l2.83-2.83" />
+            </svg>
+          ) : (
+            <svg
+              className="with-icon_icon__MHUeb"
+              data-testid="geist-icon"
+              fill="none"
+              height="24"
+              shapeRendering="geometricPrecision"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              width="24"
+              style={{
+                color: "var(--geist-foreground)",
+                width: "24px",
+                height: "24px",
+              }}
+            >
+              <path d="M12 19V5" />
+              <path d="M5 12l7-7 7 7" />
+            </svg>
+          )}
         </Button>
       </form>
     </Form>
