@@ -23,7 +23,7 @@ interface ChatFormValueInterface {
   handleSubmit: any;
   handleInputChange: any;
   isLoading: boolean;
-  input: any;
+  input: string;
 }
 
 function ChatForm({
@@ -35,26 +35,39 @@ function ChatForm({
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
-  const formSubmit = (values: any, event: { preventDefault: () => void }) => {
-    handleSubmit(event);
+  const onSubmit = async (event: any) => {
+    event.preventDefault();
+    if (isLoading) return;
+    const isValid = await form.trigger();
+    if (isValid) {
+      handleSubmit(event);
+    } else {
+      toast.error(
+        form.formState.errors.message?.message || "Errore Generico Nel Form",
+      );
+    }
+    form.reset();
   };
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(formSubmit)}
-        className="mt-auto w-7/12 relative"
-      >
+      <form onSubmit={onSubmit} className="mt-auto w-7/12 relative">
         <FormField
           control={form.control}
           name="message"
+          defaultValue={input}
           render={({ field }) => (
-            <FormItem>
-              <FormControl onChange={handleInputChange}>
+            <FormItem onChange={handleInputChange}>
+              <FormControl>
                 <Textarea
                   placeholder="Chatta con KMAI...."
                   className="resize-none pr-14"
-                  onKeyDown={(e) => {}}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault(); // Previeni il comportamento predefinito di invio
+                      onSubmit(e);
+                    }
+                  }}
                   {...field}
                 />
               </FormControl>
