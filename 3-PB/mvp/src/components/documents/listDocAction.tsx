@@ -15,7 +15,7 @@ interface IDoc{
     url: string
 }
 
-export default async function ListDocAction({ name, url }: IDoc) {
+export default function ListDocAction({ name, url }: IDoc) {
   
     return (
         <DropdownMenu>
