@@ -1,4 +1,4 @@
-import { DocumentInfo, columns } from "./listDocColumns"
+import { DocumentInfo, columns } from "./listDocContent"
 import { DataTable } from "./listDocItems"
 
 async function getData(): Promise<DocumentInfo[]> {
