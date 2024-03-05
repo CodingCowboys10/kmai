@@ -41,7 +41,7 @@ function Settings() {
           <DialogHeader>
             <DialogTitle className={"text-2xl"}>Impostazioni</DialogTitle>
             <DialogDescription className={"text-sm"}>
-              Modifica tutte le impostazioni della Chat.
+              Modifica tutte le impostazioni dell'applicazione.
             </DialogDescription>
             <div className={"flex flex-col gap-4 pt-5 "}>
               <ModelToggle />
