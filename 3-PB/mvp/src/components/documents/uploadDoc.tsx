@@ -1,12 +1,18 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import {addDocumentController} from "@/lib/config/container";
 
 function UploadDoc() {
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event : any)  => {
     const file = event.target.files[0];
     if (file && file.type === "application/pdf") {
+        const data = new FormData();
+        data.set('file', file);
+        data.set('model', 'openAi')
+        const res = await addDocumentController.handle(data)
+        // Controlli sulla riuscita
     } else {
       event.target.value = null;
     }
