@@ -2,33 +2,33 @@ import type {Document, IDocumentDataSource, IDocumentRepository} from "@/lib/con
 import {injectable, inject} from "tsyringe";
 
 @injectable()
-class DocumentRepository implements IDocumentRepository{
-    private _documentDataSource: IDocumentDataSource;
+class EmbeddingsRepository implements IDocumentRepository{
+    private _embeddingsDataSource: IDocumentDataSource;
 
     constructor(@inject("documentDataSource") documentDataSource: IDocumentDataSource) {
-        this._documentDataSource = documentDataSource;
+        this._embeddingsDataSource = documentDataSource;
     }
 
     async addDocument(doc: Document, model:string) {
-        await this._documentDataSource.addOne({
+        await this._embeddingsDataSource.addOne({
             doc: doc,
             model: model
         });
     }
 
     async deleteDocument(docName: string, model: string): Promise<void> {
-        await this._documentDataSource.deleteOne({
+        await this._embeddingsDataSource.deleteOne({
             docName: docName,
             model: model
         });
     }
 
     async  getDocuments(model: string): Promise<Document[]> {
-        return await this._documentDataSource.getAll(model);
+        return await this._embeddingsDataSource.getAll(model);
     }
 
     async getDocumentContent(docName: string, model: string): Promise<string> {
-        return await this._documentDataSource.getContent({
+        return await this._embeddingsDataSource.getContent({
             docName: docName,
             model: model
         });

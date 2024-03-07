@@ -7,8 +7,31 @@ export interface Document{
     content?: Buffer | string
 }
 
+export type Metadatas = Record<string, string | number | boolean>
+export interface Embeddings{
+    ids: string[] ,
+    embedding: number[][],
+    doc : string[],
+    metadata : Metadatas[]
+
+}
+
+
 interface IUsecase<A, T>{
     execute(...args: A[]) : T;
+}
+
+interface IEmbeddingsRepository{
+    addEmbedding(embeddings: Embeddings, model: string): Promise<void>;
+    deleteEmbedding(ids: string[], model: string): Promise<void>;
+    updateMetadatas(metadatas : Metadatas , model : string , ids : string[]) :  Promise<void>;
+}
+
+
+interface IEmbeddingsDataSource{
+    addOne({embeddings, model}:{embeddings : Embeddings, model:string}): Promise<void>;
+    deleteOne({ids, model}:{ids: string, model:string}): Promise<void>;
+    updateOne({metadatas , model , ids } : {metadatas : Metadatas , model : string , ids : string[] }): Promise<void>;
 }
 
 interface IDocumentRepository{
@@ -19,7 +42,7 @@ interface IDocumentRepository{
 }
 
 interface IDocumentDataSource{
-    addOne({doc, model}:{doc:Document, model:string}): Promise<void>;
+    addOne( {doc, model }: {doc:Document, model:string}): Promise<void>;
     deleteOne({docName, model}:{docName: string, model:string}): Promise<void>;
     getContent({docName, model}:{docName: string, model: string}): Promise<string>;
     getAll(model: string): Promise<Document[]>;
