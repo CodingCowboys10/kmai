@@ -9,7 +9,7 @@ import {
 import DeleteDoc from "./deleteDoc";
 import { MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {getDocumentContentController} from "@/utils/container";
+import {getDocumentContentController} from "@/lib/config/container";
 
 interface IDoc{
     name: string;

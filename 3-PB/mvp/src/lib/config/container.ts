@@ -1,17 +1,24 @@
 import "reflect-metadata"
 import {container} from "tsyringe";
 import AWS from "aws-sdk";
-import {AddDocumentController} from "@/controllers/AddDocumentController";
-import {GetDocumentsController} from "@/controllers/GetDocumentsController";
-import {DeleteDocumentController} from "@/controllers/DeleteDocumentController";
-import {GetDocumentContentController} from "@/controllers/GetDocumentContentController";
+import {AddDocumentController} from "@/controllers/document/AddDocumentController";
+import {GetDocumentsController} from "@/controllers/document/GetDocumentsController";
+import {DeleteDocumentController} from "@/controllers/document/DeleteDocumentController";
+import {GetDocumentContentController} from "@/controllers/document/GetDocumentContentController";
 import {DocumentRepository} from "@/infrastructure/documentRepository";
 import {MinioDataSource} from "@/infrastructure/data-source/MinioDataSource";
-import {AWSParams} from "@/utils/chat_utils";
-import {AddDocumentUsecase} from "@/usecase/AddDocumentUsecase";
-import {DeleteDocumentUsecase} from "@/usecase/DeleteDocumentUsecase";
-import {GetDocumentContentUsecase} from "@/usecase/GetDocumentContentUsecase";
-import {GetDocumentsUsecase} from "@/usecase/GetDocumentsUsecase";
+import {AddDocumentUsecase} from "@/usecase/document/AddDocumentUsecase";
+import {DeleteDocumentUsecase} from "@/usecase/document/DeleteDocumentUsecase";
+import {GetDocumentContentUsecase} from "@/usecase/document/GetDocumentContentUsecase";
+import {GetDocumentsUsecase} from "@/usecase/document/GetDocumentsUsecase";
+
+
+const AWSParams = {
+    endpoint: 'http://172.17.0.2:9000',
+    accessKeyId: "ROOTUSER" ,
+    secretAccessKey : "CHANGEME123",
+    s3ForcePathStyle: true,
+}
 
 container.register<AWS.S3>("s3", { useValue: new AWS.S3(AWSParams) });
 container.register<MinioDataSource>('documentDataSource', { useClass: MinioDataSource });

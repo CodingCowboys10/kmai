@@ -1,4 +1,4 @@
-import {DeleteDocumentUsecase} from "@/usecase/DeleteDocumentUsecase";
+import {DeleteDocumentUsecase} from "@/usecase/document/DeleteDocumentUsecase";
 import {injectable, inject} from "tsyringe";
 
 @injectable()

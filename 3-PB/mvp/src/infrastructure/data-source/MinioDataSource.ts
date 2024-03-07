@@ -1,7 +1,7 @@
 import {S3} from "aws-sdk";
 import {Document} from "@/domain/entity/Document";
-import {collections} from "@/utils/chat_utils";
-import type {IDocumentDataSource} from "@/utils/interfaces";
+import {collections} from "@/lib/site-config";
+import type {IDocumentDataSource} from "@/lib/config/interfaces";
 import {injectable, inject} from "tsyringe";
 
 @injectable()

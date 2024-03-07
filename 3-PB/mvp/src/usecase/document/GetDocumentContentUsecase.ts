@@ -1,4 +1,4 @@
-import type {IDocumentRepository, IUsecase} from "@/utils/interfaces";
+import type {IDocumentRepository, IUsecase} from "@/lib/config/interfaces";
 import {inject, injectable} from "tsyringe";
 
 @injectable()

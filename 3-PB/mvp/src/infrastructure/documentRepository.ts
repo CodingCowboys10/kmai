@@ -1,5 +1,5 @@
 import {Document} from "@/domain/entity/Document";
-import type {IDocumentDataSource, IDocumentRepository} from "@/utils/interfaces";
+import type {IDocumentDataSource, IDocumentRepository} from "@/lib/config/interfaces";
 import {injectable, inject} from "tsyringe";
 
 @injectable()

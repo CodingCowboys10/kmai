@@ -1,6 +1,6 @@
 import { DocumentInfo, columns } from "./listDocContent"
 import { DataTable } from "./listDocItems"
-import {getDocumentsController} from "@/utils/container";
+import {getDocumentsController} from "@/lib/config/container";
 
 async function getData(): Promise<DocumentInfo[]> {
 

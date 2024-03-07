@@ -9,7 +9,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
-import {deleteDocumentController} from "@/utils/container";
+import {deleteDocumentController} from "@/lib/config/container";
 
 export default function DeleteDoc({ name } : { name: string }) {
 

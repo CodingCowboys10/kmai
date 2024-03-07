@@ -1,4 +1,4 @@
-import {GetDocumentContentUsecase} from "@/usecase/GetDocumentContentUsecase";
+import {GetDocumentContentUsecase} from "@/usecase/document/GetDocumentContentUsecase";
 import {injectable, inject} from "tsyringe";
 
 @injectable()

@@ -1,4 +1,11 @@
-import {Document} from "@/domain/entity/Document";
+
+
+export interface Document{
+    name: string,
+    date: Date,
+    size: number,
+    content?: Buffer | string
+}
 
 interface IUsecase<A, T>{
     execute(...args: A[]) : T;
