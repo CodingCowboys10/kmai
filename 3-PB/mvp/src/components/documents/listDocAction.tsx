@@ -9,6 +9,7 @@ import {
 import DeleteDoc from "./deleteDoc";
 import { MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import {getDocumentContentController} from "@/utils/container";
 
 interface IDoc{
     name: string;
@@ -16,7 +17,13 @@ interface IDoc{
 }
 
 export default function ListDocAction({ name, url }: IDoc) {
-  
+
+    const handleShowDoc = async () => {
+        const res = await getDocumentContentController.handle(name, 'openAi');
+        const url = await res.json();
+        window.open(url.url, "_blank");
+    }
+
     return (
         <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -29,7 +36,7 @@ export default function ListDocAction({ name, url }: IDoc) {
           <DropdownMenuLabel>Azioni</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => window.open(url, "_blank")}
+            onClick={handleShowDoc}
           >Visualizza</DropdownMenuItem>
           <DeleteDoc name={name}/>
         </DropdownMenuContent>

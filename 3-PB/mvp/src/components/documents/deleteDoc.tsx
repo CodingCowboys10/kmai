@@ -9,9 +9,14 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+import {deleteDocumentController} from "@/utils/container";
 
 export default function DeleteDoc({ name } : { name: string }) {
-  
+
+    const handleDelteDoc = async () => {
+        await deleteDocumentController.handle(name, 'openAi')
+    }
+
     return (
         <AlertDialog>
             <AlertDialogTrigger className="w-full relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-red-500"
@@ -25,7 +30,7 @@ export default function DeleteDoc({ name } : { name: string }) {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                   <AlertDialogCancel>Annulla</AlertDialogCancel>
-                  <AlertDialogAction className="bg-red-500">Elimina</AlertDialogAction>
+                  <AlertDialogAction className="bg-red-500" onClick={handleDelteDoc}>Elimina</AlertDialogAction>
                   </AlertDialogFooter>
               </AlertDialogContent>
           </AlertDialog>
