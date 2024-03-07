@@ -5,13 +5,14 @@ import {addDocumentController} from "@/utils/container";
 
 function UploadDoc() {
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event : any)  => {
     const file = event.target.files[0];
     if (file && file.type === "application/pdf") {
         const data = new FormData();
         data.set('file', file);
         data.set('model', 'openAi')
-        addDocumentController.handle(data)
+        const res = await addDocumentController.handle(data)
+        // Controlli sulla riuscita
     } else {
       event.target.value = null;
     }
