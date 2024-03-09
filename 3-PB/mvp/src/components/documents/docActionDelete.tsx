@@ -10,10 +10,20 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { deleteDocumentController } from "@/lib/config/container";
+import { toast } from "sonner";
 
-export default function DeleteDoc({ name }: { name: string }) {
+export default function DocActionDelete({ name }: { name: string }) {
   const handleDelteDoc = async () => {
-    await deleteDocumentController.handle(name, "Ollama");
+    const res = await deleteDocumentController.handle(name, "Ollama");
+    if (!res.ok) {
+      res.json().then((data) => {
+        toast.error(data.error);
+      });
+    } else {
+      res.json().then((data) => {
+        toast.success(data.message);
+      });
+    }
   };
 
   return (

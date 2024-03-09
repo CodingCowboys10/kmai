@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { addDocumentController } from "@/lib/config/container";
 
-function UploadDoc() {
+function DocForm() {
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
 
@@ -32,4 +32,4 @@ function UploadDoc() {
   );
 }
 
-export default UploadDoc;
+export default DocForm;
