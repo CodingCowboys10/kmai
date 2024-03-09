@@ -1,19 +1,12 @@
-import { ChromaClient } from "chromadb";
 import { collections } from "@/lib/site-config";
 import {
   Embeddings,
   IEmbeddingDataSource,
   Metadatas,
 } from "@/lib/config/interfaces";
-import { injectable, inject } from "tsyringe";
 
-@injectable()
 class ChromaDataSource implements IEmbeddingDataSource {
-  private readonly _vDb: ChromaClient;
-
-  constructor(@inject("chromaClient") vDb: ChromaClient) {
-    this._vDb = vDb;
-  }
+  constructor() {}
 
   async addOne({
     embeddings,
@@ -22,24 +15,27 @@ class ChromaDataSource implements IEmbeddingDataSource {
     embeddings: Embeddings;
     model: string;
   }) {
-    const collection = await this._vDb.getCollection({
-      name: collections[model],
+    const res = await fetch("/api/document/embedding/addOne", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        embeddings: embeddings,
+        model: model,
+      }),
     });
-    await collection.add({
-      ids: embeddings.ids,
-      embeddings: embeddings.embedding,
-      documents: embeddings.doc,
-      metadatas: embeddings.metadata,
-    });
-
-    //await collection.add(embeddings)
+    if (!res.ok) console.log(res.text());
   }
 
   async deleteOne({ ids, model }: { ids: string[]; model: string }) {
+    /*
     const collection = await this._vDb.getCollection({
       name: collections[model],
     });
     await collection.delete({ ids: ids });
+
+     */
   }
 
   async updateOne({
@@ -51,6 +47,7 @@ class ChromaDataSource implements IEmbeddingDataSource {
     model: string;
     ids: string[];
   }) {
+    /*
     const collection = await this._vDb.getCollection({
       name: collections[model],
     });
@@ -58,6 +55,8 @@ class ChromaDataSource implements IEmbeddingDataSource {
       ids: ids,
       metadatas: metadatas,
     });
+
+     */
   }
 }
 

@@ -11,17 +11,28 @@ import { AddDocumentUsecase } from "@/usecase/document/AddDocumentUsecase";
 import { DeleteDocumentUsecase } from "@/usecase/document/DeleteDocumentUsecase";
 import { GetDocumentContentUsecase } from "@/usecase/document/GetDocumentContentUsecase";
 import { GetDocumentsUsecase } from "@/usecase/document/GetDocumentsUsecase";
-
+import { ChromaDataSource } from "@/infrastructure/data-source/ChromaDataSource";
+import { EmbeddingRepository } from "@/infrastructure/embeddingRepository";
+import { AddEmbeddingUsecase } from "@/usecase/embeddings/AddEmbeddingUsecase";
 
 const AWSParams = {
-  endpoint: 'http://172.17.0.2:9000',
-  accessKeyId: "ROOTUSER" ,
-  secretAccessKey : "CHANGEME123",
+  endpoint: "http://172.17.0.2:9000",
+  accessKeyId: "ROOTUSER",
+  secretAccessKey: "CHANGEME123",
   s3ForcePathStyle: true,
-}
-
+};
 
 container.register<AWS.S3>("s3", { useValue: new AWS.S3(AWSParams) });
+
+container.register<ChromaDataSource>("embeddingDataSource", {
+  useClass: ChromaDataSource,
+});
+container.register<EmbeddingRepository>("embeddingRepository", {
+  useClass: EmbeddingRepository,
+});
+container.register<AddEmbeddingUsecase>("addEmbeddingUsecase", {
+  useClass: AddEmbeddingUsecase,
+});
 
 container.register<MinioDataSource>("documentDataSource", {
   useClass: MinioDataSource,
@@ -50,10 +61,13 @@ container.register<GetDocumentsUsecase>("getDocsUsecase", {
 const addDocumentController = container.resolve(AddDocumentController);
 const deleteDocumentController = container.resolve(DeleteDocumentController);
 const getDocumentsController = container.resolve(GetDocumentsController);
-const getDocumentContentController = container.resolve(GetDocumentContentController);
+const getDocumentContentController = container.resolve(
+  GetDocumentContentController,
+);
 
 export {
   addDocumentController,
   deleteDocumentController,
   getDocumentsController,
-  getDocumentContentController};
+  getDocumentContentController,
+};
