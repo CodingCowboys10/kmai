@@ -16,7 +16,7 @@ class AddDocumentController {
   }
 
   async handle(data: FormData): Promise<Response> {
-    const model = data.get("model")!.toString();
+    const model: string = data.get("model")!.toString();
     const file: File | null = data.get("file") as unknown as File;
     if (!file) {
       return Response.json("", {

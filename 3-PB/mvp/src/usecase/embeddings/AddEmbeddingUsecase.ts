@@ -15,17 +15,16 @@ class AddEmbeddingUsecase
   implements IUsecase<{ file: File; model: string }, void>
 {
   private readonly _embeddingRepo: IEmbeddingRepository;
-  private readonly _EmbeddingsFunction: Record<
-    "Ollama" | "OpenAi",
-    OllamaEmbeddings | OpenAIEmbeddings
-  > = {
+  private readonly _EmbeddingsFunction: any = {
     Ollama: new OllamaEmbeddings({
       model: "starling-lm",
       baseUrl: "http://localhost:11434",
     }),
+    /* NON Trova la api key
     OpenAi: new OpenAIEmbeddings({
-      batchSize: 512, // Default value if omitted is 512. Max is 2048
-    }),
+      openAIApiKey: process.env.OPENAI_API_KEY,
+      batchSize: 512,
+    }),*/
   };
 
   constructor(
@@ -34,7 +33,13 @@ class AddEmbeddingUsecase
     this._embeddingRepo = embeddingRepository;
   }
 
-  async execute({ file, model }: { file: File; model: "Ollama" | "OpenAi" }) {
+  async execute({
+    file,
+    model,
+  }: {
+    file: File;
+    model: "Ollama" | "OpenAi" | string;
+  }) {
     const data = new FormData();
     data.set("file", file);
 

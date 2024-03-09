@@ -10,7 +10,7 @@ function UploadDoc() {
     if (file && file.type === "application/pdf") {
       const data = new FormData();
       data.set("file", file);
-      data.set("model", "openAi");
+      data.set("model", "Ollama");
       await addDocumentController.handle(data);
     } else {
       event.target.value = null;

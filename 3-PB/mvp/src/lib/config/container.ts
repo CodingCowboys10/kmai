@@ -14,6 +14,7 @@ import { GetDocumentsUsecase } from "@/usecase/document/GetDocumentsUsecase";
 import { ChromaDataSource } from "@/infrastructure/data-source/ChromaDataSource";
 import { EmbeddingRepository } from "@/infrastructure/embeddingRepository";
 import { AddEmbeddingUsecase } from "@/usecase/embeddings/AddEmbeddingUsecase";
+import { DeleteEmbeddingUsecase } from "@/usecase/embeddings/DeleteEmbeddingUsecase";
 
 const AWSParams = {
   endpoint: "http://172.17.0.2:9000",
@@ -32,6 +33,9 @@ container.register<EmbeddingRepository>("embeddingRepository", {
 });
 container.register<AddEmbeddingUsecase>("addEmbeddingUsecase", {
   useClass: AddEmbeddingUsecase,
+});
+container.register<DeleteEmbeddingUsecase>("deleteEmbeddingUsecase", {
+  useClass: DeleteEmbeddingUsecase,
 });
 
 container.register<MinioDataSource>("documentDataSource", {

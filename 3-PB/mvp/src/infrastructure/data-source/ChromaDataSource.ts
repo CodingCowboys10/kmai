@@ -1,4 +1,3 @@
-import { collections } from "@/lib/site-config";
 import {
   Embeddings,
   IEmbeddingDataSource,
@@ -25,17 +24,19 @@ class ChromaDataSource implements IEmbeddingDataSource {
         model: model,
       }),
     });
-    if (!res.ok) console.log("error");
   }
 
   async deleteOne({ ids, model }: { ids: string[]; model: string }) {
-    /*
-    const collection = await this._vDb.getCollection({
-      name: collections[model],
+    const res = await fetch("/api/document/embedding/deleteOne", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        ids: ids,
+        model: model,
+      }),
     });
-    await collection.delete({ ids: ids });
-
-     */
   }
 
   async updateOne({
