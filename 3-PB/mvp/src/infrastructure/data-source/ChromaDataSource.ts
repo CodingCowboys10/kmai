@@ -25,7 +25,7 @@ class ChromaDataSource implements IEmbeddingDataSource {
         model: model,
       }),
     });
-    if (!res.ok) console.log(res.text());
+    if (!res.ok) console.log("error");
   }
 
   async deleteOne({ ids, model }: { ids: string[]; model: string }) {
