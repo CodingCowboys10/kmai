@@ -24,8 +24,8 @@ fi
 sudo docker exec -it ollama_docker ollama pull starling-lm:latest
 
 # Spostati nella directory 2-RTB/poc
-cd 2-RTB/poc
-#cd 3-PB/mvp
+#cd 2-RTB/poc
+cd 3-PB/mvp
 
 # Esegui npm run dev
 npm run dev
