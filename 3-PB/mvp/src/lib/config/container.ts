@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { container } from "tsyringe";
+import { ChromaClient } from "chromadb";
 import AWS from "aws-sdk";
 import { AddDocumentController } from "@/controllers/document/AddDocumentController";
 import { GetDocumentsController } from "@/controllers/document/GetDocumentsController";
@@ -17,11 +18,13 @@ import { AddEmbeddingUsecase } from "@/usecase/embeddings/AddEmbeddingUsecase";
 import { DeleteEmbeddingUsecase } from "@/usecase/embeddings/DeleteEmbeddingUsecase";
 
 const AWSParams = {
-  endpoint: "http://172.17.0.3:9000",
+  endpoint: "http://172.17.0.2:9000",  //ristabilito
   accessKeyId: "ROOTUSER",
   secretAccessKey: "CHANGEME123",
   s3ForcePathStyle: true,
 };
+
+container.register<ChromaClient>("chromaclient", { useValue: new ChromaClient() });
 
 container.register<AWS.S3>("s3", { useValue: new AWS.S3(AWSParams) });
 
@@ -65,9 +68,7 @@ container.register<GetDocumentsUsecase>("getDocsUsecase", {
 const addDocumentController = container.resolve(AddDocumentController);
 const deleteDocumentController = container.resolve(DeleteDocumentController);
 const getDocumentsController = container.resolve(GetDocumentsController);
-const getDocumentContentController = container.resolve(
-  GetDocumentContentController,
-);
+const getDocumentContentController = container.resolve(GetDocumentContentController);
 
 export {
   addDocumentController,
