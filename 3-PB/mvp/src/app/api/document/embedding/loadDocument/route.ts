@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ChromaClient } from "chromadb";
-import { collections } from "@/lib/site-config";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 
 export const runtime = "nodejs";
