@@ -5,9 +5,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { ChevronDownIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import * as React from "react";
-import { useState } from "react";
+import { useTheme } from "next-themes";
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
