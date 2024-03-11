@@ -10,23 +10,22 @@ import * as React from "react";
 import { useTheme } from "next-themes";
 
 function ModelToggle() {
-  const { theme, setTheme } = useTheme();
-
+  const [model, setModel] = useState("OpenAi");
   return (
     <div className={"flex flex-row items-center justify-between"}>
-      <h2>Tema</h2>
+      <h2>Modello</h2>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="justify-start">
-            {theme === "light" && (
-              <div className="flex justify-between gap-3 w-full scale-100 dark:scale-0">
-                <SunIcon className="w-5 h-5" />
+            {model === "OpenAi" && (
+              <div className=" flex justify-between gap-3 w-full scale-100 dark:scale-100">
+                <p className={"text-secondary-foreground"}>OpenAi</p>
                 <ChevronDownIcon className="w-5 h-5" />
               </div>
             )}
-            {theme === "dark" && (
-              <div className=" flex justify-between gap-3  w-full scale-0 dark:scale-100">
-                <MoonIcon className="w-5 h-5" />
+            {model === "Ollama" && (
+              <div className=" flex justify-between gap-3  w-full scale-100 dark:scale-100">
+                <p className={"text-secondary-foreground"}>Ollama</p>
                 <ChevronDownIcon className="w-5 h-5" />
               </div>
             )}
@@ -34,11 +33,11 @@ function ModelToggle() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="min-w-5">
-          <DropdownMenuItem onClick={() => setTheme("light")}>
-            <SunIcon className="w-5 h-5" />
+          <DropdownMenuItem onClick={() => setModel("OpenAi")}>
+            <p className={"text-secondary-foreground"}>OpenAi</p>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("dark")}>
-            <MoonIcon className="w-5 h-5" />
+          <DropdownMenuItem onClick={() => setModel("Ollama")}>
+            <p className={"text-secondary-foreground"}>Ollama</p>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
