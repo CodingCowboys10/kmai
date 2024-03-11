@@ -20,6 +20,7 @@ interface IUsecase<A, T> {
 interface IEmbeddingRepository {
   addEmbedding(embeddings: Embeddings, model: string): Promise<void>;
   deleteEmbedding(ids: string[], model: string): Promise<void>;
+  getIdsEmbedding(docName: string, model: string): Promise<string[]>;
   updateMetadatas(
     metadatas: Metadatas,
     model: string,
@@ -45,6 +46,13 @@ interface IEmbeddingDataSource {
     model: string;
     ids: string[];
   }): Promise<void>;
+  getIds({
+    docName,
+    model,
+  }: {
+    docName: string;
+    model: string;
+  }): Promise<string[]>;
 }
 
 interface IDocumentRepository {

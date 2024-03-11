@@ -34,6 +34,13 @@ class EmbeddingRepository implements IEmbeddingRepository {
       ids: ids,
     });
   }
+
+  async getIdsEmbedding(docName: string, model: string) {
+    return await this._embeddingsDataSource.getIds({
+      docName: docName,
+      model: model,
+    });
+  }
 }
 
 export { EmbeddingRepository };

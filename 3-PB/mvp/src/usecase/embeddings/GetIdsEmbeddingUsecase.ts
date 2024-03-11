@@ -1,9 +1,11 @@
 import type { IEmbeddingRepository, IUsecase } from "@/lib/config/interfaces";
 import { injectable, inject } from "tsyringe";
+import { ChromaClient } from "chromadb";
+import { collections } from "@/lib/site-config";
 
 @injectable()
-class DeleteEmbeddingUsecase
-  implements IUsecase<{ ids: string[]; model: string }, void>
+class GetIdsEmbeddingUsecase
+  implements IUsecase<{ docName: string; model: string }, void>
 {
   private readonly _embeddingRepo: IEmbeddingRepository;
 
@@ -13,9 +15,9 @@ class DeleteEmbeddingUsecase
     this._embeddingRepo = embeddingRepository;
   }
 
-  async execute({ ids, model }: { ids: string[]; model: string }) {
-    return this._embeddingRepo.deleteEmbedding(ids, model);
+  async execute({ docName, model }: { docName: string; model: string }) {
+    return this._embeddingRepo.getIdsEmbedding(docName, model);
   }
 }
 
-export { DeleteEmbeddingUsecase };
+export { GetIdsEmbeddingUsecase };
