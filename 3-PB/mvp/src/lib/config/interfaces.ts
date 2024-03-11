@@ -1,28 +1,90 @@
-
-
-export interface Document{
-    name: string,
-    date: Date,
-    size: number,
-    content?: Buffer | string
+export interface Document {
+  name: string;
+  date: Date;
+  size: number;
+  content?: Buffer | string;
 }
 
-interface IUsecase<A, T>{
-    execute(...args: A[]) : T;
+export type Metadatas = Record<string, string | number | boolean>;
+export interface Embeddings {
+  ids: string[];
+  embedding: number[][];
+  doc: string[];
+  metadata: Metadatas[];
 }
 
-interface IDocumentRepository{
-    addDocument(doc: Document, model: string): Promise<void>;
-    deleteDocument(docName: string, model: string): Promise<void>;
-    getDocumentContent(docName: string, model: string): Promise<string>
-    getDocuments(model:string): Promise<Document[]>
+interface IUsecase<A, T> {
+  execute(...args: A[]): T;
 }
 
-interface IDocumentDataSource{
-    addOne({doc, model}:{doc:Document, model:string}): Promise<void>;
-    deleteOne({docName, model}:{docName: string, model:string}): Promise<void>;
-    getContent({docName, model}:{docName: string, model: string}): Promise<string>;
-    getAll(model: string): Promise<Document[]>;
+interface IEmbeddingRepository {
+  addEmbedding(embeddings: Embeddings, model: string): Promise<void>;
+  deleteEmbedding(ids: string[], model: string): Promise<void>;
+  getIdsEmbedding(docName: string, model: string): Promise<string[]>;
+  updateMetadatas(
+    metadatas: Metadatas,
+    model: string,
+    ids: string[],
+  ): Promise<void>;
 }
 
-export type {IUsecase, IDocumentRepository, IDocumentDataSource}
+interface IEmbeddingDataSource {
+  addOne({
+    embeddings,
+    model,
+  }: {
+    embeddings: Embeddings;
+    model: string;
+  }): Promise<void>;
+  deleteOne({ ids, model }: { ids: string[]; model: string }): Promise<void>;
+  updateOne({
+    metadatas,
+    model,
+    ids,
+  }: {
+    metadatas: Metadatas;
+    model: string;
+    ids: string[];
+  }): Promise<void>;
+  getIds({
+    docName,
+    model,
+  }: {
+    docName: string;
+    model: string;
+  }): Promise<string[]>;
+}
+
+interface IDocumentRepository {
+  addDocument(doc: Document, model: string): Promise<void>;
+  deleteDocument(docName: string, model: string): Promise<void>;
+  getDocumentContent(docName: string, model: string): Promise<string>;
+  getDocuments(model: string): Promise<Document[]>;
+}
+
+interface IDocumentDataSource {
+  addOne({ doc, model }: { doc: Document; model: string }): Promise<void>;
+  deleteOne({
+    docName,
+    model,
+  }: {
+    docName: string;
+    model: string;
+  }): Promise<void>;
+  getContent({
+    docName,
+    model,
+  }: {
+    docName: string;
+    model: string;
+  }): Promise<string>;
+  getAll(model: string): Promise<Document[]>;
+}
+
+export type {
+  IUsecase,
+  IDocumentRepository,
+  IDocumentDataSource,
+  IEmbeddingDataSource,
+  IEmbeddingRepository,
+};
