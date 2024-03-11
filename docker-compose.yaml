@@ -13,6 +13,7 @@ services:
           - ./minio/data:/data
         image: quay.io/minio/minio
         command: server /data --console-address ":9001"
+        
     ollama:
         image: ollama/ollama:latest
         volumes:
@@ -40,6 +41,9 @@ services:
         restart: unless-stopped
         ports:
           - 8000:8000
+        environment:
+          - CHROMA_SERVER_CORS_ALLOW_ORIGIN='["*"]'
+
     postgres:
         image: postgres:latest
         container_name: postgres_docker
