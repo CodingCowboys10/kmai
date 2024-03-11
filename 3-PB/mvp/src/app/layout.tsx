@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
-          <Toaster richColors position={"top-center"} expand={true} />
+          <Toaster richColors expand={true} />
         </ThemeProvider>
       </body>
     </html>

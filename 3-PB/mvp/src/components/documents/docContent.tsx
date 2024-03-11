@@ -1,6 +1,7 @@
-"use client";
 import { ColumnDef } from "@tanstack/react-table";
 import DocAction from "./docAction";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export type DocumentInfo = {
   id: string;
@@ -12,15 +13,35 @@ export type DocumentInfo = {
 export const columns: ColumnDef<DocumentInfo>[] = [
   {
     accessorKey: "id",
-    header: "Nome del documento",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Nome
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "data",
-    header: "Data di inserimento",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Data
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "size",
-    header: "Dimensione KB",
+    header: "Dimensione",
   },
   {
     id: "actions",

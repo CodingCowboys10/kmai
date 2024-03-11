@@ -40,7 +40,12 @@ export default function DocActionDelete({ name }: { name: string }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Annulla</AlertDialogCancel>
-          <AlertDialogAction className="bg-red-500" onClick={handleDelteDoc}>
+          <AlertDialogAction
+            className={
+              "text-destructive-foreground bg-destructive hover:bg-destructive"
+            }
+            onClick={handleDelteDoc}
+          >
             Elimina
           </AlertDialogAction>
         </AlertDialogFooter>
