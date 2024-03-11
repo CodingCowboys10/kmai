@@ -5,9 +5,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ChevronDownIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 import * as React from "react";
-import { useTheme } from "next-themes";
+import { useState } from "react";
 
 function ModelToggle() {
   const [model, setModel] = useState("OpenAi");
