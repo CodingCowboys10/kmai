@@ -2,17 +2,17 @@
 import React from "react";
 import Body from "@/components/body";
 import SideBar from "@/components/sideBar";
-import UploadDoc from "@/components/documents/uploadDoc";
-import ListDoc from "@/components/documents/listDoc";
+import DocForm from "@/components/documents/docForm";
+import DocTable from "@/components/documents/docTable";
 
 export default function Page() {
   return (
     <main className="relative flex flex-row w-full h-full">
       <SideBar>
-        <UploadDoc/>
+        <DocForm />
       </SideBar>
       <Body>
-        <ListDoc/>
+        <DocTable />
       </Body>
     </main>
   );

@@ -5,27 +5,28 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { ChevronDownIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import * as React from "react";
-import { useState } from "react";
+import { useTheme } from "next-themes";
 
 function ThemeToggle() {
-  const [model, setModel] = useState("OpenAi");
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className={"flex flex-row items-center justify-between"}>
-      <h2>Modello</h2>
+      <h2>Tema</h2>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="justify-start">
-            {model === "OpenAi" && (
-              <div className=" flex justify-between gap-3 w-full scale-100 dark:scale-100">
-                <p className={"text-secondary-foreground"}>OpenAi</p>
+            {theme === "light" && (
+              <div className="flex justify-between gap-3 w-full scale-100 dark:scale-0">
+                <SunIcon className="w-5 h-5" />
                 <ChevronDownIcon className="w-5 h-5" />
               </div>
             )}
-            {model === "Ollama" && (
-              <div className=" flex justify-between gap-3  w-full scale-100 dark:scale-100">
-                <p className={"text-secondary-foreground"}>Ollama</p>
+            {theme === "dark" && (
+              <div className=" flex justify-between gap-3  w-full scale-0 dark:scale-100">
+                <MoonIcon className="w-5 h-5" />
                 <ChevronDownIcon className="w-5 h-5" />
               </div>
             )}
@@ -33,11 +34,11 @@ function ThemeToggle() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="min-w-5">
-          <DropdownMenuItem onClick={() => setModel("OpenAi")}>
-            <p className={"text-secondary-foreground"}>OpenAi</p>
+          <DropdownMenuItem onClick={() => setTheme("light")}>
+            <SunIcon className="w-5 h-5" />
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setModel("Ollama")}>
-            <p className={"text-secondary-foreground"}>Ollama</p>
+          <DropdownMenuItem onClick={() => setTheme("dark")}>
+            <MoonIcon className="w-5 h-5" />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -1,24 +1,40 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Body from "@/components/body";
 import SideBar from "@/components/sideBar";
 import ChatMessages from "@/components/chat/chatMessages";
 import ChatForm from "@/components/chat/chatForm";
 import { useChat } from "ai/react";
+
 import { ChatThreads } from "@/components/chat/chatThreads";
+
+import { toast } from "sonner";
 
 export default function Page() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
-    useChat({});
+    useChat({
+      onResponse: (res: Response) => {
+        if (!res.ok) {
+          res.json().then((data) => {
+            toast.error(data.error);
+          });
+        }
+      },
+    });
+
   return (
-    <main className="flex flex-row w-full h-full">
+
+    <main className="relative flex flex-row w-full h-full">
       <SideBar>{<ChatThreads></ChatThreads>}</SideBar>
+
+
       <Body>
         <ChatMessages messages={messages}></ChatMessages>
         <ChatForm
           handleSubmit={handleSubmit}
-          input={input}
           handleInputChange={handleInputChange}
+          isLoading={isLoading}
+          input={input}
         ></ChatForm>
       </Body>
     </main>
