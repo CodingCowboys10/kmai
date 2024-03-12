@@ -92,4 +92,5 @@ export {
   deleteDocumentController,
   getDocumentsController,
   getDocumentContentController,
+  getAnswerController,
 };
