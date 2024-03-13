@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
+
 import { PromptTemplate } from "@langchain/core/prompts";
 import { Document } from "@langchain/core/documents";
 import { RunnableSequence } from "@langchain/core/runnables";
@@ -85,8 +86,8 @@ export async function POST(req: NextRequest) {
 
       streaming: true,
     });
-    
- */
+    */
+
     const vectorstore = await Chroma.fromExistingCollection(
       new OllamaEmbeddings({
         model: "starling-lm",
@@ -150,7 +151,6 @@ export async function POST(req: NextRequest) {
       JSON.stringify(
         documents.map((doc) => {
           return {
-            pageContent: doc.pageContent.slice(0, 50) + "...",
             metadata: doc.metadata,
           };
         }),

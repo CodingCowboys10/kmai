@@ -4,9 +4,10 @@ import React from "react";
 
 interface ChatMessagesInterface {
   messages: AiMessage[];
+  sources: Record<string, any>;
 }
 
-function ChatMessages({ messages }: ChatMessagesInterface) {
+function ChatMessages({ messages, sources }: ChatMessagesInterface) {
   return (
     <div
       className={"flex flex-col gap-2 w-8/12 h-full pt-2 px-2 overflow-scroll"}
@@ -27,18 +28,20 @@ function ChatMessages({ messages }: ChatMessagesInterface) {
               <Message
                 isGenerated={true}
                 messageText={value.content}
-                documentLink={""}
-                pageNumber={""}
-                time={value.createdAt!.toLocaleTimeString()}
+                documentLink={sources[index]?.[0]?.metadata?.name || ""}
+                pageNumber={sources[index]?.[0]?.metadata?.page || ""}
+                time={value.createdAt!.toLocaleTimeString("it-IT", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               />
             ) : (
               <Message
                 isGenerated={false}
                 messageText={value.content}
-                time={new Date().toLocaleTimeString([], {
-                  hour12: false,
-                  minute: "2-digit",
+                time={value.createdAt!.toLocaleTimeString("it-IT", {
                   hour: "2-digit",
+                  minute: "2-digit",
                 })}
               />
             )}

@@ -31,15 +31,14 @@ export default function Page() {
       },
     });
 
-  useEffect(() => {
-    console.log(sourcesForMessages);
-  }, [sourcesForMessages]);
-
   return (
     <main className="relative flex flex-row w-full h-full">
       <SideBar>{""}</SideBar>
       <Body>
-        <ChatMessages messages={messages}></ChatMessages>
+        <ChatMessages
+          sources={sourcesForMessages}
+          messages={messages}
+        ></ChatMessages>
         <ChatForm
           handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}
