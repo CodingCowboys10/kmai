@@ -41,7 +41,7 @@ export const columns: ColumnDef<DocumentInfo>[] = [
   },
   {
     accessorKey: "size",
-    header: "Dimensione",
+    header: "Dimensione kB",
   },
   {
     id: "actions",

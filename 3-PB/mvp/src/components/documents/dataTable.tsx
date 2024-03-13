@@ -57,6 +57,14 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
+        <Input
+          placeholder="Cerca per data..."
+          value={(table.getColumn("data")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("data")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm ml-1"
+        />
       </div>
       <div className="rounded-md border">
         <Table>
