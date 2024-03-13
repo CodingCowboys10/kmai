@@ -1,15 +1,12 @@
 import { DocumentInfo, columns } from "./docContent";
 import { DataTable } from "./dataTable";
 import { getDocumentsController } from "@/lib/config/container";
-
-async function getData(): Promise<DocumentInfo[] | []> {
-  const res = await getDocumentsController.handle("openAi");
-  if (res.ok) return await res.json();
-  else return [];
-}
+import { useEffect, useState } from "react";
 
 export default async function DocTable() {
-  const data = await getData();
+  const [data, setData] = useState([]);
+
+  setData(await (await getDocumentsController.handle("Ollama")).json());
 
   return (
     <div className="container mx-auto py-10">

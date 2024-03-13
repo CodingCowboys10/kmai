@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { addDocumentController } from "@/lib/config/container";
 import { useState } from "react";
+import { toast } from "sonner";
 
 function DocForm() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -23,7 +24,16 @@ function DocForm() {
       const data = new FormData();
       data.set("file", selectedFile);
       data.set("model", "Ollama");
-      await addDocumentController.handle(data);
+      const res = await addDocumentController.handle(data);
+      if (!res.ok) {
+        res.json().then((data) => {
+          toast.error(data.error);
+        });
+      } else {
+        res.json().then((data) => {
+          toast.success(data.message);
+        });
+      }
       setSelectedFile(null);
     }
   };
@@ -38,7 +48,9 @@ function DocForm() {
           onChange={handleFileChange}
         />
       </div>
-      <Button className="w-full p-1" onClick={handleFormSubmit}>Invia</Button>
+      <Button className="w-full p-1" onClick={handleFormSubmit}>
+        Invia
+      </Button>
     </div>
   );
 }

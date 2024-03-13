@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Body from "@/components/body";
 import SideBar from "@/components/sideBar";
 import ChatMessages from "@/components/chat/chatMessages";
@@ -8,14 +8,26 @@ import { useChat } from "ai/react";
 import { toast } from "sonner";
 
 export default function Page() {
+  const [sourcesForMessages, setSourcesForMessages] = useState<
+    Record<string, any>
+  >({});
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
-      onResponse: (res: Response) => {
-        if (!res.ok) {
-          res.json().then((data) => {
-            toast.error(data.error);
+      onResponse(response) {
+        const sourcesHeader = response.headers.get("x-sources");
+        const sources = sourcesHeader
+          ? JSON.parse(Buffer.from(sourcesHeader, "base64").toString("utf8"))
+          : [];
+        const messageIndexHeader = response.headers.get("x-message-index");
+        if (sources.length && messageIndexHeader !== null) {
+          setSourcesForMessages({
+            ...sourcesForMessages,
+            [messageIndexHeader]: sources,
           });
         }
+      },
+      onError: (e) => {
+        toast.error(e.message);
       },
     });
 
@@ -23,7 +35,10 @@ export default function Page() {
     <main className="relative flex flex-row w-full h-full">
       <SideBar>{""}</SideBar>
       <Body>
-        <ChatMessages messages={messages}></ChatMessages>
+        <ChatMessages
+          sources={sourcesForMessages}
+          messages={messages}
+        ></ChatMessages>
         <ChatForm
           handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}

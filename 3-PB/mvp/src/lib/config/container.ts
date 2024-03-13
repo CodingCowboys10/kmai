@@ -19,7 +19,7 @@ import { DeleteEmbeddingUsecase } from "@/usecase/embeddings/DeleteEmbeddingUsec
 import { GetIdsEmbeddingUsecase } from "@/usecase/embeddings/GetIdsEmbeddingUsecase";
 
 const AWSParams = {
-  endpoint: "http://172.17.0.1:9000", //ristabilito
+  endpoint: "http://172.17.0.1:9000",
   accessKeyId: "ROOTUSER",
   secretAccessKey: "CHANGEME123",
   s3ForcePathStyle: true,
@@ -74,6 +74,7 @@ container.register<GetDocumentsUsecase>("getDocsUsecase", {
 const addDocumentController = container.resolve(AddDocumentController);
 const deleteDocumentController = container.resolve(DeleteDocumentController);
 const getDocumentsController = container.resolve(GetDocumentsController);
+
 const getDocumentContentController = container.resolve(
   GetDocumentContentController,
 );

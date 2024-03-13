@@ -14,7 +14,7 @@ class GetDocumentsController {
     const datas = docs.map((doc) => {
       return {
         id: doc.name,
-        data: doc.date.toISOString().replace('T', ', ').split('.')[0],
+        data: doc.date.toLocaleString("it-IT"),
         size: (doc.size / 1000).toFixed(2),
         url: typeof doc.content === "string" ? doc.content : "",
       };
