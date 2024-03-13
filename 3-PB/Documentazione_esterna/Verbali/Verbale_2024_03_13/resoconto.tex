@@ -1,0 +1,41 @@
+\section{Resoconto} \label{sec:resoconto}
+\subsection{Discussioni} \label{subsec:resdiscussione}
+\begin{enumerate}
+    \item La riunione si è aperta con l'esposizione di quanto fatto dal gruppo nelle ultime settimane. È stata informata l'azienda della realizzazione dell'interfaccia utente dell'applicazione, oltre che dell'implementazione delle funzionalità riguardanti la gestione dei documenti. La parte dell'applicativo riguardante la chat è già in fase di implementazione e sono stati svolti dei test per misurare i benefici effettivi di utilizzare Runnable Sequence e Agents di Langchain, per l'implementazione del chatbot.
+    \item La discussione è poi virata sul design dato dal gruppo al back-end dell'applicazione. In particolare, è stato esposto con un UML come il Controller Service Repository Pattern sia stato impiegato nell'implementazione delle funzionalità riguardanti MinIO e ChromaDB. Dal confronto che ne è seguito, è sorta la necessità di rivedere la progettazione di queste parti, andando ad accorpare in un unico controller e in un unico service ogni classe riguardante la stessa area di funzionalità.\\
+    Tale direttiva si rifletterà dunque sull'implementazione del pattern nel controller, service e repository relativi alla chat history.\\
+    In questo momento della discussione, non emergono modifiche da effettuare sulle firme dei metodi già individuati.
+    \item Viene presentato l'MVP allo stato attuale. Viene dimostrata la possibilità di aggiungere ed eliminare documenti, ricercarli per nome e data, oltre che eliminarli. Viene anche mostrata la chat, mostrandone il funzionamento con il modello locale.\\
+    Da questa fase della riunione emerge l'apprezzamento per la possibilità di ottenere documento e pagina esatta della fonte della risposta. Viene consigliata dai proponenti la possibilità di indirizzare l'utente direttamente alla pagina del documento, senza che sia esso a cercarla manualmente.\\
+    Il prodotto dimostrato non è comunque finale, in quanto sono necessari alcuni interventi per allinearlo a tutti i requisiti obbligatori.
+    \item L'incontro termina con l'invito all'intero gruppo di presenziare ad una conferenza aziendale di AzzurroDigitale lunedì 15 aprile 2024.\\
+    Durante questo evento, è attesa un'esposizione del lavoro fatto dal team, descrivendo il capitolato da cui è nato questo progetto, le sfide affrontate e mostrando una demo del prodotto finale. È richiesta la preparazione di alcune slide per la presentazione, da mostrare ai proponenti con una settimana di anticipo.
+\end{enumerate}
+
+
+\subsection{Azioni da intraprendere} \label{subsec:action}
+
+{
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| X | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Azione}} & \textbf{\textcolor{white}{Scadenza}} \\
+    \hline
+    \endhead
+   Ristrutturazione dei controller e dei service per MinIO e Chroma. & 2024/03/26\\
+    \hline
+    Implementazione delle rimanenti funzionalità relative a requisiti obbligatori. & 2024/03/26\\
+    \hline
+    Preparazione di una presentazione sul progetto. & 2024/04/08\\
+    \hline
+    \rowcolor{white} \caption{Azioni concordate da intraprendere}
+    \label{tab:reqimp}
+\end{xltabular}
+}
+
+
+\subsection{Prossima riunione} \label{subsec:riunione}
+Viene fissata una riunione per martedì 26 marzo.
+\newpage    
