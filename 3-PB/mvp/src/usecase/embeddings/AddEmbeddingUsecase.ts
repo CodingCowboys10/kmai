@@ -20,10 +20,11 @@ class AddEmbeddingUsecase
       model: "starling-lm",
       baseUrl: "http://localhost:11434",
     }),
+    /*
     OpenAi: new OpenAIEmbeddings({
-      openAIApiKey: process.env.OPENAI_API_KEY,
       batchSize: 512,
     }),
+     */
   };
 
   constructor(

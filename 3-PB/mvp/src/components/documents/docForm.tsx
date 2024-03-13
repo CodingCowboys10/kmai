@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { addDocumentController } from "@/lib/config/container";
+import { toast } from "sonner";
 
 function DocForm() {
   const handleFileChange = async (event: any) => {
@@ -11,7 +12,16 @@ function DocForm() {
       const data = new FormData();
       data.set("file", file);
       data.set("model", "Ollama");
-      await addDocumentController.handle(data);
+      const res = await addDocumentController.handle(data);
+      if (!res.ok) {
+        res.json().then((data) => {
+          toast.error(data.error);
+        });
+      } else {
+        res.json().then((data) => {
+          toast.success(data.message);
+        });
+      }
     } else {
       event.target.value = null;
     }

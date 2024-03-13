@@ -28,10 +28,14 @@ class AddDocumentController {
       }
       await this._useCase.execute({ file: file, model: model });
       await this._useCaseE.execute({ file: file, model: model });
-      return NextResponse.json("Document Added successfully", {
-        status: 200,
-        statusText: "OK",
-      });
+
+      return NextResponse.json(
+        { message: "Document Added successfully" },
+        {
+          status: 200,
+          statusText: "OK",
+        },
+      );
     } catch (e) {
       console.error(e);
       return NextResponse.json(

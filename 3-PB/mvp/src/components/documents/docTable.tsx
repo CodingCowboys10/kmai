@@ -3,7 +3,7 @@ import { DataTable } from "./dataTable";
 import { getDocumentsController } from "@/lib/config/container";
 
 async function getData(): Promise<DocumentInfo[] | []> {
-  const res = await getDocumentsController.handle("openAi");
+  const res = await getDocumentsController.handle("Ollama");
   if (res.ok) return await res.json();
   else return [];
 }

@@ -17,11 +17,9 @@ import { EmbeddingRepository } from "@/infrastructure/embeddingRepository";
 import { AddEmbeddingUsecase } from "@/usecase/embeddings/AddEmbeddingUsecase";
 import { DeleteEmbeddingUsecase } from "@/usecase/embeddings/DeleteEmbeddingUsecase";
 import { GetIdsEmbeddingUsecase } from "@/usecase/embeddings/GetIdsEmbeddingUsecase";
-import { GetAnswerUseCase } from "@/usecase/chat/GetAnswerUseCase";
-import { GetAnswerController } from "@/controllers/chat/GetAnswerController";
 
 const AWSParams = {
-  endpoint: "http://172.17.0.1:9000", //ristabilito
+  endpoint: "http://172.17.0.1:9000",
   accessKeyId: "ROOTUSER",
   secretAccessKey: "CHANGEME123",
   s3ForcePathStyle: true,
@@ -73,15 +71,9 @@ container.register<GetDocumentsUsecase>("getDocsUsecase", {
   useClass: GetDocumentsUsecase,
 });
 
-container.register<GetAnswerUseCase>("getAnswerUseCase", {
-  useClass: GetAnswerUseCase,
-});
-
 const addDocumentController = container.resolve(AddDocumentController);
 const deleteDocumentController = container.resolve(DeleteDocumentController);
 const getDocumentsController = container.resolve(GetDocumentsController);
-
-const getAnswerController = container.resolve(GetAnswerController);
 
 const getDocumentContentController = container.resolve(
   GetDocumentContentController,
@@ -92,5 +84,4 @@ export {
   deleteDocumentController,
   getDocumentsController,
   getDocumentContentController,
-  getAnswerController,
 };

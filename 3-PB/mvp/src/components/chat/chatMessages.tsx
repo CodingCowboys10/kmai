@@ -29,11 +29,7 @@ function ChatMessages({ messages }: ChatMessagesInterface) {
                 messageText={value.content}
                 documentLink={""}
                 pageNumber={""}
-                time={new Date().toLocaleTimeString([], {
-                  hour12: false,
-                  minute: "2-digit",
-                  hour: "2-digit",
-                })}
+                time={value.createdAt!.toLocaleTimeString()}
               />
             ) : (
               <Message
