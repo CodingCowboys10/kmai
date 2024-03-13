@@ -18,7 +18,7 @@ interface IDoc {
 
 export default function DocAction({ name, url }: IDoc) {
   const handleShowDoc = async () => {
-    const res = await getDocumentContentController.handle(name, "openAi");
+    const res = await getDocumentContentController.handle(name, "Ollama");
     const url = await res.json();
     window.open(url.url, "_blank");
   };
