@@ -33,10 +33,10 @@ function ModelToggle() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="min-w-5">
-          <DropdownMenuItem onClick={() =>setModel && setModel("OpenAi")}>
+          <DropdownMenuItem onClick={() =>setModel("OpenAi")}>
             <p className={"text-secondary-foreground"}>OpenAi</p>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() =>setModel && setModel("Ollama")}>
+          <DropdownMenuItem onClick={() =>setModel("Ollama")}>
             <p className={"text-secondary-foreground"}>Ollama</p>
           </DropdownMenuItem>
         </DropdownMenuContent>

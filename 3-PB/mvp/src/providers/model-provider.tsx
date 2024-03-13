@@ -4,10 +4,11 @@ import { createContext, useContext, useState, ReactNode, Dispatch, SetStateActio
 
 interface ModelContextProps {
   model?: string;
-  setModel?: Dispatch<SetStateAction<string>>;
+  setModel: Dispatch<SetStateAction<string>>;
 }
 
-export const ModelContext = createContext<ModelContextProps>({});
+export const ModelContext = createContext<ModelContextProps>({
+    setModel: () => {},});
 
 interface ModelProviderProps {
   children: ReactNode;
