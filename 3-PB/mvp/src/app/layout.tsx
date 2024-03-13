@@ -4,6 +4,7 @@ import "./globals.css";
 import React from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { ModelProvider } from "@/providers/model-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +22,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
-          {children}
+          <ModelProvider>
+            {children}
+          </ModelProvider>
           <Toaster richColors expand={true} />
         </ThemeProvider>
+        
       </body>
     </html>
   );

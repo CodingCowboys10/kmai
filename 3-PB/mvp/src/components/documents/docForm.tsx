@@ -2,28 +2,29 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { addDocumentController } from "@/lib/config/container";
-import { toast } from "sonner";
+import { useState } from "react";
 
 function DocForm() {
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
 
     if (file && file.type === "application/pdf") {
-      const data = new FormData();
-      data.set("file", file);
-      data.set("model", "Ollama");
-      const res = await addDocumentController.handle(data);
-      if (!res.ok) {
-        res.json().then((data) => {
-          toast.error(data.error);
-        });
-      } else {
-        res.json().then((data) => {
-          toast.success(data.message);
-        });
-      }
+      setSelectedFile(file);
     } else {
+      setSelectedFile(null);
       event.target.value = null;
+    }
+  };
+
+  const handleFormSubmit = async () => {
+    if (selectedFile) {
+      const data = new FormData();
+      data.set("file", selectedFile);
+      data.set("model", "Ollama");
+      await addDocumentController.handle(data);
+      setSelectedFile(null);
     }
   };
 
@@ -37,7 +38,7 @@ function DocForm() {
           onChange={handleFileChange}
         />
       </div>
-      <Button className="w-full p-1">Invia</Button>
+      <Button className="w-full p-1" onClick={handleFormSubmit}>Invia</Button>
     </div>
   );
 }
