@@ -7,10 +7,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import * as React from "react";
-import { useState } from "react";
+import {useModel} from "@/providers/model-provider";
 
 function ModelToggle() {
-  const [model, setModel] = useState("OpenAi");
+  const {model, setModel} = useModel();
   return (
     <div className={"flex flex-row items-center justify-between"}>
       <h2>Modello</h2>
@@ -23,7 +23,7 @@ function ModelToggle() {
                 <ChevronDownIcon className="w-5 h-5" />
               </div>
             )}
-            {model === "Ollama" && (
+            {model === "Ollama" &&  (
               <div className=" flex justify-between gap-3  w-full scale-100 dark:scale-100">
                 <p className={"text-secondary-foreground"}>Ollama</p>
                 <ChevronDownIcon className="w-5 h-5" />
@@ -33,10 +33,10 @@ function ModelToggle() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="min-w-5">
-          <DropdownMenuItem onClick={() => setModel("OpenAi")}>
+          <DropdownMenuItem onClick={() =>setModel && setModel("OpenAi")}>
             <p className={"text-secondary-foreground"}>OpenAi</p>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setModel("Ollama")}>
+          <DropdownMenuItem onClick={() =>setModel && setModel("Ollama")}>
             <p className={"text-secondary-foreground"}>Ollama</p>
           </DropdownMenuItem>
         </DropdownMenuContent>
