@@ -33,7 +33,7 @@ class MinioDataSource implements IDocumentDataSource {
   async getAll(model: string): Promise<Document[]> {
     const objects = await this._db
       .listObjects({
-        Bucket: collections["Ollama"],
+        Bucket: collections[model],
       })
       .promise();
     const response = objects.Contents!;

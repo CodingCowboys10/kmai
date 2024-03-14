@@ -2,18 +2,41 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { addDocumentController } from "@/lib/config/container";
+import { useState } from "react";
+import { toast } from "sonner";
+import { useModel } from "@/providers/model-provider";
 
 function DocForm() {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const { model } = useModel();
+
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
 
     if (file && file.type === "application/pdf") {
-      const data = new FormData();
-      data.set("file", file);
-      data.set("model", "Ollama");
-      await addDocumentController.handle(data);
+      setSelectedFile(file);
     } else {
+      setSelectedFile(null);
       event.target.value = null;
+    }
+  };
+
+  const handleFormSubmit = async () => {
+    if (selectedFile) {
+      const data = new FormData();
+      data.set("file", selectedFile);
+      data.set("model", model!);
+      const res = await fetch("/api/document/addDocument", {
+        method: "POST",
+        body: data,
+      });
+      const resData = await res.json();
+      if (!res.ok) {
+        toast.error(resData.message);
+      } else {
+        toast.success(resData.message);
+      }
+      setSelectedFile(null);
     }
   };
 
@@ -27,7 +50,9 @@ function DocForm() {
           onChange={handleFileChange}
         />
       </div>
-      <Button className="w-full p-1">Invia</Button>
+      <Button className="w-full p-1" onClick={handleFormSubmit}>
+        Invia
+      </Button>
     </div>
   );
 }

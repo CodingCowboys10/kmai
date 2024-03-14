@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { getDocumentContentController } from "@/lib/config/container";
+import { useModel } from "@/providers/model-provider";
 
 type MessageInfoInterface = {
   messageText: string;
@@ -18,6 +18,12 @@ type MessageInfoInterface = {
 );
 
 function Message(props: MessageInfoInterface) {
+  const { model } = useModel();
+  const handleShowDoc = async (name: string) => {
+    const res = await getDocumentContentController.handle(name, model!);
+    const url = await res.json();
+    window.open(url.url, "_blank");
+  };
   return (
     <div
       className={`text-white chat ${props.isGenerated ? "chat-start" : "chat-end"}`}
@@ -43,36 +49,35 @@ function Message(props: MessageInfoInterface) {
                   "flex justify-between text-sm h-full items-center px-2 "
                 }
               >
-                <p>{props.pageNumber}</p>
+                <p>Pag. {props.pageNumber}</p>
                 <Button
-                  className={"text-accent-foreground"}
-                  variant={"link"}
+                  className={"text-accent-foreground cursor-pointer"}
+                  variant={"outline"}
                   size={"icon"}
                   asChild
+                  onClick={() => handleShowDoc(props.documentLink)}
                 >
-                  <Link href={props.documentLink}>
-                    <svg
-                      className="with-icon_icon__MHUeb"
-                      data-testid="geist-icon"
-                      fill="none"
-                      height="24"
-                      shapeRendering="geometricPrecision"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      style={{
-                        color: "var(--geist-foreground)",
-                        width: "24px",
-                        height: "24px",
-                      }}
-                    >
-                      <path d="M7.06883 21.6H16.219C18.7973 21.6 20.8879 19.5093 20.8879 16.9312V5.86885C20.8879 3.29074 18.7973 1.20001 16.219 1.20001H7.06883C4.49072 1.20001 2.39999 3.29074 2.39999 5.86885V16.9312C2.39999 19.5093 4.49072 21.6 7.06883 21.6Z" />
-                      <path d="M15.3946 15.842H7.89178M15.3946 11.245H7.89178M10.755 6.6586H7.89232" />
-                    </svg>
-                  </Link>
+                  <svg
+                    className="with-icon_icon__MHUeb"
+                    data-testid="geist-icon"
+                    fill="none"
+                    height="24"
+                    shapeRendering="geometricPrecision"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    style={{
+                      color: "var(--geist-foreground)",
+                      width: "24px",
+                      height: "24px",
+                    }}
+                  >
+                    <path d="M7.06883 21.6H16.219C18.7973 21.6 20.8879 19.5093 20.8879 16.9312V5.86885C20.8879 3.29074 18.7973 1.20001 16.219 1.20001H7.06883C4.49072 1.20001 2.39999 3.29074 2.39999 5.86885V16.9312C2.39999 19.5093 4.49072 21.6 7.06883 21.6Z" />
+                    <path d="M15.3946 15.842H7.89178M15.3946 11.245H7.89178M10.755 6.6586H7.89232" />
+                  </svg>
                 </Button>
               </div>
             </AlertDescription>

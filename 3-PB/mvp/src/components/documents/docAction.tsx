@@ -10,6 +10,7 @@ import DocActionDelete from "./docActionDelete";
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getDocumentContentController } from "@/lib/config/container";
+import { useModel } from "@/providers/model-provider";
 
 interface IDoc {
   name: string;
@@ -17,8 +18,9 @@ interface IDoc {
 }
 
 export default function DocAction({ name, url }: IDoc) {
+  const { model } = useModel();
   const handleShowDoc = async () => {
-    const res = await getDocumentContentController.handle(name, "openAi");
+    const res = await getDocumentContentController.handle(name, model!);
     const url = await res.json();
     window.open(url.url, "_blank");
   };
