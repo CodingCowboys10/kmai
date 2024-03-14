@@ -31,6 +31,10 @@ export default function Page() {
       },
     });
 
+  useEffect(() => {
+    console.log(sourcesForMessages);
+  }, [messages]);
+
   return (
     <main className="relative flex flex-row w-full h-full">
       <SideBar>{""}</SideBar>

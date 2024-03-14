@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  MixerHorizontalIcon,
+  CalendarIcon,
+  TextAlignLeftIcon,
+} from "@radix-ui/react-icons";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -20,19 +25,34 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { DataTablePagination } from "@/components/documents/dataTablePagination";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import IsLoadingDoc from "@/components/ui/isLoadingDoc";
+import { Button } from "@/components/ui/button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  isLoading: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  isLoading,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
+  const [isFilterData, setIsFilterData] = useState(false);
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const table = useReactTable({
     data,
@@ -48,23 +68,56 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 space-x-4">
         <Input
-          placeholder="Cerca per nome..."
-          value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
+          placeholder={`Cerca per ${!isFilterData ? "nome" : "data"}...`}
+          value={
+            (table
+              .getColumn(`${!isFilterData ? "id" : "data"}`)
+              ?.getFilterValue() as string) ?? ""
+          }
           onChange={(event) =>
-            table.getColumn("id")?.setFilterValue(event.target.value)
+            table
+              .getColumn(`${!isFilterData ? "id" : "data"}`)
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
-        <Input
-          placeholder="Cerca per data..."
-          value={(table.getColumn("data")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("data")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm ml-1"
-        />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="icon">
+              <MixerHorizontalIcon className={"w-4 h-4"} />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align={"center"}>
+            <DropdownMenuLabel> Cerca per </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={() => {
+                setIsFilterData(false);
+                table.getColumn("data")?.setFilterValue(null);
+              }}
+              asChild
+            >
+              <div className={"flex justify-between"}>
+                Nome
+                <TextAlignLeftIcon />
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                setIsFilterData(true);
+                table.getColumn("id")?.setFilterValue(null);
+              }}
+              asChild
+            >
+              <div className={"flex justify-between"}>
+                Data
+                <CalendarIcon />
+              </div>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="rounded-md border">
         <Table>
@@ -87,32 +140,33 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
+            {isLoading && <IsLoadingDoc />}
+            {!isLoading && table.getRowModel().rows?.length
+              ? table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              : !isLoading && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={columns.length}
+                      className="h-24 text-center"
+                    >
+                      Nessun documento.
                     </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  Nessun documento.
-                </TableCell>
-              </TableRow>
-            )}
+                  </TableRow>
+                )}
           </TableBody>
         </Table>
       </div>

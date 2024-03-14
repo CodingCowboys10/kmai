@@ -1,16 +1,27 @@
 import { DocumentInfo, columns } from "./docContent";
 import { DataTable } from "./dataTable";
-import { getDocumentsController } from "@/lib/config/container";
-import { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useModel } from "@/providers/model-provider";
 
-export default async function DocTable() {
-  const [data, setData] = useState([]);
+export default function DocTable() {
+  const [data, setData] = useState<DocumentInfo[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { model } = useModel();
 
-  setData(await (await getDocumentsController.handle("Ollama")).json());
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      const res = await fetch("/api/document/getDocuments", {
+        method: "POST",
+        body: JSON.stringify({ model: model }),
+      });
+      setData(await res.json());
+    };
+    fetchDocuments().then(() => setIsLoading(false));
+  }, [model]);
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable isLoading={isLoading} columns={columns} data={data} />
     </div>
   );
 }

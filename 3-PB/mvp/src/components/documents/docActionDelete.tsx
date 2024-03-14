@@ -11,18 +11,18 @@ import {
 } from "@/components/ui/alert-dialog";
 import { deleteDocumentController } from "@/lib/config/container";
 import { toast } from "sonner";
+import { useModel } from "@/providers/model-provider";
 
 export default function DocActionDelete({ name }: { name: string }) {
+  const { model } = useModel();
+
   const handleDelteDoc = async () => {
-    const res = await deleteDocumentController.handle(name, "Ollama");
+    const res = await deleteDocumentController.handle(name, model!);
+    const resData = await res.json();
     if (!res.ok) {
-      res.json().then((data) => {
-        toast.error(data.error);
-      });
+      toast.error(resData.message);
     } else {
-      res.json().then((data) => {
-        toast.success(data.message);
-      });
+      toast.success(resData.message);
     }
   };
 

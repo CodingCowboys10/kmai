@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { addDocumentController } from "@/lib/config/container";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useModel } from "@/providers/model-provider";
 
 function DocForm() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const { model } = useModel();
 
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
@@ -23,16 +25,16 @@ function DocForm() {
     if (selectedFile) {
       const data = new FormData();
       data.set("file", selectedFile);
-      data.set("model", "Ollama");
-      const res = await addDocumentController.handle(data);
+      data.set("model", model!);
+      const res = await fetch("/api/document/addDocument", {
+        method: "POST",
+        body: data,
+      });
+      const resData = await res.json();
       if (!res.ok) {
-        res.json().then((data) => {
-          toast.error(data.error);
-        });
+        toast.error(resData.message);
       } else {
-        res.json().then((data) => {
-          toast.success(data.message);
-        });
+        toast.success(resData.message);
       }
       setSelectedFile(null);
     }

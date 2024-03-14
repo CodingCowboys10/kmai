@@ -9,6 +9,7 @@ import { injectable, inject } from "tsyringe";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
 import { OpenAIEmbeddings } from "@langchain/openai";
+import { NextResponse } from "next/server";
 
 @injectable()
 class AddEmbeddingUsecase
@@ -20,11 +21,11 @@ class AddEmbeddingUsecase
       model: "starling-lm",
       baseUrl: "http://localhost:11434",
     }),
-    /*
+
     OpenAi: new OpenAIEmbeddings({
+      openAIApiKey: process.env.OPENAI_API_KEY,
       batchSize: 512,
     }),
-     */
   };
 
   constructor(
@@ -40,18 +41,24 @@ class AddEmbeddingUsecase
     file: File;
     model: "Ollama" | "OpenAi" | string;
   }) {
-    const data = new FormData();
-    data.set("file", file);
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const documentName = `${file.name}`;
+    const fileAsBlob = new Blob([buffer]);
 
-    const res = await fetch("/api/document/embedding/loadDocument", {
-      method: "POST",
-      body: data,
+    if (!file) {
+      return NextResponse.json(
+        { error: "Internal Server Error" },
+        { status: 500 },
+      );
+    }
+
+    const loader = new PDFLoader(fileAsBlob, {
+      splitPages: true,
+      parsedItemSeparator: "",
     });
 
-    if (!res.ok) console.log("errore");
-    const responseData = await res.json();
-    let docs = responseData.docs;
-    const documentName = responseData.documentName;
+    let docs = await loader.load();
 
     docs = docs.map((doc: any) => ({
       ...doc,
