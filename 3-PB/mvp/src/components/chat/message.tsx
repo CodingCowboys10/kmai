@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getDocumentContentController } from "@/lib/config/container";
+import { useModel } from "@/providers/model-provider";
 
 type MessageInfoInterface = {
   messageText: string;
@@ -17,8 +18,9 @@ type MessageInfoInterface = {
 );
 
 function Message(props: MessageInfoInterface) {
+  const { model } = useModel();
   const handleShowDoc = async (name: string) => {
-    const res = await getDocumentContentController.handle(name, "Ollama");
+    const res = await getDocumentContentController.handle(name, model!);
     const url = await res.json();
     window.open(url.url, "_blank");
   };
@@ -49,8 +51,8 @@ function Message(props: MessageInfoInterface) {
               >
                 <p>Pag. {props.pageNumber}</p>
                 <Button
-                  className={"text-accent-foreground"}
-                  variant={"link"}
+                  className={"text-accent-foreground cursor-pointer"}
+                  variant={"outline"}
                   size={"icon"}
                   asChild
                   onClick={() => handleShowDoc(props.documentLink)}
