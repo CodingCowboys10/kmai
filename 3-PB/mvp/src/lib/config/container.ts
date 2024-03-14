@@ -19,7 +19,7 @@ import { DeleteEmbeddingUsecase } from "@/usecase/embeddings/DeleteEmbeddingUsec
 import { GetIdsEmbeddingUsecase } from "@/usecase/embeddings/GetIdsEmbeddingUsecase";
 
 const AWSParams = {
-  endpoint: "http://172.17.0.1:9000", //ristabilito
+  endpoint: "http://127.0.0.1:9000", //ristabilito
   accessKeyId: "ROOTUSER",
   secretAccessKey: "CHANGEME123",
   s3ForcePathStyle: true,
