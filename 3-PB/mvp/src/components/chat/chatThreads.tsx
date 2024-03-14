@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { Pencil2Icon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -11,50 +12,43 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import pool from "@/app/api/chat/chatThread";
+import { Label } from "@/components/ui/label";
 
 const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `thread numero ${a.length - i}`
+  (_, i, a) => `thread numero ${a.length - i}`,
 );
 
 export function ChatThreads() {
   return (
-    <ScrollArea className="h-full w-full rounded-md border">
-      <div className="p-3">
-        <div className="mb-2 flex flex-col items-center justify-center">
-          <Button
-            variant="outline"
-            className="bg-sky-700 hover:bg-sky-400 transition-colors mb-2"
-          >
-            Nuova chat
-          </Button>
-        </div>
-        <h4 className="mb-4 text-sm font-medium leading-none">Threads</h4>
-
+    <div className={"flex flex-col  relative max-h-[90%] px-1"}>
+      <div className={"flex flex-row items-center justify-between p-2"}>
+        <Label className={"text-lg"}>Nuova Chat</Label>
+        <Button variant={"ghost"} size={"icon"}>
+          <Pencil2Icon className={"w-6 h-6"} />
+        </Button>
+      </div>
+      <ScrollArea className="h-full max-h-[80%] rounded-md p-2">
         {tags.map((tag) => (
           <React.Fragment key={tag}>
-            <div className="border-solid border-2 text-sm transition-colors hover:bg-slate-400 rounded-md">
-              <Button
-                variant="ghost"
-                onClick={() => {
-                  console.log(tag);
-                }}
-                className="bg-transparent hover:bg-transparent transition-colors"
-              >
-                {tag}
-              </Button>
-
+            <div
+              onClick={() => alert("ciao")}
+              className="flex flex-row items-center justify-between text-sm transition-colors  hover:bg-background/50 rounded-md p-2 my-1"
+            >
+              {tag}
               <DropdownMenu>
-                <DropdownMenuTrigger>...</DropdownMenuTrigger>
+                <DropdownMenuTrigger asChild>
+                  <Button variant={"ghost"} size={"icon"} className={"w-7 h-7"}>
+                    <DotsHorizontalIcon />
+                  </Button>
+                </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>Elimina chat</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-
-            <Separator className="my-1" />
           </React.Fragment>
         ))}
-      </div>
-    </ScrollArea>
+      </ScrollArea>
+    </div>
   );
 }
