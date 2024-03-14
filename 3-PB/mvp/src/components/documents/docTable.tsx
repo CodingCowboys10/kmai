@@ -21,7 +21,7 @@ export default function DocTable() {
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data || []} />
+      <DataTable columns={columns} data={data} />
     </div>
   );
 }
