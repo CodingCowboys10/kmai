@@ -6,7 +6,7 @@ import ChatMessages from "@/components/chat/chatMessages";
 import ChatForm from "@/components/chat/chatForm";
 import { useChat } from "ai/react";
 
-import { ChatThreads } from "@/components/chat/chatThreads";
+import ChatThreads from "@/components/chat/chatThreads";
 
 import { toast } from "sonner";
 
@@ -34,15 +34,11 @@ export default function Page() {
       },
     });
 
-  useEffect(() => {
-    console.log(sourcesForMessages);
-  }, [messages]);
-
   return (
-
     <main className="relative flex flex-row w-full h-full">
-      <SideBar>{<ChatThreads></ChatThreads>}</SideBar>
-
+      <SideBar>
+        <ChatThreads></ChatThreads>
+      </SideBar>
 
       <Body>
         <ChatMessages
