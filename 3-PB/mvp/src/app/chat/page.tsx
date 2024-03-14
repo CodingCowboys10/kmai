@@ -6,6 +6,7 @@ import ChatMessages from "@/components/chat/chatMessages";
 import ChatForm from "@/components/chat/chatForm";
 import { useChat } from "ai/react";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function Page() {
   const [sourcesForMessages, setSourcesForMessages] = useState<
@@ -33,7 +34,10 @@ export default function Page() {
 
   return (
     <main className="relative flex flex-row w-full h-full">
-      <SideBar>{""}</SideBar>
+      <SideBar>
+        <Link href={"documents"}>CHAT</Link>
+      </SideBar>
+
       <Body>
         <ChatMessages
           sources={sourcesForMessages}
