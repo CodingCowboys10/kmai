@@ -1,11 +1,11 @@
 import { Pool } from "pg";
 
-const pool=new pool({
+const pool=new Pool({
     host:"localhost",
     port: "5432",
-    user : "my_user",
-    password: "root",
-    database: "my_database"
+    user : "postgres",
+    password: "postgres",
+    database: "postgres"
 
 })
 
