@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
 
     const res = await getDocumentsController.handle(body.model);
     const resData = await res.json();
-    console.log(resData);
-    return NextResponse.json({ message: resData }, { status: 200 });
+
+    return NextResponse.json(resData, { status: 200 });
   } catch (e) {
     console.log(e);
     return NextResponse.json({ message: "non va" }, { status: 500 });
