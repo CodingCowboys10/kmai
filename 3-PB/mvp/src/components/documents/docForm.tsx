@@ -24,15 +24,15 @@ function DocForm() {
       const data = new FormData();
       data.set("file", selectedFile);
       data.set("model", "Ollama");
-      const res = await addDocumentController.handle(data);
+      const res = await fetch("/api/document/addDocument", {
+        method: "POST",
+        body: data,
+      });
+      const resData = await res.json();
       if (!res.ok) {
-        res.json().then((data) => {
-          toast.error(data.error);
-        });
+        toast.error(resData.message);
       } else {
-        res.json().then((data) => {
-          toast.success(data.message);
-        });
+        toast.success(resData.message);
       }
       setSelectedFile(null);
     }

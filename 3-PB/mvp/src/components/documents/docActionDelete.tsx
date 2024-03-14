@@ -15,14 +15,11 @@ import { toast } from "sonner";
 export default function DocActionDelete({ name }: { name: string }) {
   const handleDelteDoc = async () => {
     const res = await deleteDocumentController.handle(name, "Ollama");
+    const resData = await res.json();
     if (!res.ok) {
-      res.json().then((data) => {
-        toast.error(data.error);
-      });
+      toast.error(resData.message);
     } else {
-      res.json().then((data) => {
-        toast.success(data.message);
-      });
+      toast.success(resData.message);
     }
   };
 
