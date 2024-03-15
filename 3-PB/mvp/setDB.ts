@@ -13,7 +13,7 @@ async function createChatThreadsTable() {
   try {
     const query = `
             CREATE TABLE IF NOT EXISTS chat_threads (
-                id SERIAL PRIMARY KEY,
+              id SERIAL PRIMARY KEY,
 	            title TEXT NOT NULL,
 	            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
@@ -63,18 +63,15 @@ async function createIndex() {
 
 async function test() {
   try {
-    /*const query = `INSERT INTO chat_threads (title) VALUES ('Qual è il tempo domani?');
+    const query = `INSERT INTO chat_threads (title) VALUES ('Qual è il tempo domani?');
         INSERT INTO messages (thread_id, content, role) VALUES (1, 'Qual è il tempo oggi?', 'user'),
-                                                               (1, 'Il tempo oggi è soleggiato.', 'model');`;*/
+                                                               (1, 'Il tempo oggi è soleggiato.', 'model');`;
     /*const query = `INSERT INTO chat_threads (title) VALUES ('Come mi chiamo?');
                        INSERT INTO messages (thread_id, content, role) VALUES (2, 'Come mi chiamo?', 'user'),
                                                                               (2, 'Ti chiami Francesco', 'model'),
                                                                               (2, 'Quanti anni ho?', 'user'),
                                                                               (2, 'Hai 22 anni', 'model');`;*/
-
-    const query = `SELECT * from messages`;
-    const result = await pool.query(query);
-    console.log(result.rows);
+    await pool.query(query);
     console.log("Test started");
   } catch (e) {
     console.error(e);
@@ -82,10 +79,55 @@ async function test() {
   }
 }
 
-//createChatThreadsTable();
-//createMessagesTable();
-//createIndex();
+async function cancella() {
+  try {
+    await pool.query(`DROP TABLE IF EXISTS messages;`);
+    console.log("Table messages deleted");
+    await pool.query(`DROP TABLE IF EXISTS chat_threads;`);
+    console.log("Table chat_threads deleted");
+    await pool.query(`DROP INDEX IF EXISTS idx_messages_content;`);
+    console.log("Index deleted");
+  } catch (e) {
+    console.error(e);
+    console.error("Error deleting tables");
+  }
+}
+
+async function crea() {
+  try {
+    await createChatThreadsTable();
+    await createMessagesTable();
+    await createIndex();
+  } catch (e) {
+    console.error(e);
+    console.error("Error creating tables");
+  }
+}
+
+async function stampa() {
+  try {
+    console.log("CHAT THREADS");
+    let query = "SELECT * from chat_threads";
+    let res = await pool.query(query);
+    console.log(res.rows);
+    console.log("-----------------------------------------------");
+    console.log("MESSAGES");
+    query = "SELECT * from messages";
+    res = await pool.query(query);
+    console.log(res.rows);
+  }
+  catch (e) {
+    console.error(e);
+    console.error("Error printing tables");
+  }
+}
+
+//decommenta la funzione che vuoi eseguire
+
+//crea();     
+//cancella();
+//stampa();
 
 //console.log('-----------------------------------------------');
 
-test();
+//test();   //inserisce dati di test
