@@ -17,9 +17,27 @@ import { Message } from "ai";
 import { toast } from "sonner";
 
 function ChatThreads() {
+  /*Lascio un commento e alcune riflessioni su cose che secondo me puzzano.
+   * - Serve un modo per aggiornare il numero di chats aperte. Quello che c'e' al momento non copre alcuni aspetti.
+   * - - Nel caso di delete cosa si fa?
+   * 1) Si aggiorna la vista, se si allora il session id deve cambiare.
+   * 2) Dove posizioniamo il session id attuale/
+   *
+   * Ci sono un paio di soluzioni a cui ho pensato
+   * 1) avere uno state sessionNumber che tiene il conto di quante sessioni abbiamo e quando aumentano o diminuiscono questo aggiorna la vista
+   * - Problema quando aggiorniamo o facciamo un fetch il numero diventa 0 si deve avere un modo per impostarlo. Esempio con una chiamata
+   * all'api.
+   * 2) C'e' della ridondanza e va chiarita.
+   *
+   * Questo componente e' piu lungo del monte everest va smembrato in piccoli documenti
+   * Va capito perche la pool non puo' stare fuori dal API e vanno anche sistemato tutte le api
+   *
+   * Insomma per ora che vada e' solo um miracolo
+   *
+   *  */
+
   const [chatSessionId, setChatSessionId] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
-
   const [titles, setTitles] = useState<Record<any, any>[]>();
 
   const handleCreateChat = async () => {
@@ -27,8 +45,22 @@ function ChatThreads() {
       const res = await fetch("/api/chats/addChat", {
         method: "POST",
       });
-
       setChatSessionId((await res.json()).id);
+      if (!res.ok) {
+        toast.error((await res.json()).message);
+      } else {
+        toast.success((await res.json()).message);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleDeleteChat = async (id: number) => {
+    try {
+      const res = await fetch("/api/chats/deleteChat", {
+        method: "POST",
+        body: JSON.stringify({ id: id }),
+      });
       if (!res.ok) {
         toast.error((await res.json()).message);
       } else {
@@ -89,7 +121,11 @@ function ChatThreads() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem>Elimina chat</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => handleDeleteChat(value.id)}
+                    >
+                      Elimina chat
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
