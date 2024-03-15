@@ -11,6 +11,7 @@ import ChatThreads from "@/components/chat/chatThreads";
 import { toast } from "sonner";
 
 export default function Page() {
+  const [chatSessionId, setChatSessionId] = useState<number | null>(0);
   const [sourcesForMessages, setSourcesForMessages] = useState<
     Record<string, any>
   >({});
@@ -34,10 +35,41 @@ export default function Page() {
       },
     });
 
+  useEffect(() => {
+    const handleUploadMessage = async () => {
+      let newMessages = messages.slice(-2);
+
+      const res = await fetch("/api/chats/uploadMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messageAI: newMessages[1],
+          messageUser: newMessages[0],
+          sessionId: chatSessionId,
+        }),
+      });
+      const resData = await res.json();
+
+      if (!res.ok) {
+        toast.error(resData.message);
+      } else {
+        toast.success(resData.message);
+      }
+    };
+    if (!isLoading && messages.length) {
+      handleUploadMessage().then();
+    }
+  }, [messages, isLoading]);
+
   return (
     <main className="relative flex flex-row w-full h-full">
       <SideBar>
-        <ChatThreads></ChatThreads>
+        <ChatThreads
+          chatSessionId={chatSessionId}
+          setChatSessionId={setChatSessionId}
+        ></ChatThreads>
       </SideBar>
 
       <Body>

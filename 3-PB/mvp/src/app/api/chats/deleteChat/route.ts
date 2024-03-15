@@ -5,12 +5,15 @@ export const runtime = "nodejs";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const query = `DELETE FROM chat_threads WHERE id = ${body.id}`;
+    const deleteQuery = `DELETE FROM chat_threads WHERE id = ${body.id}`;
+    const maxIdQuery = "SELECT MAX(id) AS max_id FROM chat_threads";
 
-    const res = await pool.query(query);
+    await pool.query(deleteQuery); // Eliminazione dell'elemento
 
+    const maxIdResult = await pool.query(maxIdQuery); // Query per ottenere l'ID massimo
+    const maxId = maxIdResult.rows[0].max_id;
     return NextResponse.json(
-      { message: "Chat Eliminata con successo" },
+      { message: "Chat eliminata con successo", id: maxId },
       { status: 200 },
     );
   } catch (e) {

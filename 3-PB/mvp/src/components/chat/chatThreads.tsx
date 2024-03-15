@@ -16,40 +16,36 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Message } from "ai";
 import { toast } from "sonner";
 
-function ChatThreads() {
-  /*Lascio un commento e alcune riflessioni su cose che secondo me puzzano.
-   * - Serve un modo per aggiornare il numero di chats aperte. Quello che c'e' al momento non copre alcuni aspetti.
-   * - - Nel caso di delete cosa si fa?
-   * 1) Si aggiorna la vista, se si allora il session id deve cambiare.
-   * 2) Dove posizioniamo il session id attuale/
-   *
-   * Ci sono un paio di soluzioni a cui ho pensato
-   * 1) avere uno state sessionNumber che tiene il conto di quante sessioni abbiamo e quando aumentano o diminuiscono questo aggiorna la vista
-   * - Problema quando aggiorniamo o facciamo un fetch il numero diventa 0 si deve avere un modo per impostarlo. Esempio con una chiamata
-   * all'api.
-   * 2) C'e' della ridondanza e va chiarita.
-   *
-   * Questo componente e' piu lungo del monte everest va smembrato in piccoli documenti
-   * Va capito perche la pool non puo' stare fuori dal API e vanno anche sistemato tutte le api
-   *
-   * Insomma per ora che vada e' solo um miracolo
-   *
-   *  */
-
-  const [chatSessionId, setChatSessionId] = useState<number>(0);
+function ChatThreads({
+  chatSessionId,
+  setChatSessionId,
+}: {
+  chatSessionId: number | null;
+  setChatSessionId: any;
+}) {
+  const [chatSessionNumber, setChatSessionNumber] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [titles, setTitles] = useState<Record<any, any>[]>();
 
+  const handleCountChats = async () => {
+    const res = await fetch("/api/chats/getChatsNumber", { method: "POST" });
+    return (await res.json()).number;
+  };
   const handleCreateChat = async () => {
     try {
       const res = await fetch("/api/chats/addChat", {
         method: "POST",
       });
-      setChatSessionId((await res.json()).id);
+
+      const resData = (await res.json()).id;
+      setChatSessionId(resData);
+      const number = await handleCountChats();
+      setChatSessionNumber(number);
+
       if (!res.ok) {
-        toast.error((await res.json()).message);
+        toast.error(resData.message);
       } else {
-        toast.success((await res.json()).message);
+        toast.success(resData.message);
       }
     } catch (e) {
       console.log(e);
@@ -61,10 +57,15 @@ function ChatThreads() {
         method: "POST",
         body: JSON.stringify({ id: id }),
       });
+      const resData = (await res.json()).id;
+      setChatSessionId(resData.id);
+      const number = await handleCountChats();
+      setChatSessionNumber(number);
+
       if (!res.ok) {
-        toast.error((await res.json()).message);
+        toast.error(resData.message);
       } else {
-        toast.success((await res.json()).message);
+        toast.success(resData.message);
       }
     } catch (e) {
       console.log(e);
@@ -77,12 +78,13 @@ function ChatThreads() {
         method: "GET", //sempre post da cambiare
       });
       const resData = await res.json(); //array
+      const number = await handleCountChats();
+      setChatSessionNumber(number);
       setTitles(resData);
       setIsLoading(false);
-      console.log(chatSessionId);
     };
     fetchTitles().then(() => setIsLoading(false));
-  }, [chatSessionId]);
+  }, [chatSessionNumber]);
 
   return (
     <div className={"flex flex-col relative min-h-[90%] px-1"}>
@@ -105,11 +107,16 @@ function ChatThreads() {
           titles!.map((value, index) => (
             <React.Fragment key={index}>
               <div
-                onClick={() => alert("ciao")}
-                className={`flex flex-row items-center justify-between text-sm transition-colors hover:bg-background/50 rounded-md p-2 my-1 mr-2 
-                ${chatSessionId === value.id ? "bg-background/70" : ""}`}
+                className={`flex flex-row items-center justify-between text-sm transition-colors hover:bg-background/50 rounded-md my-1 mr-2 pr-2 
+                ${chatSessionId === value.id ? "bg-background/75 hover:bg-background/70" : ""}`}
               >
-                {value.title}
+                <div
+                  onClick={() => setChatSessionId(value.id)}
+                  className={"w-full h-full cursor-pointer p-3 "}
+                >
+                  {value.id}
+                  {value.title}
+                </div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button

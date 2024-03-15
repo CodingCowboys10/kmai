@@ -37,7 +37,7 @@ async function createMessagesTable() {
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 sourcePage VARCHAR(30),
                 sourceLink VARCHAR(30),
-                UNIQUE (thread_id, content)
+                UNIQUE (thread_id, id)
             );
         `;
     await pool.query(query);
@@ -72,7 +72,7 @@ async function test() {
                                                                               (2, 'Quanti anni ho?', 'user'),
                                                                               (2, 'Hai 22 anni', 'model');`;*/
 
-    const query = `DROP TABLE chat_threads;`;
+    const query = `SELECT * from messages`;
     const result = await pool.query(query);
     console.log(result.rows);
     console.log("Test started");
@@ -82,10 +82,10 @@ async function test() {
   }
 }
 
-createChatThreadsTable();
-createMessagesTable();
-createIndex();
+//createChatThreadsTable();
+//createMessagesTable();
+//createIndex();
 
 //console.log('-----------------------------------------------');
 
-//test();
+test();
