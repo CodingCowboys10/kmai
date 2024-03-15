@@ -12,6 +12,7 @@ import { toast } from "sonner";
 
 export default function Page() {
   const [chatSessionId, setChatSessionId] = useState<number | null>(0);
+
   const [sourcesForMessages, setSourcesForMessages] = useState<
     Record<string, any>
   >({});
@@ -65,7 +66,7 @@ export default function Page() {
 
   return (
     <main className="relative flex flex-row w-full h-full">
-      <SideBar>
+      <SideBar isChat={true}>
         <ChatThreads
           chatSessionId={chatSessionId}
           setChatSessionId={setChatSessionId}

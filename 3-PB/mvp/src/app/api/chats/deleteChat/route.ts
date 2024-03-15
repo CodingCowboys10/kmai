@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
 
     const maxIdResult = await pool.query(maxIdQuery); // Query per ottenere l'ID massimo
     const maxId = maxIdResult.rows[0].max_id;
+
     return NextResponse.json(
       { message: "Chat eliminata con successo", id: maxId },
       { status: 200 },

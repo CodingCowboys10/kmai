@@ -31,7 +31,7 @@ async function createMessagesTable() {
     const query = `
             CREATE TABLE IF NOT EXISTS messages (
                 id SERIAL PRIMARY KEY,
-                thread_id INTEGER REFERENCES chat_threads(id),
+                thread_id INTEGER REFERENCES chat_threads(id) ON DELETE CASCADE,
                 content TEXT NOT NULL,
                 role VARCHAR(255),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -115,8 +115,7 @@ async function stampa() {
     query = "SELECT * from messages";
     res = await pool.query(query);
     console.log(res.rows);
-  }
-  catch (e) {
+  } catch (e) {
     console.error(e);
     console.error("Error printing tables");
   }
@@ -136,9 +135,9 @@ async function svuota() {
 
 //decommenta la funzione che vuoi eseguire
 
-//crea();       //crea le tabelle e l'indice se non esistono
-//cancella();     //cancella le tabelle e l'indice integralmente
-stampa();         //stampa i contenuti delle tabelle
+//crea(); //crea le tabelle e l'indice se non esistono
+//cancella(); //cancella le tabelle e l'indice integralmente
+//stampa(); //stampa i contenuti delle tabelle
 //svuota();       //svuota le tabelle senza cancellarle
 
 //console.log('-----------------------------------------------');

@@ -9,8 +9,20 @@ export async function POST(request: NextRequest) {
     const countResult = await pool.query(countQuery); // Query per ottenere il numero totale di ID
     const totalCount = countResult.rows[0].total_count;
 
+    const query = "SELECT id,title FROM chat_threads ORDER BY id DESC";
+    const { rows } = await pool.query(query);
+
+    const titles = rows.map((row: any) => ({
+      id: row.id,
+      title: row.title,
+    }));
+
     return NextResponse.json(
-      { message: "Chat eliminata con successo", number: totalCount },
+      {
+        message: "Chat eliminata con successo",
+        number: totalCount,
+        titles: titles,
+      },
       { status: 200 },
     );
   } catch (e) {

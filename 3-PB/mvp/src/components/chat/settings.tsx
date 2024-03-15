@@ -9,8 +9,9 @@ import {
 import * as React from "react";
 import ThemeToggle from "@/components/chat/themeToggle";
 import ModelToggle from "@/components/chat/modelToggle";
+import DeleteChatList from "@/components/chat/deleteChatList";
 
-function Settings() {
+function Settings({ isChat }: { isChat?: boolean }) {
   return (
     <div className={"flex flex-row p-5 mt-auto justify-end"}>
       <Dialog>
@@ -46,6 +47,7 @@ function Settings() {
             <div className={"flex flex-col gap-4 pt-5 "}>
               <ModelToggle />
               <ThemeToggle />
+              {isChat && <DeleteChatList />}
             </div>
           </DialogHeader>
         </DialogContent>

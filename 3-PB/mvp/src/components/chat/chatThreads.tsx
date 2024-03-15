@@ -29,7 +29,8 @@ function ChatThreads({
 
   const handleCountChats = async () => {
     const res = await fetch("/api/chats/getChatsNumber", { method: "POST" });
-    return (await res.json()).number;
+    const resData = await res.json();
+    return { number: resData.number, titles: resData.titles };
   };
   const handleCreateChat = async () => {
     try {
@@ -39,7 +40,7 @@ function ChatThreads({
 
       const resData = (await res.json()).id;
       setChatSessionId(resData);
-      const number = await handleCountChats();
+      const { number } = await handleCountChats();
       setChatSessionNumber(number);
 
       if (!res.ok) {
@@ -57,9 +58,9 @@ function ChatThreads({
         method: "POST",
         body: JSON.stringify({ id: id }),
       });
-      const resData = (await res.json()).id;
-      setChatSessionId(resData.id);
-      const number = await handleCountChats();
+      const resData = await res.json();
+      setChatSessionId(resData.id || null);
+      const { number } = await handleCountChats();
       setChatSessionNumber(number);
 
       if (!res.ok) {
@@ -73,14 +74,12 @@ function ChatThreads({
   };
 
   useEffect(() => {
+    console.log(chatSessionNumber);
+    console.log(chatSessionId);
     const fetchTitles = async () => {
-      const res = await fetch("/api/chatThreads", {
-        method: "POST",
-      });
-      const resData = await res.json(); //array
-      const number = await handleCountChats();
+      const { number, titles } = await handleCountChats();
       setChatSessionNumber(number);
-      setTitles(resData);
+      setTitles(titles);
       setIsLoading(false);
     };
     fetchTitles().then(() => setIsLoading(false));
