@@ -122,11 +122,24 @@ async function stampa() {
   }
 }
 
+async function svuota() {
+  try {
+    await pool.query(`DELETE FROM messages;`);
+    console.log("Messages deleted");
+    await pool.query(`DELETE FROM chat_threads;`);
+    console.log("Chat threads deleted");
+  } catch (e) {
+    console.error(e);
+    console.error("Error deleting tables");
+  }
+}
+
 //decommenta la funzione che vuoi eseguire
 
-//crea();     
-//cancella();
-//stampa();
+//crea();       //crea le tabelle e l'indice se non esistono
+//cancella();     //cancella le tabelle e l'indice integralmente
+stampa();         //stampa i contenuti delle tabelle
+//svuota();       //svuota le tabelle senza cancellarle
 
 //console.log('-----------------------------------------------');
 

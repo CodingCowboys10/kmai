@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import pool from "@/app/api/utils/postgres";
 
 //funzione per ottenere i titoli delle chat
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     const query = "SELECT id,title FROM chat_threads ORDER BY id DESC";
     const { rows } = await pool.query(query);

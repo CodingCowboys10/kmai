@@ -75,7 +75,7 @@ function ChatThreads({
   useEffect(() => {
     const fetchTitles = async () => {
       const res = await fetch("/api/chatThreads", {
-        method: "GET", //sempre post da cambiare
+        method: "POST",
       });
       const resData = await res.json(); //array
       const number = await handleCountChats();
