@@ -87,7 +87,7 @@ export default function Page() {
 
       return (await res.json()).messages;
     };
-    if (!isLoading && messages.length) {
+    if (!isLoading) {
       getMessage().then((chatHistory) => {
         setInitialMessages(chatHistory);
         setMessages(chatHistory);
