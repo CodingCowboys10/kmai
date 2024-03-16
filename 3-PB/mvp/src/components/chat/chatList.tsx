@@ -97,10 +97,11 @@ function ChatList({
       <ScrollArea className="h-full max-h-[80%] rounded-md p-2 ">
         {isLoading && (
           <div className={"space-y-2"}>
-            <Skeleton className={"h-8 bg-background/60"} />{" "}
-            <Skeleton className={"h-8 bg-background/45"} />{" "}
-            <Skeleton className={"h-8 bg-background/30"} />{" "}
-            <Skeleton className={"h-8 bg-background/15"} />{" "}
+            <Skeleton className={"h-10 bg-background/65"} />{" "}
+            <Skeleton className={"h-10 bg-background/55"} />{" "}
+            <Skeleton className={"h-10 bg-background/45"} />{" "}
+            <Skeleton className={"h-10 bg-background/35"} />{" "}
+            <Skeleton className={"h-10 bg-background/25"} />{" "}
           </div>
         )}
         {!isLoading &&

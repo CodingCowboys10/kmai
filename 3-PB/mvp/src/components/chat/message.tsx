@@ -51,8 +51,8 @@ function Message(props: MessageInfoInterface) {
               >
                 <p>Pag. {props.pageNumber}</p>
                 <Button
-                  className={"text-accent-foreground cursor-pointer"}
-                  variant={"outline"}
+                  className={"cursor-pointer"}
+                  variant={"ghost"}
                   size={"icon"}
                   asChild
                   onClick={() => handleShowDoc(props.documentLink)}
