@@ -69,7 +69,9 @@ export default function Page() {
         toast.success(resData.message);
       }
     };
+    console.log(isLoading);
     if (!isLoading && messages.length) {
+      console.log("Salvo messaggi");
       handleUploadMessage().then();
     }
   }, [messages, isLoading]);
