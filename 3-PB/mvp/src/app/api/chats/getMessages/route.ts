@@ -17,15 +17,14 @@ export async function POST(request: NextRequest) {
 
     const result = await pool.query(countQuery);
 
-    // Da correggere e da sistemare
     const messages: Message[] = result.rows.map((row: any) => ({
       id: "21",
       content: row.content,
       role: row.role,
-      createdAt: new Date(row.createdAt),
+      createdAt: new Date(row.created_at),
     }));
 
-    //console.log(messages);
+    console.log(messages);
 
     return NextResponse.json(
       {

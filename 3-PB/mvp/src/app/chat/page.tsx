@@ -9,6 +9,7 @@ import { useChat } from "ai/react";
 import ChatList from "@/components/chat/chatList";
 
 import { toast } from "sonner";
+import { Message } from "ai";
 
 export default function Page() {
   const [chatSessionId, setChatSessionId] = useState<number | null>(0);
@@ -85,7 +86,7 @@ export default function Page() {
 
       return (await res.json()).messages;
     };
-    getMessage().then((messages) => setInitialMessages(messages));
+    getMessage().then((chatHistory) => setInitialMessages(chatHistory));
   }, [chatSessionId]);
 
   return (

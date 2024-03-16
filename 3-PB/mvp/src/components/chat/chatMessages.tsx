@@ -30,13 +30,13 @@ function ChatMessages({ messages, sources }: ChatMessagesInterface) {
                 messageText={value.content}
                 documentLink={sources[index]?.[0]?.metadata?.name || ""}
                 pageNumber={sources[index]?.[0]?.metadata?.page || ""}
-                time={value.createdAt!.toString()}
+                time={value.createdAt!.toLocaleString()}
               />
             ) : (
               <Message
                 isGenerated={false}
                 messageText={value.content}
-                time={value.createdAt!.toString()}
+                time={value.createdAt!.toLocaleString()}
               />
             )}
           </React.Fragment>
