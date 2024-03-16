@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  minio:
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    user: 1000:1000
+    environment:
+      - AWS_SDK_JS_SUPPRESS_MAINTENANCE_MODE_MESSAGE=1
+      - MINIO_ROOT_USER=ROOTUSER
+      - MINIO_ROOT_PASSWORD=CHANGEME123
+    volumes:
+      - minio_data:/data
+    image: minio/minio
+    command: server /data --console-address ":9001"
+
+  ollama:
+    volumes:
+      - ollama:/root/.ollama
+    pull_policy: always
+    tty: true
+    restart: unless-stopped
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgresvol:/var/lib/postgresql/data
+
+  chromadb:
+    image: chromadb/chroma
+    volumes:
+      - chromadb:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=true
+    ports:
+      - "8000:8000"
+
+volumes:
+  minio_data:
+  ollama:
+  postgresvol:
+  chromadb:
