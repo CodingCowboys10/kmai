@@ -2,13 +2,7 @@ import Settings from "@/components/chat/settings";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-function SideBar({
-  children,
-  isChat,
-}: {
-  children: React.ReactNode;
-  isChat?: boolean;
-}) {
+function SideBar({ children }: { children: React.ReactNode }) {
   const [isCollapsed, setCollapsed] = useState(false);
   return (
     <div
@@ -70,7 +64,7 @@ function SideBar({
         </Button>
       </div>
       {children}
-      <Settings isChat={isChat} />
+      <Settings />
     </div>
   );
 }
