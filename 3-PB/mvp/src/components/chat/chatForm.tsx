@@ -12,6 +12,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import React from "react";
+import { useChatsData } from "@/providers/chats-provider";
 
 const FormSchema = z.object({
   message: z.string().trim().min(1, {
@@ -24,9 +25,6 @@ interface ChatFormValueInterface {
   handleInputChange: any;
   isLoading: boolean;
   input: string;
-  chatSessionId: number | null;
-  setChatSessionId: any;
-  setChatSessionNumber: any;
 }
 
 function ChatForm({
@@ -34,10 +32,10 @@ function ChatForm({
   handleInputChange,
   isLoading,
   input,
-  chatSessionId,
-  setChatSessionId,
-  setChatSessionNumber,
 }: ChatFormValueInterface) {
+  const { chatSessionId, setChatSessionId, setChatSessionNumber } =
+    useChatsData();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });

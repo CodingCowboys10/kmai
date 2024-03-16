@@ -15,19 +15,16 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Message } from "ai";
 import { toast } from "sonner";
+import { useChatsData } from "@/providers/chats-provider";
 
-function ChatList({
-  chatSessionId,
-  setChatSessionId,
-  chatSessionNumber,
-  setChatSessionNumber,
-}: {
-  chatSessionId: number | null;
-  chatSessionNumber: number | null;
-  setChatSessionId: any;
-  setChatSessionNumber: any;
-}) {
+function ChatList() {
   const [isLoading, setIsLoading] = useState(true);
+  const {
+    chatSessionId,
+    setChatSessionId,
+    chatSessionNumber,
+    setChatSessionNumber,
+  } = useChatsData();
   const [titles, setTitles] = useState<Record<any, any>[]>();
 
   const handleCountChats = async () => {

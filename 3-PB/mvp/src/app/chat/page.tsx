@@ -10,11 +10,19 @@ import ChatList from "@/components/chat/chatList";
 
 import { toast } from "sonner";
 import { Message } from "ai";
+import { ChatsProvider, useChatsData } from "@/providers/chats-provider";
 
-export default function Page() {
-  const [chatSessionId, setChatSessionId] = useState<number | null>(0);
+export default function App() {
+  return (
+    <ChatsProvider>
+      <Main />
+    </ChatsProvider>
+  );
+}
+
+function Main() {
+  const { chatSessionId } = useChatsData();
   const [initialMessages, setInitialMessages] = useState<Message[]>([]);
-  const [chatSessionNumber, setChatSessionNumber] = useState(null);
   const [sourcesForMessages, setSourcesForMessages] = useState<
     Record<string, any>
   >({});
@@ -97,13 +105,8 @@ export default function Page() {
 
   return (
     <main className="relative flex flex-row w-full h-full">
-      <SideBar isChat={true}>
-        <ChatList
-          chatSessionId={chatSessionId}
-          chatSessionNumber={chatSessionNumber}
-          setChatSessionId={setChatSessionId}
-          setChatSessionNumber={setChatSessionNumber}
-        ></ChatList>
+      <SideBar>
+        <ChatList></ChatList>
       </SideBar>
 
       <Body>
@@ -112,9 +115,6 @@ export default function Page() {
           messages={messages}
         ></ChatMessages>
         <ChatForm
-          chatSessionId={chatSessionId}
-          setChatSessionId={setChatSessionId}
-          setChatSessionNumber={setChatSessionNumber}
           handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}
           isLoading={isLoading}

@@ -1,14 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useChatsData } from "@/providers/chats-provider";
 
 function DeleteChatList() {
-  //trovare il modo di aggiornare il numero di liste da qua
+  const { setChatSessionNumber } = useChatsData();
 
   const handleDeleteAllChat = async () => {
     const res = await fetch("/api/chats/deleteAllChat", {
       method: "POST",
     });
-
+    setChatSessionNumber(null);
     if (!res.ok) {
       toast.error((await res.json()).message);
     } else {
