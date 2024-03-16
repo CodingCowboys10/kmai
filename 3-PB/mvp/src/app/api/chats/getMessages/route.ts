@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       id: "21",
       content: row.content,
       role: row.role,
-      createdAt: new Date(),
+      createdAt: new Date(row.createdAt),
     }));
 
     //console.log(messages);

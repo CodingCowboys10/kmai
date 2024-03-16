@@ -41,7 +41,7 @@ function Message(props: MessageInfoInterface) {
       >
         {props.messageText}
         {props.isGenerated && (
-          <Alert className={"mt-5"}>
+          <Alert className={"mt-5 bg-background/35"}>
             <AlertTitle>Fonte della Risposta</AlertTitle>
             <AlertDescription>
               <div
