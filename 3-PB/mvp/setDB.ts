@@ -137,7 +137,7 @@ async function svuota() {
 
 //crea(); //crea le tabelle e l'indice se non esistono
 //cancella(); //cancella le tabelle e l'indice integralmente
-//stampa(); //stampa i contenuti delle tabelle
+stampa(); //stampa i contenuti delle tabelle
 //svuota();       //svuota le tabelle senza cancellarle
 
 //console.log('-----------------------------------------------');

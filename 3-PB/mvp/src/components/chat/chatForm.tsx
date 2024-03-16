@@ -24,6 +24,9 @@ interface ChatFormValueInterface {
   handleInputChange: any;
   isLoading: boolean;
   input: string;
+  chatSessionId: number | null;
+  setChatSessionId: any;
+  setChatSessionNumber: any;
 }
 
 function ChatForm({
@@ -31,6 +34,9 @@ function ChatForm({
   handleInputChange,
   isLoading,
   input,
+  chatSessionId,
+  setChatSessionId,
+  setChatSessionNumber,
 }: ChatFormValueInterface) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -40,6 +46,18 @@ function ChatForm({
     if (isLoading) return;
     const isValid = await form.trigger();
     if (isValid) {
+      if (!chatSessionId) {
+        const res = await fetch("/api/chats/addChat", {
+          method: "POST",
+        });
+        const res2 = await fetch("/api/chats/getChatsNumber", {
+          method: "POST",
+        });
+        const resData = (await res.json()).id;
+
+        setChatSessionNumber((await res2.json()).number);
+        setChatSessionId(resData);
+      }
       handleSubmit(event);
     } else {
       toast.error(

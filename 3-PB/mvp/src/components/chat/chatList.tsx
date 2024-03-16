@@ -16,14 +16,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Message } from "ai";
 import { toast } from "sonner";
 
-function ChatThreads({
+function ChatList({
   chatSessionId,
   setChatSessionId,
+  chatSessionNumber,
+  setChatSessionNumber,
 }: {
   chatSessionId: number | null;
+  chatSessionNumber: number | null;
   setChatSessionId: any;
+  setChatSessionNumber: any;
 }) {
-  const [chatSessionNumber, setChatSessionNumber] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [titles, setTitles] = useState<Record<any, any>[]>();
 
@@ -74,8 +77,6 @@ function ChatThreads({
   };
 
   useEffect(() => {
-    console.log(chatSessionNumber);
-    console.log(chatSessionId);
     const fetchTitles = async () => {
       const { number, titles } = await handleCountChats();
       setChatSessionNumber(number);
@@ -141,4 +142,4 @@ function ChatThreads({
     </div>
   );
 }
-export default ChatThreads;
+export default ChatList;

@@ -6,40 +6,48 @@ import ChatMessages from "@/components/chat/chatMessages";
 import ChatForm from "@/components/chat/chatForm";
 import { useChat } from "ai/react";
 
-import ChatThreads from "@/components/chat/chatThreads";
+import ChatList from "@/components/chat/chatList";
 
 import { toast } from "sonner";
 
 export default function Page() {
   const [chatSessionId, setChatSessionId] = useState<number | null>(0);
-
+  const [chatSessionNumber, setChatSessionNumber] = useState(null);
+  const [initialMessages, setInitialMessages] = useState<Message[]>([]);
   const [sourcesForMessages, setSourcesForMessages] = useState<
     Record<string, any>
   >({});
-  const { messages, input, handleInputChange, handleSubmit, isLoading } =
-    useChat({
-      onResponse(response) {
-        const sourcesHeader = response.headers.get("x-sources");
-        const sources = sourcesHeader
-          ? JSON.parse(Buffer.from(sourcesHeader, "base64").toString("utf8"))
-          : [];
-        const messageIndexHeader = response.headers.get("x-message-index");
-        if (sources.length && messageIndexHeader !== null) {
-          setSourcesForMessages({
-            ...sourcesForMessages,
-            [messageIndexHeader]: sources,
-          });
-        }
-      },
-      onError: (e) => {
-        toast.error(e.message);
-      },
-    });
+  const {
+    messages,
+    setMessages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+  } = useChat({
+    initialMessages: initialMessages,
+    onResponse(response) {
+      const sourcesHeader = response.headers.get("x-sources");
+      const sources = sourcesHeader
+        ? JSON.parse(Buffer.from(sourcesHeader, "base64").toString("utf8"))
+        : [];
+      const messageIndexHeader = response.headers.get("x-message-index");
+      if (sources.length && messageIndexHeader !== null) {
+        setSourcesForMessages({
+          ...sourcesForMessages,
+          [messageIndexHeader]: sources,
+        });
+      }
+    },
+    onError: (e) => {
+      toast.error(e.message);
+    },
+  });
 
   useEffect(() => {
     const handleUploadMessage = async () => {
       let newMessages = messages.slice(-2);
-
+      const keys = Object.keys(sourcesForMessages);
       const res = await fetch("/api/chats/uploadMessage", {
         method: "POST",
         headers: {
@@ -49,6 +57,7 @@ export default function Page() {
           messageAI: newMessages[1],
           messageUser: newMessages[0],
           sessionId: chatSessionId,
+          source: sourcesForMessages[keys[keys.length - 1]],
         }),
       });
       const resData = await res.json();
@@ -64,13 +73,30 @@ export default function Page() {
     }
   }, [messages, isLoading]);
 
+  useEffect(() => {
+    const getMessage = async () => {
+      const res = await fetch("/api/chats/getMessages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: chatSessionId }),
+      });
+
+      return (await res.json()).messages;
+    };
+    getMessage().then((messages) => setInitialMessages(messages));
+  }, [chatSessionId]);
+
   return (
     <main className="relative flex flex-row w-full h-full">
       <SideBar isChat={true}>
-        <ChatThreads
+        <ChatList
           chatSessionId={chatSessionId}
+          chatSessionNumber={chatSessionNumber}
           setChatSessionId={setChatSessionId}
-        ></ChatThreads>
+          setChatSessionNumber={setChatSessionNumber}
+        ></ChatList>
       </SideBar>
 
       <Body>
@@ -79,6 +105,9 @@ export default function Page() {
           messages={messages}
         ></ChatMessages>
         <ChatForm
+          chatSessionId={chatSessionId}
+          setChatSessionId={setChatSessionId}
+          setChatSessionNumber={setChatSessionNumber}
           handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}
           isLoading={isLoading}

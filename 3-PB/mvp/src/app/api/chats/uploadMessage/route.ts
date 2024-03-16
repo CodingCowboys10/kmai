@@ -8,8 +8,15 @@ export async function POST(request: NextRequest) {
     const messageAI = body.messageAI;
     const messageUser = body.messageUser;
     const sessionId = body.sessionId;
+    const sourcePage = body.source[0]?.metadata.page;
+    const sourceDoc = body.source[0]?.metadata.name;
 
-    // Formatta la data e l'ora nel formato desiderato per il database
+    console.log(sourcePage);
+    console.log(sourceDoc);
+    console.log(sessionId);
+    console.log(messageUser);
+    console.log(messageAI);
+
     const formattedUserCreatedAt = messageUser.createdAt.toLocaleString(
       "it-IT",
       {
@@ -22,13 +29,13 @@ export async function POST(request: NextRequest) {
       minute: "2-digit",
     });
 
-    // Crea la query SQL per inserire i messaggi
+    //Il message content va escapato se contiene un ` esplode il mondo.
     const queryMessage = `
     INSERT INTO messages (thread_id, content, role, created_at)
     VALUES 
     (${sessionId}, '${messageUser.content}', '${messageUser.role}', '${formattedUserCreatedAt}'),
     (${sessionId}, '${messageAI.content}', '${messageAI.role}', '${formattedAICreatedAt}')`;
-
+    console.log(queryMessage);
     const res = await pool.query(queryMessage);
 
     return NextResponse.json(
