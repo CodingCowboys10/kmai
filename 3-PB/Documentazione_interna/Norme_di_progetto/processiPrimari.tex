@@ -187,7 +187,7 @@ L'attività si articola nei seguenti compiti:
     \item È necessario trasformare i requisiti, identificati mediante la relativa attività, in un'architettura del prodotto, identificando i componenti necessari e scopi e funzioni ad essi associati.
     \item Deve essere sviluppata una progettazione che tenga in considerazione l'interazione dei singoli componenti tra loro, verificando che ogni componente faccia riferimento a uno o più requisiti e viceversa.
     \item Devono essere identificati i test con cui verificare la soddisfazione dei requisiti che danno origine ai componenti, e devono essere riportati nel documento opportuno denominato Piano\_di\_qualifica\_v2.0.
-    \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività. Il parere del proponente sarà inoltre necessario per la definizione dei componenti da progettare, e successivamente codificare e implementare, per la prima fase di studio di fattibilità del progetto e delle sue tecnologie, con la realizzazione di un prodotto software denominato \ccgloss{Proof of Concept}.
+    \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività. Il parere del proponente sarà inoltre necessario per la definizione dei componenti da progettare, e successivamente codificare e implementare, per la prima fase di studio di fattibilità del progetto e delle sue tecnologie, con la realizzazione di un prodotto software denominato \ccgloss{Proof of Concept}, oltre che per il prodotto software finale denominato Minimum Viable Product.
     \item La progettazione deve portare alla produzione del documento Specifica\_architetturale\_v1.0, il quale conterrà:
 
 \begin{itemize}
@@ -201,6 +201,18 @@ L'attività si articola nei seguenti compiti:
     \item uno schema che rappresenta l'architettura logica del prodotto;
     \item una lista dei design pattern implementati, con una descrizione dettagliata di come sono stati integrati nell'applicazione.
 \end{itemize}
+\item Parallelamente all'attività di progettazione architetturale, devono essere definiti i test da eseguire per verificare la corretta integrazione delle componenti del prodotto. Ogni test individuato deve essere documentato nel Piano\_di\_qualifica\_v2.0 e deve esporre:
+    \begin{enumerate}
+        \item codice alfanumerico del test, definito come T[\textit{C}]-[\textit{N}] dove:
+        \begin{enumerate}
+            \item \textit{C} identifica la tipologia del test di integrazione (I);
+            \item \textit{N} identifica il numero univoco del test.
+        \end{enumerate}
+        \item descrizione generale;
+        \item nome del test codificato ad esso associato;
+        \item tracciamento della implementazione del test.
+    \end{enumerate}
+    La definizione dei test a seguito dell'attività di progettazione è coerente a quanto prefigge il \ccgloss{V model}.
 \end{enumerate}
 
 \subsubsection{Progettazione di dettaglio}
@@ -210,6 +222,18 @@ L'attività si articola nei seguenti compiti:
     \item Una opportuna documentazione deve essere redatta per esporre le specifiche prodotte nelle fasi di progettazione. In particolare, nel documento denominato Specifica\_architetturale\_v1.0 sarà redatta una sezione specifica che conterrà una descrizione dettagliata dell'architettura, approfondendo le relazioni tra i componenti e come interagiscono;
     \item Deve essere verificato che le unità progettate soddisfino i requisiti del prodotto;
     \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività.
+    \item Parallelamente all'attività di progettazione di dettaglio, devono essere definiti i test da eseguire per verificare la corretta funzione dei moduli codificati. Ogni test individuato deve essere documentato nel Piano\_di\_qualifica\_v2.0 e deve esporre:
+    \begin{enumerate}
+        \item codice alfanumerico del test, definito come T[\textit{C}]-[\textit{N}] dove:
+        \begin{enumerate}
+            \item \textit{C} identifica la tipologia del test di unità (U);
+            \item \textit{N} identifica il numero univoco del test.
+        \end{enumerate}
+        \item descrizione generale;
+        \item nome del test codificato ad esso associato;
+        \item tracciamento della implementazione del test.
+    \end{enumerate}
+    La definizione dei test a seguito dell'attività di progettazione di dettaglio è coerente a quanto prefigge il \ccgloss{V model}.
 \end{enumerate}
 
 \subsubsection{Codifica e prova dei componenti}
@@ -224,9 +248,12 @@ L'attività si articola nei seguenti compiti:
 \subsubsection{Integrazione dei componenti}
 L'attività si articola nei seguenti compiti:
 \begin{enumerate}
-    \item Deve essere sviluppato un piano di integrazione per i componenti codificati nella relativa attività;
+    \item Deve essere sviluppato un piano di integrazione per i componenti codificati nella relativa attività.
     \item I componenti e le singole unità software devono essere integrati secondo quanto deciso dal relativo piano di integrazione, verificando che l'integrazione soddisfi i requisiti del prodotto.
-    \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività. In riferimento alla fase di studio di fattibilità del progetto e delle tecnologie, l'incontro con il proponente sarà necessario all'esposizione del prodotto denominato Proof of Concept, con il quale dimostrare la fattibilità del prodotto richiesto dal progetto in relazione alle tecnologie adottate dal gruppo in accordo con il proponente stesso.
+    \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività.\\In riferimento alla fase di studio di fattibilità del progetto e delle tecnologie, l'incontro con il proponente sarà necessario all'esposizione del prodotto denominato Proof of Concept, con il quale dimostrare la fattibilità del prodotto richiesto dal progetto in relazione alle tecnologie adottate dal gruppo in accordo con il proponente stesso.\\
+    In riferimento al prodotto finale del progetto, l'incontro con il proponente sarà necessario all'esposizione del prodotto denominato Minimum Viable Product.
+    \item Parallelamente all'attività di integrazione dei componenti, dovrà essere redatto un documento denominato Manuale\_utente\_v1.0. Esso conterrà tutte le istruzioni necessarie per il corretto utilizzo del prodotto software del progetto e di tutte le funzionalità da esso permesse.\\
+    Questo documento dovrà contenere istruzioni chiare su come installare ed utilizzare nella sua interezza il prodotto software, corredando immagini esplicative e chiarificatrici a titolo di esempio.
 \end{enumerate}
 
 
@@ -237,14 +264,14 @@ L'attività si articola nei seguenti compiti:
 \subsection{Strumenti}
 Durante lo svolgimento dei compiti vengono utilizzati i seguenti strumenti:
 \begin{itemize}
-    \item StarUML per la creazione dei diagrammi UML dei casi d'uso, prodotti nell'attività di analisi dei requisiti;
+    \item StarUML per la creazione dei diagrammi UML dei casi d'uso, prodotti nell'attività di analisi dei requisiti, e degli UML delle classi, prodotti nelle attività di progettazione;
     \item \ccgloss{Ollama}, e i relativi modelli linguistici forniti, per l'\ccgloss{embedding} dei documenti e la fase di retrieve per l'implementazione del \ccgloss{chatbot};
     \item \ccgloss{OpenAi} tecnologia usata in alternativa a quelle del punto precedente, ma con stesso fine;
     \item \ccgloss{Langchain} per la creazione dell'applicazione semplificando l'interazione tra \ccgloss{LLM} e database;
     \item \ccgloss{Chromadb} per lo store dei vettori creati con l'embedding dei documenti;
-    \item \ccgloss{SQLite} per lo store delle chat;
+    \item \ccgloss{Postgres} per lo store delle chat;
     \item \ccgloss{React} per la realizzazione dell'interfaccia utente in \ccgloss{TypeScript};
-    \item Node.js per l'esecuzione di codice TypeScript;
+    \item NodeJs per l'esecuzione di codice TypeScript;
     \item \ccgloss{NextJs} come framework per lo sviluppo;
     \item \ccgloss{Web Storm} come IDE per la codifica del prodotto;
     \item \ccgloss{MinIO} per la gestione e l'archiviazione dei documenti.
