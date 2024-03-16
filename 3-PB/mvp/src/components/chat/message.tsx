@@ -7,7 +7,7 @@ import { useModel } from "@/providers/model-provider";
 
 type MessageInfoInterface = {
   messageText: string;
-  time: string;
+  time: Date;
 } & (
   | {
       isGenerated: true;
@@ -84,7 +84,12 @@ function Message(props: MessageInfoInterface) {
           </Alert>
         )}
 
-        <p className={"w-full text-right text-sm  opacity-50"}>{props.time}</p>
+        <p className={"w-full text-right text-sm  opacity-50"}>
+          {props.time.toLocaleString("it-IT", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p>
       </div>
       {!props.isGenerated && (
         <div className={"h-full flex items-end"}>

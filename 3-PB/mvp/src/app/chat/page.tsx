@@ -13,8 +13,8 @@ import { Message } from "ai";
 
 export default function Page() {
   const [chatSessionId, setChatSessionId] = useState<number | null>(0);
-  const [chatSessionNumber, setChatSessionNumber] = useState(null);
   const [initialMessages, setInitialMessages] = useState<Message[]>([]);
+  const [chatSessionNumber, setChatSessionNumber] = useState(null);
   const [sourcesForMessages, setSourcesForMessages] = useState<
     Record<string, any>
   >({});
@@ -69,12 +69,11 @@ export default function Page() {
         toast.success(resData.message);
       }
     };
-    console.log(isLoading);
     if (!isLoading && messages.length) {
       console.log("Salvo messaggi");
       handleUploadMessage().then();
     }
-  }, [messages, isLoading]);
+  }, [isLoading]);
 
   useEffect(() => {
     const getMessage = async () => {
@@ -88,7 +87,12 @@ export default function Page() {
 
       return (await res.json()).messages;
     };
-    getMessage().then((chatHistory) => setInitialMessages(chatHistory));
+    if (!isLoading && messages.length) {
+      getMessage().then((chatHistory) => {
+        setInitialMessages(chatHistory);
+        setMessages(chatHistory);
+      });
+    }
   }, [chatSessionId]);
 
   return (

@@ -61,15 +61,15 @@ function ChatList({
         method: "POST",
         body: JSON.stringify({ id: id }),
       });
-      const resData = await res.json();
-      setChatSessionId(resData.id || null);
+
+      setChatSessionId(null);
       const { number } = await handleCountChats();
       setChatSessionNumber(number);
 
       if (!res.ok) {
-        toast.error(resData.message);
+        toast.error((await res.json()).message);
       } else {
-        toast.success(resData.message);
+        toast.success((await res.json()).message);
       }
     } catch (e) {
       console.log(e);
@@ -111,7 +111,10 @@ function ChatList({
                 ${chatSessionId === value.id ? "bg-background/75 hover:bg-background/70" : ""}`}
               >
                 <div
-                  onClick={() => setChatSessionId(value.id)}
+                  onClick={() => {
+                    console.log(value.id);
+                    setChatSessionId(value.id);
+                  }}
                   className={"w-full h-full cursor-pointer p-3 "}
                 >
                   {value.id}

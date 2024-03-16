@@ -17,18 +17,20 @@ export async function POST(request: NextRequest) {
 
     const result = await pool.query(countQuery);
 
+    // @ts-ignore
     const messages: Message[] = result.rows.map((row: any) => ({
       id: "21",
       content: row.content,
       role: row.role,
-      createdAt: new Date(row.created_at),
+      createdAt: new Date(row.created_at).toLocaleString("it-IT", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     }));
-
-    console.log(messages);
 
     return NextResponse.json(
       {
-        message: "Chat eliminata con successo",
+        message: "messaggi presi",
         messages: messages,
       },
       { status: 200 },
