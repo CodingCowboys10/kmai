@@ -28,15 +28,14 @@ function ChatList() {
     chatSessionId,
     setChatSessionId,
     titles,
-    setChatSessionNumber,
+    setIsUpdate,
   } = useChatsData();
 
   const handleCreateChat = async () => {
     try {
       const res = await addChat();
-      const { number } = await getChats();
       setChatSessionId(res);
-      setChatSessionNumber(number);
+      setIsUpdate(true);
     } catch (e) {
       console.log(e);
     }
@@ -44,10 +43,9 @@ function ChatList() {
   const handleDeleteChat = async (id: number) => {
     try {
       await deleteChat(id);
-      const { number } = await getChats();
 
       setChatSessionId(null);
-      setChatSessionNumber(number);
+      setIsUpdate(true);
     } catch (e) {
       toast.error("Errore durante l'eliminazione della chat");
     }

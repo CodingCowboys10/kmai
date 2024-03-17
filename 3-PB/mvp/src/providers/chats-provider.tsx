@@ -14,31 +14,29 @@ import { getChats } from "@/serverActions/chats/getChats";
 
 interface ChatsContextProps {
   setChatSessionId: Dispatch<SetStateAction<number | null>>;
-  setChatSessionNumber: Dispatch<SetStateAction<number | null>>;
+  setIsUpdate: Dispatch<SetStateAction<boolean>>;
   setIsLoadingChat: Dispatch<SetStateAction<boolean>>;
   setTitles: Dispatch<SetStateAction<Record<any, any>[] | undefined>>;
   chatSessionId: number | null;
-  chatSessionNumber: number | null;
+
   isLoadingChat: boolean;
   titles: Record<any, any>[] | undefined;
 }
 
 export const ChatsContext = createContext<ChatsContextProps>({
   setChatSessionId: () => {},
-  setChatSessionNumber: () => {},
+  setIsUpdate: () => {},
   setIsLoadingChat: () => {},
   setTitles: () => {},
   chatSessionId: null,
-  chatSessionNumber: null,
+
   isLoadingChat: false,
   titles: [],
 });
 export function ChatsProvider({ children }: { children: ReactNode }) {
   const { isLoading, setMessages, setInitialMessages } = useMessagesData();
   const [chatSessionId, setChatSessionId] = useState<number | null>(0);
-  const [chatSessionNumber, setChatSessionNumber] = useState<number | null>(
-    null,
-  );
+  const [isUpdate, setIsUpdate] = useState(false);
   const [isLoadingChat, setIsLoadingChat] = useState(true);
   const [titles, setTitles] = useState<Record<any, any>[]>();
 
@@ -62,21 +60,21 @@ export function ChatsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const fetchTitles = async () => {
-      const { number, titles } = await getChats();
-      setChatSessionNumber(number);
+      const titles = await getChats();
       setTitles(titles);
-      setIsLoadingChat(false);
     };
-    fetchTitles().then(() => setIsLoadingChat(false));
-  }, [chatSessionNumber]);
+    fetchTitles().then(() => {
+      setIsUpdate(false);
+      setIsLoadingChat(false);
+    });
+  }, [isUpdate]);
 
   return (
     <ChatsContext.Provider
       value={{
         setChatSessionId,
-        setChatSessionNumber,
+        setIsUpdate,
         chatSessionId,
-        chatSessionNumber,
         isLoadingChat,
         setIsLoadingChat,
         titles,
