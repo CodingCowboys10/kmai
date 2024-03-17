@@ -18,16 +18,18 @@ import { useChatsData } from "@/providers/chats-provider";
 import { addChat } from "@/serverActions/chats/addChat";
 import { deleteChat } from "@/serverActions/chats/deleteChat";
 import { getChats } from "@/serverActions/chats/getChats";
+import { useMessagesData } from "@/providers/messages-provider";
 
 function ChatList() {
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading } = useMessagesData();
+
   const {
+    isLoadingChat,
     chatSessionId,
     setChatSessionId,
-    chatSessionNumber,
+    titles,
     setChatSessionNumber,
   } = useChatsData();
-  const [titles, setTitles] = useState<Record<any, any>[]>();
 
   const handleCreateChat = async () => {
     try {
@@ -51,16 +53,6 @@ function ChatList() {
     }
   };
 
-  useEffect(() => {
-    const fetchTitles = async () => {
-      const { number, titles } = await getChats();
-      setChatSessionNumber(number);
-      setTitles(titles);
-      setIsLoading(false);
-    };
-    fetchTitles().then(() => setIsLoading(false));
-  }, [chatSessionNumber]);
-
   return (
     <div className={"flex flex-col relative min-h-[90%] px-1"}>
       <div className={"flex flex-row items-center justify-between p-2"}>
@@ -70,7 +62,7 @@ function ChatList() {
         </Button>
       </div>
       <ScrollArea className="h-full max-h-[80%] rounded-md p-2 ">
-        {isLoading && (
+        {isLoadingChat && (
           <div className={"space-y-2"}>
             <Skeleton className={"h-10 bg-background/65"} />{" "}
             <Skeleton className={"h-10 bg-background/55"} />{" "}
@@ -79,7 +71,7 @@ function ChatList() {
             <Skeleton className={"h-10 bg-background/25"} />{" "}
           </div>
         )}
-        {!isLoading &&
+        {!isLoadingChat &&
           titles!.map((value, index) => (
             <React.Fragment key={index}>
               <div
@@ -88,7 +80,7 @@ function ChatList() {
               >
                 <div
                   onClick={() => {
-                    setChatSessionId(value.id);
+                    if (!isLoading) setChatSessionId(value.id);
                   }}
                   className={"w-full h-full cursor-pointer p-3 "}
                 >

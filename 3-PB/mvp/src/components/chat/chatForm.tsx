@@ -15,6 +15,7 @@ import React from "react";
 import { useChatsData } from "@/providers/chats-provider";
 import { getChats } from "@/serverActions/chats/getChats";
 import { addChat } from "@/serverActions/chats/addChat";
+import { useMessagesData } from "@/providers/messages-provider";
 
 const FormSchema = z.object({
   message: z.string().trim().min(1, {
@@ -22,19 +23,9 @@ const FormSchema = z.object({
   }),
 });
 
-interface ChatFormValueInterface {
-  handleSubmit: any;
-  handleInputChange: any;
-  isLoading: boolean;
-  input: string;
-}
-
-function ChatForm({
-  handleSubmit,
-  handleInputChange,
-  isLoading,
-  input,
-}: ChatFormValueInterface) {
+function ChatForm() {
+  const { handleInputChange, handleSubmit, input, isLoading } =
+    useMessagesData();
   const { chatSessionId, setChatSessionId, setChatSessionNumber } =
     useChatsData();
 

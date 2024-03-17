@@ -12,9 +12,11 @@ import {
 import { deleteDocumentController } from "@/lib/config/container";
 import { toast } from "sonner";
 import { useModel } from "@/providers/model-provider";
+import { useDocumentData } from "@/providers/document-provider";
 
 export default function DocActionDelete({ name }: { name: string }) {
   const { model } = useModel();
+  const { setIsUpdate } = useDocumentData();
 
   const handleDelteDoc = async () => {
     const res = await deleteDocumentController.handle(name, model!);
@@ -22,6 +24,7 @@ export default function DocActionDelete({ name }: { name: string }) {
     if (!res.ok) {
       toast.error(resData.message);
     } else {
+      setIsUpdate(true);
       toast.success(resData.message);
     }
   };

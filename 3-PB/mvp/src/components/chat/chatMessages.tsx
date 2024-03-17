@@ -1,13 +1,11 @@
 import Message from "@/components/chat/message";
 import { Message as AiMessage } from "ai";
 import React from "react";
+import { useMessagesData } from "@/providers/messages-provider";
 
-interface ChatMessagesInterface {
-  messages: AiMessage[];
-  sources: Record<string, any>;
-}
+function ChatMessages() {
+  const { messages, sourcesForMessages } = useMessagesData();
 
-function ChatMessages({ messages, sources }: ChatMessagesInterface) {
   return (
     <div
       className={"flex flex-col gap-2 w-8/12 h-full pt-2 px-2 overflow-scroll"}
@@ -28,8 +26,12 @@ function ChatMessages({ messages, sources }: ChatMessagesInterface) {
               <Message
                 isGenerated={true}
                 messageText={value.content}
-                documentLink={sources[index]?.[0]?.metadata?.name || ""}
-                pageNumber={sources[index]?.[0]?.metadata?.page || ""}
+                documentLink={
+                  sourcesForMessages[index]?.[0]?.metadata?.name || ""
+                }
+                pageNumber={
+                  sourcesForMessages[index]?.[0]?.metadata?.page || ""
+                }
                 time={value.createdAt!}
               />
             ) : (

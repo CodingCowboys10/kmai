@@ -13,47 +13,24 @@ import { Message } from "ai";
 import { ChatsProvider, useChatsData } from "@/providers/chats-provider";
 import { getMessages } from "@/serverActions/chats/getMessages";
 import { uploadMessages } from "@/serverActions/chats/uploadMessages";
+import {
+  MessagesProvider,
+  useMessagesData,
+} from "@/providers/messages-provider";
 
 export default function App() {
   return (
-    <ChatsProvider>
-      <Main />
-    </ChatsProvider>
+    <MessagesProvider>
+      <ChatsProvider>
+        <Main />
+      </ChatsProvider>
+    </MessagesProvider>
   );
 }
 
 function Main() {
   const { chatSessionId } = useChatsData();
-  const [initialMessages, setInitialMessages] = useState<Message[]>([]);
-  const [sourcesForMessages, setSourcesForMessages] = useState<
-    Record<string, any>
-  >({});
-  const {
-    messages,
-    setMessages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    isLoading,
-  } = useChat({
-    initialMessages: initialMessages,
-    onResponse(response) {
-      const sourcesHeader = response.headers.get("x-sources");
-      const sources = sourcesHeader
-        ? JSON.parse(Buffer.from(sourcesHeader, "base64").toString("utf8"))
-        : [];
-      const messageIndexHeader = response.headers.get("x-message-index");
-      if (sources.length && messageIndexHeader !== null) {
-        setSourcesForMessages({
-          ...sourcesForMessages,
-          [messageIndexHeader]: sources,
-        });
-      }
-    },
-    onError: (e) => {
-      toast.error(e.message);
-    },
-  });
+  const { messages, sourcesForMessages, isLoading } = useMessagesData();
 
   useEffect(() => {
     const handleUploadMessage = async () => {
@@ -77,40 +54,14 @@ function Main() {
     }
   }, [isLoading]);
 
-  useEffect(() => {
-    const getMessage = async () => {
-      try {
-        return await getMessages(chatSessionId);
-      } catch (e) {
-        // @ts-ignore
-        toast.error(e.message);
-        return [];
-      }
-    };
-    if (!isLoading) {
-      getMessage().then((chatHistory) => {
-        setInitialMessages(chatHistory);
-        setMessages(chatHistory);
-      });
-    }
-  }, [chatSessionId]);
-
   return (
     <main className="relative flex flex-row w-full h-full">
       <SideBar>
         <ChatList></ChatList>
       </SideBar>
       <Body>
-        <ChatMessages
-          sources={sourcesForMessages}
-          messages={messages}
-        ></ChatMessages>
-        <ChatForm
-          handleSubmit={handleSubmit}
-          handleInputChange={handleInputChange}
-          isLoading={isLoading}
-          input={input}
-        ></ChatForm>
+        <ChatMessages></ChatMessages>
+        <ChatForm></ChatForm>
       </Body>
     </main>
   );
