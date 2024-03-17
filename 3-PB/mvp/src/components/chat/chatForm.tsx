@@ -13,6 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import React from "react";
 import { useChatsData } from "@/providers/chats-provider";
+import { getChats } from "@/serverActions/chats/getChats";
+import { addChat } from "@/serverActions/chats/addChat";
 
 const FormSchema = z.object({
   message: z.string().trim().min(1, {
@@ -45,17 +47,13 @@ function ChatForm({
     const isValid = await form.trigger();
     if (isValid) {
       if (!chatSessionId) {
-        const res = await fetch("/api/chats/addChat", {
-          method: "POST",
-        });
-        const res2 = await fetch("/api/chats/getChatsNumber", {
-          method: "POST",
-        });
-        const resData = (await res.json()).id;
+        const res = await addChat();
+        const res2 = await getChats();
 
-        setChatSessionNumber((await res2.json()).number);
-        setChatSessionId(resData);
+        setChatSessionNumber(res2.number);
+        setChatSessionId(res);
       }
+
       handleSubmit(event);
     } else {
       toast.error(

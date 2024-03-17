@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import { useChatsData } from "@/providers/chats-provider";
 import { addChat } from "@/serverActions/chats/addChat";
 import { deleteChat } from "@/serverActions/chats/deleteChat";
-import { getChats } from "@/serverActions/chats/getChatsNumber";
+import { getChats } from "@/serverActions/chats/getChats";
 
 function ChatList() {
   const [isLoading, setIsLoading] = useState(true);
