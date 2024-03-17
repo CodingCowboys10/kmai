@@ -1,7 +1,8 @@
 import { DocumentInfo, columns } from "./docContent";
 import { DataTable } from "./dataTable";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useModel } from "@/providers/model-provider";
+import { getDocument } from "@/serverActions/document/getDocument";
 
 export default function DocTable() {
   const [data, setData] = useState<DocumentInfo[]>([]);
@@ -10,11 +11,8 @@ export default function DocTable() {
 
   useEffect(() => {
     const fetchDocuments = async () => {
-      const res = await fetch("/api/document/getDocuments", {
-        method: "POST",
-        body: JSON.stringify({ model: model }),
-      });
-      setData(await res.json());
+      const res = await getDocument(model!);
+      setData(res);
     };
     fetchDocuments().then(() => setIsLoading(false));
   }, [model]);

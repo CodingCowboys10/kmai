@@ -11,6 +11,8 @@ import ChatList from "@/components/chat/chatList";
 import { toast } from "sonner";
 import { Message } from "ai";
 import { ChatsProvider, useChatsData } from "@/providers/chats-provider";
+import { getMessages } from "@/serverActions/chats/getMessages";
+import { uploadMessages } from "@/serverActions/chats/uploadMessages";
 
 export default function App() {
   return (
@@ -55,29 +57,21 @@ function Main() {
 
   useEffect(() => {
     const handleUploadMessage = async () => {
-      let newMessages = messages.slice(-2);
-      const keys = Object.keys(sourcesForMessages);
-      const res = await fetch("/api/chats/uploadMessage", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      try {
+        let newMessages = messages.slice(-2);
+        const keys = Object.keys(sourcesForMessages);
+        await uploadMessages({
           messageAI: newMessages[1],
           messageUser: newMessages[0],
           sessionId: chatSessionId,
           source: sourcesForMessages[keys[keys.length - 1]],
-        }),
-      });
-      const resData = await res.json();
-
-      if (!res.ok) {
-        toast.error(resData.message);
-      } else {
-        toast.success(resData.message);
+        });
+      } catch (e) {
+        // @ts-ignore
+        toast.error(e.message);
       }
     };
-    if (!isLoading && messages.length) {
+    if (!isLoading && messages.length && chatSessionId) {
       console.log("Salvo messaggi");
       handleUploadMessage().then();
     }
@@ -85,15 +79,13 @@ function Main() {
 
   useEffect(() => {
     const getMessage = async () => {
-      const res = await fetch("/api/chats/getMessages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: chatSessionId }),
-      });
-
-      return (await res.json()).messages;
+      try {
+        return await getMessages(chatSessionId);
+      } catch (e) {
+        // @ts-ignore
+        toast.error(e.message);
+        return [];
+      }
     };
     if (!isLoading) {
       getMessage().then((chatHistory) => {

@@ -1,19 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useChatsData } from "@/providers/chats-provider";
+import { deleteAllChat } from "@/serverActions/chats/deleteAllChat";
 
 function DeleteChatList() {
   const { setChatSessionNumber } = useChatsData();
 
   const handleDeleteAllChat = async () => {
-    const res = await fetch("/api/chats/deleteAllChat", {
-      method: "POST",
-    });
-    setChatSessionNumber(null);
-    if (!res.ok) {
-      toast.error((await res.json()).message);
-    } else {
-      toast.success((await res.json()).message);
+    try {
+      await deleteAllChat();
+      setChatSessionNumber(null);
+    } catch (e) {
+      toast.error("Errore durante la eliminazione");
     }
   };
 

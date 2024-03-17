@@ -13,10 +13,11 @@ import {
 import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Message } from "ai";
 import { toast } from "sonner";
 import { useChatsData } from "@/providers/chats-provider";
 import { addChat } from "@/serverActions/chats/addChat";
+import { deleteChat } from "@/serverActions/chats/deleteChat";
+import { getChats } from "@/serverActions/chats/getChatsNumber";
 
 function ChatList() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,47 +29,31 @@ function ChatList() {
   } = useChatsData();
   const [titles, setTitles] = useState<Record<any, any>[]>();
 
-  const handleCountChats = async () => {
-    const res = await fetch("/api/chats/getChatsNumber", { method: "POST" });
-    const resData = await res.json();
-    return { number: resData.number, titles: resData.titles };
-  };
   const handleCreateChat = async () => {
     try {
       const res = await addChat();
-
+      const { number } = await getChats();
       setChatSessionId(res);
-      const { number } = await handleCountChats();
       setChatSessionNumber(number);
-      console.log("funziona");
     } catch (e) {
       console.log(e);
     }
   };
   const handleDeleteChat = async (id: number) => {
     try {
-      const res = await fetch("/api/chats/deleteChat", {
-        method: "POST",
-        body: JSON.stringify({ id: id }),
-      });
+      await deleteChat(id);
+      const { number } = await getChats();
 
       setChatSessionId(null);
-      const { number } = await handleCountChats();
       setChatSessionNumber(number);
-
-      if (!res.ok) {
-        toast.error((await res.json()).message);
-      } else {
-        toast.success((await res.json()).message);
-      }
     } catch (e) {
-      console.log(e);
+      toast.error("Errore durante l'eliminazione della chat");
     }
   };
 
   useEffect(() => {
     const fetchTitles = async () => {
-      const { number, titles } = await handleCountChats();
+      const { number, titles } = await getChats();
       setChatSessionNumber(number);
       setTitles(titles);
       setIsLoading(false);
@@ -103,7 +88,6 @@ function ChatList() {
               >
                 <div
                   onClick={() => {
-                    console.log(value.id);
                     setChatSessionId(value.id);
                   }}
                   className={"w-full h-full cursor-pointer p-3 "}
