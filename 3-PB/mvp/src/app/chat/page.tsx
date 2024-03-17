@@ -108,7 +108,6 @@ function Main() {
       <SideBar>
         <ChatList></ChatList>
       </SideBar>
-
       <Body>
         <ChatMessages
           sources={sourcesForMessages}

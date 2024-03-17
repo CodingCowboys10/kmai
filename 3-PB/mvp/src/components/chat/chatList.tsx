@@ -16,6 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Message } from "ai";
 import { toast } from "sonner";
 import { useChatsData } from "@/providers/chats-provider";
+import { addChat } from "@/serverActions/chats/addChat";
 
 function ChatList() {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,20 +35,12 @@ function ChatList() {
   };
   const handleCreateChat = async () => {
     try {
-      const res = await fetch("/api/chats/addChat", {
-        method: "POST",
-      });
+      const res = await addChat();
 
-      const resData = (await res.json()).id;
-      setChatSessionId(resData);
+      setChatSessionId(res);
       const { number } = await handleCountChats();
       setChatSessionNumber(number);
-
-      if (!res.ok) {
-        toast.error(resData.message);
-      } else {
-        toast.success(resData.message);
-      }
+      console.log("funziona");
     } catch (e) {
       console.log(e);
     }
