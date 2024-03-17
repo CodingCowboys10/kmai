@@ -29,34 +29,14 @@ export const ChatsContext = createContext<ChatsContextProps>({
   setIsLoadingChat: () => {},
   setTitles: () => {},
   chatSessionId: null,
-
   isLoadingChat: false,
   titles: [],
 });
 export function ChatsProvider({ children }: { children: ReactNode }) {
-  const { isLoading, setMessages, setInitialMessages } = useMessagesData();
   const [chatSessionId, setChatSessionId] = useState<number | null>(0);
   const [isUpdate, setIsUpdate] = useState(false);
   const [isLoadingChat, setIsLoadingChat] = useState(true);
   const [titles, setTitles] = useState<Record<any, any>[]>();
-
-  useEffect(() => {
-    const getMessage = async () => {
-      try {
-        return await getMessages(chatSessionId);
-      } catch (e) {
-        // @ts-ignore
-        toast.error(e.message);
-        return [];
-      }
-    };
-    if (!isLoading) {
-      getMessage().then((chatHistory) => {
-        setInitialMessages(chatHistory);
-        setMessages(chatHistory);
-      });
-    }
-  }, [chatSessionId]);
 
   useEffect(() => {
     const fetchTitles = async () => {

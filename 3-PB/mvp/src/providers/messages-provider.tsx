@@ -11,6 +11,9 @@ import {
 import { Message } from "ai";
 import { useChat } from "ai/react";
 import { toast } from "sonner";
+import { getMessages } from "@/serverActions/chats/getMessages";
+import { useChatsData } from "@/providers/chats-provider";
+import { uploadMessages } from "@/serverActions/chats/uploadMessages";
 
 interface MessagesContextProps {
   setInitialMessages: Dispatch<SetStateAction<Message[]>>;
@@ -40,6 +43,7 @@ export const MessagesContext = createContext<MessagesContextProps>({
   handleSubmit: () => {},
 });
 export function MessagesProvider({ children }: { children: ReactNode }) {
+  const { chatSessionId, setIsUpdate } = useChatsData();
   const [initialMessages, setInitialMessages] = useState<Message[]>([]);
   const [sourcesForMessages, setSourcesForMessages] = useState<
     Record<string, any>
@@ -66,10 +70,53 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
         });
       }
     },
+    async onFinish() {
+      setIsUpdate(true);
+    },
     onError: (e) => {
       toast.error(e.message);
     },
   });
+
+  useEffect(() => {
+    const handleUploadMessage = async () => {
+      try {
+        let newMessages = messages.slice(-2);
+        const keys = Object.keys(sourcesForMessages);
+        await uploadMessages({
+          messageAI: newMessages[1],
+          messageUser: newMessages[0],
+          sessionId: chatSessionId,
+          source: sourcesForMessages[keys[keys.length - 1]],
+        });
+      } catch (e) {
+        // @ts-ignore
+        toast.error(e.message);
+      }
+    };
+    if (!isLoading && messages.length && chatSessionId) {
+      console.log("Salvo messaggi");
+      handleUploadMessage().then();
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    const getMessage = async () => {
+      try {
+        return await getMessages(chatSessionId);
+      } catch (e) {
+        // @ts-ignore
+        toast.error(e.message);
+        return [];
+      }
+    };
+    if (!isLoading) {
+      getMessage().then((chatHistory) => {
+        setInitialMessages(chatHistory);
+        setMessages(chatHistory);
+      });
+    }
+  }, [chatSessionId]);
 
   return (
     <MessagesContext.Provider

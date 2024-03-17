@@ -32,6 +32,6 @@ export async function uploadMessages(messages: IMessages) {
     messageAI.role,
     messageAI.createdAt,
   ];
-
+  console.log(queryMessage);
   const res = await pool.query(queryMessage, values);
 }

@@ -26,8 +26,7 @@ const FormSchema = z.object({
 function ChatForm() {
   const { handleInputChange, handleSubmit, input, isLoading } =
     useMessagesData();
-  const { chatSessionId, setChatSessionId, setChatSessionNumber } =
-    useChatsData();
+  const { chatSessionId, setChatSessionId, setIsUpdate } = useChatsData();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -39,9 +38,7 @@ function ChatForm() {
     if (isValid) {
       if (!chatSessionId) {
         const res = await addChat();
-        const res2 = await getChats();
-
-        setChatSessionNumber(res2.number);
+        setIsUpdate(true);
         setChatSessionId(res);
       }
 

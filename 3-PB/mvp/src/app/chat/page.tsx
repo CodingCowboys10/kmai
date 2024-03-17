@@ -20,40 +20,15 @@ import {
 
 export default function App() {
   return (
-    <MessagesProvider>
-      <ChatsProvider>
+    <ChatsProvider>
+      <MessagesProvider>
         <Main />
-      </ChatsProvider>
-    </MessagesProvider>
+      </MessagesProvider>
+    </ChatsProvider>
   );
 }
 
 function Main() {
-  const { chatSessionId } = useChatsData();
-  const { messages, sourcesForMessages, isLoading } = useMessagesData();
-
-  useEffect(() => {
-    const handleUploadMessage = async () => {
-      try {
-        let newMessages = messages.slice(-2);
-        const keys = Object.keys(sourcesForMessages);
-        await uploadMessages({
-          messageAI: newMessages[1],
-          messageUser: newMessages[0],
-          sessionId: chatSessionId,
-          source: sourcesForMessages[keys[keys.length - 1]],
-        });
-      } catch (e) {
-        // @ts-ignore
-        toast.error(e.message);
-      }
-    };
-    if (!isLoading && messages.length && chatSessionId) {
-      console.log("Salvo messaggi");
-      handleUploadMessage().then();
-    }
-  }, [isLoading]);
-
   return (
     <main className="relative flex flex-row w-full h-full">
       <SideBar>
