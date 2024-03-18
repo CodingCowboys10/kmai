@@ -11,6 +11,8 @@ import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getDocumentContentController } from "@/lib/config/container";
 import { useModel } from "@/providers/model-provider";
+import { getDocumentContent } from "@/serverActions/document/getDocumentContentController";
+import { toast } from "sonner";
 
 interface IDoc {
   name: string;
@@ -20,9 +22,13 @@ interface IDoc {
 export default function DocAction({ name, url }: IDoc) {
   const { model } = useModel();
   const handleShowDoc = async () => {
-    const res = await getDocumentContentController.handle(name, model!);
-    const url = await res.json();
-    window.open(url.url, "_blank");
+    try {
+      const url = await getDocumentContent(name, model!);
+      window.open(url, "_blank");
+    } catch (e) {
+      // @ts-ignore
+      toast.error(e.message);
+    }
   };
 
   return (
