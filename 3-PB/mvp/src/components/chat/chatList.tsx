@@ -33,9 +33,7 @@ function ChatList() {
 
   const handleCreateChat = async () => {
     try {
-      const res = await addChat();
-      setChatSessionId(res);
-      setIsUpdate(true);
+      setChatSessionId(null);
     } catch (e) {
       console.log(e);
     }

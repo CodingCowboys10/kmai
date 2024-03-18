@@ -37,7 +37,7 @@ function ChatForm() {
     const isValid = await form.trigger();
     if (isValid) {
       if (!chatSessionId) {
-        const res = await addChat();
+        const res = await addChat(input.substring(0, 12));
         setIsUpdate(true);
         setChatSessionId(res);
       }
