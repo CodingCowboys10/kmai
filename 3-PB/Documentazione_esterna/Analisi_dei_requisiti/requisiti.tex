@@ -112,15 +112,15 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \hline
     RFD-49 & L’utente deve poter visualizzare la lista delle sessioni di conversazione col chatbot attive. & Desiderabile & UC-24 \\
     \hline
-    RFD-50 & L’utente deve poter eliminare una delle sessioni di conversazioni attive nel sistema e con essa tutti i messaggi scambiati in quella conversazione. & Desiderabile & UC-25 \\
+    RFD-50 & L’utente deve poter eliminare tutte le sessioni di conversazione attive nel sistema e con esse tutti i messaggi scambiati in quelle conversazioni. & Desiderabile & UC-25 \\
     \hline
-    RFD-51 & L’utente deve poter confermare l’eliminazione di una sessione di conversazione e solo dopo deve avvenire l'eliminazione effettiva dei dati associati. & Desiderabile & UC-25.1 \\
+    RFD-51 & L’utente deve poter confermare l’eliminazione di tutte le sessioni di conversazione attive nel sistema e con esse tutti i messaggi scambiati in quelle conversazioni. & Desiderabile & UC-25.1 \\
     \hline
     RFO-52 & L’utente deve poter visualizzare lo scambio di domande e risposte avvenuto in precedenza con il sistema in una stessa sessione. & Obbligatorio & UC-26 \\
     \hline
-    RFO-53 & L’utente deve poter eliminare lo scambio di domande e risposte avvenuto in precedenza con il chatbot in una stessa sessione. & Obbligatorio & UC-27 \\
+    RFO-53 & L’utente deve poter eliminare una delle sessioni di conversazioni attive nel sistema e con essa tutti i messaggi scambiati in quella conversazione. & Obbligatorio & UC-27 \\
     \hline
-    RFO-54 & L’utente deve poter confermare l'eliminazione dello scambio di domande e risposte, avvenuto in precedenza con il chatbot in una stessa sessione. & Obbligatorio & UC-27.1 \\
+    RFO-54 & L’utente deve poter confermare l’eliminazione di una sessione di conversazione e solo dopo deve avvenire l'eliminazione effettiva dei dati associati. & Obbligatorio & UC-27.1 \\
     \hline
     RFO-55 & L’utente deve poter visualizzare le fonti relative alla risposta. & Obbligatorio & UC-28 \\
     \hline
@@ -181,9 +181,9 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \hline
     RQO-4 & Deve essere fornito al proponente il codice sorgente in un \ccgloss{repository} GitHub. & Obbligatorio & Proponente \\
     \hline
-    RQO-5 & Deve essere fornito il Manuale Utente. & Obbligatorio & Regolamento \\
+    RQO-5 & Deve essere fornito il documento Manuale\_utente. & Obbligatorio & Regolamento \\
     \hline
-    RQO-6 & Deve essere fornita il documento Specifica Architetturale. & Obbligatorio & Regolamento \\
+    RQO-6 & Deve essere fornito il documento Specifica\_architetturale. & Obbligatorio & Regolamento \\
     \hline
     \rowcolor{white} \caption{Requisiti di qualità del prodotto}
     \label{tab:reqqua}
@@ -206,25 +206,25 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \hline
     RVD-2 & Il sistema deve permettere il riconoscimento vocale tramite \ccgloss{Whisper} di OpenAI. & Desiderabile & Proponente, Interna \\
     \hline
-    RVO-3 & Il sistema deve permettere l'utilizzo di LLM locali tramite \ccgloss{Ollama} 0.1.19 come garanzia di sicurezza per tutti i dati contenuti nel sistema. & Obbligatorio & Proponente, Interna \\
+    RVO-3 & Il sistema deve permettere l'utilizzo di LLM locali tramite \ccgloss{Ollama} 0.1.19 o successivo come garanzia di sicurezza per tutti i dati contenuti nel sistema. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-4 & La web application deve essere sviluppata in \ccgloss{React} 18.2.0. & Obbligatorio & Proponente, Interna \\
+    RVO-4 & La web application deve essere sviluppata in \ccgloss{React} 18.2.0 o successivo. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-5 & Dev'essere utilizzato il \ccgloss{framework} \ccgloss{Langchain} 0.0.208 per il collegamento al database vettoriale e al LLM. & Obbligatorio & Proponente, Interna \\
+    RVO-5 & Dev'essere utilizzato il \ccgloss{framework} \ccgloss{Langchain} 0.0.208 o successivo per il collegamento al database vettoriale e al LLM. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-6 & Dev'essere utilizzato il database vettoriale \ccgloss{ChromaDB} 1.6.1 per la persistenza dei vettori embedding dei documenti. & Obbligatorio & Proponente, Interna \\
+    RVO-6 & Dev'essere utilizzato il database vettoriale \ccgloss{ChromaDB} 1.6.1 o successivo per la persistenza dei vettori embedding dei documenti. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-7 & Dev'essere utilizzato \ccgloss{Nodejs} 20.11.0 per lo sviluppo del \ccgloss{back-end}. & Obbligatorio & Proponente, Interna \\
+    RVO-7 & Dev'essere utilizzato \ccgloss{Nodejs} 20.11.0 o successivo per lo sviluppo del \ccgloss{back-end}. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-8 & Dev'essere utilizzato il framework \ccgloss{Nextjs} versione 14.0.3 per lo sviluppo del back-end. & Obbligatorio & Proponente, Interna \\
+    RVO-8 & Dev'essere utilizzato il framework \ccgloss{Nextjs} versione 14.0.3 o successivo per lo sviluppo del back-end. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-9 & Dev'essere utilizzata la libreria \ccgloss{SQLite3} 5.1.6 per il salvataggio dei messaggi scambiati tra utente e chatbot. & Obbligatorio & Interna \\
+    RVO-9 & Dev'essere utilizzato Postgres per il salvataggio delle sessioni e dei messaggi scambiati tra utente e chatbot. & Obbligatorio & Interna \\
     \hline
-    RVO-10 & Dev'essere utilizzato il framework \ccgloss{Tailwind} 3.3.0 per codificare lo stile del \ccgloss{front-end}. & Obbligatorio & Interna \\
+    RVO-10 & Dev'essere utilizzato il framework \ccgloss{Tailwind} 3.3.0 o successivo per codificare lo stile del \ccgloss{front-end}. & Obbligatorio & Interna \\
     \hline
-    RVO-11 & Dev'essere utilizzato \ccgloss{MinIO} 8.4.3 per l'archiviazione dei documenti. & Obbligatorio & Proponente, Interna \\
+    RVO-11 & Dev'essere utilizzato \ccgloss{MinIO} 8.4.3 o successivo per l'archiviazione dei documenti. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-12 & Dev'essere utilizzato \ccgloss{Docker} 24.0.7 per l'esecuzione del prodotto. & Obbligatorio & Interna \\
+    RVO-12 & Dev'essere utilizzato \ccgloss{Docker} 24.0.7 o successivo per l'esecuzione del prodotto. & Obbligatorio & Interna \\
     \hline
     RVO-13 & Il sistema deve garantire il suo funzionamento con la presenza a sistema di 1000 documenti, tra i formati supportati.  & Obbligatorio & Proponente\\ %vincolo
     \hline
