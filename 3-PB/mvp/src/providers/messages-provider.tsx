@@ -79,6 +79,8 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
+    console.log(sourcesForMessages);
+    console.log(messages);
     const handleUploadMessage = async () => {
       try {
         let newMessages = messages.slice(-2);
@@ -112,6 +114,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
     };
     if (!isLoading) {
       getMessage().then((chatHistory) => {
+        //setSourcesForMessages([]);
         setInitialMessages(chatHistory);
         setMessages(chatHistory);
       });

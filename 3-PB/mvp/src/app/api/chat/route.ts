@@ -93,7 +93,13 @@ export async function POST(req: NextRequest) {
         model: "starling-lm",
         baseUrl: "http://localhost:11434",
       }),
-      { collectionName: collections["Ollama"] },
+      {
+        collectionName: collections["Ollama"],
+
+        /*filter: {
+          visible: "true",
+        }, */
+      },
     );
 
     const standaloneQuestionChain = RunnableSequence.from([
