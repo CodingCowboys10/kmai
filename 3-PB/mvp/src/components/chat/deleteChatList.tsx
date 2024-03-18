@@ -4,12 +4,13 @@ import { useChatsData } from "@/providers/chats-provider";
 import { deleteAllChat } from "@/serverActions/chats/deleteAllChat";
 
 function DeleteChatList() {
-  const { setIsUpdate } = useChatsData();
+  const { setIsUpdate, setChatSessionId } = useChatsData();
 
   const handleDeleteAllChat = async () => {
     try {
       await deleteAllChat();
       setIsUpdate(true);
+      setChatSessionId(null);
     } catch (e) {
       toast.error("Errore durante la eliminazione");
     }

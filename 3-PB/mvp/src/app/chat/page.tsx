@@ -31,7 +31,7 @@ export default function App() {
 function Main() {
   return (
     <main className="relative flex flex-row w-full h-full">
-      <SideBar>
+      <SideBar isChat={true}>
         <ChatList></ChatList>
       </SideBar>
       <Body>
