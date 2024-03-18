@@ -48,6 +48,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
   const [sourcesForMessages, setSourcesForMessages] = useState<
     Record<string, any>
   >({});
+  const [sourceCurrent, setSourceCurrent] = useState<any>({});
   const {
     messages,
     setMessages,
@@ -64,8 +65,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
         : [];
       const messageIndexHeader = response.headers.get("x-message-index");
       if (sources.length && messageIndexHeader !== null) {
-        setSourcesForMessages({
-          ...sourcesForMessages,
+        setSourceCurrent({
           [messageIndexHeader]: sources,
         });
       }
@@ -79,8 +79,9 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    console.log(sourcesForMessages);
+    console.log(sourceCurrent);
     console.log(messages);
+
     const handleUploadMessage = async () => {
       try {
         let newMessages = messages.slice(-2);
