@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "check-service": "node check-services.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -30,6 +31,7 @@
     "@xenova/transformers": "^2.16.0",
     "ai": "^2.2.37",
     "aws-sdk": "^2.1571.0",
+    "axios": "^1.6.8",
     "chromadb": "^1.8.1",
     "chromadb-default-embed": "^2.13.2",
     "class-variance-authority": "^0.7.0",
