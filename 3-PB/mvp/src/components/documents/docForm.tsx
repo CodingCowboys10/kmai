@@ -5,10 +5,13 @@ import { addDocumentController } from "@/lib/config/container";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useModel } from "@/providers/model-provider";
+import { addDocument } from "@/serverActions/document/addDocument";
+import { useDocumentData } from "@/providers/document-provider";
 
 function DocForm() {
   const [selectedFile, setSelectedFile] = useState(null);
   const { model } = useModel();
+  const { setIsUpdate } = useDocumentData();
 
   const handleFileChange = async (event: any) => {
     const file = event.target.files[0];
@@ -26,17 +29,15 @@ function DocForm() {
       const data = new FormData();
       data.set("file", selectedFile);
       data.set("model", model!);
-      const res = await fetch("/api/document/addDocument", {
-        method: "POST",
-        body: data,
-      });
-      const resData = await res.json();
-      if (!res.ok) {
-        toast.error(resData.message);
-      } else {
-        toast.success(resData.message);
+
+      try {
+        await addDocument(data);
+        setIsUpdate(true);
+        setSelectedFile(null);
+      } catch (e) {
+        // @ts-ignore
+        toast.error(e.message);
       }
-      setSelectedFile(null);
     }
   };
 

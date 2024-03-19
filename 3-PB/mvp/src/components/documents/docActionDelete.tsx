@@ -12,17 +12,20 @@ import {
 import { deleteDocumentController } from "@/lib/config/container";
 import { toast } from "sonner";
 import { useModel } from "@/providers/model-provider";
+import { useDocumentData } from "@/providers/document-provider";
+import { deleteDocument } from "@/serverActions/document/deleteDocument";
 
 export default function DocActionDelete({ name }: { name: string }) {
   const { model } = useModel();
+  const { setIsUpdate } = useDocumentData();
 
   const handleDelteDoc = async () => {
-    const res = await deleteDocumentController.handle(name, model!);
-    const resData = await res.json();
-    if (!res.ok) {
-      toast.error(resData.message);
-    } else {
-      toast.success(resData.message);
+    try {
+      await deleteDocument({ name, model });
+      setIsUpdate(true);
+    } catch (e) {
+      // @ts-ignore
+      toast.error(e.message);
     }
   };
 

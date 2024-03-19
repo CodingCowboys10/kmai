@@ -36,26 +36,27 @@ import {
 
 import IsLoadingDoc from "@/components/ui/isLoadingDoc";
 import { Button } from "@/components/ui/button";
+import { useDocumentData } from "@/providers/document-provider";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  isLoading: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
-  isLoading,
 }: DataTableProps<TData, TValue>) {
+  const { data, isLoading } = useDocumentData();
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
   const [isFilterData, setIsFilterData] = useState(false);
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
+
   const table = useReactTable({
+    // @ts-ignore
     data,
+    // @ts-ignore
     columns,
     getCoreRowModel: getCoreRowModel(),
     onColumnFiltersChange: setColumnFilters,

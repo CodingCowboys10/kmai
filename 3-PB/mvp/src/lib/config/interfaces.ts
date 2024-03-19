@@ -1,11 +1,32 @@
-export interface Document {
+import { Message } from "ai";
+
+interface Document {
   name: string;
   date: Date;
   size: number;
   content?: Buffer | string;
 }
+interface Chat {
+  title: string;
+  id: number;
+}
+type SourceMetadata = {
+  metadata: {
+    name: string;
+    page: number;
+  };
+};
 
-export type Metadatas = Record<string, string | number | boolean>;
+type MessageSource = Record<string, SourceMetadata[]>;
+
+interface ICustomMessages {
+  messageAI: Message;
+  messageUser: Message;
+  sessionId: number | null;
+  source: Record<string, any>;
+}
+
+type Metadatas = Record<string, string | number | boolean>;
 export interface Embeddings {
   ids: string[];
   embedding: number[][];
@@ -81,7 +102,38 @@ interface IDocumentDataSource {
   getAll(model: string): Promise<Document[]>;
 }
 
+interface IChatDataSource {
+  addOne({ title }: { title: string }): Promise<number>;
+  deleteOne({ id }: { id: number }): Promise<void>;
+  deleteAll(): Promise<void>;
+  getAll(): Promise<Chat[]>;
+  getAllMessages({ id }: { id: number }): Promise<{
+    allMessages: Message[];
+    source: MessageSource;
+  }>;
+  addMessages({ messages }: { messages: ICustomMessages }): Promise<void>;
+}
+interface IChatRepository {
+  addChat(title: string): Promise<number>;
+  deleteChat(id: number): Promise<void>;
+  deleteAllChat(): Promise<void>;
+  getChats(): Promise<Chat[]>;
+  getChatMessages(id: number): Promise<{
+    allMessages: Message[];
+    source: MessageSource;
+  }>;
+  addChatMessages(messages: ICustomMessages): Promise<void>;
+}
+
 export type {
+  SourceMetadata,
+  MessageSource,
+  ICustomMessages,
+  Chat,
+  IChatDataSource,
+  IChatRepository,
+  Document,
+  Metadatas,
   IUsecase,
   IDocumentRepository,
   IDocumentDataSource,

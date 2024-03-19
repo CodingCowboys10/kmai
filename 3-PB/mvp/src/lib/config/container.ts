@@ -17,19 +17,43 @@ import { EmbeddingRepository } from "@/infrastructure/embeddingRepository";
 import { AddEmbeddingUsecase } from "@/usecase/embeddings/AddEmbeddingUsecase";
 import { DeleteEmbeddingUsecase } from "@/usecase/embeddings/DeleteEmbeddingUsecase";
 import { GetIdsEmbeddingUsecase } from "@/usecase/embeddings/GetIdsEmbeddingUsecase";
+import { Pool } from "pg";
+import { ChatRepository } from "@/infrastructure/chatRepository";
+import { AddChatUsecase } from "@/usecase/chat/addChatUsecase";
+import { AddChatController } from "@/controllers/chat/addChatController";
+import postgres from "@/serverActions/utils/postgres";
+import { PostgresDataSource } from "@/infrastructure/data-source/PostgresDataSource";
+import { AddChatMessagesUsecase } from "@/usecase/chat/addChatMessagesUsecase";
+import { AddChatMessagesController } from "@/controllers/chat/addChatMessagesController";
+import { DeleteAllChatUsecase } from "@/usecase/chat/deleteAllChatUsecase";
+import { DeleteAllChatController } from "@/controllers/chat/deleteAllChatController";
+import {DeleteChatController} from "@/controllers/chat/deleteChatController";
+import {DeleteChatUsecase} from "@/usecase/chat/deleteChatUsecase";
+import {GetChatsController} from "@/controllers/chat/getChatsController";
+import {GetChatsUsecase} from "@/usecase/chat/getChatsUsecase";
+import {GetChatMessagesUsecase} from "@/usecase/chat/getChatMessagesUsecase";
+import {GetChatMessagesController} from "@/controllers/chat/getChatMessagesController";
 
 const AWSParams = {
-  endpoint: "http://172.17.0.1:9000",
+  endpoint: "http://127.0.0.1:9000", //ristabilito
   accessKeyId: "ROOTUSER",
   secretAccessKey: "CHANGEME123",
   s3ForcePathStyle: true,
 };
 
+const PoolParams = {
+  host: "localhost",
+  port: 5432,
+  user: "postgres",
+  password: "postgres",
+  database: "postgres",
+};
+
+/* --------Embedding---------  */
+
 container.register<ChromaClient>("chromaclient", {
   useValue: new ChromaClient(),
 });
-
-container.register<AWS.S3>("s3", { useValue: new AWS.S3(AWSParams) });
 
 container.register<ChromaDataSource>("embeddingDataSource", {
   useClass: ChromaDataSource,
@@ -46,6 +70,10 @@ container.register<DeleteEmbeddingUsecase>("deleteEmbeddingUsecase", {
 container.register<GetIdsEmbeddingUsecase>("getIdsEmbeddingUsecase", {
   useClass: GetIdsEmbeddingUsecase,
 });
+
+/* --------Document---------  */
+
+container.register<AWS.S3>("s3", { useValue: new AWS.S3(AWSParams) });
 
 container.register<MinioDataSource>("documentDataSource", {
   useClass: MinioDataSource,
@@ -71,17 +99,67 @@ container.register<GetDocumentsUsecase>("getDocsUsecase", {
   useClass: GetDocumentsUsecase,
 });
 
+/* --------CHAT---------  */
+
+container.register<Pool>("postgrespool", {
+  useValue: new Pool(PoolParams),
+});
+
+container.register<PostgresDataSource>("chatDataSource", {
+  useClass: PostgresDataSource,
+});
+
+container.register<ChatRepository>("chatRepository", {
+  useClass: ChatRepository,
+});
+
+container.register<AddChatUsecase>("addChatUsecase", {
+  useClass: AddChatUsecase,
+});
+
+container.register<AddChatMessagesUsecase>("addChatMessagesUsecase", {
+  useClass: AddChatMessagesUsecase,
+});
+
+container.register<DeleteAllChatUsecase>("deleteAllChatUsecase", {
+  useClass: DeleteAllChatUsecase,
+});
+
+container.register<DeleteChatUsecase>("deleteChatUsecase", {
+  useClass: DeleteChatUsecase,
+});
+
+container.register<GetChatsUsecase>("getChatsUsecase", {
+  useClass: GetChatsUsecase,
+});
+
+container.register<GetChatMessagesUsecase>("getChatMessagesUsecase", {
+  useClass: GetChatMessagesUsecase,
+});
+
 const addDocumentController = container.resolve(AddDocumentController);
 const deleteDocumentController = container.resolve(DeleteDocumentController);
 const getDocumentsController = container.resolve(GetDocumentsController);
-
 const getDocumentContentController = container.resolve(
   GetDocumentContentController,
 );
+
+const addChatController = container.resolve(AddChatController);
+const addChatMessagesController = container.resolve(AddChatMessagesController);
+const deleteAllChatController = container.resolve(DeleteAllChatController);
+const deleteChatController = container.resolve(DeleteChatController);
+const getChatsController = container.resolve(GetChatsController);
+const getChatMessagesController = container.resolve(GetChatMessagesController);
 
 export {
   addDocumentController,
   deleteDocumentController,
   getDocumentsController,
   getDocumentContentController,
+  addChatController,
+  addChatMessagesController,
+  deleteAllChatController,
+  deleteChatController,
+  getChatsController,
+  getChatMessagesController,
 };

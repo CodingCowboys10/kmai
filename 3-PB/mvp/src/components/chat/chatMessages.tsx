@@ -1,13 +1,11 @@
 import Message from "@/components/chat/message";
 import { Message as AiMessage } from "ai";
 import React from "react";
+import { useMessagesData } from "@/providers/messages-provider";
 
-interface ChatMessagesInterface {
-  messages: AiMessage[];
-  sources: Record<string, any>;
-}
+function ChatMessages() {
+  const { messages, sourcesForMessages } = useMessagesData();
 
-function ChatMessages({ messages, sources }: ChatMessagesInterface) {
   return (
     <div
       className={"flex flex-col gap-2 w-8/12 h-full pt-2 px-2 overflow-scroll"}
@@ -28,21 +26,19 @@ function ChatMessages({ messages, sources }: ChatMessagesInterface) {
               <Message
                 isGenerated={true}
                 messageText={value.content}
-                documentLink={sources[index]?.[0]?.metadata?.name || ""}
-                pageNumber={sources[index]?.[0]?.metadata?.page || ""}
-                time={value.createdAt!.toLocaleTimeString("it-IT", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
+                documentLink={
+                  sourcesForMessages[value.id]?.[0]?.metadata?.name || ""
+                }
+                pageNumber={
+                  sourcesForMessages[value.id]?.[0]?.metadata?.page || ""
+                }
+                time={value.createdAt!}
               />
             ) : (
               <Message
                 isGenerated={false}
                 messageText={value.content}
-                time={value.createdAt!.toLocaleTimeString("it-IT", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
+                time={value.createdAt!}
               />
             )}
           </React.Fragment>
