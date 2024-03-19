@@ -19,7 +19,7 @@ class AddEmbeddingUsecase
   private readonly _EmbeddingsFunction: any = {
     Ollama: new OllamaEmbeddings({
       model: "starling-lm",
-      baseUrl: "http://localhost:11434",
+      baseUrl: "http://ollama:11434",
     }),
 
     OpenAi: new OpenAIEmbeddings({

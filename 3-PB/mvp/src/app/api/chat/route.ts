@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
 
     const model = new ChatOllama({
       model: "starling-lm",
-      baseUrl: "http://localhost:11434",
+      baseUrl: "http://ollama:11434",
       temperature: 0,
     });
 
@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
     const vectorstore = await Chroma.fromExistingCollection(
       new OllamaEmbeddings({
         model: "starling-lm",
-        baseUrl: "http://localhost:11434",
+        baseUrl: "http://ollama:11434",
       }),
       { collectionName: collections["Ollama"] },
     );

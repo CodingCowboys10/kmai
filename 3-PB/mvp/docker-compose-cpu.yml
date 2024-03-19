@@ -41,6 +41,7 @@ services:
       - chromadb:/chroma/chroma
     environment:
       - IS_PERSISTENT=true
+      - cors_allow_origins='["*"]'
     ports:
       - "8000:8000"
 
