@@ -4,11 +4,6 @@
 import { addDocumentController } from "@/lib/config/container";
 
 export async function addDocument(data: FormData) {
-  try {
-    const res = await (await addDocumentController.handle(data)).json();
-    console.log(res);
-    return res;
-  } catch (e: any) {
-    throw e;
-  }
+  const res = await addDocumentController.handle(data);
+  if (!res.ok) throw new Error((await res.json()).message);
 }

@@ -38,18 +38,30 @@ export function DocumentProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const fetchDocuments = async () => {
-      const res = await getDocument(model!);
-      setData(res);
+      try {
+        const res = await getDocument(model!);
+        setData(res);
+      } catch (e) {
+        setData([]);
+        // @ts-ignore
+        toast.error(e.message);
+      }
     };
     fetchDocuments().then(() => setIsLoading(false));
   }, [model]);
 
   useEffect(() => {
     const fetchDocuments = async () => {
-      const res = await getDocument(model!);
-      setData(res);
+      try {
+        const res = await getDocument(model!);
+        setData(res);
+      } catch (e) {
+        setData([]);
+        // @ts-ignore
+        toast.error(e.message);
+      }
     };
-    fetchDocuments().then(() => setIsUpdate(false));
+    if (isUpdate) fetchDocuments().then(() => setIsUpdate(false));
   }, [isUpdate]);
 
   return (

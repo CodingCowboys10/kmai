@@ -30,10 +30,14 @@ function DocForm() {
       data.set("file", selectedFile);
       data.set("model", model!);
 
-      const res = await addDocument(data);
-      setIsUpdate(true);
-
-      setSelectedFile(null);
+      try {
+        await addDocument(data);
+        setIsUpdate(true);
+        setSelectedFile(null);
+      } catch (e) {
+        // @ts-ignore
+        toast.error(e.message);
+      }
     }
   };
 

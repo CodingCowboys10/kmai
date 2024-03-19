@@ -33,9 +33,7 @@ function ChatList() {
 
   const handleCreateChat = async () => {
     try {
-      const res = await addChat();
-      setChatSessionId(res);
-      setIsUpdate(true);
+      setChatSessionId(null);
     } catch (e) {
       console.log(e);
     }
@@ -82,7 +80,6 @@ function ChatList() {
                   }}
                   className={"w-full h-full cursor-pointer p-3 "}
                 >
-                  {value.id}
                   {value.title}
                 </div>
                 <DropdownMenu>
