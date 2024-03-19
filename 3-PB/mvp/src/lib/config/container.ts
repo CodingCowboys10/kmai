@@ -1,4 +1,4 @@
-import "reflect-metadata";
+mport "reflect-metadata";
 import { container } from "tsyringe";
 import { ChromaClient } from "chromadb";
 import AWS from "aws-sdk";
