@@ -1,10 +1,9 @@
 "use server";
 
-import pool from "@/serverActions/utils/postgres";
+import { addChatController } from "@/lib/config/container";
 
 export async function addChat(title: string) {
-  const query = `INSERT INTO chat_threads (title) VALUES ($1) RETURNING id`;
-  const values = [title];
-  const res = await pool.query(query, values);
-  return res.rows[0].id;
+  const res = await addChatController.handle(title);
+  if (!res.ok) throw new Error((await res.json()).message);
+  return (await res.json()).id;
 }

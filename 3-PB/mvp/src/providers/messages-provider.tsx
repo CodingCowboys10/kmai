@@ -13,7 +13,7 @@ import { useChat } from "ai/react";
 import { toast } from "sonner";
 import { getMessages } from "@/serverActions/chats/getMessages";
 import { useChatsData } from "@/providers/chats-provider";
-import { uploadMessages } from "@/serverActions/chats/uploadMessages";
+import { addChatMessages } from "@/serverActions/chats/addChatMessages";
 
 interface MessagesContextProps {
   setInitialMessages: Dispatch<SetStateAction<Message[]>>;
@@ -77,9 +77,6 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    //console.log(sourceCurrent);
-    //console.log(messages);
-
     const handleUploadMessage = async () => {
       try {
         let newMessages = messages.slice(-2);
@@ -87,14 +84,11 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
           ...sourcesForMessages,
           [newMessages[1].id]: sourceCurrent,
         });
-        //const keys = Object.keys(sourcesForMessages);
-        console.log(sourceCurrent);
-        await uploadMessages({
+        await addChatMessages({
           messageAI: newMessages[1],
           messageUser: newMessages[0],
           sessionId: chatSessionId,
           source: sourceCurrent,
-          //source: sourcesForMessages[keys[keys.length - 1]],
         });
       } catch (e) {
         // @ts-ignore
@@ -102,7 +96,6 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
       }
     };
     if (!isLoading && messages.length && chatSessionId) {
-      console.log("Salvo messaggi");
       handleUploadMessage().then();
     }
   }, [isLoading]);
@@ -111,24 +104,21 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
     console.log("get message", sourcesForMessages);
     const getMessage = async () => {
       try {
-        const { chatHistory, source } = await getMessages(chatSessionId);
+        const { allMessages, source } = await getMessages(chatSessionId);
 
-        return { chatHistory, source };
+        return { allMessages, source };
       } catch (e) {
         // @ts-ignore
         toast.error(e.message);
-        return { messages: [], source: null };
+        return { allMessages: [], source: null };
       }
     };
     if (!isLoading) {
-      getMessage().then(({ chatHistory, source }) => {
+      getMessage().then(({ allMessages, source }) => {
         setSourcesForMessages({ ...source });
-        if (messages) {
-          // @ts-ignore
-          setInitialMessages(chatHistory);
-          // @ts-ignore
-          setMessages(chatHistory);
-        }
+
+        setInitialMessages(allMessages);
+        setMessages(allMessages);
       });
     }
   }, [chatSessionId]);

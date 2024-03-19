@@ -3,22 +3,6 @@
 import pool from "@/serverActions/utils/postgres";
 
 export async function getChats() {
-  /*
-  da modificare con questo
-  const query = `
-            CREATE TABLE IF NOT EXISTS messages (
-                id SERIAL PRIMARY KEY,
-                thread_id INTEGER REFERENCES chat_threads(id) ON DELETE CASCADE,
-                content TEXT NOT NULL,
-                role VARCHAR(255),
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                sourcePage VARCHAR(30),
-                sourceLink VARCHAR(30),
-                UNIQUE (thread_id, id)
-            );
-        `;
-
-   */
   const query = `
 SELECT * 
 FROM chat_threads ct

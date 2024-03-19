@@ -4,6 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getDocumentContentController } from "@/lib/config/container";
 import { useModel } from "@/providers/model-provider";
+import { useMessagesData } from "@/providers/messages-provider";
+import { getDocumentContent } from "@/serverActions/document/getDocumentContentController";
+import { toast } from "sonner";
 
 type MessageInfoInterface = {
   messageText: string;
@@ -20,9 +23,13 @@ type MessageInfoInterface = {
 function Message(props: MessageInfoInterface) {
   const { model } = useModel();
   const handleShowDoc = async (name: string) => {
-    const res = await getDocumentContentController.handle(name, model!);
-    const url = await res.json();
-    window.open(url.url, "_blank");
+    try {
+      const url = await getDocumentContent(name, model!);
+      window.open(url, "_blank");
+    } catch (e) {
+      // @ts-ignore
+      toast.error(e.message);
+    }
   };
   return (
     <div
@@ -40,7 +47,7 @@ function Message(props: MessageInfoInterface) {
         className={`whitespace-pre-line break-words chat-bubble w-fit max-w-[60%] ${props.isGenerated ? "bg-secondary text-secondary-foreground" : "bg-primary text-primary-content"} `}
       >
         {props.messageText}
-        {props.isGenerated && (
+        {props.isGenerated && props.pageNumber && (
           <Alert className={"mt-5 bg-background/35"}>
             <AlertTitle>Fonte della Risposta</AlertTitle>
             <AlertDescription>

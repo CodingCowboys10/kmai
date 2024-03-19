@@ -10,14 +10,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 import { useChatsData } from "@/providers/chats-provider";
-import { addChat } from "@/serverActions/chats/addChat";
 import { deleteChat } from "@/serverActions/chats/deleteChat";
-import { getChats } from "@/serverActions/chats/getChats";
 import { useMessagesData } from "@/providers/messages-provider";
 
 function ChatList() {

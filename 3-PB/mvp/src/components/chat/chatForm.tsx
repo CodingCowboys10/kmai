@@ -16,6 +16,7 @@ import { useChatsData } from "@/providers/chats-provider";
 import { getChats } from "@/serverActions/chats/getChats";
 import { addChat } from "@/serverActions/chats/addChat";
 import { useMessagesData } from "@/providers/messages-provider";
+import { vModelSelect } from "@vue/runtime-dom";
 
 const FormSchema = z.object({
   message: z.string().trim().min(1, {
@@ -37,11 +38,15 @@ function ChatForm() {
     const isValid = await form.trigger();
     if (isValid) {
       if (!chatSessionId) {
-        const res = await addChat(input.substring(0, 12));
-        setIsUpdate(true);
-        setChatSessionId(res);
+        try {
+          const res = await addChat(input.substring(0, 22));
+          setIsUpdate(true);
+          setChatSessionId(res);
+        } catch (e) {
+          // @ts-ignore
+          toast.error(e.message);
+        }
       }
-
       handleSubmit(event);
     } else {
       toast.error(
