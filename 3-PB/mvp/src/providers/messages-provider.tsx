@@ -65,7 +65,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
         : [];
       const messageIndexHeader = response.headers.get("x-message-index");
       if (sources.length && messageIndexHeader !== null) {
-        setSourceCurrent({...sources});
+        setSourceCurrent({ ...sources });
       }
     },
     async onFinish() {
@@ -83,14 +83,17 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
     const handleUploadMessage = async () => {
       try {
         let newMessages = messages.slice(-2);
-        setSourcesForMessages({...sourcesForMessages, [newMessages[1].id] : sourceCurrent})
+        setSourcesForMessages({
+          ...sourcesForMessages,
+          [newMessages[1].id]: sourceCurrent,
+        });
         //const keys = Object.keys(sourcesForMessages);
-        console.log(sourceCurrent)
+        console.log(sourceCurrent);
         await uploadMessages({
           messageAI: newMessages[1],
           messageUser: newMessages[0],
           sessionId: chatSessionId,
-          source: sourceCurrent
+          source: sourceCurrent,
           //source: sourcesForMessages[keys[keys.length - 1]],
         });
       } catch (e) {
@@ -105,20 +108,27 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
   }, [isLoading]);
 
   useEffect(() => {
+    console.log("get message", sourcesForMessages);
     const getMessage = async () => {
       try {
-        return await getMessages(chatSessionId);
+        const { chatHistory, source } = await getMessages(chatSessionId);
+
+        return { chatHistory, source };
       } catch (e) {
         // @ts-ignore
         toast.error(e.message);
-        return [];
+        return { messages: [], source: null };
       }
     };
     if (!isLoading) {
-      getMessage().then((chatHistory, source) => {
-        setSourcesForMessages({...source});
-        setInitialMessages(chatHistory);
-        setMessages(chatHistory);
+      getMessage().then(({ chatHistory, source }) => {
+        setSourcesForMessages({ ...source });
+        if (messages) {
+          // @ts-ignore
+          setInitialMessages(chatHistory);
+          // @ts-ignore
+          setMessages(chatHistory);
+        }
       });
     }
   }, [chatSessionId]);

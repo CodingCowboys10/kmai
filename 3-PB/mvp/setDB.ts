@@ -34,7 +34,7 @@ async function createMessagesTable() {
                 thread_id INTEGER REFERENCES chat_threads(id) ON DELETE CASCADE,
                 content TEXT NOT NULL,
                 role VARCHAR(255),
-                created_at TIMESTAMP,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 sourcePage VARCHAR(30),
                 sourceLink VARCHAR(30),
                 UNIQUE (thread_id, id)
@@ -135,9 +135,9 @@ async function svuota() {
 
 //decommenta la funzione che vuoi eseguire
 
-crea(); //crea le tabelle e l'indice se non esistono
+//crea(); //crea le tabelle e l'indice se non esistono
 //cancella(); //cancella le tabelle e l'indice integralmente
-//stampa(); //stampa i contenuti delle tabelle
+stampa(); //stampa i contenuti delle tabelle
 //svuota(); //svuota le tabelle senza cancellarle
 
 //console.log('-----------------------------------------------');

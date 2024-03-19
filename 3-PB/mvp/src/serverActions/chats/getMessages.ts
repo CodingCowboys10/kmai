@@ -4,12 +4,11 @@ import pool from "@/serverActions/utils/postgres";
 import { Message } from "ai";
 
 export async function getMessages(id: number | null) {
-  const countQuery = `SELECT id,content, role , created_at , sourcePage , sourceLink FROM messages WHERE thread_id = ${id}`;
+  const countQuery = `SELECT id,content, role , created_at , sourcepage , sourcelink FROM messages WHERE thread_id = ${id} ORDER BY created_at`;
 
   const result = await pool.query(countQuery);
 
-
-  const messages = result.rows.map((row: any) => ({
+  const chatHistory = result.rows.map((row: any) => ({
     id: row.id,
     content: row.content,
     role: row.role,
@@ -19,17 +18,17 @@ export async function getMessages(id: number | null) {
     }),
   }));
 
-  const source = result.rows.map((row: any) => ({
-    [row.id]: [
+  const source = result.rows.reduce((acc, row) => {
+    acc[row.id] = [
       {
         metadata: {
-          date: row.createdAt,
-          name: row.sourceLink,
-          page: row.sourcePage,
+          name: row.sourcelink,
+          page: row.sourcepage,
         },
       },
-    ],
-  }));
+    ];
+    return acc;
+  }, {});
 
-  return {messages, source};
+  return { chatHistory, source };
 }
