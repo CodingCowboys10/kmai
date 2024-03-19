@@ -24,7 +24,7 @@ class AddChatMessagesController {
       );
     } catch (e) {
       return NextResponse.json(
-        { error: "Internal Server Error Adding the Document" },
+        { error: "Internal Server Error" },
         {
           status: 500,
         },

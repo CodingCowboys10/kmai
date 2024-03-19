@@ -111,7 +111,7 @@ class PostgresDataSource implements IChatDataSource {
       id: row.id,
       content: row.content,
       role: row.role,
-      createdAt: new Date(row.created_at),
+      createdAt: new Date(new Date(row.created_at).getTime() + 3600 * 1000),
     }));
 
     const source: MessageSource = result.rows.reduce((acc, row) => {

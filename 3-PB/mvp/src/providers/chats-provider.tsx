@@ -8,8 +8,8 @@ import {
   useState,
 } from "react";
 import { getChats } from "@/serverActions/chats/getChats";
-import {addChat} from "@/serverActions/chats/addChat";
-import {toast} from "sonner";
+import { addChat } from "@/serverActions/chats/addChat";
+import { toast } from "sonner";
 
 interface ChatsContextProps {
   setChatSessionId: Dispatch<SetStateAction<number | null>>;
@@ -32,8 +32,8 @@ export const ChatsContext = createContext<ChatsContextProps>({
   titles: [],
 });
 export function ChatsProvider({ children }: { children: ReactNode }) {
-  const [chatSessionId, setChatSessionId] = useState<number | null>(0);
-  const [isUpdate, setIsUpdate] = useState(false);
+  const [chatSessionId, setChatSessionId] = useState<number | null>(null);
+  const [isUpdate, setIsUpdate] = useState(true);
   const [isLoadingChat, setIsLoadingChat] = useState(true);
   const [titles, setTitles] = useState<Record<any, any>[]>();
 
@@ -43,14 +43,16 @@ export function ChatsProvider({ children }: { children: ReactNode }) {
         const titles = await getChats();
         setTitles(titles);
       } catch (e) {
+        setTitles([]);
         // @ts-ignore
         toast.error(e.message);
       }
     };
-    fetchTitles().then(() => {
-      setIsUpdate(false);
-      setIsLoadingChat(false);
-    });
+    if (isUpdate)
+      fetchTitles().then(() => {
+        setIsUpdate(false);
+        setIsLoadingChat(false);
+      });
   }, [isUpdate]);
 
   return (

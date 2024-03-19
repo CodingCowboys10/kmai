@@ -12,7 +12,8 @@ function DeleteChatList() {
       setIsUpdate(true);
       setChatSessionId(null);
     } catch (e) {
-      toast.error("Errore durante la eliminazione");
+      // @ts-ignore
+      toast.error(e.message);
     }
   };
 

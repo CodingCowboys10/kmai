@@ -72,7 +72,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
       setIsUpdate(true);
     },
     onError: (e) => {
-      toast.error(e.message);
+      toast.error(JSON.parse(e.message).error);
     },
   });
 
@@ -116,7 +116,6 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
     if (!isLoading) {
       getMessage().then(({ allMessages, source }) => {
         setSourcesForMessages({ ...source });
-
         setInitialMessages(allMessages);
         setMessages(allMessages);
       });

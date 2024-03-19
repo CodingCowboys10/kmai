@@ -11,5 +11,5 @@ export async function deleteDocument({
   model: string;
 }) {
   const res = await deleteDocumentController.handle(name, model);
-  if (!res.ok) throw new Error((await res.json()).message);
+  if (!res.ok) throw new Error((await res.json()).error);
 }
