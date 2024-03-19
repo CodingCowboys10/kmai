@@ -80,7 +80,6 @@ function ChatList() {
                   }}
                   className={"w-full h-full cursor-pointer p-3 "}
                 >
-                  {value.id}
                   {value.title}
                 </div>
                 <DropdownMenu>

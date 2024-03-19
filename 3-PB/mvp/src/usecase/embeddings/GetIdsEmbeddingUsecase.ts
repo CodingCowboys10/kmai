@@ -1,7 +1,5 @@
 import type { IEmbeddingRepository, IUsecase } from "@/lib/config/interfaces";
 import { injectable, inject } from "tsyringe";
-import { ChromaClient } from "chromadb";
-import { collections } from "@/lib/site-config";
 
 @injectable()
 class GetIdsEmbeddingUsecase
