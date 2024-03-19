@@ -14,9 +14,6 @@ import { GetDocumentContentUsecase } from "@/usecase/document/GetDocumentContent
 import { GetDocumentsUsecase } from "@/usecase/document/GetDocumentsUsecase";
 import { ChromaDataSource } from "@/infrastructure/data-source/ChromaDataSource";
 import { EmbeddingRepository } from "@/infrastructure/embeddingRepository";
-import { AddEmbeddingUsecase } from "@/usecase/embeddings/AddEmbeddingUsecase";
-import { DeleteEmbeddingUsecase } from "@/usecase/embeddings/DeleteEmbeddingUsecase";
-import { GetIdsEmbeddingUsecase } from "@/usecase/embeddings/GetIdsEmbeddingUsecase";
 import { Pool } from "pg";
 import { ChatRepository } from "@/infrastructure/chatRepository";
 import { AddChatUsecase } from "@/usecase/chat/addChatUsecase";
@@ -60,15 +57,6 @@ container.register<ChromaDataSource>("embeddingDataSource", {
 });
 container.register<EmbeddingRepository>("embeddingRepository", {
   useClass: EmbeddingRepository,
-});
-container.register<AddEmbeddingUsecase>("addEmbeddingUsecase", {
-  useClass: AddEmbeddingUsecase,
-});
-container.register<DeleteEmbeddingUsecase>("deleteEmbeddingUsecase", {
-  useClass: DeleteEmbeddingUsecase,
-});
-container.register<GetIdsEmbeddingUsecase>("getIdsEmbeddingUsecase", {
-  useClass: GetIdsEmbeddingUsecase,
 });
 
 /* --------Document---------  */
@@ -140,9 +128,7 @@ container.register<GetChatMessagesUsecase>("getChatMessagesUsecase", {
 const addDocumentController = container.resolve(AddDocumentController);
 const deleteDocumentController = container.resolve(DeleteDocumentController);
 const getDocumentsController = container.resolve(GetDocumentsController);
-const getDocumentContentController = container.resolve(
-  GetDocumentContentController,
-);
+const getDocumentContentController = container.resolve(GetDocumentContentController);
 
 const addChatController = container.resolve(AddChatController);
 const addChatMessagesController = container.resolve(AddChatMessagesController);
