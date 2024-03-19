@@ -30,7 +30,7 @@ async function createMessagesTable() {
   try {
     const query = `
             CREATE TABLE IF NOT EXISTS messages (
-                id SERIAL PRIMARY KEY,
+                id VARCHAR(255) PRIMARY KEY,
                 thread_id INTEGER REFERENCES chat_threads(id) ON DELETE CASCADE,
                 content TEXT NOT NULL,
                 role VARCHAR(255),

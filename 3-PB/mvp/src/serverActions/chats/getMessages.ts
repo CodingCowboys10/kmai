@@ -8,8 +8,8 @@ export async function getMessages(id: number | null) {
 
   const result = await pool.query(countQuery);
 
-  // @ts-ignore
-  const messages: Message[] = result.rows.map((row: any) => ({
+
+  const messages = result.rows.map((row: any) => ({
     id: row.id,
     content: row.content,
     role: row.role,
@@ -19,10 +19,11 @@ export async function getMessages(id: number | null) {
     }),
   }));
 
-  const source: Record<string, any> = result.rows.map((row: any, index) => ({
-    index: [
+  const source = result.rows.map((row: any) => ({
+    [row.id]: [
       {
         metadata: {
+          date: row.createdAt,
           name: row.sourceLink,
           page: row.sourcePage,
         },
@@ -30,5 +31,5 @@ export async function getMessages(id: number | null) {
     ],
   }));
 
-  return messages;
+  return {messages, source};
 }

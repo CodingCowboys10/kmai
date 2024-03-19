@@ -27,10 +27,10 @@ function ChatMessages() {
                 isGenerated={true}
                 messageText={value.content}
                 documentLink={
-                  sourcesForMessages[index]?.[0]?.metadata?.name || ""
+                  sourcesForMessages[value.id]?.[0]?.metadata?.name || ""
                 }
                 pageNumber={
-                  sourcesForMessages[index]?.[0]?.metadata?.page || ""
+                  sourcesForMessages[value.id]?.[0]?.metadata?.page || ""
                 }
                 time={value.createdAt!}
               />

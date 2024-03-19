@@ -73,33 +73,45 @@ export async function POST(req: NextRequest) {
     const previousMessages = messages.slice(0, -1);
     const currentMessageContent = messages[messages.length - 1].content;
 
-    const model = new ChatOllama({
-      model: "starling-lm",
-      baseUrl: "http://localhost:11434",
-      temperature: 0,
-    });
+    // const model = new ChatOllama({
+    //   model: "starling-lm",
+    //   baseUrl: "http://localhost:11434",
+    //   temperature: 0,
+    // });
 
-    /*
+
     const model = new ChatOpenAI({
       modelName: "gpt-3.5-turbo-1106",
       temperature: 0,
 
       streaming: true,
     });
-    */
 
+
+    // const vectorstore = await Chroma.fromExistingCollection(
+    //   new OllamaEmbeddings({
+    //     model: "starling-lm",
+    //     baseUrl: "http://localhost:11434",
+    //   }),
+    //   {
+    //     collectionName: collections["Ollama"],
+    //
+    //     /*filter: {
+    //       visible: "true",
+    //     }, */
+    //   },
+    // );
     const vectorstore = await Chroma.fromExistingCollection(
-      new OllamaEmbeddings({
-        model: "starling-lm",
-        baseUrl: "http://localhost:11434",
-      }),
-      {
-        collectionName: collections["Ollama"],
-
-        /*filter: {
-          visible: "true",
-        }, */
-      },
+        new OpenAIEmbeddings({
+          openAIApiKey: process.env.OPENAI_API_KEY,
+          batchSize: 512,
+        }),
+        {
+          collectionName: collections["OpenAi"],
+          /*filter: {
+            visible: "true",
+          }, */
+        },
     );
 
     const standaloneQuestionChain = RunnableSequence.from([

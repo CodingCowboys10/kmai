@@ -65,9 +65,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
         : [];
       const messageIndexHeader = response.headers.get("x-message-index");
       if (sources.length && messageIndexHeader !== null) {
-        setSourceCurrent({
-          [messageIndexHeader]: sources,
-        });
+        setSourceCurrent({...sources});
       }
     },
     async onFinish() {
@@ -79,18 +77,21 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    console.log(sourceCurrent);
-    console.log(messages);
+    //console.log(sourceCurrent);
+    //console.log(messages);
 
     const handleUploadMessage = async () => {
       try {
         let newMessages = messages.slice(-2);
-        const keys = Object.keys(sourcesForMessages);
+        setSourcesForMessages({...sourcesForMessages, [newMessages[1].id] : sourceCurrent})
+        //const keys = Object.keys(sourcesForMessages);
+        console.log(sourceCurrent)
         await uploadMessages({
           messageAI: newMessages[1],
           messageUser: newMessages[0],
           sessionId: chatSessionId,
-          source: sourcesForMessages[keys[keys.length - 1]],
+          source: sourceCurrent
+          //source: sourcesForMessages[keys[keys.length - 1]],
         });
       } catch (e) {
         // @ts-ignore
@@ -114,8 +115,8 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
       }
     };
     if (!isLoading) {
-      getMessage().then((chatHistory) => {
-        //setSourcesForMessages([]);
+      getMessage().then((chatHistory, source) => {
+        setSourcesForMessages({...source});
         setInitialMessages(chatHistory);
         setMessages(chatHistory);
       });
