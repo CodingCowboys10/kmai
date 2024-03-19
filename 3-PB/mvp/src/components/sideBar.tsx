@@ -7,7 +7,7 @@ function SideBar({
   isChat,
 }: {
   children: React.ReactNode;
-  isChat: boolean;
+  isChat?: boolean;
 }) {
   const [isCollapsed, setCollapsed] = useState(false);
   return (

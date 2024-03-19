@@ -16,7 +16,7 @@ interface ModelContextProps {
 
 export const ModelContext = createContext<ModelContextProps>({
   setModel: () => {},
-  model: "Ollama",
+  model: "OpenAi",
 });
 
 interface ModelProviderProps {
@@ -24,7 +24,7 @@ interface ModelProviderProps {
 }
 
 export function ModelProvider({ children }: ModelProviderProps) {
-  const [model, setModel] = useState<string>("Ollama");
+  const [model, setModel] = useState<string>("OpenAi");
 
   return (
     <ModelContext.Provider value={{ model, setModel }}>
