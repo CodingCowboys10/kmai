@@ -100,30 +100,37 @@ function ChatList() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                      <AlertDialog>
-                        <AlertDialogTrigger className="w-full relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-red-500">
-                          Elimina chat
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Conferma eliminazione.</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              L'eliminazione della chat è un'operazione irreversibile.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Annulla</AlertDialogCancel>
-                            <AlertDialogAction
+                    <AlertDialog>
+                      <AlertDialogTrigger className={"w-fit"} asChild>
+                        <Button className={"w-full"} variant={"destructive"}>
+                          Elimina Chat
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Conferma eliminazione.
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            L&apos;eliminazione della chat è un&apos;operazione
+                            irreversibile.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Annulla</AlertDialogCancel>
+                          <AlertDialogAction asChild>
+                            <Button
                               className={
-                                "text-destructive-foreground bg-destructive hover:bg-destructive"
+                                "bg-destructive text-destructive-foreground hover:bg-destructive"
                               }
                               onClick={() => handleDeleteChat(value.id)}
                             >
                               Elimina
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+                            </Button>
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
