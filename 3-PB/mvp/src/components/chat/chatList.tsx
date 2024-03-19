@@ -3,7 +3,17 @@ import * as React from "react";
 import { Pencil2Icon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -90,11 +100,30 @@ function ChatList() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem
-                      onClick={() => handleDeleteChat(value.id)}
-                    >
-                      Elimina chat
-                    </DropdownMenuItem>
+                      <AlertDialog>
+                        <AlertDialogTrigger className="w-full relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-red-500">
+                          Elimina chat
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Conferma eliminazione.</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              L'eliminazione della chat è un'operazione irreversibile.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Annulla</AlertDialogCancel>
+                            <AlertDialogAction
+                              className={
+                                "text-destructive-foreground bg-destructive hover:bg-destructive"
+                              }
+                              onClick={() => handleDeleteChat(value.id)}
+                            >
+                              Elimina
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
