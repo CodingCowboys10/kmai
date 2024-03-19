@@ -107,7 +107,7 @@ interface IChatDataSource {
   deleteOne({ id }: { id: number }): Promise<void>;
   deleteAll(): Promise<void>;
   getAll(): Promise<Chat[]>;
-  getAllMessages({ id }: { id: string }): Promise<{
+  getAllMessages({ id }: { id: number }): Promise<{
     allMessages: Message[];
     source: MessageSource;
   }>;
@@ -118,7 +118,7 @@ interface IChatRepository {
   deleteChat(id: number): Promise<void>;
   deleteAllChat(): Promise<void>;
   getChats(): Promise<Chat[]>;
-  getChatMessages(id: string): Promise<{
+  getChatMessages(id: number): Promise<{
     allMessages: Message[];
     source: MessageSource;
   }>;

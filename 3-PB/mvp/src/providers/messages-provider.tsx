@@ -11,7 +11,7 @@ import {
 import { Message } from "ai";
 import { useChat } from "ai/react";
 import { toast } from "sonner";
-import { getMessages } from "@/serverActions/chats/getMessages";
+import { getChatMessages } from "@/serverActions/chats/getChatMessages";
 import { useChatsData } from "@/providers/chats-provider";
 import { addChatMessages } from "@/serverActions/chats/addChatMessages";
 
@@ -104,7 +104,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
     console.log("get message", sourcesForMessages);
     const getMessage = async () => {
       try {
-        const { allMessages, source } = await getMessages(chatSessionId);
+        const { allMessages, source } = await getChatMessages(chatSessionId);
 
         return { allMessages, source };
       } catch (e) {

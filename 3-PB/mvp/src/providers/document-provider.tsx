@@ -7,10 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { getMessages } from "@/serverActions/chats/getMessages";
 import { toast } from "sonner";
-import { useMessagesData } from "@/providers/messages-provider";
-import { getChats } from "@/serverActions/chats/getChats";
 import { DocumentInfo } from "@/components/documents/docContent";
 import { getDocument } from "@/serverActions/document/getDocument";
 import { useModel } from "@/providers/model-provider";

@@ -7,10 +7,9 @@ import {
   useEffect,
   useState,
 } from "react";
-import { getMessages } from "@/serverActions/chats/getMessages";
-import { toast } from "sonner";
-import { useMessagesData } from "@/providers/messages-provider";
 import { getChats } from "@/serverActions/chats/getChats";
+import {addChat} from "@/serverActions/chats/addChat";
+import {toast} from "sonner";
 
 interface ChatsContextProps {
   setChatSessionId: Dispatch<SetStateAction<number | null>>;
@@ -40,8 +39,13 @@ export function ChatsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const fetchTitles = async () => {
-      const titles = await getChats();
-      setTitles(titles);
+      try {
+        const titles = await getChats();
+        setTitles(titles);
+      } catch (e) {
+        // @ts-ignore
+        toast.error(e.message);
+      }
     };
     fetchTitles().then(() => {
       setIsUpdate(false);

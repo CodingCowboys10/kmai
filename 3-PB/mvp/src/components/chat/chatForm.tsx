@@ -13,10 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import React from "react";
 import { useChatsData } from "@/providers/chats-provider";
-import { getChats } from "@/serverActions/chats/getChats";
 import { addChat } from "@/serverActions/chats/addChat";
 import { useMessagesData } from "@/providers/messages-provider";
-import { vModelSelect } from "@vue/runtime-dom";
 
 const FormSchema = z.object({
   message: z.string().trim().min(1, {

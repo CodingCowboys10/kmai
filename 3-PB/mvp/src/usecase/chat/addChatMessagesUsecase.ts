@@ -1,18 +1,9 @@
 import type {
-  Document,
-  Embeddings,
   IChatRepository,
   ICustomMessages,
-  IEmbeddingDataSource,
-  IEmbeddingRepository,
   IUsecase,
 } from "@/lib/config/interfaces";
 import { injectable, inject } from "tsyringe";
-import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
-import { OpenAIEmbeddings } from "@langchain/openai";
-import { NextResponse } from "next/server";
-import { loadDocument } from "@/serverActions/utils/loadDocument";
 
 @injectable()
 class AddChatMessagesUsecase

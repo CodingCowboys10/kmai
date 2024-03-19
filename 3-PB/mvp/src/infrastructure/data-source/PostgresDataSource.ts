@@ -101,7 +101,7 @@ class PostgresDataSource implements IChatDataSource {
   async getAllMessages({
     id,
   }: {
-    id: string;
+    id: number;
   }): Promise<{ allMessages: Message[]; source: MessageSource }> {
     const countQuery = `SELECT id,content, role , created_at , sourcepage , sourcelink FROM messages WHERE thread_id = ${id} ORDER BY created_at`;
 

@@ -1,6 +1,5 @@
 import { injectable, inject } from "tsyringe";
 import { NextResponse } from "next/server";
-import { ICustomMessages } from "@/lib/config/interfaces";
 import { DeleteAllChatUsecase } from "@/usecase/chat/deleteAllChatUsecase";
 
 @injectable()

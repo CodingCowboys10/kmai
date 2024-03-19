@@ -35,7 +35,7 @@ class ChatRepository implements IChatRepository {
   }
 
   async getChatMessages(
-    id: string,
+    id: number,
   ): Promise<{ allMessages: Message[]; source: MessageSource }> {
     return await this._chatDataSource.getAllMessages({ id: id });
   }

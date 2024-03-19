@@ -1,7 +1,7 @@
 "use server";
-import pool from "@/serverActions/utils/postgres";
+import {deleteChatController} from "@/lib/config/container";
 
 export async function deleteChat(id: number) {
-  const deleteQuery = `DELETE FROM chat_threads WHERE id = ${id}`;
-  await pool.query(deleteQuery);
+  const res = await deleteChatController.handle(id);
+  if (!res.ok) throw new Error((await res.json()).message);
 }

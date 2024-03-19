@@ -27,6 +27,12 @@ import { AddChatMessagesUsecase } from "@/usecase/chat/addChatMessagesUsecase";
 import { AddChatMessagesController } from "@/controllers/chat/addChatMessagesController";
 import { DeleteAllChatUsecase } from "@/usecase/chat/deleteAllChatUsecase";
 import { DeleteAllChatController } from "@/controllers/chat/deleteAllChatController";
+import {DeleteChatController} from "@/controllers/chat/deleteChatController";
+import {DeleteChatUsecase} from "@/usecase/chat/deleteChatUsecase";
+import {GetChatsController} from "@/controllers/chat/getChatsController";
+import {GetChatsUsecase} from "@/usecase/chat/getChatsUsecase";
+import {GetChatMessagesUsecase} from "@/usecase/chat/getChatMessagesUsecase";
+import {GetChatMessagesController} from "@/controllers/chat/getChatMessagesController";
 
 const AWSParams = {
   endpoint: "http://127.0.0.1:9000", //ristabilito
@@ -119,6 +125,18 @@ container.register<DeleteAllChatUsecase>("deleteAllChatUsecase", {
   useClass: DeleteAllChatUsecase,
 });
 
+container.register<DeleteChatUsecase>("deleteChatUsecase", {
+  useClass: DeleteChatUsecase,
+});
+
+container.register<GetChatsUsecase>("getChatsUsecase", {
+  useClass: GetChatsUsecase,
+});
+
+container.register<GetChatMessagesUsecase>("getChatMessagesUsecase", {
+  useClass: GetChatMessagesUsecase,
+});
+
 const addDocumentController = container.resolve(AddDocumentController);
 const deleteDocumentController = container.resolve(DeleteDocumentController);
 const getDocumentsController = container.resolve(GetDocumentsController);
@@ -129,6 +147,10 @@ const getDocumentContentController = container.resolve(
 const addChatController = container.resolve(AddChatController);
 const addChatMessagesController = container.resolve(AddChatMessagesController);
 const deleteAllChatController = container.resolve(DeleteAllChatController);
+const deleteChatController = container.resolve(DeleteChatController);
+const getChatsController = container.resolve(GetChatsController);
+const getChatMessagesController = container.resolve(GetChatMessagesController);
+
 export {
   addDocumentController,
   deleteDocumentController,
@@ -137,4 +159,7 @@ export {
   addChatController,
   addChatMessagesController,
   deleteAllChatController,
+  deleteChatController,
+  getChatsController,
+  getChatMessagesController,
 };
