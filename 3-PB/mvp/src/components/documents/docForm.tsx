@@ -21,6 +21,7 @@ function DocForm() {
     } else {
       setSelectedFile(null);
       event.target.value = null;
+      toast.error("Formato del file non supportato");
     }
   };
 
