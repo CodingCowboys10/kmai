@@ -18,6 +18,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
@@ -99,38 +101,43 @@ function ChatList() {
                       <DotsHorizontalIcon />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <AlertDialog>
-                      <AlertDialogTrigger className={"w-fit"} asChild>
-                        <Button className={"w-full"} variant={"destructive"}>
-                          Elimina Chat
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>
-                            Conferma eliminazione.
-                          </AlertDialogTitle>
-                          <AlertDialogDescription>
-                            L&apos;eliminazione della chat è un&apos;operazione
-                            irreversibile.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Annulla</AlertDialogCancel>
-                          <AlertDialogAction asChild>
-                            <Button
-                              className={
-                                "bg-destructive text-destructive-foreground hover:bg-destructive"
-                              }
-                              onClick={() => handleDeleteChat(value.id)}
-                            >
-                              Elimina
-                            </Button>
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Azioni</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem disabled={true}>
+                      Rinonima
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <AlertDialog>
+                        <AlertDialogTrigger className="w-full relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-red-500">
+                          Elimina
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              Conferma eliminazione.
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              L&apos;eliminazione della chat è
+                              un&apos;operazione irreversibile.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Annulla</AlertDialogCancel>
+                            <AlertDialogAction asChild>
+                              <Button
+                                className={
+                                  "bg-destructive text-destructive-foreground hover:bg-destructive"
+                                }
+                                onClick={() => handleDeleteChat(value.id)}
+                              >
+                                Elimina
+                              </Button>
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
