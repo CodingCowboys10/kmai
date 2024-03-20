@@ -36,7 +36,7 @@ async function createMessagesTable() {
                 role VARCHAR(255),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 sourcePage VARCHAR(30),
-                sourceLink VARCHAR(30),
+                sourceLink VARCHAR(255),
                 UNIQUE (thread_id, id)
             );
         `;

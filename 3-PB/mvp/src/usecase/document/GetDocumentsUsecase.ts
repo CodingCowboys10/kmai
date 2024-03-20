@@ -1,6 +1,7 @@
 import type {
   Document,
   IDocumentRepository,
+  IModel,
   IUsecase,
 } from "@/lib/config/interfaces";
 import { injectable, inject } from "tsyringe";
@@ -17,7 +18,7 @@ class GetDocumentsUsecase
     this._documentRepository = documentRepository;
   }
 
-  async execute({ model }: { model: string }): Promise<Document[]> {
+  async execute({ model }: { model: IModel }): Promise<Document[]> {
     return await this._documentRepository.getDocuments(model);
   }
 }

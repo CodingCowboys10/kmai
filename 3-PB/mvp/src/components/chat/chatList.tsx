@@ -80,7 +80,7 @@ function ChatList() {
           titles!.map((value, index) => (
             <React.Fragment key={index}>
               <div
-                className={`flex flex-row items-center justify-between text-sm transition-colors hover:bg-background/50 rounded-md  mr-2 pr-2 
+                className={`flex flex-row items-center justify-between text-sm transition-colors hover:bg-background/50 rounded-md  my-1 mr-2 pr-2 
                 ${chatSessionId === value.id ? "bg-background/75 hover:bg-background/70" : ""}`}
               >
                 <div

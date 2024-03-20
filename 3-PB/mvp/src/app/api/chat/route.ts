@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     const vectorstore = await Chroma.fromExistingCollection(
       llmsEmbedding[model],
       {
-        collectionName: collections["Ollama"],
+        collectionName: collections[model],
 
         /*filter: {
           visible: "true",

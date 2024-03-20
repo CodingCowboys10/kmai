@@ -8,10 +8,11 @@ import {
   useContext,
   useState,
 } from "react";
+import { IModel } from "@/lib/config/interfaces";
 
 interface ModelContextProps {
-  model: string;
-  setModel: Dispatch<SetStateAction<string>>;
+  model: IModel;
+  setModel: Dispatch<SetStateAction<IModel>>;
 }
 
 export const ModelContext = createContext<ModelContextProps>({
@@ -24,7 +25,7 @@ interface ModelProviderProps {
 }
 
 export function ModelProvider({ children }: ModelProviderProps) {
-  const [model, setModel] = useState<string>("OpenAi");
+  const [model, setModel] = useState<IModel>("OpenAi");
 
   return (
     <ModelContext.Provider value={{ model, setModel }}>

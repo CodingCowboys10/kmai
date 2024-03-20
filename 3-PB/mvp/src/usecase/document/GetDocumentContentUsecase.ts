@@ -17,7 +17,7 @@ class GetDocumentContentUsecase
     this._documentRepository = documentRepository;
   }
 
-  async execute({ docName, model }: { docName: string; model: string }) {
+  async execute({ docName, model }: { docName: string; model: IModel }) {
     return await this._documentRepository.getDocumentContent(docName, model);
   }
 }
