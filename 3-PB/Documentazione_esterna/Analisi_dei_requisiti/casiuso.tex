@@ -955,40 +955,38 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \label{fig:UC24.1}
 \end{figure}
 
-\subsection{UC-25 Elimina sessione}
+\subsection{UC-25 Elimina sessioni}
 \begin{description}
-    \item[Descrizione:] L'utente vuole eliminare una delle sessioni di conversazioni attive nel sistema.
+    \item[Descrizione:] L'utente vuole eliminare tutte le sessioni di conversazione attive nel sistema.
     \item[Attore primario:] Utente generico.
-    \item[Pre condizioni:] Il sistema presenta la sessione che l'utente vuole eliminare, contenente i messaggi scambiati tra utente e sistema.
-    \item[Post condizioni:] Il sistema non presenta più la sessione eliminata dall'utente, né i messaggi scambiati in essa.
+    \item[Pre condizioni:] Il sistema presenta le sessioni, contenenti i messaggi scambiati tra utente e sistema.
+    \item[Post condizioni:] Il sistema non presenta più le sessioni eliminate dall'utente, né i messaggi scambiati in essa.
     \item[Scenario:] 
     \begin{enumerate}
         \item[]
         \item L'utente visualizza la lista delle sessioni attive (\textbf{UC-24}).
-        \item L'utente visualizza una delle sessioni attive nel sistema (\textbf{UC-24.1}).
-        \item L'utente elimina dal sistema la sessione di conversazione con il chatbot desiderata.
+        \item L'utente elimina dal sistema le sessioni di conversazione con il chatbot.
     \end{enumerate}
 \end{description}
 
-\subsection{UC-25.1 Conferma eliminazione sessione}
+\subsection{UC-25.1 Conferma eliminazione sessioni}
 \begin{description}
-    \item[Descrizione:] L'utente vuole eliminare una delle sessioni di conversazioni attive nel sistema.
+    \item[Descrizione:] L'utente vuole eliminare le sessioni di conversazione attive nel sistema.
     \item[Attore primario:] Utente generico.
-    \item[Pre condizioni:] Il sistema presenta la sessione che l'utente vuole eliminare, il quale tenta di eliminarla.
-    \item[Post condizioni:] Il sistema non presenta più la sessione eliminata dall'utente, né i messaggi scambiati in essa.
+    \item[Pre condizioni:] Il sistema presenta le sessione che l'utente tenta di eliminare.
+    \item[Post condizioni:] Il sistema non presenta più le sessioni, né i messaggi scambiati in esse.
     \item[Scenario:] 
     \begin{enumerate}
         \item[]
         \item L'utente visualizza la lista delle sessioni attive (\textbf{UC-24}).
-        \item L'utente visualizza una delle sessioni attive nel sistema (\textbf{UC-24.1}).
-        \item L'utente tenta di eliminare dal sistema la sessione di conversazione con il chatbot desiderata (\textbf{UC-25}).
-        \item L'utente conferma l'eliminazione della sessione di conversazione dal sistema.
+        \item L'utente tenta di eliminare dal sistema le sessioni di conversazione con il chatbot (\textbf{UC-25}).
+        \item L'utente conferma l'eliminazione delle sessioni di conversazione dal sistema.
     \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{UC25.png} 
+    \includegraphics[width=0.8\linewidth]{UC25.png} 
     \caption{Diagramma UML dei casi d'uso UC-25 e UC-25.1}
     \label{fig:UC25}
 \end{figure}
@@ -1016,39 +1014,39 @@ L'attore secondario, definito con l'acronimo \ccgloss{LLM}, identifica il modell
     \label{fig:UC26}
 \end{figure}
 
-\subsection{UC-27 Elimina chat history}
+\subsection{UC-27 Elimina singola sessione}
 \begin{description}
-    \item[Descrizione:] L'utente vuole eliminare lo scambio di domande e risposte, avvenuto in precedenza con il chatbot, dalla sessione del sistema.
+    \item[Descrizione:] L'utente vuole eliminare una particolare sessione di conversazione dal sistema, e con essa lo scambio di domande e risposte avvenuto in precedenza con il chatbot.
     \item[Attore primario:] Utente generico.
     \item[Pre condizioni:] Il sistema presenta la chat history di una conversazione tenuta in una sessione.
-    \item[Post condizioni:] Il sistema non presenta più alcuna chat history in quella sessione.
+    \item[Post condizioni:] Il sistema non presenta più quella sessione.
     \item[Scenario:]
     \begin{enumerate}
         \item[]
         \item L'utente visualizza una particolare sessione di conversazione (\textbf{UC-24.1}).
         \item L'utente ha, in precedenza, inviato al sistema delle domande (\textbf{UC-19}), di cui ha ricevuto risposte (\textbf{UC-21}).
         \item L'utente visualizza la chat history (\textbf{UC-26}).
-        \item L'utente elimina la chat history della sessione corrente.
+        \item L'utente elimina la chat history e la sessione corrente.
     \end{enumerate}
 \end{description}
 
-\subsection{UC-27.1 Conferma eliminazione chat history}
+\subsection{UC-27.1 Conferma eliminazione singola sessione}
 \begin{description}
-    \item[Descrizione:] L'utente vuole eliminare lo scambio di domande e risposte, avvenuto in precedenza con il chatbot, dalla sessione del sistema.
+    \item[Descrizione:] L'utente vuole confermare l'eliminazione di una particolare sessione di conversazione dal sistema, e con essa lo scambio di domande e risposte avvenuto in precedenza con il chatbot.
     \item[Attore primario:] Utente generico.
-    \item[Pre condizioni:] Il sistema presenta la chat history.
-    \item[Post condizioni:] Il sistema non presenta più alcuna chat history in quella sessione.
+    \item[Pre condizioni:] Il sistema presenta la chat history di una conversazione tenuta in una sessione che l'utente ha tentato di eliminare.
+    \item[Post condizioni:] Il sistema non presenta più quella sessione.
     \item[Scenario:]
     \begin{enumerate}
         \item[]
-        \item L'utente tenta di eliminare la chat history della sessione corrente (\textbf{UC-27}).
-        \item L'utente conferma l'eliminazione della chat history della sessione corrente dal sistema.
+        \item L'utente tenta di eliminare la sessione corrente (\textbf{UC-27}).
+        \item L'utente conferma l'eliminazione della sessione e della chat history associata dal sistema.
     \end{enumerate}
 \end{description}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{UC27.PNG} 
+    \includegraphics[width=0.8\linewidth]{UC27.PNG} 
     \caption{Diagramma UML dei casi d'uso UC-27 e 27.1}
     \label{fig:UC27}
 \end{figure}

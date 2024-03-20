@@ -1,42 +1,31 @@
-"use client"
+"use client";
 
-import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction, useEffect } from 'react';
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
+import { IModel } from "@/lib/config/interfaces";
 
 interface ModelContextProps {
-  model?: string;
-  setModel: Dispatch<SetStateAction<string>>;
+  model: IModel;
+  setModel: Dispatch<SetStateAction<IModel>>;
 }
 
 export const ModelContext = createContext<ModelContextProps>({
-    setModel: () => {},});
+  setModel: () => {},
+  model: "OpenAi",
+});
 
 interface ModelProviderProps {
   children: ReactNode;
 }
 
 export function ModelProvider({ children }: ModelProviderProps) {
-  const isServer = typeof window === 'undefined'; // Verifica se il codice viene eseguito sul server
-  const [model, setModel] = useState<string>(() => {
-    try {
-      if (!isServer) {
-        const storedModel = localStorage.getItem('model');
-        return storedModel || 'Ollama';
-      }
-    } catch (error) {
-      console.error("Error accessing localStorage:", error);
-    }
-    return 'Ollama'; // fallback value
-  });
-
-  useEffect(() => {
-    try {
-      if (!isServer) {
-        localStorage.setItem('model', model);
-      }
-    } catch (error) {
-      console.error("Error accessing localStorage:", error);
-    }
-  }, [model, isServer]);
+  const [model, setModel] = useState<IModel>("OpenAi");
 
   return (
     <ModelContext.Provider value={{ model, setModel }}>
@@ -46,11 +35,5 @@ export function ModelProvider({ children }: ModelProviderProps) {
 }
 
 export function useModel(): ModelContextProps {
-  const context = useContext(ModelContext);
-
-  if (!context) {
-    throw new Error("useModel must be used within a ModelProvider");
-  }
-
-  return context;
+  return useContext(ModelContext);
 }

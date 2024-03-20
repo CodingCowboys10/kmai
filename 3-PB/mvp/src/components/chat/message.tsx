@@ -4,10 +4,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getDocumentContentController } from "@/lib/config/container";
 import { useModel } from "@/providers/model-provider";
+import { useMessagesData } from "@/providers/messages-provider";
+import { getDocumentContent } from "@/serverActions/document/getDocumentContentController";
+import { toast } from "sonner";
 
 type MessageInfoInterface = {
   messageText: string;
-  time: string;
+  time: Date;
 } & (
   | {
       isGenerated: true;
@@ -20,9 +23,13 @@ type MessageInfoInterface = {
 function Message(props: MessageInfoInterface) {
   const { model } = useModel();
   const handleShowDoc = async (name: string) => {
-    const res = await getDocumentContentController.handle(name, model!);
-    const url = await res.json();
-    window.open(url.url, "_blank");
+    try {
+      const url = await getDocumentContent(name, model!);
+      window.open(url, "_blank");
+    } catch (e) {
+      // @ts-ignore
+      toast.error(e.message);
+    }
   };
   return (
     <div
@@ -40,8 +47,8 @@ function Message(props: MessageInfoInterface) {
         className={`whitespace-pre-line break-words chat-bubble w-fit max-w-[60%] ${props.isGenerated ? "bg-secondary text-secondary-foreground" : "bg-primary text-primary-content"} `}
       >
         {props.messageText}
-        {props.isGenerated && (
-          <Alert className={"mt-5"}>
+        {props.isGenerated && props.pageNumber && (
+          <Alert className={"mt-5 bg-background/35"}>
             <AlertTitle>Fonte della Risposta</AlertTitle>
             <AlertDescription>
               <div
@@ -51,8 +58,8 @@ function Message(props: MessageInfoInterface) {
               >
                 <p>Pag. {props.pageNumber}</p>
                 <Button
-                  className={"text-accent-foreground cursor-pointer"}
-                  variant={"outline"}
+                  className={"cursor-pointer"}
+                  variant={"ghost"}
                   size={"icon"}
                   asChild
                   onClick={() => handleShowDoc(props.documentLink)}
@@ -84,7 +91,12 @@ function Message(props: MessageInfoInterface) {
           </Alert>
         )}
 
-        <p className={"w-full text-right text-sm  opacity-50"}>{props.time}</p>
+        <p className={"w-full text-right text-sm  opacity-50"}>
+          {props.time.toLocaleString("it-IT", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p>
       </div>
       {!props.isGenerated && (
         <div className={"h-full flex items-end"}>

@@ -2,11 +2,17 @@ import Settings from "@/components/chat/settings";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-function SideBar({ children }: { children: React.ReactNode }) {
+function SideBar({
+  children,
+  isChat,
+}: {
+  children: React.ReactNode;
+  isChat?: boolean;
+}) {
   const [isCollapsed, setCollapsed] = useState(false);
   return (
     <div
-      className={`relative transition-all ease-linear duration-150 flex flex-col min-h-screen bg-accent  ${isCollapsed ? "invisible w-0" : " visible w-2/12"}`}
+      className={`p-1 relative transition-all ease-linear duration-150 flex flex-col min-h-screen overflow-hidden bg-accent  ${isCollapsed ? "invisible w-0" : " visible w-2/12"}`}
     >
       <div className={" absolute h-full flex items-center visible -right-10"}>
         <Button
@@ -64,7 +70,7 @@ function SideBar({ children }: { children: React.ReactNode }) {
         </Button>
       </div>
       {children}
-      <Settings />
+      <Settings isChat={isChat} />
     </div>
   );
 }

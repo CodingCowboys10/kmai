@@ -12,6 +12,9 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import React from "react";
+import { useChatsData } from "@/providers/chats-provider";
+import { addChat } from "@/serverActions/chats/addChat";
+import { useMessagesData } from "@/providers/messages-provider";
 
 const FormSchema = z.object({
   message: z.string().trim().min(1, {
@@ -19,19 +22,11 @@ const FormSchema = z.object({
   }),
 });
 
-interface ChatFormValueInterface {
-  handleSubmit: any;
-  handleInputChange: any;
-  isLoading: boolean;
-  input: string;
-}
+function ChatForm() {
+  const { handleInputChange, handleSubmit, input, isLoading } =
+    useMessagesData();
+  const { chatSessionId, setChatSessionId, setIsUpdate } = useChatsData();
 
-function ChatForm({
-  handleSubmit,
-  handleInputChange,
-  isLoading,
-  input,
-}: ChatFormValueInterface) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -40,6 +35,16 @@ function ChatForm({
     if (isLoading) return;
     const isValid = await form.trigger();
     if (isValid) {
+      if (!chatSessionId) {
+        try {
+          const res = await addChat(input.substring(0, 22));
+          setIsUpdate(true);
+          setChatSessionId(res);
+        } catch (e) {
+          // @ts-ignore
+          toast.error(e.message);
+        }
+      }
       handleSubmit(event);
     } else {
       toast.error(

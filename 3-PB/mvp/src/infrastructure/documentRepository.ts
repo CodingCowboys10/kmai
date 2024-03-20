@@ -2,6 +2,7 @@ import type {
   Document,
   IDocumentDataSource,
   IDocumentRepository,
+  IModel,
 } from "@/lib/config/interfaces";
 import { injectable, inject } from "tsyringe";
 
@@ -15,25 +16,25 @@ class DocumentRepository implements IDocumentRepository {
     this._documentDataSource = documentDataSource;
   }
 
-  async addDocument(doc: Document, model: string) {
+  async addDocument(doc: Document, model: IModel) {
     await this._documentDataSource.addOne({
       doc: doc,
       model: model,
     });
   }
 
-  async deleteDocument(docName: string, model: string): Promise<void> {
+  async deleteDocument(docName: string, model: IModel): Promise<void> {
     await this._documentDataSource.deleteOne({
       docName: docName,
       model: model,
     });
   }
 
-  async getDocuments(model: string): Promise<Document[]> {
+  async getDocuments(model: IModel): Promise<Document[]> {
     return await this._documentDataSource.getAll(model);
   }
 
-  async getDocumentContent(docName: string, model: string): Promise<string> {
+  async getDocumentContent(docName: string, model: IModel): Promise<string> {
     return await this._documentDataSource.getContent({
       docName: docName,
       model: model,

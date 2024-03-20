@@ -14,6 +14,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  VisibilityState,
 } from "@tanstack/react-table";
 import { Input } from "@/components/ui/input";
 import {
@@ -27,6 +28,7 @@ import {
 import { DataTablePagination } from "@/components/documents/dataTablePagination";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
@@ -36,26 +38,29 @@ import {
 
 import IsLoadingDoc from "@/components/ui/isLoadingDoc";
 import { Button } from "@/components/ui/button";
+import { useDocumentData } from "@/providers/document-provider";
+import { DataTableViewOptions } from "@/components/documents/dataTableViewOption";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  isLoading: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
-  isLoading,
 }: DataTableProps<TData, TValue>) {
+  const { data, isLoading } = useDocumentData();
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
   const [isFilterData, setIsFilterData] = useState(false);
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const table = useReactTable({
+    // @ts-ignore
     data,
+    // @ts-ignore
     columns,
     getCoreRowModel: getCoreRowModel(),
     onColumnFiltersChange: setColumnFilters,
@@ -63,61 +68,66 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
-    state: { sorting, columnFilters },
+    state: { sorting, columnFilters, columnVisibility },
+    onColumnVisibilityChange: setColumnVisibility,
   });
 
   return (
     <div>
-      <div className="flex items-center py-4 space-x-4">
-        <Input
-          placeholder={`Cerca per ${!isFilterData ? "nome" : "data"}...`}
-          value={
-            (table
-              .getColumn(`${!isFilterData ? "id" : "data"}`)
-              ?.getFilterValue() as string) ?? ""
-          }
-          onChange={(event) =>
-            table
-              .getColumn(`${!isFilterData ? "id" : "data"}`)
-              ?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="icon">
-              <MixerHorizontalIcon className={"w-4 h-4"} />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align={"center"}>
-            <DropdownMenuLabel> Cerca per </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() => {
-                setIsFilterData(false);
-                table.getColumn("data")?.setFilterValue(null);
-              }}
-              asChild
-            >
-              <div className={"flex justify-between"}>
-                Nome
-                <TextAlignLeftIcon />
-              </div>
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
-                setIsFilterData(true);
-                table.getColumn("id")?.setFilterValue(null);
-              }}
-              asChild
-            >
-              <div className={"flex justify-between"}>
-                Data
-                <CalendarIcon />
-              </div>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <div className="flex justify-between py-4 items-center ">
+        <div className={"flex justify-start w-full space-x-4"}>
+          <Input
+            placeholder={`Cerca per ${!isFilterData ? "nome" : "data"}...`}
+            value={
+              (table
+                .getColumn(`${!isFilterData ? "id" : "data"}`)
+                ?.getFilterValue() as string) ?? ""
+            }
+            onChange={(event) =>
+              table
+                .getColumn(`${!isFilterData ? "id" : "data"}`)
+                ?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <MixerHorizontalIcon className={"w-4 h-4"} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align={"center"}>
+              <DropdownMenuLabel> Cerca per </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={() => {
+                  setIsFilterData(false);
+                  table.getColumn("data")?.setFilterValue(null);
+                }}
+                asChild
+              >
+                <div className={"flex justify-between"}>
+                  Nome
+                  <TextAlignLeftIcon />
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  setIsFilterData(true);
+                  table.getColumn("id")?.setFilterValue(null);
+                }}
+                asChild
+              >
+                <div className={"flex justify-between"}>
+                  Data
+                  <CalendarIcon />
+                </div>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
+        <DataTableViewOptions table={table} />
       </div>
       <div className="rounded-md border">
         <Table>

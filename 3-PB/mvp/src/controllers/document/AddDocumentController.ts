@@ -1,24 +1,19 @@
 import { AddDocumentUsecase } from "@/usecase/document/AddDocumentUsecase";
 import { injectable, inject } from "tsyringe";
-import { AddEmbeddingUsecase } from "@/usecase/embeddings/AddEmbeddingUsecase";
 import { NextResponse } from "next/server";
+import { IModel } from "@/lib/config/interfaces";
 
 @injectable()
 class AddDocumentController {
   private readonly _useCase: AddDocumentUsecase;
-  private readonly _useCaseE: AddEmbeddingUsecase;
 
-  constructor(
-    @inject("addDocUsecase") useCase: AddDocumentUsecase,
-    @inject("addEmbeddingUsecase") useCaseE: AddEmbeddingUsecase,
-  ) {
+  constructor(@inject("addDocUsecase") useCase: AddDocumentUsecase) {
     this._useCase = useCase;
-    this._useCaseE = useCaseE;
   }
 
   async handle(data: FormData): Promise<Response> {
     try {
-      const model: string = data.get("model")!.toString();
+      const model: IModel = data.get("model")!.toString() as IModel;
       const file: File | null = data.get("file") as unknown as File;
       if (!file) {
         return Response.json("", {
@@ -27,10 +22,9 @@ class AddDocumentController {
         });
       }
       await this._useCase.execute({ file: file, model: model });
-      await this._useCaseE.execute({ file: file, model: model });
 
       return NextResponse.json(
-        { message: "Document Added successfully" },
+        { message: "Documento inserito correttamente" },
         {
           status: 200,
           statusText: "OK",
@@ -39,7 +33,7 @@ class AddDocumentController {
     } catch (e) {
       console.error(e);
       return NextResponse.json(
-        { error: "Internal Server Error Adding the Document" },
+        { error: "Errore durante l'aggiunta" },
         {
           status: 500,
         },
