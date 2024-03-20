@@ -26,7 +26,6 @@ class ChromaDataSource implements IEmbeddingDataSource {
     const collection = await this._vDb.getCollection({
       name: collections[model],
     });
-    console.log(collections[model]);
     await collection.add({
       ids: embeddings.ids,
       documents: embeddings.doc,
