@@ -12,6 +12,7 @@ import {
 import { toast } from "sonner";
 import { useChatsData } from "@/providers/chats-provider";
 import { deleteAllChat } from "@/serverActions/chats/deleteAllChat";
+import { Button } from "@/components/ui/button";
 
 function DeleteChatList() {
   const { setIsUpdate, setChatSessionId } = useChatsData();
@@ -32,29 +33,32 @@ function DeleteChatList() {
       <h2>Elimina tutte le Conversazioni</h2>
 
       <AlertDialog>
-      <AlertDialogTrigger className="rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:opacity-50 hover:bg-red-500">
-        Elimina
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Conferma eliminazione.</AlertDialogTitle>
-          <AlertDialogDescription>
-            L'eliminazione delle sessioni è un'operazione irreversibile.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Annulla</AlertDialogCancel>
-          <AlertDialogAction
-            className={
-              "text-destructive-foreground bg-destructive hover:bg-destructive"
-            }
-            onClick={handleDeleteAllChat}
-          >
-            Elimina
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant={"destructive"}>Elimina</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Conferma eliminazione.</AlertDialogTitle>
+            <AlertDialogDescription>
+              L&apos;eliminazione delle sessioni è un&apos;operazione
+              irreversibile.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Annulla</AlertDialogCancel>
+            <AlertDialogAction asChild>
+              <Button
+                className={
+                  "bg-destructive text-destructive-foreground hover:bg-destructive"
+                }
+                onClick={handleDeleteAllChat}
+              >
+                Elimina
+              </Button>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

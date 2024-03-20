@@ -14,6 +14,8 @@ import { toast } from "sonner";
 import { getChatMessages } from "@/serverActions/chats/getChatMessages";
 import { useChatsData } from "@/providers/chats-provider";
 import { addChatMessages } from "@/serverActions/chats/addChatMessages";
+import modelToggle from "@/components/chat/modelToggle";
+import { useModel } from "@/providers/model-provider";
 
 interface MessagesContextProps {
   setInitialMessages: Dispatch<SetStateAction<Message[]>>;
@@ -43,6 +45,7 @@ export const MessagesContext = createContext<MessagesContextProps>({
   handleSubmit: () => {},
 });
 export function MessagesProvider({ children }: { children: ReactNode }) {
+  const { model } = useModel();
   const { chatSessionId, setIsUpdate } = useChatsData();
   const [initialMessages, setInitialMessages] = useState<Message[]>([]);
   const [sourcesForMessages, setSourcesForMessages] = useState<
@@ -57,6 +60,9 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
     handleSubmit,
     isLoading,
   } = useChat({
+    body: {
+      model: model,
+    },
     initialMessages: initialMessages,
     onResponse(response) {
       const sourcesHeader = response.headers.get("x-sources");

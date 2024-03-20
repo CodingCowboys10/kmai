@@ -1,7 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
 import DocAction from "./docAction";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export type DocumentInfo = {
   id: string;
@@ -26,6 +27,17 @@ export const columns: ColumnDef<DocumentInfo>[] = [
     },
   },
   {
+    accessorKey: "Tag",
+    header: "Tag",
+    cell: ({ row }) => (
+      <div className={"space-x-1"}>
+        {" "}
+        <Badge>{row.original.id}</Badge>
+        <Badge variant={"secondary"}>{row.original.id}</Badge>
+      </div>
+    ),
+  },
+  {
     accessorKey: "data",
     header: ({ column }) => {
       return (
@@ -47,8 +59,7 @@ export const columns: ColumnDef<DocumentInfo>[] = [
     id: "actions",
     cell: ({ row }) => {
       const docaction = row.original;
-
-      return <DocAction name={docaction.id} url={docaction.url} />;
+      return <DocAction name={docaction.id} />;
     },
   },
 ];

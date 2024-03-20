@@ -9,17 +9,11 @@ import {
 import DocActionDelete from "./docActionDelete";
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getDocumentContentController } from "@/lib/config/container";
 import { useModel } from "@/providers/model-provider";
 import { getDocumentContent } from "@/serverActions/document/getDocumentContentController";
 import { toast } from "sonner";
 
-interface IDoc {
-  name: string;
-  url: string;
-}
-
-export default function DocAction({ name, url }: IDoc) {
+export default function DocAction({ name }: { name: string }) {
   const { model } = useModel();
   const handleShowDoc = async () => {
     try {

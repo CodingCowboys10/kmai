@@ -1,8 +1,6 @@
-import { DocumentInfo, columns } from "./docContent";
+import { columns } from "./docContent";
 import { DataTable } from "./dataTable";
-import React, { useEffect, useState } from "react";
-import { useModel } from "@/providers/model-provider";
-import { getDocument } from "@/serverActions/document/getDocument";
+import React from "react";
 
 export default function DocTable() {
   return (

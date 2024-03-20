@@ -7,6 +7,17 @@ import { toast } from "sonner";
 import { useModel } from "@/providers/model-provider";
 import { addDocument } from "@/serverActions/document/addDocument";
 import { useDocumentData } from "@/providers/document-provider";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 function DocForm() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -43,19 +54,37 @@ function DocForm() {
   };
 
   return (
-    <div className="p-1 pt-5">
-      <div className="grid w-full max-w-sm items-center justify-center gap-1.5 h-full">
-        <Label className="text-center w-full">Aggiungi PDF</Label>
-        <Input
-          type="file"
-          accept="application/pdf"
-          onChange={handleFileChange}
-        />
-      </div>
-      <Button className="w-full p-1" onClick={handleFormSubmit}>
-        Invia
-      </Button>
-    </div>
+    <AlertDialog>
+      <AlertDialogTrigger
+        className={"flex items-center justify-center mt-5"}
+        asChild
+      >
+        <Button className={"mx-auto"} variant={"default"} size={"lg"}>
+          Aggiungi Documento
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader className={"text-center"}>
+          <AlertDialogTitle className={"text-center"}>
+            Trascina o Seleziona il Documento
+          </AlertDialogTitle>
+          <div className={"h-50"}>
+            <Input
+              className={"my-5  h-10"}
+              type="file"
+              accept="application/pdf"
+              onChange={handleFileChange}
+            />
+          </div>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleFormSubmit}>
+            Aggiungi il Documento
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
 
