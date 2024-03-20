@@ -105,7 +105,7 @@ function ChatList() {
                     <DropdownMenuLabel>Azioni</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem disabled={true}>
-                      Rinonima
+                      Rinomina
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <AlertDialog>
