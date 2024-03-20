@@ -33,10 +33,9 @@ export async function POST(req: NextRequest) {
       llmsEmbedding[model],
       {
         collectionName: collections[model],
-
-        /*filter: {
-          visible: "true",
-        }, */
+        filter: {
+          visibility: true,
+        },
       },
     );
 

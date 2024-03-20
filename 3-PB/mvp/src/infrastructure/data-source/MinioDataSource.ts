@@ -5,7 +5,7 @@ import type {
   IDocumentDataSource,
   IModel,
 } from "@/lib/config/interfaces";
-import { injectable, inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { collections } from "@/lib/models";
 
 @injectable()
@@ -42,19 +42,20 @@ class MinioDataSource implements IDocumentDataSource {
       })
       .promise();
     const response = objects.Contents!;
+    return await Promise.all(
+      response.map(async (doc) => {
+        const taggingResponse = await this._db
+          .getObjectTagging({ Bucket: collections[model], Key: doc.Key! })
+          .promise();
 
-    return response.map(async (doc) => {
-      return {
-        name: doc.Key!,
-        date: doc.LastModified!,
-        size: doc.Size!,
-        tag: (
-          await this._db
-            .getObjectTagging({ Bucket: collections[model], Key: doc.Key! })
-            .promise()
-        ).TagSet,
-      };
-    });
+        return {
+          name: doc.Key!,
+          date: doc.LastModified!,
+          size: doc.Size!,
+          tag: taggingResponse.TagSet,
+        };
+      }),
+    );
   }
 
   async getContent({
