@@ -59,7 +59,7 @@ function ChatList() {
   };
 
   return (
-    <div className={"flex flex-col relative min-h-[90%] px-1"}>
+    <div className={"flex flex-col relative min-h-[90%]"}>
       <div className={"flex flex-row items-center justify-between p-2"}>
         <Label className={"text-lg"}>Nuova Chat</Label>
         <Button variant={"ghost"} size={"icon"} onClick={handleCreateChat}>
@@ -80,7 +80,7 @@ function ChatList() {
           titles!.map((value, index) => (
             <React.Fragment key={index}>
               <div
-                className={`flex flex-row items-center justify-between text-sm transition-colors hover:bg-background/50 rounded-md my-1 mr-2 pr-2 
+                className={`flex flex-row items-center justify-between text-sm transition-colors hover:bg-background/50 rounded-md  mr-2 pr-2 
                 ${chatSessionId === value.id ? "bg-background/75 hover:bg-background/70" : ""}`}
               >
                 <div

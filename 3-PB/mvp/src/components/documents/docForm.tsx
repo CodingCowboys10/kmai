@@ -68,9 +68,9 @@ function DocForm() {
           <AlertDialogTitle className={"text-center"}>
             Trascina o Seleziona il Documento
           </AlertDialogTitle>
-          <div className={"h-20"}>
+          <div className={"h-50"}>
             <Input
-              className={"mt-5  "}
+              className={"my-5  h-10"}
               type="file"
               accept="application/pdf"
               onChange={handleFileChange}
