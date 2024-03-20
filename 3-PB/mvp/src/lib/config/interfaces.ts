@@ -1,5 +1,7 @@
 import { Message } from "ai";
 
+type IModel = "Ollama" | "OpenAi";
+
 interface Document {
   name: string;
   date: Date;
@@ -57,7 +59,7 @@ interface IEmbeddingDataSource {
     embeddings: Embeddings;
     model: string;
   }): Promise<void>;
-  deleteOne({ ids, model }: { ids: string[]; model: string }): Promise<void>;
+  deleteOne({ ids, model }: { ids: string[]; model: IModel }): Promise<void>;
   updateOne({
     metadatas,
     model,
@@ -84,7 +86,7 @@ interface IDocumentRepository {
 }
 
 interface IDocumentDataSource {
-  addOne({ doc, model }: { doc: Document; model: string }): Promise<void>;
+  addOne({ doc, model }: { doc: Document; model: IModel }): Promise<void>;
   deleteOne({
     docName,
     model,
@@ -139,4 +141,5 @@ export type {
   IDocumentDataSource,
   IEmbeddingDataSource,
   IEmbeddingRepository,
+  IModel,
 };

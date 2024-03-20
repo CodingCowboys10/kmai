@@ -38,7 +38,7 @@ function ModelToggle() {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => setModel("Ollama")}
-            disabled={process.env.NEXT_PUBLIC_HOSTED_VERSION == "false"}
+            disabled={process.env.NEXT_PUBLIC_HOSTED_VERSION !== "false"}
           >
             <p className={"text-secondary-foreground"}>Ollama</p>
           </DropdownMenuItem>
