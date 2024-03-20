@@ -99,7 +99,6 @@ export async function POST(req: NextRequest) {
         }),
       ),
     ).toString("base64");
-
     return new StreamingTextResponse(stream, {
       headers: {
         "x-message-index": (previousMessages.length + 1).toString(),

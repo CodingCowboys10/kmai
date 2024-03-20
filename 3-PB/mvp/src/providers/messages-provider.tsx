@@ -70,7 +70,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
         ? JSON.parse(Buffer.from(sourcesHeader, "base64").toString("utf8"))
         : [];
       const messageIndexHeader = response.headers.get("x-message-index");
-      if (sources.length && messageIndexHeader !== null) {
+      if (messageIndexHeader !== null) {
         setSourceCurrent({ ...sources });
       }
     },
