@@ -42,11 +42,17 @@ class MinioDataSource implements IDocumentDataSource {
       })
       .promise();
     const response = objects.Contents!;
-    return response.map((doc) => {
+
+    return response.map(async (doc) => {
       return {
         name: doc.Key!,
         date: doc.LastModified!,
         size: doc.Size!,
+        tag: (
+          await this._db
+            .getObjectTagging({ Bucket: collections[model], Key: doc.Key! })
+            .promise()
+        ).TagSet,
       };
     });
   }

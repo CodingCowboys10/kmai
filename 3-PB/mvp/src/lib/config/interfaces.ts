@@ -7,6 +7,7 @@ interface Document {
   date: Date;
   size: number;
   content?: Buffer | string;
+  tag?: any;
 }
 interface Chat {
   title: string;
