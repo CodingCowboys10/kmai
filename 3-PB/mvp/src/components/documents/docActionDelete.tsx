@@ -9,7 +9,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deleteDocumentController } from "@/lib/config/container";
 import { toast } from "sonner";
 import { useModel } from "@/providers/model-provider";
 import { useDocumentData } from "@/providers/document-provider";

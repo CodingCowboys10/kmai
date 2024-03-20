@@ -1,7 +1,12 @@
 import { S3 } from "aws-sdk";
-import { collections } from "@/lib/site-config";
-import type { Document, IDocumentDataSource } from "@/lib/config/interfaces";
+
+import type {
+  Document,
+  IDocumentDataSource,
+  IModel,
+} from "@/lib/config/interfaces";
 import { injectable, inject } from "tsyringe";
+import { collections } from "@/lib/models";
 
 @injectable()
 class MinioDataSource implements IDocumentDataSource {
@@ -10,7 +15,7 @@ class MinioDataSource implements IDocumentDataSource {
     this._db = db;
   }
 
-  async addOne({ doc, model }: { doc: Document; model: string }) {
+  async addOne({ doc, model }: { doc: Document; model: IModel }) {
     await this._db
       .putObject({
         Body: doc.content,
@@ -21,7 +26,7 @@ class MinioDataSource implements IDocumentDataSource {
       .promise();
   }
 
-  async deleteOne({ docName, model }: { docName: string; model: string }) {
+  async deleteOne({ docName, model }: { docName: string; model: IModel }) {
     await this._db
       .deleteObject({
         Bucket: collections[model],
@@ -30,7 +35,7 @@ class MinioDataSource implements IDocumentDataSource {
       .promise();
   }
 
-  async getAll(model: string): Promise<Document[]> {
+  async getAll(model: IModel): Promise<Document[]> {
     const objects = await this._db
       .listObjects({
         Bucket: collections[model],
@@ -51,7 +56,7 @@ class MinioDataSource implements IDocumentDataSource {
     model,
   }: {
     docName: string;
-    model: string;
+    model: IModel;
   }): Promise<string> {
     return await this._db.getSignedUrlPromise("getObject", {
       Bucket: collections[model],

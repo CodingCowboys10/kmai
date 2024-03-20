@@ -1,11 +1,12 @@
 import { ChromaClient } from "chromadb";
-import { collections } from "@/lib/site-config";
 import {
   Embeddings,
   IEmbeddingDataSource,
+  IModel,
   Metadatas,
 } from "@/lib/config/interfaces";
 import { injectable, inject } from "tsyringe";
+import { collections } from "@/lib/models";
 
 @injectable()
 class ChromaDataSource implements IEmbeddingDataSource {
@@ -20,7 +21,7 @@ class ChromaDataSource implements IEmbeddingDataSource {
     model,
   }: {
     embeddings: Embeddings;
-    model: string;
+    model: IModel;
   }) {
     const collection = await this._vDb.getCollection({
       name: collections[model],
@@ -34,7 +35,7 @@ class ChromaDataSource implements IEmbeddingDataSource {
     });
   }
 
-  async deleteOne({ ids, model }: { ids: string[]; model: string }) {
+  async deleteOne({ ids, model }: { ids: string[]; model: IModel }) {
     const collection = await this._vDb.getCollection({
       name: collections[model],
     });
@@ -47,7 +48,7 @@ class ChromaDataSource implements IEmbeddingDataSource {
     ids,
   }: {
     metadatas: Metadatas;
-    model: string;
+    model: IModel;
     ids: string[];
   }) {
     const collection = await this._vDb.getCollection({
@@ -58,7 +59,7 @@ class ChromaDataSource implements IEmbeddingDataSource {
       metadatas: metadatas,
     });
   }
-  async getIds({ docName, model }: { docName: string; model: string }) {
+  async getIds({ docName, model }: { docName: string; model: IModel }) {
     const collection = await this._vDb.getCollection({
       name: collections[model],
     });

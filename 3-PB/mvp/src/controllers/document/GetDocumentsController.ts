@@ -1,6 +1,7 @@
 import { GetDocumentsUsecase } from "@/usecase/document/GetDocumentsUsecase";
 import { injectable, inject } from "tsyringe";
 import { NextResponse } from "next/server";
+import { IModel } from "@/lib/config/interfaces";
 
 @injectable()
 class GetDocumentsController {
@@ -10,7 +11,7 @@ class GetDocumentsController {
     this._useCase = useCase;
   }
 
-  async handle(model: string): Promise<Response> {
+  async handle(model: IModel): Promise<Response> {
     try {
       const docs = await this._useCase.execute({ model: model });
       const datas = docs.map((doc) => {
