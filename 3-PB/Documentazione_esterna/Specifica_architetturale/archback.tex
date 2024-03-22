@@ -24,7 +24,7 @@ Una volta terminate le operazioni nel data source, il controllo torna alla repos
     \item \textit{data: FormData}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a AddDocumentController, passando il parametro data. Data contiene una \textit{string} model e un \textit{File} file, che rappresentano il modello che deve presentare il nuovo documento e il file da aggiungere. Gestisce l'aggiunta di un documento inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a AddDocumentController, passando il parametro data. Data contiene una \textit{string} model e un \textit{File} file, che rappresentano il modello che deve presentare il nuovo documento e il file da aggiungere. Gestisce l'aggiunta di un documento inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 
 \subsubsection{deleteDocument}
@@ -34,7 +34,7 @@ Questa funzione asincrona lato server effettua una chiamata a AddDocumentControl
     \item \textit{model: IModel}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a DeleteDocumentController, passando i parametri name e model, che rappresentano il nome del documento da eliminare e il modello che non deve più presentare tale documento. Gestisce l'eliminazione di un documento inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a DeleteDocumentController, passando i parametri name e model, che rappresentano il nome del documento da eliminare e il modello che non deve più presentare tale documento. Gestisce l'eliminazione di un documento inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{getDocument}
 \textbf{Parametri}
@@ -42,7 +42,7 @@ Questa funzione asincrona lato server effettua una chiamata a DeleteDocumentCont
     \item \textit{model: IModel}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a GetDocumentsController, passando il parametro model, che rappresenta il modello da cui prendere i documenti associati. Gestisce il recupero delle informazioni dei documenti inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a GetDocumentsController, passando il parametro model, che rappresenta il modello da cui prendere i documenti associati. Gestisce il recupero delle informazioni dei documenti inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{getDocumentContent}
 \textbf{Parametri}
@@ -51,7 +51,7 @@ Questa funzione asincrona lato server effettua una chiamata a GetDocumentsContro
     \item \textit{model: IModel}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a GetDocumentContentController, passando i parametri docName e model, che rappresentano il nome del documento da cui recuperare il link per la visualizzazione e il modello che presenta tale documento. Gestisce il recupero dell'informazione inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a GetDocumentContentController, passando i parametri docName e model, che rappresentano il nome del documento da cui recuperare il link per la visualizzazione e il modello che presenta tale documento. Gestisce il recupero dell'informazione inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{addChat}
 \textbf{Parametri}
@@ -59,7 +59,7 @@ Questa funzione asincrona lato server effettua una chiamata a GetDocumentContent
     \item \textit{title: string}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a AddChatController, passando il parametro title, che rappresenta il nome della sessione di conversazione da aggiungere. Gestisce la creazione della sessione inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a AddChatController, passando il parametro title, che rappresenta il nome della sessione di conversazione da aggiungere. Gestisce la creazione della sessione inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{addChatMessages}
 \textbf{Parametri}
@@ -67,11 +67,11 @@ Questa funzione asincrona lato server effettua una chiamata a AddChatController,
     \item \textit{messages: ICustomMessages}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a AddChatMessagesController, passando il parametro messages, che rappresenta il messaggio da salvare relativo ad una sessione di conversazione. Gestisce il salvataggio del messaggio inviando il dato al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a AddChatMessagesController, passando il parametro messages, che rappresenta il messaggio da salvare relativo ad una sessione di conversazione. Gestisce il salvataggio del messaggio inviando il dato al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{deleteAllChat}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a DeleteAllChatController, passando la string che rappresenta la query per eliminare tutti i dati relativi a sessioni e chat history. Gestisce l'eliminazione di queste informazioni inviando il dato al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a DeleteAllChatController per eliminare tutti i dati relativi a sessioni e chat history. Gestisce l'eliminazione di queste informazioni effettuando una chiamata al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{deleteChat}
 \textbf{Parametri}
@@ -79,7 +79,7 @@ Questa funzione asincrona lato server effettua una chiamata a DeleteAllChatContr
     \item \textit{id: number}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a DeleteChatController, passando il parametro id, che rappresenta il valore univoco della sessione di conversazione da eliminare. Gestisce l'eliminazione della sessione inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a DeleteChatController, passando il parametro id, che rappresenta il valore univoco della sessione di conversazione da eliminare. Gestisce l'eliminazione della sessione inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{getChatMessages}
 \textbf{Parametri}
@@ -87,11 +87,11 @@ Questa funzione asincrona lato server effettua una chiamata a DeleteChatControll
     \item \textit{id: number}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a GetChatMessagesController, passando il parametro id, che rappresenta il valore univoco della sessione di conversazione da cui recuperare la chat history. Gestisce il recupero dati della sessione inviando il parametro al controller e si occupa di gestire eventuali errori che si possono verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a GetChatMessagesController, passando il parametro id, che rappresenta il valore univoco della sessione di conversazione da cui recuperare la chat history. Gestisce il recupero dati della sessione inviando il parametro al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{getChats}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a GetChatsController, con cui recupera le informazioni delle sessioni di conversazione attive nell'applicazione. Gestisce il recupero dati delle sessioni ed eventuali errori che si verificano durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a GetChatsController, con cui recupera le informazioni delle sessioni di conversazione attive nell'applicazione. Gestisce il recupero dati delle sessioni ed eventuali errori che si possono verificare durante il processo.
 
 \newpage
 
