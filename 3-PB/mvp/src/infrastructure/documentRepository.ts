@@ -40,6 +40,14 @@ class DocumentRepository implements IDocumentRepository {
       model: model,
     });
   }
+
+  async updateDocument(docName: string, model: IModel, visibility: boolean): Promise<void> {
+    await this._documentDataSource.updateOne({
+      docName: docName,
+      model: model,
+      visibility: visibility,
+    });
+  }
 }
 
 export { DocumentRepository };
