@@ -84,6 +84,7 @@ interface IDocumentRepository {
   deleteDocument(docName: string, model: IModel): Promise<void>;
   getDocumentContent(docName: string, model: IModel): Promise<string>;
   getDocuments(model: IModel): Promise<Document[]>;
+  updateDocument(docName: string, model: IModel, visibility: boolean): Promise<void>;
 }
 
 interface IDocumentDataSource {
@@ -103,6 +104,15 @@ interface IDocumentDataSource {
     model: IModel;
   }): Promise<string>;
   getAll(model: IModel): Promise<Document[]>;
+  updateOne({
+    docName,
+    model,
+    visibility,
+  }: {
+    docName: string;
+    model: IModel;
+    visibility: boolean;
+  }): Promise<void>;
 }
 
 interface IChatDataSource {
