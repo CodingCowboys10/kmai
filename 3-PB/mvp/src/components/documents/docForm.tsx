@@ -1,7 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { addDocumentController } from "@/lib/config/container";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useModel } from "@/providers/model-provider";
@@ -12,7 +10,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -66,7 +63,7 @@ function DocForm() {
       <AlertDialogContent>
         <AlertDialogHeader className={"text-center"}>
           <AlertDialogTitle className={"text-center"}>
-            Trascina o Seleziona il Documento
+            Trascina o seleziona il Documento
           </AlertDialogTitle>
           <div className={"h-50"}>
             <Input
@@ -78,9 +75,9 @@ function DocForm() {
           </div>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Annulla</AlertDialogCancel>
           <AlertDialogAction onClick={handleFormSubmit}>
-            Aggiungi il Documento
+            Aggiungi Documento
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
