@@ -16,7 +16,7 @@ function ChatMessages() {
             "text-[--text] opacity-40 font-medium text-2xl transition duration-300 ease-in flex flex-col items-center justify-center h-full w-full align"
           }
         >
-          Icona di Coding Cowboys
+          Inizia una nuova conversazione
         </div>
       )}
       <div className="flex flex-col gap-5 ">

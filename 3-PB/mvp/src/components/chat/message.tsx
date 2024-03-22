@@ -1,11 +1,8 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { getDocumentContentController } from "@/lib/config/container";
 import { useModel } from "@/providers/model-provider";
-import { useMessagesData } from "@/providers/messages-provider";
-import { getDocumentContent } from "@/serverActions/document/getDocumentContentController";
+import { getDocumentContent } from "@/serverActions/document/getDocumentContent";
 import { toast } from "sonner";
 
 type MessageInfoInterface = {
