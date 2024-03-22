@@ -53,6 +53,16 @@ Questa funzione asincrona lato server effettua una chiamata a GetDocumentsContro
 \textbf{Descrizione}\\
 Questa funzione asincrona lato server effettua una chiamata a GetDocumentContentController, passando i parametri docName e model, che rappresentano il nome del documento da cui recuperare il link per la visualizzazione e il modello che presenta tale documento. Gestisce il recupero dell'informazione inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
+\subsubsection{updateDocument}
+\textbf{Parametri}
+\begin{itemize}[itemsep=-4pt]
+    \item \textit{docName: string};
+    \item \textit{model: IModel};
+    \item \textit{visibility: boolean}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questa funzione asincrona lato server effettua una chiamata a UpdateDocumentController, passando i parametri docName, model e visibility, che rappresentano il nome del documento da aggiornare, il modello che presenta tale documento e il nuovo valore che deve avere il tag di visibilità del documento. Gestisce la modifica delle informazioni inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
+
 \subsubsection{addChat}
 \textbf{Parametri}
 \begin{itemize}
