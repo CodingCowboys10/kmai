@@ -53,11 +53,13 @@ class ChromaDataSource implements IEmbeddingDataSource {
     const collection = await this._vDb.getCollection({
       name: collections[model],
     });
+    const meta = ids.map(() => (metadatas));
     await collection.update({
       ids: ids,
-      metadatas: metadatas,
+      metadatas: meta,
     });
   }
+
   async getIds({ docName, model }: { docName: string; model: IModel }) {
     const collection = await this._vDb.getCollection({
       name: collections[model],

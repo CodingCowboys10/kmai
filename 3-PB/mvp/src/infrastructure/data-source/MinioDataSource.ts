@@ -71,6 +71,37 @@ class MinioDataSource implements IDocumentDataSource {
       Expires: 36000,
     });
   }
+
+  async updateOne({
+    docName,
+    model,
+    visibility,
+  }: {
+    docName: string;
+    model: IModel;
+    visibility: boolean;
+  }): Promise<void> {
+    await this._db
+      .putObjectTagging(
+        {
+          Bucket: collections[model],
+          Key: docName,
+          Tagging: {
+            TagSet: [
+              { Key: "visibility", Value: visibility ? "visible" : "invisible" },
+            ],
+          },
+        },
+        function (err, data) {
+          if (err) {
+            console.error("Errore durante il settaggio dei tag:", err);
+          } else {
+            console.log("I tag sono stati impostati con successo:", data);
+          }
+        },
+      )
+      .promise();
+  }
 }
 
 export { MinioDataSource };
