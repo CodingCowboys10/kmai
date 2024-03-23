@@ -21,7 +21,7 @@ export default function DocAction({
   visibility,
 }: {
   name: string;
-  visibility: boolean | undefined;
+  visibility: boolean;
 }) {
   const { model } = useModel();
   const { setIsUpdate } = useDocumentData();
@@ -49,20 +49,20 @@ export default function DocAction({
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleShowDoc}>Visualizza</DropdownMenuItem>
         <DropdownMenuItem
-          onClick={() => {
+          onClick={async () => {
             try {
               setIsUpdate(true);
               setIsVisible(!isVisible);
-              updateDocument(name, model, {
+              await updateDocument(name, model, {
                 visibility: !isVisible,
-              }).then();
+              });
             } catch (e) {
               // @ts-ignore
               toast.error(e.message);
             }
           }}
         >
-          Cambia visibilità
+          Cambia Visibilità
         </DropdownMenuItem>
 
         <DocActionDelete name={name} />

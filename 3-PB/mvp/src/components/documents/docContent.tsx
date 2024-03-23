@@ -83,7 +83,7 @@ export const columns: ColumnDef<DocumentInfo>[] = [
         <DocAction
           name={row.original.id}
           visibility={
-            row.original.tag[row.original.tag.length - 1].Value == "visible"
+            row.original.tag[row.original.tag.length - 1].Value === "true"
           }
         />
       );

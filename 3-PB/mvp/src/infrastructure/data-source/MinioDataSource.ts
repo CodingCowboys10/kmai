@@ -22,7 +22,7 @@ class MinioDataSource implements IDocumentDataSource {
         Body: doc.content,
         Bucket: collections[model],
         Key: doc.name,
-        Tagging: "visibility=visible",
+        Tagging: "visibility=true",
       })
       .promise();
   }
