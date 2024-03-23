@@ -21,7 +21,7 @@ export default function DocAction({
   visibility,
 }: {
   name: string;
-  visibility: boolean;
+  visibility: boolean | undefined;
 }) {
   const { model } = useModel();
   const { setIsUpdate } = useDocumentData();
@@ -53,7 +53,9 @@ export default function DocAction({
             try {
               setIsUpdate(true);
               setIsVisible(!isVisible);
-              updateDocument(name, model, !isVisible).then();
+              updateDocument(name, model, {
+                visibility: !isVisible,
+              }).then();
             } catch (e) {
               // @ts-ignore
               toast.error(e.message);

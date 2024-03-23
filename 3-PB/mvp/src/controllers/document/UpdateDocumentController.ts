@@ -1,7 +1,7 @@
 import { UpdateDocumentUsecase } from "@/usecase/document/UpdateDocumentUsecase";
 import { injectable, inject } from "tsyringe";
 import { NextResponse } from "next/server";
-import { IModel } from "@/lib/config/interfaces";
+import { IModel, Metadatas } from "@/lib/config/interfaces";
 
 @injectable()
 class UpdateDocumentController {
@@ -11,9 +11,17 @@ class UpdateDocumentController {
     this._useCase = useCase;
   }
 
-  async handle(docName: string, model: IModel, visibility: boolean): Promise<Response> {
+  async handle(
+    docName: string,
+    model: IModel,
+    updatedMetadas: Metadatas,
+  ): Promise<Response> {
     try {
-      await this._useCase.execute({ docName: docName, model: model, visibility: visibility });
+      await this._useCase.execute({
+        docName: docName,
+        model: model,
+        updatedMetadas: updatedMetadas,
+      });
       return NextResponse.json(
         { message: "Documento aggiornato correttamente" },
         {

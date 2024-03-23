@@ -32,14 +32,29 @@ export const columns: ColumnDef<DocumentInfo>[] = [
     header: "Tag",
     cell: ({ row }) => (
       <div className={"space-x-1 w-fit"}>
-        {row.original.tag.map((tagItem: any, index: Key) => (
-          <Badge
-            variant={tagItem.Value == "visible" ? "default" : "destructive"}
-            key={index}
-          >
-            {tagItem.Value}
-          </Badge>
-        ))}
+        {row.original.tag
+          .map((tagItem: any, index: Key) => {
+            return (
+              <>
+                {tagItem.Key === "visibility" && (
+                  <Badge
+                    variant={
+                      tagItem.Value === "true" ? "default" : "destructive"
+                    }
+                    key={index}
+                  >
+                    {tagItem.Value === "true" ? "Visible" : "Invisible"}
+                  </Badge>
+                )}
+                {tagItem.Value === "true" && tagItem.Key !== "visibility" && (
+                  <Badge variant={"secondary"} key={index}>
+                    {tagItem.Key}
+                  </Badge>
+                )}
+              </>
+            );
+          })
+          .reverse()}
       </div>
     ),
   },

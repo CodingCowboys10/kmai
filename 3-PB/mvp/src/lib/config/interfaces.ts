@@ -84,7 +84,7 @@ interface IDocumentRepository {
   deleteDocument(docName: string, model: IModel): Promise<void>;
   getDocumentContent(docName: string, model: IModel): Promise<string>;
   getDocuments(model: IModel): Promise<Document[]>;
-  updateDocument(docName: string, model: IModel, visibility: boolean): Promise<void>;
+  updateDocument(docName: string, model: IModel, tag: Metadatas): Promise<void>;
 }
 
 interface IDocumentDataSource {
@@ -107,11 +107,11 @@ interface IDocumentDataSource {
   updateOne({
     docName,
     model,
-    visibility,
+    tag,
   }: {
     docName: string;
     model: IModel;
-    visibility: boolean;
+    tag: Metadatas;
   }): Promise<void>;
 }
 

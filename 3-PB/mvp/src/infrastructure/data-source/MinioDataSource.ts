@@ -4,6 +4,7 @@ import type {
   Document,
   IDocumentDataSource,
   IModel,
+  Metadatas,
 } from "@/lib/config/interfaces";
 import { inject, injectable } from "tsyringe";
 import { collections } from "@/lib/models";
@@ -75,20 +76,23 @@ class MinioDataSource implements IDocumentDataSource {
   async updateOne({
     docName,
     model,
-    visibility,
+    tag,
   }: {
     docName: string;
     model: IModel;
-    visibility: boolean;
+    tag: Metadatas;
   }): Promise<void> {
+    const tagSet = Object.entries(tag).map(([key, value]) => ({
+      Key: key,
+      Value: value.toString(),
+    }));
+
     await this._db
       .putObjectTagging({
         Bucket: collections[model],
         Key: docName,
         Tagging: {
-          TagSet: [
-            { Key: "visibility", Value: visibility ? "visible" : "invisible" },
-          ],
+          TagSet: tagSet,
         },
       })
       .promise();
