@@ -3,16 +3,7 @@ import DocAction from "./docAction";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-  PromiseLikeOfReactNode,
-  Key,
-} from "react";
-import changeVisibility from "@/serverActions/test/tempVisibility";
-import { useDocumentData } from "@/providers/document-provider";
+import { Key } from "react";
 
 export type DocumentInfo = {
   id: string;
@@ -73,8 +64,14 @@ export const columns: ColumnDef<DocumentInfo>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const docaction = row.original;
-      return <DocAction name={docaction.id} />;
+      return (
+        <DocAction
+          name={row.original.id}
+          visibility={
+            row.original.tag[row.original.tag.length - 1].Value == "visible"
+          }
+        />
+      );
     },
   },
 ];

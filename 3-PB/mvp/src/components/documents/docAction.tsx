@@ -16,10 +16,16 @@ import { updateDocument } from "@/serverActions/document/updateDocument";
 import { useDocumentData } from "@/providers/document-provider";
 import { useState } from "react";
 
-export default function DocAction({ name }: { name: string }) {
+export default function DocAction({
+  name,
+  visibility,
+}: {
+  name: string;
+  visibility: boolean;
+}) {
   const { model } = useModel();
   const { setIsUpdate } = useDocumentData();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(visibility);
   const handleShowDoc = async () => {
     try {
       const url = await getDocumentContent(name, model!);
@@ -44,9 +50,14 @@ export default function DocAction({ name }: { name: string }) {
         <DropdownMenuItem onClick={handleShowDoc}>Visualizza</DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            setIsUpdate(true);
-            setIsVisible(!isVisible);
-            updateDocument(name, model, !isVisible);
+            try {
+              setIsUpdate(true);
+              setIsVisible(!isVisible);
+              updateDocument(name, model, !isVisible).then();
+            } catch (e) {
+              // @ts-ignore
+              toast.error(e.message);
+            }
           }}
         >
           Cambia visibilità
