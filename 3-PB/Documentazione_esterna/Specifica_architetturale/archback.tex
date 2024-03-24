@@ -393,3 +393,358 @@ Questa classe controller, chiamata tramite la server action getChats, gestisce l
 \end{figure}
 
 \newpage
+
+\subsection{Use Cases} \label{subsec:usecases}
+\subsubsection{AddDocumentUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}[itemsep=-4pt]
+    \item private readonly \textit{\_documentRepository: IDocumentRepository};
+    \item private readonly \textit{\_embeddingRepository: IEmbeddingRepository};
+    \item private readonly \textit{\_embeddingsFunction}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(file: File, model: IModel)}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal AddDocumentController, contiene la business logic relativa alle operazioni per aggiungere un nuovo documento nel sistema. Ricevuto il file e la \textit{string} model, gestisce la chiamata al DocumentRepository per aggiungere il nuovo documento. Dopo aver effettuato il parsing del contenuto del documento e averlo diviso per pagine, viene effettuato l'embedding del testo utilizzando l'embedding function determinata dal modello desiderato. Una volta completato questo processo, mapando gli embedding con il nome del documento, i metadati associati e il suo file, viene chiamato anche l'EmbeddingRepository per lo storage dei vettori sul database vettoriale. \\ \\
+\textbf{Dipendenze}
+\begin{itemize}[itemsep=-4pt]
+    \item DocumentRepository;
+    \item EmbeddingRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-29;
+    \item RIO-1;
+    \item RIO-2;
+    \item RIO-3;
+    \item RIO-4.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{AddDocumentUsecase.png}
+    \caption{UML della classe AddDocumentUsecase}
+\end{figure}
+
+\subsubsection{DeleteDocumentUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}[itemsep=-4pt]
+    \item private readonly \textit{\_documentRepository: IDocumentRepository};
+    \item private readonly \textit{\_embeddingRepository: IEmbeddingRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(docName: string, model: IModel)}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal DeleteDocumentController, contiene la business logic relativa alle operazioni per eliminare uno specifico documento dal sistema. Ricevute le \textit{string} docName e model, gestisce la chiamata al DocumentRepository e all'EmbeddingRepository per rimuovere nuovo documento.\\
+Dopo aver effettuato la chiamata al DocumentRepository per richiedere l'eliminazione del documento dal database MinIO, richiede l'id degli embedding da rimuovere all'EmbeddingRepository, per poi richiedere l'eliminazione dei vettori identificati da essi alla medesima classe repository. \\ \\
+\textbf{Dipendenze}
+\begin{itemize}[itemsep=-4pt]
+    \item DocumentRepository;
+    \item EmbeddingRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}
+    \item RFO-27.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{DeleteDocumentUsecase.png}
+    \caption{UML della classe DeleteDocumentUsecase}
+\end{figure}
+
+\subsubsection{UpdateDocumentUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}[itemsep=-4pt]
+    \item private readonly \textit{\_documentRepository: IDocumentRepository};
+    \item private readonly \textit{\_embeddingRepository: IEmbeddingRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(docName: string, model: IModel, visibility: boolean)}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal UpdateDocumentController, contiene la business logic relativa alle operazioni per aggiornare i tag e i metadati, relativi alla visibilità, di uno specifico documento. Ricevute le \textit{string} docName e model e il valore \textit{booleano} visibility, gestisce la chiamata al DocumentRepository e all'EmbeddingRepository per aggiornare i valori.\\
+Dopo aver effettuato la chiamata al DocumentRepository per richiedere l'aggiornamento del tag di visibilità del documento nel database MinIO, richiede l'id degli embedding da modificare all'EmbeddingRepository, per poi richiedere la modifica del metadato visibility dei vettori identificati da essi alla medesima classe repository. \\ \\
+\textbf{Dipendenze}
+\begin{itemize}[itemsep=-4pt]
+    \item DocumentRepository;
+    \item EmbeddingRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFZ-15;
+    \item RFZ-16;
+    \item RFD-36;
+    \item RFD-37.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{UpdateDocumentUsecase.png}
+    \caption{UML della classe UpdateDocumentUsecase}
+\end{figure}
+
+\subsubsection{GetDocumentContentUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_documentRepository : IDocumentRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(docName: string, model: IModel)}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal GetDocumentContentController, contiene la business logic relativa alle operazioni per ottenere il link di visualizzazione di uno specifico documento dal sistema. Ricevute le \textit{string} docName e model, gestisce la chiamata al DocumentRepository per recuperare tale informazione.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item DocumentRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-8;
+    \item RFO-55.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.48\textwidth]{GetDocumentContentUsecase.png} %non toccare questo valore, lo so che non si vede molto, ma se viene modificato crolla tutta la renderizzazione della pagina
+    \caption{UML della classe GetDocumentContentUsecase}
+\end{figure}
+
+\subsubsection{GetDocumentsUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}[itemsep=-4pt]
+    \item private readonly \textit{\_documentRepository : IDocumentRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(model: IModel) : Promise<Document[]>}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal GetDocumentsController, contiene la business logic relativa alle operazioni per ottenere le informazioni dei documenti presenti nel sistema. Ricevuto il model, gestisce la chiamata al DocumentRepository per recuperare le informazioni dei documenti presenti in quello specifico modello.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item DocumentRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-4;
+    \item RFO-5;
+    \item RFO-6;
+    \item RFZ-7;
+    \item RFD-9;
+    \item RFO-10.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{GetDocumentsUsecase.png}
+    \caption{UML della classe GetDocumentsUsecase}
+\end{figure}
+
+\subsubsection{AddChatMessagesUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_chatRepository: IChatRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(messages: ICustomMessages): Promise<void>}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal AddChatMessagesController, contiene la business logic relativa alle operazioni per aggiungere le informazioni dei messaggi scritti, definiti dall'\textit{ICustomMessages}. Ricevuto il messages, gestisce la chiamata al ChatRepository per richiedere il salvataggio del dato.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item ChatRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-52.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{AddChatMessagesUsecase.png}
+    \caption{UML della classe AddChatMessagesUsecase}
+\end{figure}
+
+\subsubsection{AddChatUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_chatRepository: IChatRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(title: string): Promise<void>}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal AddChatController, contiene la business logic relativa alle operazioni per aggiungere una nuova sessione di conversazione nel sistema, che avrà un nome definito dalla \textit{string} title. Ricevuto questo title, gestisce la chiamata al ChatRepository per richiedere la creazione della nuova sessione.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item ChatRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}
+    \item RFD-48.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{AddChatUsecase.png}
+    \caption{UML della classe AddChatUsecase}
+\end{figure}
+
+\subsubsection{DeleteAllChatUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_chatRepository: IChatRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(): Promise<number>.}
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal DeleteAllChatController, contiene la business logic relativa alle operazioni per eliminare dal database tutte le informazioni relative alle sessioni di conversazione attive, incluse le chat history ad esse associate.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item ChatRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFD-50;
+    \item RFD-51.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{DeleteAllChatUsecase.png}
+    \caption{UML della classe DeleteAllChatUsecase}
+\end{figure}
+
+\subsubsection{DeleteChatUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_chatRepository: IChatRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(id: number): Promise<void>}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal DeleteChatController, contiene la business logic relativa alle operazioni per eliminare dal database tutte le informazioni relative ad una particolare sessione di conversazione, definita dal \textit{number} id, e alla sua chat history. Ricevuto l'id, gestisce la chiamata al ChatRepository per richiedere l'eliminazione della sessione.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item ChatRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFD-53;
+    \item RFD-54.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{DeleteChatUsecase.png}
+    \caption{UML della classe DeleteChatUsecase}
+\end{figure}
+
+\subsubsection{GetChatMessagesUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_chatRepository: IChatRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(id: number): Promise<allMessages: Message[], source: MessageSource>}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal GetChatMessagesController, contiene la business logic relativa alle operazioni per ottenere dal database la chat history relativa ad una particolare sessione di conversazione, definita dal \textit{number} id. Ricevuto l'id, gestisce la chiamata al ChatRepository per il recupero dei messaggi.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item ChatRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}
+    \item RFO-52.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{GetChatMessagesUsecase.png}
+    \caption{UML della classe GetChatMessagesUsecase}
+\end{figure}
+
+\subsubsection{GetChatsUsecase}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_chatRepository: IChatRepository}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}
+    \item \textit{execute(): Promise<Chat[]>}.
+\end{itemize}
+\textbf{Descrizione}\\
+Questo use case, chiamato dal GetChatsController, contiene la business logic relativa alle operazioni per ottenere dal database le informazioni relative alle sessioni di conversazione salvate e attive nel sistema.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item ChatRepository.
+\end{itemize}
+\textbf{Requisiti associati}
+\begin{itemize}
+    \item RFD-49.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{GetChatsUsecase.png}
+    \caption{UML della classe GetChatsUsecase}
+\end{figure}
