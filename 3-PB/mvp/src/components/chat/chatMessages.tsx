@@ -1,5 +1,4 @@
 import Message from "@/components/chat/message";
-import { Message as AiMessage } from "ai";
 import React from "react";
 import { useMessagesData } from "@/providers/messages-provider";
 

@@ -83,11 +83,11 @@ function DocForm() {
           <>
             <div
               {...getRootProps({
-                className: `flex transition-all ease-in-out duration-300 border-dashed border my-2 rounded-md items-center justify-center ${fileName ? "h-0 opacity-0 " : "h-60"}`,
+                className: `flex transition-all ease-in-out duration-300 border-dashed border-2 my-2 rounded-md items-center justify-center ${fileName ? "h-0 opacity-0 " : "h-60"}`,
               })}
             >
               <input {...getInputProps()} disabled={fileName !== null} />
-              <p>Trascina il file o clicca e cercalo</p>
+              <p>Trascina il file o clicca per cercarlo</p>
             </div>
             {fileName ? (
               <Badge
