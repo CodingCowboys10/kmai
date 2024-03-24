@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "sonner";
 import { useModel } from "@/providers/model-provider";
 import { addDocument } from "@/serverActions/document/addDocument";
@@ -15,23 +15,38 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useDropzone } from "react-dropzone";
+import { Badge } from "@/components/ui/badge";
 
 function DocForm() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [fileName, setFileName] = useState(null);
   const { model } = useModel();
   const { setIsUpdate } = useDocumentData();
 
-  const handleFileChange = async (event: any) => {
-    const file = event.target.files[0];
-
-    if (file && file.type === "application/pdf") {
-      setSelectedFile(file);
+  const onDropAccepted = useCallback((acceptedFiles: any) => {
+    if (acceptedFiles[0] && acceptedFiles[0].type === "application/pdf") {
+      setSelectedFile(acceptedFiles[0]);
+      setFileName(acceptedFiles[0].name);
     } else {
       setSelectedFile(null);
-      event.target.value = null;
-      toast.error("Formato del file non supportato");
+      setFileName(null);
     }
-  };
+  }, []);
+  const onDropRejected = useCallback((rejectedFile: any) => {
+    toast.error("Formato del file non supportato");
+    setSelectedFile(null);
+    setFileName(null);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDropAccepted,
+    onDropRejected,
+    multiple: false,
+    maxFiles: 1,
+    accept: {
+      "application/pdf": [".pdf"],
+    },
+  });
 
   const handleFormSubmit = async () => {
     if (selectedFile) {
@@ -43,13 +58,13 @@ function DocForm() {
         await addDocument(data);
         setIsUpdate(true);
         setSelectedFile(null);
+        setFileName(null);
       } catch (e) {
         // @ts-ignore
         toast.error(e.message);
       }
     }
   };
-
   return (
     <AlertDialog>
       <AlertDialogTrigger
@@ -60,22 +75,45 @@ function DocForm() {
           Aggiungi Documento
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader className={"text-center"}>
+      <AlertDialogContent className={"min-w-[800px]"}>
+        <AlertDialogHeader className={"  text-center"}>
           <AlertDialogTitle className={"text-center"}>
             Trascina o seleziona il Documento
           </AlertDialogTitle>
-          <div className={"h-50"}>
-            <Input
-              className={"my-5  h-10"}
-              type="file"
-              accept="application/pdf"
-              onChange={handleFileChange}
-            />
-          </div>
+          <>
+            <div
+              {...getRootProps({
+                className: `flex transition-all ease-in-out duration-300 border-dashed border my-2 rounded-md items-center justify-center ${fileName ? "h-0 opacity-0 " : "h-60"}`,
+              })}
+            >
+              <input {...getInputProps()} disabled={fileName !== null} />
+              {isDragActive ? (
+                <p>Drop the files here ...</p>
+              ) : (
+                <p>Trascina il file o clicca e cercalo</p>
+              )}
+            </div>
+            {fileName ? (
+              <Badge
+                className={"px-3.5 py-1.5 w-fit text-sm mx-auto"}
+                variant={"secondary"}
+              >
+                {fileName}
+              </Badge>
+            ) : (
+              ""
+            )}
+          </>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Annulla</AlertDialogCancel>
+          <AlertDialogCancel
+            onClick={() => {
+              setSelectedFile(null);
+              setFileName(null);
+            }}
+          >
+            Annulla
+          </AlertDialogCancel>
           <AlertDialogAction onClick={handleFormSubmit}>
             Aggiungi Documento
           </AlertDialogAction>
