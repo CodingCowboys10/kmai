@@ -411,7 +411,7 @@ Questa classe controller, chiamata tramite la server action getChats, gestisce l
     \item \textit{execute(file: File, model: IModel)}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal AddDocumentController, contiene la business logic relativa alle operazioni per aggiungere un nuovo documento nel sistema. Ricevuto il file e la \textit{string} model, gestisce la chiamata al DocumentRepository per aggiungere il nuovo documento. Dopo aver effettuato il parsing del contenuto del documento e averlo diviso per pagine, viene effettuato l'embedding del testo utilizzando l'embedding function determinata dal modello desiderato. Una volta completato questo processo, mapando gli embeding con il nome del documento, i metadati associati e il suo file, viene chiamato anche l'EmbeddingRepository per lo storage dei vettori sul database vettoriale. \\ \\
+Questo use case, chiamato dal AddDocumentController, contiene la business logic relativa alle operazioni per aggiungere un nuovo documento nel sistema. Ricevuto il file e la \textit{string} model, gestisce la chiamata al DocumentRepository per aggiungere il nuovo documento. Dopo aver effettuato il parsing del contenuto del documento e averlo diviso per pagine, viene effettuato l'embedding del testo utilizzando l'embedding function determinata dal modello desiderato. Una volta completato questo processo, mapando gli embedding con il nome del documento, i metadati associati e il suo file, viene chiamato anche l'EmbeddingRepository per lo storage dei vettori sul database vettoriale. \\ \\
 \textbf{Dipendenze}
 \begin{itemize}[itemsep=-4pt]
     \item DocumentRepository;
