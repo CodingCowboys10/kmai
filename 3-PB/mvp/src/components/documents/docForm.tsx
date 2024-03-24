@@ -38,7 +38,7 @@ function DocForm() {
     setSelectedFile(null);
     setFileName(null);
   }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDropAccepted,
     onDropRejected,
     multiple: false,
@@ -76,9 +76,9 @@ function DocForm() {
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className={"min-w-[800px]"}>
-        <AlertDialogHeader className={"  text-center"}>
+        <AlertDialogHeader className={"text-center"}>
           <AlertDialogTitle className={"text-center"}>
-            Trascina o seleziona il Documento
+            Aggiungi Documento
           </AlertDialogTitle>
           <>
             <div
@@ -87,11 +87,7 @@ function DocForm() {
               })}
             >
               <input {...getInputProps()} disabled={fileName !== null} />
-              {isDragActive ? (
-                <p>Drop the files here ...</p>
-              ) : (
-                <p>Trascina il file o clicca e cercalo</p>
-              )}
+              <p>Trascina il file o clicca e cercalo</p>
             </div>
             {fileName ? (
               <Badge
