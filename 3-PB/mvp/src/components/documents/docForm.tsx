@@ -25,7 +25,14 @@ function DocForm() {
   const { setIsUpdate } = useDocumentData();
 
   const onDropAccepted = useCallback((acceptedFiles: any) => {
-    if (acceptedFiles[0] && acceptedFiles[0].type === "application/pdf") {
+    console.log(acceptedFiles[0].type);
+    if (
+      acceptedFiles[0] &&
+      (acceptedFiles[0].type === "application/pdf" ||
+        acceptedFiles[0].type ===
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+        acceptedFiles[0].type === "audio/mpeg")
+    ) {
       setSelectedFile(acceptedFiles[0]);
       setFileName(acceptedFiles[0].name);
     } else {
@@ -45,6 +52,9 @@ function DocForm() {
     maxFiles: 1,
     accept: {
       "application/pdf": [".pdf"],
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        [".docx"],
+      "audio/mpeg": [".mp3"],
     },
   });
 
