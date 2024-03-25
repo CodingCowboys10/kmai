@@ -98,6 +98,15 @@ function DocForm() {
               <input {...getInputProps()} disabled={fileName !== null} />
               <p>Trascina il file o clicca per cercarlo</p>
             </div>
+            {!fileName && (
+              <p
+                className={"text-sm italic font-medium opacity-30 text-center"}
+              >
+                {" "}
+                File accettati : pdf , docx , mp3.
+              </p>
+            )}
+
             {fileName ? (
               <Badge
                 className={"px-3.5 py-1.5 w-fit text-sm mx-auto"}
