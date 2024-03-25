@@ -24,7 +24,6 @@ function DocForm() {
   const { setIsUpdate } = useDocumentData();
 
   const onDropAccepted = useCallback((acceptedFiles: any) => {
-    console.log(acceptedFiles[0].type);
     if (
       acceptedFiles[0] &&
       (acceptedFiles[0].type === "application/pdf" ||
