@@ -107,7 +107,6 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
   }, [isLoading]);
 
   useEffect(() => {
-    console.log("get message", sourcesForMessages);
     const getMessage = async () => {
       try {
         const { allMessages, source } = await getChatMessages(chatSessionId);

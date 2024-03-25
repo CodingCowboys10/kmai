@@ -1,4 +1,3 @@
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
@@ -25,7 +24,13 @@ function DocForm() {
   const { setIsUpdate } = useDocumentData();
 
   const onDropAccepted = useCallback((acceptedFiles: any) => {
-    if (acceptedFiles[0] && acceptedFiles[0].type === "application/pdf") {
+    if (
+      acceptedFiles[0] &&
+      (acceptedFiles[0].type === "application/pdf" ||
+        acceptedFiles[0].type ===
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+        acceptedFiles[0].type === "audio/mpeg")
+    ) {
       setSelectedFile(acceptedFiles[0]);
       setFileName(acceptedFiles[0].name);
     } else {
@@ -45,6 +50,9 @@ function DocForm() {
     maxFiles: 1,
     accept: {
       "application/pdf": [".pdf"],
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        [".docx"],
+      "audio/mpeg": [".mp3"],
     },
   });
 
@@ -89,6 +97,15 @@ function DocForm() {
               <input {...getInputProps()} disabled={fileName !== null} />
               <p>Trascina il file o clicca per cercarlo</p>
             </div>
+            {!fileName && (
+              <p
+                className={"text-sm italic font-medium opacity-30 text-center"}
+              >
+                {" "}
+                File accettati : pdf , docx , mp3.
+              </p>
+            )}
+
             {fileName ? (
               <Badge
                 className={"px-3.5 py-1.5 w-fit text-sm mx-auto"}
