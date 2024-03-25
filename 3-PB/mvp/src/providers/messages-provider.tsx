@@ -104,6 +104,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
     if (!isLoading && messages.length && chatSessionId) {
       handleUploadMessage().then();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   useEffect(() => {
@@ -125,6 +126,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
         setMessages(allMessages);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatSessionId]);
 
   return (
