@@ -3,16 +3,12 @@ import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { Document } from "@langchain/core/documents";
 import { RunnableSequence } from "@langchain/core/runnables";
-import {
-  BytesOutputParser,
-  StringOutputParser,
-} from "@langchain/core/output_parsers";
+import { BytesOutputParser } from "@langchain/core/output_parsers";
 import { Chroma } from "@langchain/community/vectorstores/chroma";
 import {
   answerPrompt,
   combineDocumentsFn,
   formatVercelMessages,
-  condenseQuestionPrompt,
 } from "@/serverActions/utils/utilsLlms";
 import { collections, llmsChat, llmsEmbedding } from "@/lib/models";
 import { IModel } from "@/lib/config/interfaces";
@@ -38,12 +34,6 @@ export async function POST(req: NextRequest) {
         },
       },
     );
-
-    const standaloneQuestionChain = RunnableSequence.from([
-      condenseQuestionPrompt,
-      llms,
-      new StringOutputParser(),
-    ]);
 
     let resolveWithDocuments: (value: Document[]) => void;
     const documentPromise = new Promise<Document[]>((resolve) => {
@@ -76,10 +66,6 @@ export async function POST(req: NextRequest) {
     ]);
 
     const conversationalRetrievalQAChain = RunnableSequence.from([
-      {
-        question: standaloneQuestionChain,
-        chat_history: (input) => input.chat_history,
-      },
       answerChain,
       new BytesOutputParser(),
     ]);

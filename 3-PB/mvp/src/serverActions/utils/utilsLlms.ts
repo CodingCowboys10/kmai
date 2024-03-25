@@ -19,20 +19,6 @@ const formatVercelMessages = (chatHistory: VercelChatMessage[]) => {
   });
   return formattedDialogueTurns.join("\n");
 };
-const CONDENSE_QUESTION_TEMPLATE = `
-Data la seguente conversazione e una domanda di follow-up, riformula la domanda di follow-up in una domanda autonoma.
-La domanda riformulata deve avere lo stesso significato della domanda di follow-up originale.
-
-<chat_history>
-  {chat_history}
-</chat_history>
-
-Domanda di follow-up: {question}
-Domanda autonoma: `;
-
-const condenseQuestionPrompt = PromptTemplate.fromTemplate(
-  CONDENSE_QUESTION_TEMPLATE,
-);
 
 const ANSWER_TEMPLATE = `
 Sei un cordiale assistente AI che deve chattare a supporto di un documento, hai il compito di rispondere alle mie domande inerenti al contesto del documento. 
@@ -58,5 +44,4 @@ export {
   formatVercelMessages,
   answerPrompt,
   ANSWER_TEMPLATE,
-  condenseQuestionPrompt,
 };
