@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Capitolato 1 - IS 2023/2024",
 };
 
-export default function RootLayout({
+export default function ChatLayout({
   children,
 }: {
   children: React.ReactNode;
