@@ -61,6 +61,6 @@ export async function loadMp3Document(
       visibility: true,
     },
   }));
-
+  fs.unlinkSync(mp3file);
   return docs;
 }
