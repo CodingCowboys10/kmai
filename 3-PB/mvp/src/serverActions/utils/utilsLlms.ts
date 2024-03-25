@@ -19,8 +19,9 @@ const formatVercelMessages = (chatHistory: VercelChatMessage[]) => {
   });
   return formattedDialogueTurns.join("\n");
 };
-
-const CONDENSE_QUESTION_TEMPLATE = `Data la seguente conversazione e una domanda di follow-up, riformula la domanda di follow-up in una domanda autonoma, nella sua lingua originale.
+const CONDENSE_QUESTION_TEMPLATE = `
+Data la seguente conversazione e una domanda di follow-up, riformula la domanda di follow-up in una domanda autonoma.
+La domanda riformulata deve avere lo stesso significato della domanda di follow-up originale.
 
 <chat_history>
   {chat_history}
@@ -34,10 +35,11 @@ const condenseQuestionPrompt = PromptTemplate.fromTemplate(
 );
 
 const ANSWER_TEMPLATE = `
-Sei un cordiale assistente AI che deve chattare a supporto di un documento, hai il compito di rispondere alle mie domande unicamente inerenti al contesto del documento. 
-Se la domanda NON E' pertinente al contesto del documento o a qualisasi altra cosa NON DEVI RISPONDERE.
-Se non conosci la risposta NON rispondere.
-Rispondi alla domanda in base solamente al context che segue e alla chat history:
+Sei un cordiale assistente AI che deve chattare a supporto di un documento, hai il compito di rispondere alle mie domande inerenti al contesto del documento. 
+Rispondi sempre in maniera cordiale.
+Se la domanda NON E' pertinente al context fornito NON DEVI RISPONDERE.
+Rispondi alla domanda utilizzando unicamente il context e senza fare assunzioni su di esso che segue:
+
 <context>
   {context}
 </context>
