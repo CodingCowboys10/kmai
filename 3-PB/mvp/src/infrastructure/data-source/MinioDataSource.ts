@@ -4,8 +4,9 @@ import type {
   Document,
   IDocumentDataSource,
   IModel,
+  Metadatas,
 } from "@/lib/config/interfaces";
-import { injectable, inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { collections } from "@/lib/models";
 
 @injectable()
@@ -21,7 +22,7 @@ class MinioDataSource implements IDocumentDataSource {
         Body: doc.content,
         Bucket: collections[model],
         Key: doc.name,
-        Tagging: "visibility=visible",
+        Tagging: "visibility=true",
       })
       .promise();
   }
@@ -42,13 +43,20 @@ class MinioDataSource implements IDocumentDataSource {
       })
       .promise();
     const response = objects.Contents!;
-    return response.map((doc) => {
-      return {
-        name: doc.Key!,
-        date: doc.LastModified!,
-        size: doc.Size!,
-      };
-    });
+    return await Promise.all(
+      response.map(async (doc) => {
+        const taggingResponse = await this._db
+          .getObjectTagging({ Bucket: collections[model], Key: doc.Key! })
+          .promise();
+
+        return {
+          name: doc.Key!,
+          date: doc.LastModified!,
+          size: doc.Size!,
+          tag: taggingResponse.TagSet,
+        };
+      }),
+    );
   }
 
   async getContent({
@@ -63,6 +71,31 @@ class MinioDataSource implements IDocumentDataSource {
       Key: docName,
       Expires: 36000,
     });
+  }
+
+  async updateOne({
+    docName,
+    model,
+    tag,
+  }: {
+    docName: string;
+    model: IModel;
+    tag: Metadatas;
+  }): Promise<void> {
+    const tagSet = Object.entries(tag).map(([key, value]) => ({
+      Key: key,
+      Value: value.toString(),
+    }));
+
+    await this._db
+      .putObjectTagging({
+        Bucket: collections[model],
+        Key: docName,
+        Tagging: {
+          TagSet: tagSet,
+        },
+      })
+      .promise();
   }
 }
 

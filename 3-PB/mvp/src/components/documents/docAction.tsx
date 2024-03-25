@@ -10,11 +10,22 @@ import DocActionDelete from "./docActionDelete";
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useModel } from "@/providers/model-provider";
-import { getDocumentContent } from "@/serverActions/document/getDocumentContentController";
+import { getDocumentContent } from "@/serverActions/document/getDocumentContent";
 import { toast } from "sonner";
+import { updateDocument } from "@/serverActions/document/updateDocument";
+import { useDocumentData } from "@/providers/document-provider";
+import { useState } from "react";
 
-export default function DocAction({ name }: { name: string }) {
+export default function DocAction({
+  name,
+  visibility,
+}: {
+  name: string;
+  visibility: boolean;
+}) {
   const { model } = useModel();
+  const { setIsUpdate } = useDocumentData();
+  const [isVisible, setIsVisible] = useState(visibility);
   const handleShowDoc = async () => {
     try {
       const url = await getDocumentContent(name, model!);
@@ -37,6 +48,23 @@ export default function DocAction({ name }: { name: string }) {
         <DropdownMenuLabel>Azioni</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleShowDoc}>Visualizza</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={async () => {
+            try {
+              setIsUpdate(true);
+              setIsVisible(!isVisible);
+              await updateDocument(name, model, {
+                visibility: !isVisible,
+              });
+            } catch (e) {
+              // @ts-ignore
+              toast.error(e.message);
+            }
+          }}
+        >
+          Cambia Visibilità
+        </DropdownMenuItem>
+
         <DocActionDelete name={name} />
       </DropdownMenuContent>
     </DropdownMenu>

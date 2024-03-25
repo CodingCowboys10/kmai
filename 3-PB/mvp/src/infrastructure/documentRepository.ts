@@ -3,6 +3,7 @@ import type {
   IDocumentDataSource,
   IDocumentRepository,
   IModel,
+  Metadatas,
 } from "@/lib/config/interfaces";
 import { injectable, inject } from "tsyringe";
 
@@ -38,6 +39,18 @@ class DocumentRepository implements IDocumentRepository {
     return await this._documentDataSource.getContent({
       docName: docName,
       model: model,
+    });
+  }
+
+  async updateDocument(
+    docName: string,
+    model: IModel,
+    tag: Metadatas,
+  ): Promise<void> {
+    await this._documentDataSource.updateOne({
+      docName: docName,
+      model: model,
+      tag: tag,
     });
   }
 }
