@@ -1,11 +1,8 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { getDocumentContentController } from "@/lib/config/container";
 import { useModel } from "@/providers/model-provider";
-import { useMessagesData } from "@/providers/messages-provider";
-import { getDocumentContent } from "@/serverActions/document/getDocumentContentController";
+import { getDocumentContent } from "@/serverActions/document/getDocumentContent";
 import { toast } from "sonner";
 
 type MessageInfoInterface = {
@@ -22,10 +19,12 @@ type MessageInfoInterface = {
 
 function Message(props: MessageInfoInterface) {
   const { model } = useModel();
-  const handleShowDoc = async (name: string) => {
+
+  const handleShowDoc = async (name: string, page: string) => {
     try {
       const url = await getDocumentContent(name, model!);
-      window.open(url, "_blank");
+      console.log(url);
+      window.open(url + `#page=${page}`, "_blank");
     } catch (e) {
       // @ts-ignore
       toast.error(e.message);
@@ -38,8 +37,12 @@ function Message(props: MessageInfoInterface) {
       {props.isGenerated && (
         <div className={"h-full flex items-end"}>
           <Avatar>
-            <AvatarImage className={"dark:invert"} src="/ollama.svg" />
-            <AvatarFallback>AI</AvatarFallback>
+            <AvatarImage className={"dark:invert"} src="" />
+            <AvatarFallback
+              className={"text-foreground bg-primary/40 font-medium"}
+            >
+              AI
+            </AvatarFallback>
           </Avatar>
         </div>
       )}
@@ -62,7 +65,9 @@ function Message(props: MessageInfoInterface) {
                   variant={"ghost"}
                   size={"icon"}
                   asChild
-                  onClick={() => handleShowDoc(props.documentLink)}
+                  onClick={() =>
+                    handleShowDoc(props.documentLink, props.pageNumber)
+                  }
                 >
                   <svg
                     className="with-icon_icon__MHUeb"

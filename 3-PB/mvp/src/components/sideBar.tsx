@@ -1,4 +1,4 @@
-import Settings from "@/components/chat/settings";
+import Settings from "@/components/settings/settings";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 

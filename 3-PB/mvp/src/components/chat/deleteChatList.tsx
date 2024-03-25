@@ -29,7 +29,7 @@ function DeleteChatList() {
   };
 
   return (
-    <div className={"flex items-center w-full justify-between mt-5"}>
+    <div className={"flex items-center w-full justify-between"}>
       <h2>Elimina tutte le Conversazioni</h2>
 
       <AlertDialog>

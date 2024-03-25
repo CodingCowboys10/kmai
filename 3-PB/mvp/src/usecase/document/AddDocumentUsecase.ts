@@ -64,6 +64,7 @@ class AddDocumentUsecase
         page: doc.metadata.loc.pageNumber,
         date: new Date().toLocaleString(),
         name: name,
+        visibility: true,
       },
     }));
 
