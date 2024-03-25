@@ -85,6 +85,7 @@ export const columns: ColumnDef<DocumentInfo>[] = [
           visibility={
             row.original.tag[row.original.tag.length - 1].Value === "true"
           }
+          key={row.original.id}
         />
       );
     },

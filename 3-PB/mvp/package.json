@@ -27,6 +27,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.5",
     "@tanstack/react-table": "^8.13.2",
+    "@types/uniqid": "^5.3.4",
     "@xenova/transformers": "^2.16.0",
     "ai": "^2.2.37",
     "aws-sdk": "^2.1571.0",
@@ -54,6 +55,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "tsyringe": "^4.8.0",
+    "uniqid": "^5.4.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

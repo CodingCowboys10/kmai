@@ -51,6 +51,7 @@ export default function DocAction({
         <DropdownMenuItem
           onClick={async () => {
             try {
+              console.log(isVisible);
               setIsUpdate(true);
               setIsVisible(!isVisible);
               await updateDocument(name, model, {

@@ -3,7 +3,9 @@
 import { OpenAIWhisperAudio } from "langchain/document_loaders/fs/openai_whisper_audio";
 import { DocxLoader } from "langchain/document_loaders/fs/docx";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { Buffer } from "buffer";
+import uniqid from "uniqid";
+import * as fs from "fs";
+
 export async function loadPDFDocument(fileAsBlob: Blob, docsName: string) {
   const loader = new PDFLoader(fileAsBlob, {
     splitPages: true,
@@ -40,15 +42,16 @@ export async function loadDocxDocument(fileAsBlob: Blob, docsName: string) {
   return docs;
 }
 
-export async function loadMp3Document(file: File, docsName: string) {
-  const buffer = await file.arrayBuffer();
-  const blob = new Blob([buffer], { type: file.type });
-
-  const loader = new OpenAIWhisperAudio(blob);
+export async function loadMp3Document(
+  buffer: string | NodeJS.ArrayBufferView | Buffer,
+  docsName: string,
+) {
+  let mp3file = `/tmp/${uniqid()}.mp3`;
+  fs.writeFileSync(mp3file, buffer, "binary");
+  const loader = new OpenAIWhisperAudio(mp3file);
 
   let docs = await loader.load();
 
-  console.log(docs);
   docs = docs.map((doc: any) => ({
     ...doc,
     metadata: {

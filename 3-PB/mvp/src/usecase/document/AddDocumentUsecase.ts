@@ -33,6 +33,7 @@ class AddDocumentUsecase
 
   async execute({ file, model }: { file: File; model: IModel }) {
     const buffer = Buffer.from(await file.arrayBuffer());
+    const fileAsBlob = new Blob([buffer]);
     const name = `${file.name}`;
     const size = `${file.size}`;
     const date = new Date();
@@ -45,8 +46,6 @@ class AddDocumentUsecase
     let docs: any;
 
     await this._documentRepository.addDocument(document, model);
-
-    const fileAsBlob = new Blob([buffer]);
 
     if (!file) {
       return NextResponse.json(
@@ -63,7 +62,7 @@ class AddDocumentUsecase
     ) {
       docs = await loadDocxDocument(fileAsBlob, name);
     } else if (file.type == "audio/mpeg") {
-      docs = await loadMp3Document(file, name);
+      docs = await loadMp3Document(buffer, name);
     }
 
     const ids = docs.map((doc: any) => name + "_" + doc.metadata.page);
