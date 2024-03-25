@@ -59,7 +59,6 @@ function Settings({ isChat }: { isChat?: boolean }) {
             <ChangePageButton to={isChat ? "chat" : "document"} />
           </DialogFooter>
         </DialogContent>
-        <DialogFooter></DialogFooter>
       </Dialog>
     </div>
   );
