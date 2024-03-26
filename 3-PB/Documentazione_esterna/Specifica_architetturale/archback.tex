@@ -768,10 +768,10 @@ Questo use case, chiamato dal GetChatsController, contiene la business logic rel
     \item \textit{getDocumentContent(docName: string, model: IModel): Promise<string>}. 
 \end{itemize}
 \textbf{Descrizione}\\
-La classe DocumentRepository, utilizzata dagli use cases AddDocument, DeleteDocument, UpdateDocument, GetDocumentContent e GetDocuments, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari alla logica di business per aggiunta, rimozione, modifica e lettura dei documenti. Presenta un riferimento ad una classe IDocumentDataSource, che conterrà l'implementazione concreta per lavorare sui dati presenti nei database.\\ \\
+La classe DocumentRepository, utilizzata dagli use cases AddDocument, DeleteDocument, UpdateDocument, GetDocumentContent e GetDocuments, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari alla logica di business per aggiunta, rimozione, modifica e lettura dei documenti. Presenta un riferimento ad un'interfaccia IDocumentDataSource, la cui implementazione concreta è MinioDataSource che espone i metodi per lavorare sui dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item MinioDataSource.
+    \item IDocumentDataSource.
 \end{itemize}
 
 \begin{figure}[h!]
@@ -797,10 +797,10 @@ La classe DocumentRepository, utilizzata dagli use cases AddDocument, DeleteDocu
     \item \textit{getIdsEmbedding(docName: string, model: IModel): Promise<any>}.
 \end{itemize}
 \textbf{Descrizione}\\
-La classe EmbeddingRepository, utilizzata dagli use cases AddDocument e DeleteDocument, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari all'aggiunta ed eliminazione degli embedding di documenti. Presenta un riferimento ad una classe IEmbeddingDataSource, che conterrà l'implementazione concreta per lavorare sui dati presenti nel vectore database.\\ \\
+La classe EmbeddingRepository, utilizzata dagli use cases AddDocument e DeleteDocument, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari all'aggiunta ed eliminazione degli embedding di documenti. Presenta un riferimento ad un'interfaccia IEmbeddingDataSource, la cui implementazione concreta è ChromaDataSource che espone i metodi per lavorare sui dati presenti nel vector database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item ChromaDataSource.
+    \item IEmbeddingDataSource.
 \end{itemize}
 
 \begin{figure}[h!]
@@ -830,10 +830,10 @@ La classe EmbeddingRepository, utilizzata dagli use cases AddDocument e DeleteDo
     \item \textit{getChats(): Promise<Chat[]>}.
 \end{itemize}
 \textbf{Descrizione}\\
-La classe ChatRepository, utilizzata dagli use cases AddChatMessages, AddChat, DeleteAllChat, DeleteChat, GetChatMessages e GetChats, espone i metodi con cui interfacciarsi alla fonte dei dati per il recupero delle informazioni necessarie alla logica di business per aggiunta, rimozione e recupero delle sessioni di conversazione e dei messaggi delle chat history ad esse associate. Presenta un riferimento ad una classe IChatDataSource, che conterrà l'implementazione concreta per lavorare sui dati presenti nei database.\\ \\
+La classe ChatRepository, utilizzata dagli use cases AddChatMessages, AddChat, DeleteAllChat, DeleteChat, GetChatMessages e GetChats, espone i metodi con cui interfacciarsi alla fonte dei dati per il recupero delle informazioni necessarie alla logica di business per aggiunta, rimozione e recupero delle sessioni di conversazione e dei messaggi delle chat history ad esse associate. Presenta un riferimento ad un'interfaccia IChatDataSource, la cui implementazione concreta è PostgresDataSource che espone i metodi per lavorare sui dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item PostgresDataSource.
+    \item IChatDataSource.
 \end{itemize}
 
 \begin{figure}[h!]
