@@ -748,3 +748,96 @@ Questo use case, chiamato dal GetChatsController, contiene la business logic rel
     \includegraphics[width=0.5\textwidth]{GetChatsUsecase.png}
     \caption{UML della classe GetChatsUsecase}
 \end{figure}
+
+\subsection{Repositories} \label{subsec:repositories}
+\subsubsection{DocumentRepository}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private \textit{\_documentDataSource: IDocumentDataSource}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}[itemsep=-4pt]
+    \item \textit{addDocument(doc: Document, model: IModel): Promise<void>};
+    \item \textit{deleteDocument(docName: string, model: IModel): Promise<void>};
+    \item \textit{updateDocument(docName: string, model: IModel, visibility: boolean): Promise<void>};
+    \item \textit{getDocuments(model: IModel): Promise<Document[]>};
+    \item \textit{getDocumentContent(docName: string, model: IModel): Promise<string>}. 
+\end{itemize}
+\textbf{Descrizione}\\
+La classe DocumentRepository, utilizzata dagli use cases AddDocument, DeleteDocument, UpdateDocument, GetDocumentContent e GetDocuments, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari alla logica di business per aggiunta, rimozione, modifica e lettura dei documenti. Presenta un riferimento ad una classe IDocumentDataSource, che conterrà l'implementazione concreta per lavorare sui dati presenti nei database.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item MinioDataSource.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.7\textwidth]{DocumentRepository.png}
+    \caption{UML della classe DocumentRepository}
+\end{figure}
+
+\subsubsection{EmbeddingRepository}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private \textit{\_embeddingsDataSource: IEmbeddingDataSource}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}[itemsep=-4pt]
+    \item \textit{addEmbedding(embeddings: Embeddings, model: IModel): Promise<void>};
+    \item \textit{deleteEmbedding(ids: string[], model: IModel): Promise<void>};
+    \item \textit{updateMetadatas(metadatas: Metadatas, model: IModel, ids: string[]): Promise<void>};
+    \item \textit{getIdsEmbedding(docName: string, model: IModel): Promise<any>}.
+\end{itemize}
+\textbf{Descrizione}\\
+La classe EmbeddingRepository, utilizzata dagli use cases AddDocument e DeleteDocument, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari all'aggiunta ed eliminazione degli embedding di documenti. Presenta un riferimento ad una classe IEmbeddingDataSource, che conterrà l'implementazione concreta per lavorare sui dati presenti nel vectore database.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item ChromaDataSource.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.7\textwidth]{EmbeddingRepository.png}
+    \caption{UML della classe EmbeddingRepository}
+\end{figure}
+
+\newpage
+
+\subsubsection{ChatRepository}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private \textit{\_chatDataSource: IChatDataSource}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}[itemsep=-4pt]
+    \item \textit{addChat(title: string): Promise<number>};
+    \item \textit{addChatMessages(messages: ICustomMessages): Promise<void>};
+    \item \textit{deleteAllChat(): Promise<void>};
+    \item \textit{deleteChat(id: number): Promise<void>};
+    \item \textit{getChatMessages(id: number): Promise<allMessages: Message[], source: MessageSource>};
+    \item \textit{getChats(): Promise<Chat[]>}.
+\end{itemize}
+\textbf{Descrizione}\\
+La classe ChatRepository, utilizzata dagli use cases AddChatMessages, AddChat, DeleteAllChat, DeleteChat, GetChatMessages e GetChats, espone i metodi con cui interfacciarsi alla fonte dei dati per il recupero delle informazioni necessarie alla logica di business per aggiunta, rimozione e recupero delle sessioni di conversazione e dei messaggi delle chat history ad esse associate. Presenta un riferimento ad una classe IChatDataSource, che conterrà l'implementazione concreta per lavorare sui dati presenti nei database.\\ \\
+\textbf{Dipendenze}
+\begin{itemize}
+    \item PostgresDataSource.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.7\textwidth]{ChatRepository.png}
+    \caption{UML della classe ChatRepository}
+\end{figure}
