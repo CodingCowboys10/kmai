@@ -218,7 +218,7 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
     \hline
     RVO-8 & Dev'essere utilizzato il framework \ccgloss{Nextjs} versione 14.0.3 o successivo per lo sviluppo del back-end. & Obbligatorio & Proponente, Interna \\
     \hline
-    RVO-9 & Dev'essere utilizzato Postgres per il salvataggio delle sessioni e dei messaggi scambiati tra utente e chatbot. & Obbligatorio & Interna \\
+    RVO-9 & Dev'essere utilizzato Postgres 8.11.3 o successivo per il salvataggio delle sessioni e dei messaggi scambiati tra utente e chatbot. & Obbligatorio & Interna \\
     \hline
     RVO-10 & Dev'essere utilizzato il framework \ccgloss{Tailwind} 3.3.0 o successivo per codificare lo stile del \ccgloss{front-end}. & Obbligatorio & Interna \\
     \hline
@@ -247,24 +247,9 @@ Ogni requisito sarà identificato da un codice alfanumerico, che andrà ad ident
 
 \section{Requisiti prestazionali}
 Per poter utilizzare un Large Language Model fornito da OpenAI è necessario il possesso di una chiave \ccgloss{API} valida, oltre ad una connessione ad Internet.\\
-Per l'utilizzo di Ollama e di MinIO sono necessarie le loro installazioni ed esecuzioni tramite le immagini Docker ufficiali reperibili a \href{https://ollama.ai/blog/ollama-is-now-available-as-an-official-docker-image}{questo link} per Ollama e a \href{https://min.io/docs/minio/container/index.html}{questo link} per MinIO.
-Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente influenzate dal sistema che la esegue. Per poter soddisfare i requisiti individuati, è necessario l'utilizzo di un sistema dotato non meno di 16GB di RAM. Ogni sistema che non soddisfa questo requisito, è quindi da ritenersi improprio all'utilizzo dell'applicazione tramite tecnologie in locale, e non può essere garantito il corretto funzionamento del prodotto. Inoltre, le tecnologie individuate per l'utilizzo di LLM locali richiedono l'adozione di un sistema operativo Linux o MacOS 11 o superiori.
-%\begingroup
-%\setlength{\tabcolsep}{10pt}
-%\renewcommand{\arraystretch}{1.5}
-%\rowcolors{2}{oddrow}{evenrow}
-%\begin{xltabular}{\textwidth}{| c | X | c | c |}
-%   \hline
-%   \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Classificazione}} & \textbf{\textcolor{white}{Fonte}}\\
- %   \hline
- %   \endhead
-   
-  %  \hline
-   
-    %\rowcolor{white} \caption{Requisiti prestazionali del prodotto}
-   % \label{tab:reqpre}
-%\end{xltabular}
-%\endgroup
+Per l'utilizzo di Ollama e di MinIO sono necessarie le loro installazioni ed esecuzioni tramite i docker indicati nei requisiti di installazione del prodotto.
+Nell'utilizzo di un LLM locale, le prestazioni dell'applicazione sono altamente influenzate dal sistema che la esegue. Pertanto, per poter soddisfare i requisiti funzionali e di vincolo individuati, è necessario l'utilizzo di un sistema dotato non meno di 16GB di RAM.\\
+Ogni sistema che non soddisfa questi requisiti, è quindi da ritenersi improprio all'utilizzo dell'applicazione tramite tecnologie in locale, e non può essere garantito il corretto funzionamento del prodotto, né il completo rispetto dei requisiti. Inoltre, le tecnologie individuate per l'utilizzo di LLM locali richiedono l'adozione di un sistema operativo Linux o MacOS 11 o superiori.
 
 \section{Requisiti implementativi}
 \begingroup
