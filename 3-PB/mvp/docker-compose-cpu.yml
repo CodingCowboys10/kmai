@@ -13,6 +13,20 @@ services:
     volumes:
       - minio_data:/data
 
+  createbuckets:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 ROOTUSER CHANGEME123;
+      /usr/bin/mc mb myminio/starling-mvp-collections;
+      /usr/bin/mc mb myminio/openai-mvp-collections;
+      /usr/bin/mc policy set public myminio/starling-mvp-collections;
+      /usr/bin/mc policy set public myminio/openai-mvp-collections;
+      exit 0;
+      "
+
   ollama:
     image: ollama/ollama:latest
     ports:
@@ -32,6 +46,7 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgresvol:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   chromadb:
     image: chromadb/chroma
