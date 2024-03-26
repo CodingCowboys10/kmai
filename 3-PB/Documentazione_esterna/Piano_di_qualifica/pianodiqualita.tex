@@ -639,3 +639,181 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
 \end{xltabular}
 \endgroup
 
+\newpage
+\subsection{Test di integrazione}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| c | X | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Stato}}\\
+    \hline
+    \endhead
+    TI-1 & Verificare che AddChatUsecase chiami correttamente ChatRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-2 & Verificare che AddChatMessagesUsecase chiami correttamente ChatRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-3 & Verificare che DeleteAllChatUsecase chiami correttamente ChatRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-4 & Verificare che DeleteChatUsecase chiami correttamente ChatRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-5 & Verificare che GetChatMessagesUsecase chiami correttamente ChatRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-6 & Verificare che GetChatsUsecase chiami correttamente ChatRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-7 & Verificare che AddDocumentUsecase chiami correttamente DocumentRepository e EmbeddingRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-8 & Verificare che DeleteDocumentUsecase chiami correttamente DocumentRepository e EmbeddingRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-9 & Verificare che UpdateDocumentUsecase chiami correttamente DocumentRepository e EmbeddingRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-10 & Verificare che GetDocumentContentUsecase chiami correttamente DocumentRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-11 & Verificare che GetDocumentsUsecase chiami correttamente DocumentRepository. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-12 & Verificare che AddChatController chiami correttamente AddChatUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-13 & Verificare che AddChatMessagesController chiami correttamente AddChatMessagesUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-14 & Verificare che DeleteAllChatController chiami correttamente DeleteAllChatUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-15 & Verificare che DeleteChatController chiami correttamente DeleteChatUsecase & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-16 & Verificare che GetChatMessagesController chiami correttamente GetChatMessagesUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-17 & Verificare che GetChatsController chiami correttamente GetChatsUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-18 & Verificare che AddDocumentController chiami correttamente AddDocumentUsecase. & \textcolor{cmarkcolor}{\ding{51}}\\
+    \hline
+    TI-19 & Verificare che DeleteDocumentController chiami correttamente DeleteDocumentUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-20 & Verificare che UpdateDocumentController chiami correttamente UpdateDocumentUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-21 & Verificare che GetDocumentContentController chiami correttamente GetDocumentContentUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-22 & Verificare che GetDocumentsController chiami correttamente GetDocumentsUsecase. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-23 & Verificare che il metodo addDocument di DocumentRepository chiami correttamente il metodo addOne di MinioDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-24 & Verificare che il metodo deleteDocument di DocumentRepository chiami correttamente il metodo deleteOne di MinioDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-25 & Verificare che il metodo updateDocument di DocumentRepository chiami correttamente il metodo updateOne di MinioDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-26 & Verificare che il metodo getDocuments di DocumentRepository chiami correttamente il metodo getAll di MinioDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-27 & Verificare che il metodo getDocumentContent di DocumentRepository chiami correttamente il metodo getContent di MinioDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-28 & Verificare che il metodo addEmbedding di EmbeddingRepository  chiami correttamente il metodo addOne di ChromaDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-29 & Verificare che il metodo deleteEmbedding di EmbeddingRepository  chiami correttamente il metodo deleteOne di ChromaDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-30 & Verificare che il metodo updateMetadatas di EmbeddingRepository  chiami correttamente il metodo updateOne di ChromaDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-31 & Verificare che il metodo getIdsEmbedding di EmbeddingRepository  chiami correttamente il metodo getIds di ChromaDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-32 & Verificare che il metodo addChat di ChatRepository  chiami correttamente il metodo addOne di PostgresDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-33 & Verificare che il metodo addChatMessages di ChatRepository  chiami correttamente il metodo addMessages di PostgresDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-34 & Verificare che il metodo deleteAllChat di ChatRepository  chiami correttamente il metodo deleteAll di PostgresDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-35 & Verificare che il metodo deleteChat di ChatRepository  chiami correttamente il metodo deleteOne di PostgresDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-36 & Verificare che il metodo getChatMessages di ChatRepository  chiami correttamente il metodo getAllMessages di PostgresDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TI-37 & Verificare che il metodo getChats di ChatRepository  chiami correttamente il metodo getAll di PostgresDataSource. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    \rowcolor{white} \caption{Insieme dei test di integrazione}
+    \label{tab:testinter}
+\end{xltabular}
+
+\subsubsection{Tracciamento test di integrazione}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{0.7\textwidth}{| c | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Nome suite test}} \\
+    \hline
+    \endhead
+    TI-1 & AddChatUsecase.test.ts \\
+    \hline
+    TI-2 & AddChatMessagesUsecase.test.ts \\
+    \hline
+    TI-3 & DeleteAllChatUsecase.test.ts \\
+    \hline
+    TI-4 & DeleteChatUsecase.test.ts \\
+    \hline
+    TI-5 & GetChatMessagesUsecase.test.ts \\
+    \hline
+    TI-6 & GetChatsUsecase.test.ts \\
+    \hline
+    TI-7 & AddDocumentUsecase.test.ts \\
+    \hline
+    TI-8 & DeleteDocumentUsecase.test.ts \\
+    \hline
+    TI-9 & UpdateDocumentUsecase.test.ts \\
+    \hline
+    TI-10 & GetDocumentContentUsecase.test.ts \\
+    \hline
+    TI-11 & GetDocumentsUsecase.test.ts \\
+    \hline
+    TI-12 & AddChatController.test.ts \\
+    \hline
+    TI-13 & AddChatMessagesController.test.ts \\
+    \hline
+    TI-14 & DeleteAllChatController.test.ts \\
+    \hline
+    TI-15 & DeleteChatController.test.ts \\
+    \hline
+    TI-16 & GetChatMessagesController.test.ts \\
+    \hline
+    TI-17 & GetChatsController.test.ts \\
+    \hline
+    TI-18 & AddDocumentController.test.ts \\
+    \hline
+    TI-19 & DeleteDocumentController.test.ts \\
+    \hline
+    TI-20 & UpdateDocumentController.test.ts \\
+    \hline
+    TI-21 & GetDocumentContentController.test.ts \\
+    \hline
+    TI-22 & GetDocumentsController.test.ts \\
+    \hline
+    TI-23 & DocumentRepository.test.ts \\
+    \hline
+    TI-24 & DocumentRepository.test.ts \\
+    \hline
+    TI-25 & DocumentRepository.test.ts \\
+    \hline
+    TI-26 & DocumentRepository.test.ts \\
+    \hline
+    TI-27 & DocumentRepository.test.ts \\
+    \hline
+    TI-28 & EmbeddingRepository.test.ts \\
+    \hline
+    TI-29 & EmbeddingRepository.test.ts \\
+    \hline
+    TI-30 & EmbeddingRepository.test.ts \\
+    \hline
+    TI-31 & EmbeddingRepository.test.ts \\
+    \hline
+    TI-32 & ChatRepository.test.ts \\
+    \hline
+    TI-33 & ChatRepository.test.ts \\
+    \hline
+    TI-34 & ChatRepository.test.ts \\
+    \hline
+    TI-35 & ChatRepository.test.ts \\
+    \hline
+    TI-36 & ChatRepository.test.ts \\
+    \hline
+    TI-37 & ChatRepository.test.ts \\
+    \hline
+    \rowcolor{white} \caption{Tracciamento dei test di integrazione}
+    \label{tab:testinter}
+\end{xltabular}
