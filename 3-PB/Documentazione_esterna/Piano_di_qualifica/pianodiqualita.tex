@@ -815,5 +815,238 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
     TI-37 & ChatRepository.test.ts \\
     \hline
     \rowcolor{white} \caption{Tracciamento dei test di integrazione}
-    \label{tab:testinter}
+    \label{tab:tracctestinter}
+\end{xltabular}
+\newpage
+\subsection{Test di unità}
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| c | X | c |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Stato}}\\
+    \hline
+    \endhead
+    TU-1 & Verificare che il componente ChatForm venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-2 & Verificare che il componente ChatList venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-3 & Verificare che il componente ChatMessages venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-4 & Verificare che il componente DeleteChatList venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-5 & Verificare che il componente Message venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-6 & Verificare che il componente ModelToggle venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-7 & Verificare che il componente ThemeToggle venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-8 & Verificare che il componente Settings venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-9 & Verificare che il componente DataTable venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-10 & Verificare che il componente DataTablePagination venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-11 & Verificare che il componente DataTableViewOption venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-12 & Verificare che il componente DocAction venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-13 & Verificare che il componente DocActionDelete venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-14 & Verificare che il componente DocForm venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-15 & Verificare che il componente DocTable venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-16 & Verificare che il componente Body venga renderizzato correttamente. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-17 & Verificare che il componente SideBar venga renderizzato correttamente. & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TU-18 & Verificare che AddChatController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-19 & Verificare che AddChatMessagesController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-20 & Verificare che DeleteAllChatController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-21 & Verificare che DeleteChatController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}}\\
+    \hline
+    TU-22 & Verificare che GetChatMessagesController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-23 & Verificare che GetChatsController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-24 & Verificare che AddDocumentController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-25 & Verificare che DeleteDocumentController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-26 & Verificare che UpdateDocumentController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-27 & Verificare che GetDocumentsController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-28 & Verificare che GetDocumentContentController restituisca una risposta con status 200 in caso di operazione con esito positivo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-29 & Verificare che AddChatController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-30 & Verificare che AddChatMessagesController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-31 & Verificare che DeleteAllChatController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-32 & Verificare che DeleteChatController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-33 & Verificare che GetChatMessagesController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-34 & Verificare che GetChatsController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-35 & Verificare che AddDocumentController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-36 & Verificare che DeleteDocumentController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-37 & Verificare che UpdateDocumentController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-38 & Verificare che GetDocumentsController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-39 & Verificare che GetDocumentContentController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-40 & Verificare che la server action addChat lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-41 & Verificare che la server action addChatMessages lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-42 & Verificare che la server action deleteAllChat lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-43 & Verificare che la server action deleteChat lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-44 & Verificare che la server action getChatMessages lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-45 & Verificare che la server action getChats lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-46 & Verificare che la server action addDocument lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-47 & Verificare che la server action deleteDocument lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-48 & Verificare che la server action updateDocument lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-49 & Verificare che la server action getDocuments lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TU-50 & Verificare che la server action getDocumentContent lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    \rowcolor{white} \caption{Insieme dei test di unità}
+    \label{tab:testunita}
+\end{xltabular}
+
+\endgroup
+
+\subsubsection{Tracciamento test di unità}
+
+
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{0.7\textwidth}{| c | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Nome suite test}} \\
+    \hline
+    \endhead
+    TU-1 & ChatForm.test.tsx \\
+    \hline
+    TU-2 & ChatList.test.tsx \\
+    \hline
+    TU-3 & ChatMessages.test.tsx \\
+    \hline
+    TU-4 & DeleteChatList.test.tsx \\
+    \hline
+    TU-5 & Message.test.tsx \\
+    \hline
+    TU-6 & ModelToggle.test.tsx \\
+    \hline
+    TU-7 & ThemeToggle.test.tsx \\
+    \hline
+    TU-8 & Settings.test.tsx \\
+    \hline
+    TU-9 & DataTable.test.tsx \\
+    \hline
+    TU-10 & DataTablePagination.test.tsx \\
+    \hline
+    TU-11 & DataTableViewOptions.test.tsx \\
+    \hline
+    TU-12 & DocAction.test.tsx \\
+    \hline
+    TU-13 & DocActionDelete.test.tsx \\
+    \hline
+    TU-14 & DocForm.test.tsx \\
+    \hline
+    TU-15 & DocTable.test.tsx \\
+    \hline
+    TU-16 & Body.test.tsx \\
+    \hline
+    TU-17 & SideBar.test.tsx \\
+    \hline
+    TU-18 & AddChatController.test.ts \\
+    \hline
+    TU-19 & AddChatMessagesController.test.ts \\
+    \hline
+    TU-20 & DeleteAllChatControlle.test.ts \\
+    \hline
+    TU-21 & DeleteChatController.test.ts \\
+    \hline
+    TU-22 & GetChatMessagesController.test.ts \\
+    \hline
+    TU-23 & GetChatsController.test.ts \\
+    \hline
+    TU-24 & AddDocumentController.test.ts \\
+    \hline
+    TU-25 & DeleteDocumentController.test.ts \\
+    \hline
+    TU-26 & UpdateDocumentController.test.ts \\
+    \hline
+    TU-27 & GetDocumentsController.test.ts \\
+    \hline
+    TU-28 & GetDocumentContentController.test.ts \\
+    \hline
+    TU-29 & AddChatController.test.ts \\
+    \hline
+    TU-30 & AddChatMessagesController.test.ts \\
+    \hline
+    TU-31 & DeleteAllChatControlle.test.ts \\
+    \hline
+    TU-32 & DeleteChatController.test.ts \\
+    \hline
+    TU-33 & GetChatMessagesController.test.ts \\
+    \hline
+    TU-34 & GetChatsController.test.ts \\
+    \hline
+    TU-35 & AddDocumentController.test.ts \\
+    \hline
+    TU-36 & DeleteDocumentController.test.ts \\
+    \hline
+    TU-37 & UpdateDocumentController.test.ts \\
+    \hline
+    TU-38 & GetDocumentsController.test.ts \\
+    \hline
+    TU-39 & GetDocumentContentController.test.ts \\
+    \hline
+    TU-40 & addChat.test.ts \\
+    \hline
+    TU-41 & addChatMessages.test.ts \\
+    \hline
+    TU-42 & deleteAllChat.test.ts \\
+    \hline
+    TU-43 & deleteChat.test.ts \\
+    \hline
+    TU-44 & getChatMessages.test.ts \\
+    \hline
+    TU-45 & getChats.test.ts \\
+    \hline
+    TU-46 & addDocument.test.ts \\
+    \hline
+    TU-47 & deleteDocument.test.ts \\
+    \hline
+    TU-48 & updateDocument.test.ts \\
+    \hline
+    TU-49 & getDocuments.test.ts \\
+    \hline
+    TU-50 & getDocumentContent.test.ts \\
+    \hline
+    \rowcolor{white} \caption{Tracciamento dei test di unità}
+    \label{tab:tracctestunita}
 \end{xltabular}
