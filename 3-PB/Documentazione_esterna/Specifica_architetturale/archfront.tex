@@ -130,5 +130,87 @@ Dall'interazione con un AlertDialogTrigger, viene aperto un AlertDialog per conf
 \newpage
 
 \subsection{Chat Page}
+La Chat Page è la pagina relativa allo scambio di messaggi tra l'utente ed il chatbot integrato nell'applicazione. Nella schermata principale, è possibile visualizzare i messaggi inviati dall'utente, le risposte del chatbot, le fonti delle risposte e l'orario in cui sono stati inviati i messaggi. \\
+È presente una sidebar laterale, nella quale sono presenti dei bottoni che permettono di visualizzare informazioni aggiuntive riguardanti le chat avviate in precedenza, un buttone per creare nuove chat, uno per eliminarle e un tasto con le impostazioni generali dell'applicazione, comune anche alla Documents Page.
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=\textwidth]{ChatPageView.png}
+    \caption{UML dei componenti principali della Chat Page} 
+\end{figure}
+
+\subsubsection{SideBar}
+\textbf{Descrizione}\\
+Questo componente costituisce il menù a tendina comune alle due pagine dell’applicazione. In esso è presente il componente Settings, dove tramite ModelToggle e ThemeToggle è possibile cambiare il LLM e il tema utilizzato dall’applicazione. Con DeleteChatList è invece possibile eliminare tutte le conversazioni ancora attive.\\
+Inoltre, tramite la ChatList, è possibile visualizzare la lista delle sessioni di chat effettuate e attive nel sistema, oltre ad un bottone per creare nuove chat.\\ \\
+\textbf{Elementi}\\
+La struttura della SideBar è identica a quella della DocumentPage. L'unica differenza riguarda i componenti presenti al suo interno.\\
+Il componente Settings contenuto in SideBar, oltre ad aver ThemeToggle e ModelToggle, presenta DeleteChatList, adibito alla eliminazione di tutte le sessioni del sistema.\\
+La lista delle sessioni è renderizzata tramite il componente ChatList, contenuto nella SideBar, che prende il posto del DocForm presente all'interno della Documents Page.
+\\
+
+
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-1;
+    \item RFO-2.
+\end{itemize}
+
+\subsubsection{Body}
+
+\textbf{Descrizione}\\
+Il componente Body rappresenta il corpo della pagina. In esso sono inseriti tutti i componenti necessari alla visualizzazione dell'area di chat, contenuti da ChatForm e ChatMessages.\\ \\
+\textbf{Elementi}\\
+Al suo interno sono presenti i componenti ChatForm e ChatMessages.
+
+\subsubsection{ChatList}
+\textbf{Descrizione}\\
+Il componente ChatList è la parte dell'interfaccia utente responsabile della gestione e visualizzazione delle sessioni di chat, consentendo agli utenti di selezionare, creare ed eliminare sessioni di chat, e fornendo un feedback visivo durante il caricamento dei dati.\\ \\
+\textbf{Elementi}\\
+Il componente ChatList utilizza l'hook useChatsData per gestire i dati delle chat e fornisce funzionalità per la creazione e l'eliminazione di chat. L'elenco delle chat è mostrato all'interno di un'area scrollabile, con opzioni per eliminare le chat esistenti. Quando viene eliminata una chat, lo stato viene aggiornato per riflettere la modifica.\\
+ChatList è composta da una serie di elementi Button, i quali rappresentano  le chat avviate in precedenza nell'applicazione. Tramite funzioni asincrone, se i bottoni vengono cliccati allora verranno evidenziati, andando ad indicare quale chat sta venendo visualizzata nella sezione centrale della pagina. Per ciascun bottone, è inserito lateralmente un ulteriore bottone, il quale una volta cliccato, fa apparire un DropDownMenu, composto da DropDownMenuTrigger, DropDownMenuContent, DropDownMenuLabel, DropDownMenuSeparator. La voce del menù è un ulteriore bottone che permette la cancellazione della singola chat.  \\ \\
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFD-48;
+    \item RFD-49;
+    \item RFO-53;
+    \item RFO-54.
+\end{itemize}
+
+\subsubsection{DeleteChatList}
+\textbf{Descrizione}\\
+Il componente DeleteChatList fornisce un'interfaccia utente per eliminare tutte le sessioni di chat all'interno dell'applicazione, inclusa una finestra di dialogo di conferma, la gestione delle azioni e l'aggiornamento della sezione laterale dei threads al momento della cancellazione riuscita.\\ \\
+\textbf{Elementi}\\
+Il componente utilizza l'hook useChatsData per gestire lo stato delle chat e il componente AlertDialog per confermare l'azione di eliminazione. Quando l'utente conferma l'eliminazione, la funzione handleDeleteAllChat viene chiamata per eseguire l'operazione e aggiornare lo stato della chat. In caso di errore, viene visualizzato un messaggio.\\ \\
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFD-50;
+    \item RFD-51.
+\end{itemize}
+
+\subsubsection{ChatForm}
+\textbf{Descrizione}\\
+Questa componente è responsabile della raccolta dell'input dell'utente per i messaggi di chat, della validazione dell'input, della gestione dei dati della sessione di chat e dell'invio dei messaggi al server.\\ \\
+\textbf{Elementi}\\
+Il componente ChatForm utilizza l'hook useForm di react-hook-form per gestire lo stato e la validazione del form, insieme a due altri hook per gestire i dati dei messaggi e delle chat. Il form include un campo di testo per l'input del messaggio e un pulsante di invio. Quando l'utente invia il messaggio, il componente gestisce la validazione, l'invio dei dati e la visualizzazione di eventuali errori tramite un messaggio di errore. \\ \\
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-40;
+    \item RFO-41.
+\end{itemize}
+
+\subsubsection{ChatMessages e Message}
+\textbf{Descrizione}\\
+Il componente ChatMessages è responsabile della visualizzazione dei messaggi all'interno di una sessione di chat, differenziando tra i messaggi generati dall'utente e quelli generati dall'intelligenza artificiale, gestendo la visualizzazione dei messaggi quando non ce ne sono, e fornendo una Scroll Area per una navigazione agevole attraverso la cronologia della chat.\\ \\
+\textbf{Elementi}\\
+Sfruttando l'hook useMessagesData, il componente gestisce i dati dei messaggi e utilizza il componente Message per rendere ogni messaggio visibile. La distinzione tra i messaggi generati dall'AI e quelli dell'utente è chiaramente identificata, con una rappresentazione visiva diversa per ciascun tipo di messaggio. Inoltre, offre un'interfaccia utente intuitiva per la visualizzazione e la navigazione dei messaggi all'interno della chat.\\ \\
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-44;
+    \item RFO-47;
+    \item RFO-52;
+    \item RFO-55;
+    \item RFO-56;
+    \item RFD-57.
+\end{itemize}
 
 \newpage
