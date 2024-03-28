@@ -1,12 +1,9 @@
 \section{Architettura Front-End} \label{sec:archfront}
 L'intera applicazione è stata sviluppata in React. La scelta di tale tecnologia ha portato l'interfaccia grafica ad essere sviluppata in componenti, composti tra di loro fino a configurare la GUI finale.\\
-Per ricercare una modularità del codice, così da aumentare la leggibilità e la manutenibilità dello stesso, sono stati creati più componenti per ogni pagina, che interagiscono e si compongono tra di loro, fino a costituire la pagina finale. Questo approccio, tipico di React, permette di suddividere il codice, evitando che esso venga inserito interamente nella singola pagina.\\
-L'interfaccia utente prevede due pagine, definite dalle due macro funzionalità dell'applicazione. Una pagina è dedicata alla gestione della documentazione, l'altra all'interazione con il chatbot. Una terza pagina rappresenta invece il menù di accesso alle altre due.\\
+Per ricercare una modularità del codice, così da aumentare la leggibilità e la manutenibilità dello stesso, sono stati creati più componenti per ogni pagina, che interagiscono e si compongono tra di loro, fino a costituire la pagina finale. Questo approccio, tipico di React e dei pattern adottati per il front-end, permette di suddividere il codice, evitando che esso venga inserito interamente nella singola pagina.\\
+L'interfaccia utente prevede due pagine, definite dalle due macro funzionalità dell'applicazione. Una pagina è dedicata alla gestione della documentazione, l'altra all'interazione con il chatbot.\\
 Gli elementi comuni alle due pagine principali sono stati implementati con uguali componenti, così da riutilizzare il codice ove possibile, senza dover ridefinire gli stessi elementi grafici più volte.\\ \\
 Nella descrizione della architettura che costituisce il front-end dell'applicazione, sarà riportato un UML delle componenti principali di ogni pagina e per ognuna di esse sarà riportata una descrizione dettagliata, con una lista degli elementi che la compongono e dei requisiti associati a tale componente.
-\newpage
-
-\subsection{Home Page}
 
 \newpage
 
@@ -17,7 +14,7 @@ La Documents Page è la pagina relativa alla gestione della documentazione prese
 
 \begin{figure}[h!]
     \centering  
-    \includegraphics[width=0.9\textwidth]{DocumentPageView.png}
+    \includegraphics[width=\textwidth]{DocumentPageView.png}
     \caption{UML dei componenti principali della Documents Page}
 \end{figure}
 
@@ -31,7 +28,7 @@ Il valore booleano isCollapsed è gestito dallo stato del componente, e determin
 Il componente Settings, nel quale sono inseriti i due componenti Toggle, è costituito da un Dialog che mostra il suo contenuto mediante l'azione di un DialogTrigger. In questo modo, ModelToggle e ThemeToggle sono renderizzati solo a seguito dell'interazione con il pulsante del menù.\\
 All'interno di questi due componenti Toggle, viene impostato il tema e il modello da utilizzare modificando un valore controllato dallo stato dei componenti stessi.\\ \\
 \textbf{Requisiti associati}
-\begin{itemize}
+\begin{itemize}[itemsep=-4pt]
     \item RFO-1;
     \item RFO-2.
 \end{itemize}
@@ -48,17 +45,19 @@ Al suo interno è contenuto il solo componente DocTable.
 \textbf{Descrizione}\\
 Conenuto all'interno della Sidebar, DocForm è il componente che contiene la form con cui effettuare l'upload di nuovi documenti nel sistema. Qui grazie ad un Input è possibile selezionare il documento di interesse ed inviarlo grazie ad un apposito bottone.\\ \\
 \textbf{Elementi}\\
-Grazie ad un componente Input che permette la selezione di soli file con estensione .pdf, è possibile inviare un documento grazie ad un Button, a cui è associata la funzione handleFormSubmit tramite evento onClick. All'interno di questa funzione è verificato il valore di selectedFile, il quale viene utilizzato per fornire i dati necessari per effettuare le effettive operazioni per caricare il documento.\\
-Per accertare il corretto formato del documento selezionato, viene utilizzata la funzione handleFileChange, invocata ogni qual volta viene utilizzato il form Input, che deseleziona ogni file con estensione diversa da quella aspettata.\\
-Ad ogni caricamento, viene mostrato un messaggio a schermo che informa della buona riuscita o meno dell'operazione.\\ \\
+Grazie ad un componente Input che permette la selezione di soli file con estensione .pdf, .docx e .mp3, è possibile inviare un documento grazie ad un Button, a cui è associata la funzione handleFormSubmit tramite evento onClick. All'interno di questa funzione è verificato il valore di selectedFile, il quale viene utilizzato per fornire i dati necessari per effettuare le effettive operazioni per caricare il documento.\\
+Per accertare il corretto formato del documento selezionato, viene utilizzata la funzione handleFileChange, invocata ogni qual volta viene utilizzato il form Input, che deseleziona ogni file con estensione diversa da quella aspettata, mostrando contestualmente un messaggio d'errore.\\ \\
 \textbf{Requisiti associati}
-\begin{itemize}
+\begin{itemize}[itemsep=-4pt]
     \item RFO-29;
     \item RFO-30;
     \item RFO-31;
     \item RFD-32;
     \item RFD-34;
-    \item RFO-66.
+    \item RFO-66;
+    \item RFD-67;
+    \item RFD-68;
+    \item RFZ-69.
 \end{itemize}
 
 \subsubsection{DocTable}
@@ -66,48 +65,55 @@ Ad ogni caricamento, viene mostrato un messaggio a schermo che informa della buo
 \textbf{Descrizione}\\
 La DocTable è il componente che definisce la tabella nella quale sono visualizzati i documenti presenti nell'applicazione.\\ \\
 \textbf{Elementi}\\
-Tramite l'utilizzo dello hook useEffect, ogni volta che viene cambiato il modello utilizzato dall'applicazione vengono recuperate le informazioni sui documenti presenti a sistema. Questi dati, definiti dall'interfaccia DocumentInfo e composti dal nome del documento (string), dalla data di inserimento a sistema (string), dalla dimensione (number) e dall'url per la visualizzazione (string), sono utilizzati per formare il componente DataTable che, costruendo la tabella, è responsabile di renderizzare la lista finale dei documenti.\\
+Tramite l'utilizzo dello hook useEffect, ogni volta che viene cambiato il modello utilizzato dall'applicazione vengono recuperate le informazioni sui documenti presenti a sistema. Questi dati, definiti dall'interfaccia DocumentInfo e composti dal nome del documento (string), dalla data di inserimento a sistema (string), dalla dimensione (number) e dai tag assegnati (string), sono utilizzati per formare il componente DataTable che, costruendo la tabella, è responsabile di renderizzare la lista finale dei documenti.\\
 Il valore booleano isLoading identifica se è in corso o meno l'operazione di recupero dei documenti. Esso viene utilizzato per renderizzare, internamente a DataTable, il componente IsLoadingDoc, che mostra un componente Skeleton momentaneo.
 
 \subsubsection{DataTable}
 
 \textbf{Descrizione}\\
-È il componente responsabile della visualizzazione delle informazioni dei documenti. Oltre alla tabella, contiene i componenti responsabili alla ricerca, al filtraggio, alla visualizzazione e all'eliminazione dei documenti, oltre che a DataTablePagination. Quest'ultima è utilizzata per gestire la logica di renderizzazione della tabella.\\ \\
+È il componente responsabile della visualizzazione delle informazioni dei documenti. Oltre alla tabella, contiene i componenti responsabili alla ricerca, al filtraggio, alla visualizzazione e all'eliminazione dei documenti, oltre che a DataTablePagination e DataTableViewOption. Queste ultime sono utilizzate per gestire la logica di renderizzazione della tabella.\\ \\
 \textbf{Elementi}\\
 I dati che costituiscono la tabella sono inseriti all'interno di componenti adibiti a questo preciso ruolo, quali Table, TableBody, TableCell, TableHead, TableHeader e TableRow.\\
-La tabella contiene in ogni sua riga le informazioni dei PDF presenti, oltre che le azioni sul documento (visualizzazione ed eliminazione) tramite il componente DocAction.\\
+La tabella contiene in ogni sua riga le informazioni dei documenti presenti, oltre che le azioni sul documento (visualizzazione, eliminazione e cambio tag) tramite il componente DocAction.\\
 La ricerca, effettuata tramite la digitazione su un componente Input, permette di mostrare i documenti in base al loro nome e data di inserimento, tramite una ricerca che agisce sulle string di nome e data, tramite un valore setFilterValue. La ricerca avviene per data (true) o per nome (false) in base al valore booleano della variabile setIsFilterData, che varia con un evento onClick di due componenti DropdownMenuItem.\\
-Il componente DataTablePagination, posto all'interno di DataTable, agisce sulla paginazione della tabella.\\ \\
+I componenti DataTablePagination e DataTableViewOption, posti all'interno di DataTable, agiscono sulla paginazione della tabella.\\ \\
 \textbf{Requisiti associati}
-\begin{itemize}
+\begin{itemize}[itemsep=-4pt]
     \item RFO-3;
     \item RFO-4;
     \item RFO-5;
     \item RFO-6;
+    \item RFZ-7;
+    \item RFD-9;
     \item RFO-10;
     \item RFO-11;
     \item RFO-12;
     \item RFO-13.
 \end{itemize}
 
-\subsubsection{DataTablePagination}
+\subsubsection{DataTablePagination e DataTableViewOption}
 
 \textbf{Descrizione}\\
 È il componente che gestisce la logica di renderizzazione della tabella, dividendo i dati della stessa in più pagine e permettendone la navigazione mediante pulsanti.\\ \\
 \textbf{Elementi}\\
 Tramite i componenti Select, SelectContent, SelectItem, SelectTrigger e SelectValue, DataTablePagination divide i dati presenti in tabella, così da mostrarne per pagina tanti quanti il valore di pageSize. Questo valore è stabilito dall'interazione con un componente Select, che agisce all'evento onValueChange chiamando setPageSize, funzione responsabile della modifica effettiva del valore numerico.\\
-La navigazione nella tabella avviene con l'evento onClick di vari Button, che tramite le funzioni setPageIndex, previousPage e nextPage variano i dati da mostrare a schermo.
+La navigazione nella tabella avviene con l'evento onClick di vari Button, che tramite le funzioni setPageIndex, previousPage e nextPage variano i dati da mostrare a schermo.\\
+Nel componente DataTableViewOption, tramite un DropdownMenu contenente dei DropdownMenuCheckboxItem, è presente la logica che permette la renderizzazione delle sole colonne della tabella selezionate.
 
 \subsubsection{DocAction}
 
 \textbf{Descrizione}\\
-La componente DocAction contiene tutti gli elementi necessari ad effettuare le azioni previste sui documenti, come visualizzazione ed eliminazione.\\ \\
+La componente DocAction contiene tutti gli elementi necessari ad effettuare le azioni previste sui documenti, ovvero visualizzazione, eliminazione e cambio tag.\\ \\
 \textbf{Elementi}\\
 Grazie ad un menù a comparsa formato con i componenti DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator e DropdownMenuTrigger, DocAction permette la visualizzazone del documento di interesse grazie all'evento onClick del DropdownMenuItem. Questo evento chiama la funzione handleShowDoc che, recuperato dal back-end l'url del documento, apre in modalità blank una nuova scheda del browser, dove poter visualizzare il documento.\\
 L'azione di eliminazione è invece lasciata al componente DocActionDelete, contenuto da DocAction.\\ \\
 \textbf{Requisiti associati}
-\begin{itemize}
-    \item RFO-8.
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-8;
+    \item RFZ-15;
+    \item RFZ-16;
+    \item RFD-36;
+    \item RFD-37.
 \end{itemize}
 
 \subsubsection{DocActionDelete}
@@ -116,12 +122,10 @@ L'azione di eliminazione è invece lasciata al componente DocActionDelete, conte
 \textbf{Elementi}\\
 Dall'interazione con un AlertDialogTrigger, viene aperto un AlertDialog per confermare l'eliminazione del documento dal sistema. All'evento onClick dell'AlertDialogAction, viene chiamata la funzione handleDelteDoc con cui viene richiesta al back-end l'eliminazione del documento e di ogni informazioni ad esso associata.\\ \\
 \textbf{Requisiti associati}
-\begin{itemize}
+\begin{itemize}[itemsep=-4pt]
     \item RFO-27;
     \item RFO-28.
 \end{itemize}
-
-
 
 \newpage
 
