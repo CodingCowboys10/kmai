@@ -29,10 +29,10 @@ const llmsEmbedding = {
 
 const collections: Record<
   IModel,
-  "starling-poc-collections" | "openai-poc-collections"
+  "starling-mvp-collections" | "openai-mvp-collections"
 > = {
-  Ollama: "starling-poc-collections",
-  OpenAi: "openai-poc-collections",
+  Ollama: "starling-mvp-collections",
+  OpenAi: "openai-mvp-collections",
 };
 
 export { llmsChat, llmsEmbedding, collections };

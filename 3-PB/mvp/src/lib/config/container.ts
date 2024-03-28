@@ -33,7 +33,7 @@ import { GetChatMessagesUsecase } from "@/usecase/chat/getChatMessagesUsecase";
 import { GetChatMessagesController } from "@/controllers/chat/getChatMessagesController";
 
 const AWSParams = {
-  endpoint: "http://127.0.0.1:9000", //ristabilito
+  endpoint: "http://minio:9000",
   accessKeyId: "ROOTUSER",
   secretAccessKey: "CHANGEME123",
   s3ForcePathStyle: true,
