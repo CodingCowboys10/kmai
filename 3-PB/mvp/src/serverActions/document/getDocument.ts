@@ -5,6 +5,10 @@ import { IModel } from "@/lib/config/interfaces";
 
 export async function getDocument(model: IModel) {
   const res = await getDocumentsController.handle(model);
-  if (!res.ok) throw new Error((await res.json()).error);
-  return await res.json();
+  if (!res.ok) {
+    throw new Error((await res.json()).error);
+  } else {
+    return await res.json();
+  }
+  
 }
