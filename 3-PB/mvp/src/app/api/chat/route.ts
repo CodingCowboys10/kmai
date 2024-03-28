@@ -3,15 +3,11 @@ import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { Document } from "@langchain/core/documents";
 import { RunnableSequence } from "@langchain/core/runnables";
-import {
-  BytesOutputParser,
-  StringOutputParser,
-} from "@langchain/core/output_parsers";
+import { BytesOutputParser } from "@langchain/core/output_parsers";
 import { Chroma } from "@langchain/community/vectorstores/chroma";
 import {
   answerPrompt,
   combineDocumentsFn,
-  condenseQuestionPrompt,
   formatVercelMessages,
 } from "@/serverActions/utils/utilsLlms";
 import { collections, llmsChat, llmsEmbedding } from "@/lib/models";
@@ -33,18 +29,11 @@ export async function POST(req: NextRequest) {
       llmsEmbedding[model],
       {
         collectionName: collections[model],
-
-        /*filter: {
-          visible: "true",
-        }, */
+        filter: {
+          visibility: true,
+        },
       },
     );
-
-    const standaloneQuestionChain = RunnableSequence.from([
-      condenseQuestionPrompt,
-      llms,
-      new StringOutputParser(),
-    ]);
 
     let resolveWithDocuments: (value: Document[]) => void;
     const documentPromise = new Promise<Document[]>((resolve) => {
@@ -77,10 +66,6 @@ export async function POST(req: NextRequest) {
     ]);
 
     const conversationalRetrievalQAChain = RunnableSequence.from([
-      {
-        question: standaloneQuestionChain,
-        chat_history: (input) => input.chat_history,
-      },
       answerChain,
       new BytesOutputParser(),
     ]);
@@ -100,7 +85,6 @@ export async function POST(req: NextRequest) {
         }),
       ),
     ).toString("base64");
-
     return new StreamingTextResponse(stream, {
       headers: {
         "x-message-index": (previousMessages.length + 1).toString(),

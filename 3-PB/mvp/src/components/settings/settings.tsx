@@ -2,14 +2,18 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import * as React from "react";
-import ThemeToggle from "@/components/chat/themeToggle";
-import ModelToggle from "@/components/chat/modelToggle";
+import ThemeToggle from "@/components/settings/themeToggle";
+import ModelToggle from "@/components/settings/modelToggle";
 import DeleteChatList from "@/components/chat/deleteChatList";
+import ChangePageButton from "@/components/settings/changePageButton";
+
+import { Separator } from "@/components/ui/separator";
 
 function Settings({ isChat }: { isChat?: boolean }) {
   return (
@@ -44,12 +48,16 @@ function Settings({ isChat }: { isChat?: boolean }) {
             <DialogDescription className={"text-sm"}>
               Modifica tutte le impostazioni dell&apos;applicazione.
             </DialogDescription>
-            <div className={"flex flex-col gap-4 pt-5 "}>
-              <ModelToggle />
-              <ThemeToggle />
-              {isChat && <DeleteChatList />}
-            </div>
           </DialogHeader>
+          <div className={"flex flex-col gap-4 pt-5 "}>
+            <ModelToggle />
+            <ThemeToggle />
+            {isChat && <DeleteChatList />}
+          </div>
+          <Separator />
+          <DialogFooter>
+            <ChangePageButton to={isChat ? "chat" : "document"} />
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>

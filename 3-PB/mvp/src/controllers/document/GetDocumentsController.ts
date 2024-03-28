@@ -19,7 +19,7 @@ class GetDocumentsController {
           id: doc.name,
           data: doc.date.toLocaleString("it-IT"),
           size: (doc.size / 1000).toFixed(2),
-          url: typeof doc.content === "string" ? doc.content : "",
+          tag: doc.tag,
         };
       });
       return NextResponse.json(datas, {

@@ -42,7 +42,7 @@ function ChatList() {
 
   const handleCreateChat = async () => {
     try {
-      setChatSessionId(null);
+      if (!isLoading) setChatSessionId(null);
     } catch (e) {
       console.log(e);
     }
@@ -66,7 +66,7 @@ function ChatList() {
           <Pencil2Icon className={"w-6 h-6"} />
         </Button>
       </div>
-      <ScrollArea className="h-full max-h-[80%] rounded-md p-2 ">
+      <ScrollArea className="h-full max-h-[100%] rounded-md p-1 border-2 ">
         {isLoadingChat && (
           <div className={"space-y-2"}>
             <Skeleton className={"h-10 bg-background/65"} />{" "}
@@ -104,9 +104,6 @@ function ChatList() {
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Azioni</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem disabled={true}>
-                      Rinomina
-                    </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <AlertDialog>
                         <AlertDialogTrigger className="w-full relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-red-500">

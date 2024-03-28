@@ -14,7 +14,7 @@ import { toast } from "sonner";
 import { getChatMessages } from "@/serverActions/chats/getChatMessages";
 import { useChatsData } from "@/providers/chats-provider";
 import { addChatMessages } from "@/serverActions/chats/addChatMessages";
-import modelToggle from "@/components/chat/modelToggle";
+import modelToggle from "@/components/settings/modelToggle";
 import { useModel } from "@/providers/model-provider";
 
 interface MessagesContextProps {
@@ -70,7 +70,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
         ? JSON.parse(Buffer.from(sourcesHeader, "base64").toString("utf8"))
         : [];
       const messageIndexHeader = response.headers.get("x-message-index");
-      if (sources.length && messageIndexHeader !== null) {
+      if (messageIndexHeader !== null) {
         setSourceCurrent({ ...sources });
       }
     },
@@ -104,10 +104,10 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
     if (!isLoading && messages.length && chatSessionId) {
       handleUploadMessage().then();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   useEffect(() => {
-    console.log("get message", sourcesForMessages);
     const getMessage = async () => {
       try {
         const { allMessages, source } = await getChatMessages(chatSessionId);
@@ -126,6 +126,7 @@ export function MessagesProvider({ children }: { children: ReactNode }) {
         setMessages(allMessages);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatSessionId]);
 
   return (

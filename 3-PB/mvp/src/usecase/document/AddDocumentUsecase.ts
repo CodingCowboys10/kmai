@@ -5,12 +5,15 @@ import type {
   IEmbeddingRepository,
   IModel,
 } from "@/lib/config/interfaces";
-import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
-import { OpenAIEmbeddings } from "@langchain/openai";
+
 import { NextResponse } from "next/server";
 import { injectable, inject } from "tsyringe";
 import { llmsEmbedding } from "@/lib/models";
+import {
+  loadDocxDocument,
+  loadMp3Document,
+  loadPDFDocument,
+} from "@/serverActions/utils/loadDocument";
 
 @injectable()
 class AddDocumentUsecase
@@ -30,6 +33,7 @@ class AddDocumentUsecase
 
   async execute({ file, model }: { file: File; model: IModel }) {
     const buffer = Buffer.from(await file.arrayBuffer());
+    const fileAsBlob = new Blob([buffer]);
     const name = `${file.name}`;
     const size = `${file.size}`;
     const date = new Date();
@@ -39,10 +43,9 @@ class AddDocumentUsecase
       size: parseFloat(size),
       content: buffer,
     };
+    let docs: any;
 
     await this._documentRepository.addDocument(document, model);
-
-    const fileAsBlob = new Blob([buffer]);
 
     if (!file) {
       return NextResponse.json(
@@ -51,21 +54,16 @@ class AddDocumentUsecase
       );
     }
 
-    const loader = new PDFLoader(fileAsBlob, {
-      splitPages: true,
-      parsedItemSeparator: "",
-    });
-
-    let docs = await loader.load();
-
-    docs = docs.map((doc: any) => ({
-      ...doc,
-      metadata: {
-        page: doc.metadata.loc.pageNumber,
-        date: new Date().toLocaleString(),
-        name: name,
-      },
-    }));
+    if (file.type == "application/pdf") {
+      docs = await loadPDFDocument(fileAsBlob, name);
+    } else if (
+      file.type ==
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ) {
+      docs = await loadDocxDocument(fileAsBlob, name);
+    } else if (file.type == "audio/mpeg") {
+      docs = await loadMp3Document(buffer, name);
+    }
 
     const ids = docs.map((doc: any) => name + "_" + doc.metadata.page);
     const doc = docs.map((doc: any) => doc.pageContent);

@@ -113,9 +113,16 @@ def add_g(f):
                     for word in word_tuple:
                         for n in range(2):
                             if word not in already_changed and word[n].lower()!=section_title.lower() and word[n].lower()!= label_title.lower() and current_term.lower() == word[n].lower():
-                                matches.add(current_term)
-                                already_changed.append(word)
-                                remove_from_gloss(word)
+                                if current_term.lower() == "ai" :
+                                    if current_term == "AI" :
+                                        matches.add(current_term)
+                                        already_changed.append(word)
+                                        remove_from_gloss(word)
+                                    
+                                else:
+                                    matches.add(current_term)
+                                    already_changed.append(word)
+                                    remove_from_gloss(word)
 
         for match in matches:
             replacement = "\\ccgloss{" + match + "}"

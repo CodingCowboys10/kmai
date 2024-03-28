@@ -6,10 +6,12 @@ import { AddDocumentController } from "@/controllers/document/AddDocumentControl
 import { GetDocumentsController } from "@/controllers/document/GetDocumentsController";
 import { DeleteDocumentController } from "@/controllers/document/DeleteDocumentController";
 import { GetDocumentContentController } from "@/controllers/document/GetDocumentContentController";
+import { UpdateDocumentController } from "@/controllers/document/UpdateDocumentController";
 import { DocumentRepository } from "@/infrastructure/documentRepository";
 import { MinioDataSource } from "@/infrastructure/data-source/MinioDataSource";
 import { AddDocumentUsecase } from "@/usecase/document/AddDocumentUsecase";
 import { DeleteDocumentUsecase } from "@/usecase/document/DeleteDocumentUsecase";
+import { UpdateDocumentUsecase } from "@/usecase/document/UpdateDocumentUsecase";
 import { GetDocumentContentUsecase } from "@/usecase/document/GetDocumentContentUsecase";
 import { GetDocumentsUsecase } from "@/usecase/document/GetDocumentsUsecase";
 import { ChromaDataSource } from "@/infrastructure/data-source/ChromaDataSource";
@@ -86,6 +88,10 @@ container.register<GetDocumentsUsecase>("getDocsUsecase", {
   useClass: GetDocumentsUsecase,
 });
 
+container.register<UpdateDocumentUsecase>("updateDocUsecase", {
+  useClass: UpdateDocumentUsecase,
+});
+
 /* --------CHAT---------  */
 
 container.register<Pool>("postgrespool", {
@@ -126,6 +132,7 @@ container.register<GetChatMessagesUsecase>("getChatMessagesUsecase", {
 
 const addDocumentController = container.resolve(AddDocumentController);
 const deleteDocumentController = container.resolve(DeleteDocumentController);
+const updateDocumentController = container.resolve(UpdateDocumentController);
 const getDocumentsController = container.resolve(GetDocumentsController);
 const getDocumentContentController = container.resolve(
   GetDocumentContentController,
@@ -141,6 +148,7 @@ const getChatMessagesController = container.resolve(GetChatMessagesController);
 export {
   addDocumentController,
   deleteDocumentController,
+  updateDocumentController,
   getDocumentsController,
   getDocumentContentController,
   addChatController,

@@ -16,7 +16,6 @@ interface DocumentContextProps {
   data: DocumentInfo[];
   setData: Dispatch<SetStateAction<DocumentInfo[]>>;
   isLoading: boolean;
-  setIsLoading: Dispatch<SetStateAction<boolean>>;
   setIsUpdate: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -24,7 +23,6 @@ export const DocumentContext = createContext<DocumentContextProps>({
   data: [],
   setData: () => {},
   isLoading: false,
-  setIsLoading: () => {},
   setIsUpdate: () => {},
 });
 export function DocumentProvider({ children }: { children: ReactNode }) {
@@ -44,22 +42,12 @@ export function DocumentProvider({ children }: { children: ReactNode }) {
         toast.error(e.message);
       }
     };
-    fetchDocuments().then(() => setIsLoading(false));
-  }, [model]);
 
-  useEffect(() => {
-    const fetchDocuments = async () => {
-      try {
-        const res = await getDocument(model!);
-        setData(res);
-      } catch (e) {
-        setData([]);
-        // @ts-ignore
-        toast.error(e.message);
-      }
-    };
-    if (isUpdate) fetchDocuments().then(() => setIsUpdate(false));
-  }, [isUpdate]);
+    fetchDocuments().then(() => {
+      setIsLoading(false);
+      setIsUpdate(false);
+    });
+  }, [isUpdate, model]);
 
   return (
     <DocumentContext.Provider
@@ -67,7 +55,6 @@ export function DocumentProvider({ children }: { children: ReactNode }) {
         data,
         setData,
         isLoading,
-        setIsLoading,
         setIsUpdate,
       }}
     >

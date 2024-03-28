@@ -1,8 +1,5 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { addDocumentController } from "@/lib/config/container";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "sonner";
 import { useModel } from "@/providers/model-provider";
 import { addDocument } from "@/serverActions/document/addDocument";
@@ -12,29 +9,52 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useDropzone } from "react-dropzone";
+import { Badge } from "@/components/ui/badge";
 
 function DocForm() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [fileName, setFileName] = useState(null);
   const { model } = useModel();
   const { setIsUpdate } = useDocumentData();
 
-  const handleFileChange = async (event: any) => {
-    const file = event.target.files[0];
-
-    if (file && file.type === "application/pdf") {
-      setSelectedFile(file);
+  const onDropAccepted = useCallback((acceptedFiles: any) => {
+    if (
+      acceptedFiles[0] &&
+      (acceptedFiles[0].type === "application/pdf" ||
+        acceptedFiles[0].type ===
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+        acceptedFiles[0].type === "audio/mpeg")
+    ) {
+      setSelectedFile(acceptedFiles[0]);
+      setFileName(acceptedFiles[0].name);
     } else {
       setSelectedFile(null);
-      event.target.value = null;
-      toast.error("Formato del file non supportato");
+      setFileName(null);
     }
-  };
+  }, []);
+  const onDropRejected = useCallback((rejectedFile: any) => {
+    toast.error("Formato del file non supportato");
+    setSelectedFile(null);
+    setFileName(null);
+  }, []);
+  const { getRootProps, getInputProps } = useDropzone({
+    onDropAccepted,
+    onDropRejected,
+    multiple: false,
+    maxFiles: 1,
+    accept: {
+      "application/pdf": [".pdf"],
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        [".docx"],
+      "audio/mpeg": [".mp3"],
+    },
+  });
 
   const handleFormSubmit = async () => {
     if (selectedFile) {
@@ -46,13 +66,13 @@ function DocForm() {
         await addDocument(data);
         setIsUpdate(true);
         setSelectedFile(null);
+        setFileName(null);
       } catch (e) {
         // @ts-ignore
         toast.error(e.message);
       }
     }
   };
-
   return (
     <AlertDialog>
       <AlertDialogTrigger
@@ -63,24 +83,52 @@ function DocForm() {
           Aggiungi Documento
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className={"min-w-[800px]"}>
         <AlertDialogHeader className={"text-center"}>
           <AlertDialogTitle className={"text-center"}>
-            Trascina o Seleziona il Documento
+            Aggiungi Documento
           </AlertDialogTitle>
-          <div className={"h-50"}>
-            <Input
-              className={"my-5  h-10"}
-              type="file"
-              accept="application/pdf"
-              onChange={handleFileChange}
-            />
-          </div>
+          <>
+            <div
+              {...getRootProps({
+                className: `flex transition-all ease-in-out duration-300 border-dashed border-2 my-2 rounded-md items-center justify-center ${fileName ? "h-0 opacity-0 " : "h-60"}`,
+              })}
+            >
+              <input {...getInputProps()} disabled={fileName !== null} />
+              <p>Trascina il file o clicca per cercarlo</p>
+            </div>
+            {!fileName && (
+              <p
+                className={"text-sm italic font-medium opacity-30 text-center"}
+              >
+                {" "}
+                File accettati : pdf , docx , mp3.
+              </p>
+            )}
+
+            {fileName ? (
+              <Badge
+                className={"px-3.5 py-1.5 w-fit text-sm mx-auto"}
+                variant={"secondary"}
+              >
+                {fileName}
+              </Badge>
+            ) : (
+              ""
+            )}
+          </>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel
+            onClick={() => {
+              setSelectedFile(null);
+              setFileName(null);
+            }}
+          >
+            Annulla
+          </AlertDialogCancel>
           <AlertDialogAction onClick={handleFormSubmit}>
-            Aggiungi il Documento
+            Aggiungi Documento
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

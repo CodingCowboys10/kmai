@@ -7,6 +7,7 @@ interface Document {
   date: Date;
   size: number;
   content?: Buffer | string;
+  tag?: any;
 }
 interface Chat {
   title: string;
@@ -83,6 +84,7 @@ interface IDocumentRepository {
   deleteDocument(docName: string, model: IModel): Promise<void>;
   getDocumentContent(docName: string, model: IModel): Promise<string>;
   getDocuments(model: IModel): Promise<Document[]>;
+  updateDocument(docName: string, model: IModel, tag: Metadatas): Promise<void>;
 }
 
 interface IDocumentDataSource {
@@ -102,6 +104,15 @@ interface IDocumentDataSource {
     model: IModel;
   }): Promise<string>;
   getAll(model: IModel): Promise<Document[]>;
+  updateOne({
+    docName,
+    model,
+    tag,
+  }: {
+    docName: string;
+    model: IModel;
+    tag: Metadatas;
+  }): Promise<void>;
 }
 
 interface IChatDataSource {
