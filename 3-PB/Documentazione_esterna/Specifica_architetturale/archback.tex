@@ -841,3 +841,79 @@ La classe ChatRepository, utilizzata dagli use cases AddChatMessages, AddChat, D
     \includegraphics[width=0.7\textwidth]{ChatRepository.png}
     \caption{UML della classe ChatRepository}
 \end{figure}
+
+\subsection{Data Sources} \label{subsec:datasources}
+
+\subsection{Basi di dati} \label{subsec:basididati}
+\subsubsection{ChromaDB}
+\textbf{Descrizione}\\
+ChromaDB rappresenta il database vettoriale adibito a contenere gli embedding dei documenti caricati nel sistema. Esso contiene due collection di vettori, ovvero una per ogni modello utilizzato nella produzione e consultazione degli embedding.\\
+All'interno di ogni collection sono contenuti le informazioni riguardanti gli embedding dei documenti.\\
+In particolare, ad ogni oggetto nella collection è associato un valore identificativo ids di tipo \textit{string}, il nome del documento, i metadati ad esso associato e l'effettivo vettore di numeri reali ottenuto dall'embedding del documento.\\ \\
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-27;
+    \item RFO-29;
+    \item RFD-36;
+    \item RFD-37;
+    \item RFO-55;
+    \item RFO-56;
+    \item RFD-57;
+    \item RFO-64;
+    \item RFO-65;
+    \item RIO-4.
+\end{itemize}
+
+\subsubsection{MinIO}
+\textbf{Descrizione}\\
+MinIO rappresenta il database adibito a contenere i documenti caricati nel sistema. Esso contiene due bucket di oggetti rappresentanti i documenti, ovvero uno per ogni modello supportato nell'utilizzo dell'applicazione.\\
+All'interno di ogni bucket sono contenuti i documenti, i quali sono rappresentati come oggetti.\\
+In particolare, ad ogni oggetto documento nel bucket è associato un nome, una dimensione, la data di inserimento e dei tag. I singoli documenti sono consultabili grazie alla generazione di un link di visualizzazione.\\ \\
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-3;
+    \item RFO-4;
+    \item RFO-5;
+    \item RFO-6;
+    \item RFZ-7;
+    \item RFO-8;
+    \item RFD-9;
+    \item RFO-10;
+    \item RFO-27;
+    \item RFO-29;
+    \item RIO-2;
+    \item RIO-3.
+\end{itemize}
+
+\subsubsection{Postgres}
+\textbf{Descrizione}\\
+Postgres è il database adibito a contenere le chat history di ogni sessione di conversazione attiva nel sistema.\\
+Sono definite due diverse tabelle: la tabella \textit{chat\_threads}, che rappresenta le sessioni di conversazione, e la tabella \textit{messages}, che rappresenta e contiene tutte le informazioni dei singoli messaggi.
+\textit{Chat\_threads} è composto da un valore identificativo numerico seriale \textit{id}, da una stringa di testo \textit{title} (il nome della sessione) e da un TIMESTAMP \textit{created\_at}.\\
+\textit{Messages} è invece identificata da un \textit{id} VARCHAR e contiene un \textit{thread\_id} che si riferisce all'id di un \textit{chat\_threads}, dal contenuto testuale \textit{content}, dal \textit{role} (chi ha scritto il messaggio), \textit{created\_at}, \textit{sourcePage} (numero di pagina del documento fonte, se il messaggio è una risposta) e \textit{sourceLink} (link del documento fonte, se il messaggio è una risposta).\\ \\
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFD-48;
+    \item RFD-49;
+    \item RFD-50;
+    \item RFO-52;
+    \item RFO-53;
+    \item RFO-59;
+    \item RFD-60;
+    \item RFO-63.
+\end{itemize}
+
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.8\textwidth]{postgresdb.png}
+    \caption{Diagramma ER del database Postgres}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.8\textwidth]{querypostgresdb.png}
+    \caption{Query per la creazione del database Postgres}
+\end{figure}
+
+\newpage
