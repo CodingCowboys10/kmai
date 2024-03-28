@@ -843,6 +843,101 @@ La classe ChatRepository, utilizzata dagli use cases AddChatMessages, AddChat, D
 \end{figure}
 
 \subsection{Data Sources} \label{subsec:datasources}
+\subsubsection{MinioDataSource}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_db: S3}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}[itemsep=-4pt]
+    \item \textit{addOne(doc: Document, model: IModel): Promise<void>}\\
+    Metodo per l'aggiunta di un nuovo documento nella collezione di un modello;
+    \item \textit{deleteOne(docName: string, model: IModel): Promise<void>}\\
+    Metodo per l'eliminazione di un documento dalla collezione di un modello;
+    \item \textit{updateOne(docName:string, model:IModel, tag:Metadatas): Promise<void>}\\
+    Metodo per l'aggiornamento del tag di visibilità di un documento di una particolare collezione;
+    \item \textit{getAll(model: IModel): Promise<Document[]>}\\
+    Metodo per recuperare i dati dei documenti contenuti in una collezione;
+    \item \textit{getContent(docName: string, model: IModel): Promise<string>}\\
+    Metodo per recuperare il link di visualizzazione di un documento.
+\end{itemize}
+\textbf{Descrizione}\\
+La classe MinioDataSource implementa concretamente i metodi esposti all'interno di DocumentRepository. È lei ad operare sul database, tramite un attributo di tipo \textit{S3}.
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.6\textwidth]{MinioDataSource.png}
+    \caption{UML della classe MinioDataSource}
+\end{figure}
+
+\newpage
+
+\subsubsection{ChromaDataSource}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_vDb: ChromaClient}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}[itemsep=-4pt]
+    \item \textit{addOne(embeddings: Embeddings, model: IModel): Promise<void>}\\
+    Metodo per aggiungere gli embedding di un nuovo documento alla collezione di vettori di un modello;
+    \item \textit{deleteOne(ids: string[], model: IModel): Promise<void>}\\
+    Metodo per eliminare gli embedding di un preciso documento dalla collezione di vettori di un modello;
+    \item \textit{updateOne(metadatas: Metadatas, model: IModel, ids: string[]): Promise<void>}\\
+    Metodo per modificare i metadati degli embedding di un preciso documento in una collezione di vettori di un modello;
+    \item\textit{getIds(docName: string, model: IModel): Promise<string>}\\
+    Metodo per recuperare gli id di tutti i vettori che si riferiscono ad un preciso documento in una collezione di vettori di un modello.
+\end{itemize}
+\textbf{Descrizione}\\
+La classe ChromaDataSource implementa concretamente i metodi esposti all'interno di EmbeddingRepository. È lei a svolgere le operazioni sul database vettoriale, tramite un attributo di tipo \textit{ChromaClient}.
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.6\textwidth]{ChromaDataSource.png}
+    \caption{UML della classe ChromaDataSource}
+\end{figure}
+
+\newpage
+
+\subsubsection{PostgresDataSource}
+\textbf{Decoratori}
+\begin{itemize}
+    \item \textit{@injectable()}: decoratore per la Dependency Injection mediante Tsyringe.
+\end{itemize}
+\textbf{Attributi}
+\begin{itemize}
+    \item private readonly \textit{\_dB: Pool}.
+\end{itemize}
+\textbf{Metodi}
+\begin{itemize}[itemsep=-4pt]
+    \item \textit{addMessages(messages: ICustomMessages): Promise<void>}\\
+    Metodo per salvare un messaggio nella relativa chat history di una conversazione;
+    \item \textit{addOne(title: string): Promise<number>}\\
+    Metodo per creare una nuova sessione di conversazione;
+    \item \textit{deleteAll(): Promise<void>}\\
+    Metodo per eliminare tutte le sessioni di conversazione;
+    \item \textit{deleteOne(id: number): Promise<void>}\\
+    Metodo per eliminare la chat history di una sessione;
+    \item \textit{getAll(): Promise<Chat[]>}\\
+    Metodo per recuperare le sessioni attive;
+    \item \textit{getAllMessages(id: number): Promise<allMessages: Message[], source: MessageSource>}\\
+    Metodo per recuperare la chat history di una sessione.
+\end{itemize}
+\textbf{Descrizione}\\
+La classe PostgresDataSource implementa concretamente i metodi esposti all'interno di ChatRepository. È lei a svolgere le operazioni sul database Postgres, tramite un attributo di tipo \textit{Pool}.\\ \\
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.6\textwidth]{PostgresDataSource.png}
+    \caption{UML della classe PostgresDataSource}
+\end{figure}
 
 \subsection{Basi di dati} \label{subsec:basididati}
 \subsubsection{ChromaDB}
