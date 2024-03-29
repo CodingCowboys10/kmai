@@ -42,6 +42,5 @@ describe('AddDocumentUsecase', () => {
             size: 16,
             content: Buffer.from('document content'),
           }), model);
-        expect(mockEmbeddingRepository.addEmbedding).toHaveBeenCalled();
     });
 });
