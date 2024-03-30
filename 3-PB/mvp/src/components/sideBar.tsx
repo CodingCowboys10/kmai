@@ -20,6 +20,7 @@ function SideBar({
             "flex items-center bg-background hover:bg-background text-foreground "
           }
           size={"icon"}
+          data-testid={"ButtonCollapse"}
           onClick={() => {
             setCollapsed(!isCollapsed);
           }}
@@ -27,7 +28,7 @@ function SideBar({
           {!isCollapsed ? (
             <svg
               className="with-icon_icon__MHUeb"
-              data-testid="geist-icon"
+              data-testid="isNotCollapsed"
               fill="none"
               height="24"
               shapeRendering="geometricPrecision"
@@ -48,7 +49,7 @@ function SideBar({
           ) : (
             <svg
               className="with-icon_icon__MHUeb"
-              data-testid="geist-icon"
+              data-testid="isCollapsed"
               fill="none"
               height="24"
               shapeRendering="geometricPrecision"
