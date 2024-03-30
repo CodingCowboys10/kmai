@@ -79,7 +79,7 @@ function DocForm() {
         className={"flex items-center justify-center mt-5"}
         asChild
       >
-        <Button className={"mx-auto"} variant={"default"} size={"lg"}>
+        <Button className={"mx-auto"} variant={"default"} size={"lg"} data-testid={"AllDiaTrigger"}>
           Aggiungi Documento
         </Button>
       </AlertDialogTrigger>
@@ -124,10 +124,11 @@ function DocForm() {
               setSelectedFile(null);
               setFileName(null);
             }}
+            data-testid={"CancelButton"}
           >
             Annulla
           </AlertDialogCancel>
-          <AlertDialogAction onClick={handleFormSubmit}>
+          <AlertDialogAction onClick={handleFormSubmit} data-testid={"handleFormSubmitButton"}>
             Aggiungi Documento
           </AlertDialogAction>
         </AlertDialogFooter>

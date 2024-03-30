@@ -38,7 +38,7 @@ export default function DocAction({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger data-testid="Trigger" asChild>
         <Button variant="ghost" className="h-8 w-8 p-0">
           <span className="sr-only">Azioni</span>
           <MoreHorizontal className="h-4 w-4" />
@@ -47,8 +47,9 @@ export default function DocAction({
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Azioni</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleShowDoc}>Visualizza</DropdownMenuItem>
-        <DropdownMenuItem
+        <DropdownMenuItem data-testid="Visualizza"  onClick={handleShowDoc}>Visualizza</DropdownMenuItem>
+        <DropdownMenuItem data-testid="Visibility" 
+          
           onClick={async () => {
             try {
               setIsUpdate(true);
