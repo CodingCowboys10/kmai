@@ -16,7 +16,7 @@ function ThemeToggle() {
     <div className={"flex flex-row items-center justify-between"}>
       <h2>Tema</h2>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild data-testid={"TriggerTema"}>
           <Button variant="outline" className="justify-start">
             {theme === "light" && (
               <div className="flex justify-between gap-3 w-full scale-100 dark:scale-0">
@@ -34,10 +34,10 @@ function ThemeToggle() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="min-w-5">
-          <DropdownMenuItem onClick={() => setTheme("light")}>
+          <DropdownMenuItem data-testid={"LightItem"} onClick={() => setTheme("light")}>
             <SunIcon className="w-5 h-5" />
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("dark")}>
+          <DropdownMenuItem data-testid={"DarkItem"} onClick={() => setTheme("dark")}>
             <MoonIcon className="w-5 h-5" />
           </DropdownMenuItem>
         </DropdownMenuContent>
