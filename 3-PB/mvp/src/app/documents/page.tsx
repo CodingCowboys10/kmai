@@ -16,13 +16,13 @@ export default function App() {
 
 function Main() {
   return (
-    <main className="relative flex flex-row w-full h-full">
-      <SideBar>
-        <DocForm />
-      </SideBar>
-      <Body>
-        <DocTable />
-      </Body>
-    </main>
+      <main className="relative flex flex-row w-full h-full overflow-hidden">
+          <SideBar>
+              <DocForm/>
+          </SideBar>
+          <Body>
+              <DocTable/>
+          </Body>
+      </main>
   );
 }
