@@ -41,3 +41,15 @@ Il Controller, come facilmente intuibile, riceve le richieste provenienti dal fr
 \end{figure}
 
 \newpage
+
+\subsection{Compound Components}
+\subsubsection{Descrizione}
+Specifico di React e di applicazioni components-based, il Compound Components è un pattern che prevede l'elevata modularizzazione del codice front-end, andando a definire singoli componenti, con un unico scopo, da inserire all'interno di componenti contenitori. Con questo approccio, viene creata un'alberatura delle componenti che prevede una relazione di padre-figlio fra le stesse. \\Seguendo questo pattern, è possibile creare componenti riutilizzabili, che aumentano la flessibilità e la manutenibilità codice, evitando di codificare l'intera interfaccia grafica in un'unica grande componente. 
+\subsubsection{Implementazione}
+Per attenersi al pattern, è stato necessario suddividere le singole pagine dell'applicazione in molte componenti. Per aiutarci in questo compito, è stato utilizzato il framework di componenti Shadcn/ui, implementando numerose componenti personalizzabili e altamente riutilizzabili, componendo modularmente la GUI finale.
+
+\subsection{Container-Presentational Components}
+\subsubsection{Descrizione}
+Anch'esso tipico di React e di web app basate su componenti, il Container Presentational è un design pattern strettamente legato al Compounds Component. Esso prevede la separazione dei componenti con solo logica di presentazione da quelli che devono anche gestire la logica e lo stato dei componenti.\\L'utilizzo di questo design pattern, ad affiancare il già esposto Compound Components, prevede che i componenti così detti foglia, ovvero che non sono padre di altri componenti figli, non presentino codice per la gestione del loro stato. Esso dev'essere infatti presente nel "container component", ovvero il componente padre che lo contiene.\\Utilizzando questo pattern si favorisce la modularità del codice, così come la separazione e distinzione del codice in base alla logica e responsabilità a cui devono rispondere.
+\subsubsection{Implementazione}
+Anche per questo pattern l'utilizzo di Shadcn/ui si è rivelato prezioso, in quanto è stato possibile implementare facilmente componenti prefabbricate, personalizzabili e riutilizzabili con puro scopo di presentazione, dovendo solo implementare la gestione dello stato dei componenti in quelli "container" o radice.
