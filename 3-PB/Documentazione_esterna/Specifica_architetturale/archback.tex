@@ -9,7 +9,7 @@ Una volta terminate le operazioni nel data source, il controllo torna alla repos
 
 \begin{figure}[h!]
     \centering  
-    \includegraphics[width=0.7\textwidth]{backendview.png}
+    \includegraphics[width=0.95\textwidth]{backendview.png}
     \caption{UML introduttivo delle classi del back-end}
 \end{figure}
 
@@ -58,10 +58,10 @@ Questa funzione asincrona lato server effettua una chiamata a GetDocumentContent
 \begin{itemize}[itemsep=-4pt]
     \item \textit{docName: string};
     \item \textit{model: IModel};
-    \item \textit{visibility: boolean}.
+    \item \textit{updatedMetadas: Metadatas}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa funzione asincrona lato server effettua una chiamata a UpdateDocumentController, passando i parametri docName, model e visibility, che rappresentano il nome del documento da aggiornare, il modello che presenta tale documento e il nuovo valore che deve avere il tag di visibilità del documento. Gestisce la modifica delle informazioni inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
+Questa funzione asincrona lato server effettua una chiamata a UpdateDocumentController, passando i parametri docName, model e updatedMetadas, che rappresentano il nome del documento da aggiornare, il modello che presenta tale documento e il nuovo valore che deve avere il tag di visibilità del documento. Gestisce la modifica delle informazioni inviando i dati al controller e si occupa di gestire eventuali errori che si possono verificare durante il processo.
 
 \subsubsection{addChat}
 \textbf{Parametri}
@@ -169,10 +169,10 @@ Questa classe controller, chiamata tramite la server action deleteDocument, gest
 \end{itemize}
 \textbf{Metodi}
 \begin{itemize}
-    \item \textit{handle(docName: string, model: IModel, visibility: boolean): Promise<Response>}.
+    \item \textit{handle(docName: string, model: IModel, updatedMetadas: Metadatas): Promise<Response>}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questa classe controller, chiamata tramite la server action updateDocument, gestisce la chiamata al UpdateDocumentUsecase per aggiornare i tag e i metadati associati ad un documento, passando una \textit{string} docName, una \textit{string} model e un \textit{booleano} visibility, che rappresentano il nome del documento da aggiornare, il modello di appartenenza e il nuovo valore del tag di visibilità associato.\\ \\
+Questa classe controller, chiamata tramite la server action updateDocument, gestisce la chiamata al UpdateDocumentUsecase per aggiornare i tag e i metadati associati ad un documento, passando una \textit{string} docName, una \textit{string} model e dei metadati updatedMetadas, che rappresentano il nome del documento da aggiornare, il modello di appartenenza e il nuovo valore del tag di visibilità associato.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
     \item UpdateDocumentUsecase.
@@ -411,11 +411,12 @@ Questa classe controller, chiamata tramite la server action getChats, gestisce l
     \item \textit{execute(file: File, model: IModel)}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal AddDocumentController, contiene la business logic relativa alle operazioni per aggiungere un nuovo documento nel sistema. Ricevuto il file e la \textit{string} model, gestisce la chiamata al DocumentRepository per aggiungere il nuovo documento. Dopo aver effettuato il parsing del contenuto del documento e averlo diviso per pagine, viene effettuato l'embedding del testo utilizzando l'embedding function determinata dal modello desiderato. Una volta completato questo processo, mapando gli embedding con il nome del documento, i metadati associati e il suo file, viene chiamato anche l'EmbeddingRepository per lo storage dei vettori sul database vettoriale. \\ \\
+Questo use case, chiamato dal AddDocumentController, contiene la business logic relativa alle operazioni per aggiungere un nuovo documento nel sistema. Ricevuto il file e la \textit{string} model, gestisce la chiamata al DocumentRepository per aggiungere il nuovo documento. Dopo aver effettuato il parsing del contenuto del documento e averlo diviso per pagine, viene effettuato l'embedding del testo utilizzando l'embedding function determinata dal modello desiderato. Una volta completato questo processo, mapando gli embedding con il nome del documento, i metadati associati e il suo file, viene chiamato anche l'EmbeddingRepository per lo storage dei vettori sul database vettoriale.\\
+Presenta un riferimento a delle interfacce IDocumentRepository e IEmbeddingRepository, le cui implementazioni concrete sono DocumentRepository e EmbeddingRepository, che espongono i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}[itemsep=-4pt]
-    \item DocumentRepository;
-    \item EmbeddingRepository.
+    \item IDocumentRepository;
+    \item IEmbeddingRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}[itemsep=-4pt]
@@ -448,11 +449,12 @@ Questo use case, chiamato dal AddDocumentController, contiene la business logic 
 \end{itemize}
 \textbf{Descrizione}\\
 Questo use case, chiamato dal DeleteDocumentController, contiene la business logic relativa alle operazioni per eliminare uno specifico documento dal sistema. Ricevute le \textit{string} docName e model, gestisce la chiamata al DocumentRepository e all'EmbeddingRepository per rimuovere nuovo documento.\\
-Dopo aver effettuato la chiamata al DocumentRepository per richiedere l'eliminazione del documento dal database MinIO, richiede l'id degli embedding da rimuovere all'EmbeddingRepository, per poi richiedere l'eliminazione dei vettori identificati da essi alla medesima classe repository. \\ \\
+Dopo aver effettuato la chiamata al DocumentRepository per richiedere l'eliminazione del documento dal database MinIO, richiede l'id degli embedding da rimuovere all'EmbeddingRepository, per poi richiedere l'eliminazione dei vettori identificati da essi alla medesima classe repository.\\
+Presenta un riferimento a delle interfacce IDocumentRepository e IEmbeddingRepository, le cui implementazioni concrete sono DocumentRepository e EmbeddingRepository, che espongono i metodi per lavorare sulle fonti dei dati presenti nel database. \\ \\
 \textbf{Dipendenze}
 \begin{itemize}[itemsep=-4pt]
-    \item DocumentRepository;
-    \item EmbeddingRepository.
+    \item IDocumentRepository;
+    \item IEmbeddingRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}
@@ -477,15 +479,16 @@ Dopo aver effettuato la chiamata al DocumentRepository per richiedere l'eliminaz
 \end{itemize}
 \textbf{Metodi}
 \begin{itemize}
-    \item \textit{execute(docName: string, model: IModel, visibility: boolean)}.
+    \item \textit{execute(docName: string, model: IModel, updatedMetadas: Metadatas)}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal UpdateDocumentController, contiene la business logic relativa alle operazioni per aggiornare i tag e i metadati, relativi alla visibilità, di uno specifico documento. Ricevute le \textit{string} docName e model e il valore \textit{booleano} visibility, gestisce la chiamata al DocumentRepository e all'EmbeddingRepository per aggiornare i valori.\\
-Dopo aver effettuato la chiamata al DocumentRepository per richiedere l'aggiornamento del tag di visibilità del documento nel database MinIO, richiede l'id degli embedding da modificare all'EmbeddingRepository, per poi richiedere la modifica del metadato visibility dei vettori identificati da essi alla medesima classe repository. \\ \\
+Questo use case, chiamato dal UpdateDocumentController, contiene la business logic relativa alle operazioni per aggiornare i tag e i metadati, relativi alla visibilità, di uno specifico documento. Ricevute le \textit{string} docName e model e i nuovi metadati updatedMetadas, gestisce la chiamata al DocumentRepository e all'EmbeddingRepository per aggiornare i valori.\\
+Dopo aver effettuato la chiamata al DocumentRepository per richiedere l'aggiornamento del tag di visibilità del documento nel database MinIO, richiede l'id degli embedding da modificare all'EmbeddingRepository, per poi richiedere la modifica del metadato visibility dei vettori identificati da essi alla medesima classe repository.\\
+Presenta un riferimento a delle interfacce IDocumentRepository e IEmbeddingRepository, le cui implementazioni concrete sono DocumentRepository e EmbeddingRepository, che espongono i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}[itemsep=-4pt]
-    \item DocumentRepository;
-    \item EmbeddingRepository.
+    \item IDocumentRepository;
+    \item IEmbeddingRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}[itemsep=-4pt]
@@ -515,10 +518,11 @@ Dopo aver effettuato la chiamata al DocumentRepository per richiedere l'aggiorna
     \item \textit{execute(docName: string, model: IModel)}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal GetDocumentContentController, contiene la business logic relativa alle operazioni per ottenere il link di visualizzazione di uno specifico documento dal sistema. Ricevute le \textit{string} docName e model, gestisce la chiamata al DocumentRepository per recuperare tale informazione.\\ \\
+Questo use case, chiamato dal GetDocumentContentController, contiene la business logic relativa alle operazioni per ottenere il link di visualizzazione di uno specifico documento dal sistema. Ricevute le \textit{string} docName e model, gestisce la chiamata al DocumentRepository per recuperare tale informazione.\\
+Presenta un riferimento ad un'interfaccia IDocumentRepository , la cui implementazione concreta è DocumentRepository, che espone i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item DocumentRepository.
+    \item IDocumentRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}[itemsep=-4pt]
@@ -546,10 +550,11 @@ Questo use case, chiamato dal GetDocumentContentController, contiene la business
     \item \textit{execute(model: IModel) : Promise<Document[]>}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal GetDocumentsController, contiene la business logic relativa alle operazioni per ottenere le informazioni dei documenti presenti nel sistema. Ricevuto il model, gestisce la chiamata al DocumentRepository per recuperare le informazioni dei documenti presenti in quello specifico modello.\\ \\
+Questo use case, chiamato dal GetDocumentsController, contiene la business logic relativa alle operazioni per ottenere le informazioni dei documenti presenti nel sistema. Ricevuto il model, gestisce la chiamata al DocumentRepository per recuperare le informazioni dei documenti presenti in quello specifico modello.\\
+Presenta un riferimento ad un'interfaccia IDocumentRepository , la cui implementazione concreta è DocumentRepository, che espone i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item DocumentRepository.
+    \item IDocumentRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}[itemsep=-4pt]
@@ -581,10 +586,11 @@ Questo use case, chiamato dal GetDocumentsController, contiene la business logic
     \item \textit{execute(messages: ICustomMessages): Promise<void>}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal AddChatMessagesController, contiene la business logic relativa alle operazioni per aggiungere le informazioni dei messaggi scritti, definiti dall'\textit{ICustomMessages}. Ricevuto il messages, gestisce la chiamata al ChatRepository per richiedere il salvataggio del dato.\\ \\
+Questo use case, chiamato dal AddChatMessagesController, contiene la business logic relativa alle operazioni per aggiungere le informazioni dei messaggi scritti, definiti dall'\textit{ICustomMessages}. Ricevuto il messages, gestisce la chiamata al ChatRepository per richiedere il salvataggio del dato.\\
+Presenta un riferimento ad un'interfaccia IChatRepository , la cui implementazione concreta è ChatRepository, che espone i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item ChatRepository.
+    \item IChatRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}[itemsep=-4pt]
@@ -611,10 +617,11 @@ Questo use case, chiamato dal AddChatMessagesController, contiene la business lo
     \item \textit{execute(title: string): Promise<void>}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal AddChatController, contiene la business logic relativa alle operazioni per aggiungere una nuova sessione di conversazione nel sistema, che avrà un nome definito dalla \textit{string} title. Ricevuto questo title, gestisce la chiamata al ChatRepository per richiedere la creazione della nuova sessione.\\ \\
+Questo use case, chiamato dal AddChatController, contiene la business logic relativa alle operazioni per aggiungere una nuova sessione di conversazione nel sistema, che avrà un nome definito dalla \textit{string} title. Ricevuto questo title, gestisce la chiamata al ChatRepository per richiedere la creazione della nuova sessione.\\
+Presenta un riferimento ad un'interfaccia IChatRepository , la cui implementazione concreta è ChatRepository, che espone i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item ChatRepository.
+    \item IChatRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}
@@ -641,10 +648,11 @@ Questo use case, chiamato dal AddChatController, contiene la business logic rela
     \item \textit{execute(): Promise<number>.}
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal DeleteAllChatController, contiene la business logic relativa alle operazioni per eliminare dal database tutte le informazioni relative alle sessioni di conversazione attive, incluse le chat history ad esse associate.\\ \\
+Questo use case, chiamato dal DeleteAllChatController, contiene la business logic relativa alle operazioni per eliminare dal database tutte le informazioni relative alle sessioni di conversazione attive, incluse le chat history ad esse associate.\\
+Presenta un riferimento ad un'interfaccia IChatRepository , la cui implementazione concreta è ChatRepository, che espone i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item ChatRepository.
+    \item IChatRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}[itemsep=-4pt]
@@ -672,10 +680,11 @@ Questo use case, chiamato dal DeleteAllChatController, contiene la business logi
     \item \textit{execute(id: number): Promise<void>}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal DeleteChatController, contiene la business logic relativa alle operazioni per eliminare dal database tutte le informazioni relative ad una particolare sessione di conversazione, definita dal \textit{number} id, e alla sua chat history. Ricevuto l'id, gestisce la chiamata al ChatRepository per richiedere l'eliminazione della sessione.\\ \\
+Questo use case, chiamato dal DeleteChatController, contiene la business logic relativa alle operazioni per eliminare dal database tutte le informazioni relative ad una particolare sessione di conversazione, definita dal \textit{number} id, e alla sua chat history. Ricevuto l'id, gestisce la chiamata al ChatRepository per richiedere l'eliminazione della sessione.\\
+Presenta un riferimento ad un'interfaccia IChatRepository , la cui implementazione concreta è ChatRepository, che espone i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item ChatRepository.
+    \item IChatRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}[itemsep=-4pt]
@@ -703,10 +712,11 @@ Questo use case, chiamato dal DeleteChatController, contiene la business logic r
     \item \textit{execute(id: number): Promise<allMessages: Message[], source: MessageSource>}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal GetChatMessagesController, contiene la business logic relativa alle operazioni per ottenere dal database la chat history relativa ad una particolare sessione di conversazione, definita dal \textit{number} id. Ricevuto l'id, gestisce la chiamata al ChatRepository per il recupero dei messaggi.\\ \\
+Questo use case, chiamato dal GetChatMessagesController, contiene la business logic relativa alle operazioni per ottenere dal database la chat history relativa ad una particolare sessione di conversazione, definita dal \textit{number} id. Ricevuto l'id, gestisce la chiamata al ChatRepository per il recupero dei messaggi.\\
+Presenta un riferimento ad un'interfaccia IChatRepository , la cui implementazione concreta è ChatRepository, che espone i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item ChatRepository.
+    \item IChatRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}
@@ -733,10 +743,11 @@ Questo use case, chiamato dal GetChatMessagesController, contiene la business lo
     \item \textit{execute(): Promise<Chat[]>}.
 \end{itemize}
 \textbf{Descrizione}\\
-Questo use case, chiamato dal GetChatsController, contiene la business logic relativa alle operazioni per ottenere dal database le informazioni relative alle sessioni di conversazione salvate e attive nel sistema.\\ \\
+Questo use case, chiamato dal GetChatsController, contiene la business logic relativa alle operazioni per ottenere dal database le informazioni relative alle sessioni di conversazione salvate e attive nel sistema.\\
+Presenta un riferimento ad un'interfaccia IChatRepository , la cui implementazione concreta è ChatRepository, che espone i metodi per lavorare sulle fonti dei dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
-    \item ChatRepository.
+    \item IChatRepository.
 \end{itemize}
 \textbf{Requisiti associati}
 \begin{itemize}
@@ -763,12 +774,13 @@ Questo use case, chiamato dal GetChatsController, contiene la business logic rel
 \begin{itemize}[itemsep=-4pt]
     \item \textit{addDocument(doc: Document, model: IModel): Promise<void>};
     \item \textit{deleteDocument(docName: string, model: IModel): Promise<void>};
-    \item \textit{updateDocument(docName: string, model: IModel, visibility: boolean): Promise<void>};
+    \item \textit{updateDocument(docName: string, model: IModel, tag: Metadatas): Promise<void>};
     \item \textit{getDocuments(model: IModel): Promise<Document[]>};
     \item \textit{getDocumentContent(docName: string, model: IModel): Promise<string>}. 
 \end{itemize}
 \textbf{Descrizione}\\
-La classe DocumentRepository, utilizzata dagli use cases AddDocument, DeleteDocument, UpdateDocument, GetDocumentContent e GetDocuments, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari alla logica di business per aggiunta, rimozione, modifica e lettura dei documenti. Presenta un riferimento ad un'interfaccia IDocumentDataSource, la cui implementazione concreta è MinioDataSource che espone i metodi per lavorare sui dati presenti nel database.\\ \\
+La classe DocumentRepository, utilizzata dagli use cases AddDocument, DeleteDocument, UpdateDocument, GetDocumentContent e GetDocuments, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari alla logica di business per aggiunta, rimozione, modifica e lettura dei documenti.\\
+Presenta un riferimento ad un'interfaccia IDocumentDataSource, la cui implementazione concreta è MinioDataSource che espone i metodi per lavorare sui dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
     \item IDocumentDataSource.
@@ -797,7 +809,8 @@ La classe DocumentRepository, utilizzata dagli use cases AddDocument, DeleteDocu
     \item \textit{getIdsEmbedding(docName: string, model: IModel): Promise<any>}.
 \end{itemize}
 \textbf{Descrizione}\\
-La classe EmbeddingRepository, utilizzata dagli use cases AddDocument e DeleteDocument, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari all'aggiunta ed eliminazione degli embedding di documenti. Presenta un riferimento ad un'interfaccia IEmbeddingDataSource, la cui implementazione concreta è ChromaDataSource che espone i metodi per lavorare sui dati presenti nel vector database.\\ \\
+La classe EmbeddingRepository, utilizzata dagli use cases AddDocument e DeleteDocument, espone i metodi con cui interfacciarsi alle fonti dei dati per il recupero dei dati necessari all'aggiunta ed eliminazione degli embedding di documenti.\\
+Presenta un riferimento ad un'interfaccia IEmbeddingDataSource, la cui implementazione concreta è ChromaDataSource che espone i metodi per lavorare sui dati presenti nel vector database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
     \item IEmbeddingDataSource.
@@ -830,7 +843,8 @@ La classe EmbeddingRepository, utilizzata dagli use cases AddDocument e DeleteDo
     \item \textit{getChats(): Promise<Chat[]>}.
 \end{itemize}
 \textbf{Descrizione}\\
-La classe ChatRepository, utilizzata dagli use cases AddChatMessages, AddChat, DeleteAllChat, DeleteChat, GetChatMessages e GetChats, espone i metodi con cui interfacciarsi alla fonte dei dati per il recupero delle informazioni necessarie alla logica di business per aggiunta, rimozione e recupero delle sessioni di conversazione e dei messaggi delle chat history ad esse associate. Presenta un riferimento ad un'interfaccia IChatDataSource, la cui implementazione concreta è PostgresDataSource che espone i metodi per lavorare sui dati presenti nel database.\\ \\
+La classe ChatRepository, utilizzata dagli use cases AddChatMessages, AddChat, DeleteAllChat, DeleteChat, GetChatMessages e GetChats, espone i metodi con cui interfacciarsi alla fonte dei dati per il recupero delle informazioni necessarie alla logica di business per aggiunta, rimozione e recupero delle sessioni di conversazione e dei messaggi delle chat history ad esse associate.\\
+Presenta un riferimento ad un'interfaccia IChatDataSource, la cui implementazione concreta è PostgresDataSource che espone i metodi per lavorare sui dati presenti nel database.\\ \\
 \textbf{Dipendenze}
 \begin{itemize}
     \item IChatDataSource.
@@ -838,10 +852,9 @@ La classe ChatRepository, utilizzata dagli use cases AddChatMessages, AddChat, D
 
 \begin{figure}[h!]
     \centering  
-    \includegraphics[width=0.7\textwidth]{ChatRepository.png}
+    \includegraphics[width=0.6\textwidth]{ChatRepository.png}
     \caption{UML della classe ChatRepository}
 \end{figure}
-
 \subsection{Data Sources} \label{subsec:datasources}
 \subsubsection{MinioDataSource}
 \textbf{Decoratori}
@@ -1004,7 +1017,7 @@ Sono definite due diverse tabelle: la tabella \textit{chat\_threads}, che rappre
     \includegraphics[width=0.8\textwidth]{postgresdb.png}
     \caption{Diagramma ER del database Postgres}
 \end{figure}
-
+\vspace{2cm}
 \begin{figure}[h!]
     \centering  
     \includegraphics[width=0.8\textwidth]{querypostgresdb.png}
