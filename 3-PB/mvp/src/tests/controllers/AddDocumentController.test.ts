@@ -32,11 +32,15 @@ describe('AddDocumentController', () => {
     it("Verifica che AddDocumentController chiami correttamente AddDocumentUsecase", async () => {
 
         const data = new FormData();
-        data.set("file", new File(['document content'], 'document.txt'));
+        const file = new File(['document content'], 'document.txt')
+        data.set("file", file);
         data.set("model", 'Ollama');
   
         await addDocumentController.handle(data);
-        expect(mockAddDocumentUsecase.execute).toHaveBeenCalledWith(data);
+        expect(mockAddDocumentUsecase.execute).toHaveBeenCalledWith(expect.objectContaining({
+            model: 'Ollama',
+            file: file
+        }));
     });
 
     it("Verifica che AddDocumentController restituisca status 200 con esito positivo", async () => {
