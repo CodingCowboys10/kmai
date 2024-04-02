@@ -7,7 +7,7 @@ function ChatMessages() {
 
   return (
     <div
-      className={"flex flex-col gap-2 w-8/12 h-full pt-2 px-2 overflow-scroll"}
+      data-testid={"ChatHistoryArea"} className={"flex flex-col gap-2 w-8/12 h-full pt-2 px-2 overflow-scroll"}
     >
       {messages.length == 0 && (
         <div

@@ -26,8 +26,8 @@ export function DataTablePagination<TData>({
     <div className="flex items-center justify-end p-2">
       <div className="flex items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Righe per pagina</p>
-          <Select
+          <p className="text-sm font-medium" data-testid={"RighePerPagina"}>Righe per pagina</p>
+          <Select data-testid={"SelectRighePerPagina"}
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value));
@@ -45,12 +45,13 @@ export function DataTablePagination<TData>({
             </SelectContent>
           </Select>
         </div>
-        <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+        <div className="flex w-[100px] items-center justify-center text-sm font-medium" data-testid={"NumeroPagina"}>
           Pagina {table.getState().pagination.pageIndex + 1} di{" "}
           {table.getPageCount()}
         </div>
         <div className="flex items-center space-x-2">
           <Button
+            data-testid={"ButtonFirstPage"}
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => table.setPageIndex(0)}
@@ -60,6 +61,7 @@ export function DataTablePagination<TData>({
             <DoubleArrowLeftIcon className="h-4 w-4" />
           </Button>
           <Button
+            data-testid={"ButtonPreviousPage"}
             variant="outline"
             className="h-8 w-8 p-0"
             onClick={() => table.previousPage()}
@@ -69,6 +71,7 @@ export function DataTablePagination<TData>({
             <ChevronLeftIcon className="h-4 w-4" />
           </Button>
           <Button
+            data-testid={"ButtonNextPage"}
             variant="outline"
             className="h-8 w-8 p-0"
             onClick={() => table.nextPage()}
@@ -78,6 +81,7 @@ export function DataTablePagination<TData>({
             <ChevronRightIcon className="h-4 w-4" />
           </Button>
           <Button
+            data-testid={"ButtonLastPage"}
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}

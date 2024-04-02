@@ -62,11 +62,11 @@ function ChatList() {
     <div className={"flex flex-col relative min-h-[90%]"}>
       <div className={"flex flex-row items-center justify-between p-2"}>
         <Label className={"text-lg"}>Nuova Chat</Label>
-        <Button variant={"ghost"} size={"icon"} onClick={handleCreateChat}>
+        <Button variant={"ghost"} size={"icon"} onClick={handleCreateChat} data-testid={"ButtonNewChat"}>
           <Pencil2Icon className={"w-6 h-6"} />
         </Button>
       </div>
-      <ScrollArea className="h-full max-h-[100%] rounded-md p-1 border-2 ">
+      <ScrollArea className="h-full max-h-[100%] rounded-md p-1 border-2 " data-testid={"ScrollAreaChat"}>
         {isLoadingChat && (
           <div className={"space-y-2"}>
             <Skeleton className={"h-10 bg-background/65"} />{" "}

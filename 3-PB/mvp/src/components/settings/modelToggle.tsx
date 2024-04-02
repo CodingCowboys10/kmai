@@ -15,7 +15,7 @@ function ModelToggle() {
     <div className={"flex flex-row items-center justify-between"}>
       <h2>Modello</h2>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild data-testid={"TriggerModel"}>
           <Button variant="outline" className="justify-start">
             {model === "OpenAi" && (
               <div className=" flex justify-between gap-3 w-full scale-100 dark:scale-100">

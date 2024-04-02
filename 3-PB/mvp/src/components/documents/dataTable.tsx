@@ -77,6 +77,7 @@ export function DataTable<TData, TValue>({
       <div className="flex justify-between py-4 items-center ">
         <div className={"flex justify-start w-full space-x-4"}>
           <Input
+            data-testid={"InputBarraRicerca"}
             placeholder={`Cerca per ${!isFilterData ? "nome" : "data"}...`}
             value={
               (table
@@ -92,7 +93,7 @@ export function DataTable<TData, TValue>({
           />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
+              <Button variant="outline" size="icon" data-testid={"SettingsBarraRicerca"}>
                 <MixerHorizontalIcon className={"w-4 h-4"} />
               </Button>
             </DropdownMenuTrigger>
@@ -127,7 +128,7 @@ export function DataTable<TData, TValue>({
           </DropdownMenu>
         </div>
 
-        <DataTableViewOptions table={table} />
+        <DataTableViewOptions table={table} data-testid={"DataTableViewOptions"} />
       </div>
       <div className="rounded-md border">
         <Table>
@@ -180,7 +181,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+      <DataTablePagination table={table} data-testid={"DataTablePagination"}  />
     </div>
   );
 }
