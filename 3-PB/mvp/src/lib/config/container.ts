@@ -40,7 +40,7 @@ const AWSParams = {
 };
 
 const PoolParams = {
-  host: "localhost",
+  host: "postgres",
   port: 5432,
   user: "postgres",
   password: "postgres",
@@ -50,7 +50,7 @@ const PoolParams = {
 /* --------Embedding---------  */
 
 container.register<ChromaClient>("chromaclient", {
-  useValue: new ChromaClient(),
+  useValue: new ChromaClient({path: "http://chromadb:8000"})
 });
 
 container.register<ChromaDataSource>("embeddingDataSource", {

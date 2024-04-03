@@ -2,13 +2,19 @@ version: '3.8'
 
 services:
   app:
-    image: docker-nextjs-dev
-    build: .
-    ports:
-      - "3000:3000"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.local
     volumes:
       - ./src:/app/src
       - ./public:/app/public
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
 
   minio:
     image: bitnami/minio:latest
@@ -21,6 +27,8 @@ services:
       - MINIO_ROOT_PASSWORD=CHANGEME123
     volumes:
       - minio_data:/data
+    networks:
+        - my_network
 
   createbuckets:
     image: minio/mc:latest
@@ -35,6 +43,8 @@ services:
         /usr/bin/mc policy set public myminio/openai-mvp-collections;
         exit 0;
         "
+    networks:
+        - my_network
 
   ollama:
     volumes:
@@ -52,6 +62,8 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [ gpu ]
+    networks:
+        - my_network
 
   postgres:
     image: postgres
@@ -63,9 +75,11 @@ services:
     volumes:
       - postgresvol:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+        - my_network
 
   chromadb:
-    image: chromadb/chroma
+    image: chromadb/chroma:latest
     volumes:
       - chromadb:/chroma/chroma
     environment:
@@ -73,9 +87,15 @@ services:
       - cors_allow_origins='["*"]'
     ports:
       - "8000:8000"
+    networks:
+        - my_network
 
 volumes:
   minio_data:
   ollama:
   postgresvol:
   chromadb:
+
+networks:
+    my_network:
+      driver: bridge

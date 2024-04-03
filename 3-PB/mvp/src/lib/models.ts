@@ -6,7 +6,7 @@ import { IModel } from "@/lib/config/interfaces";
 const llmsChat = {
   Ollama: new ChatOllama({
     model: "starling-lm",
-    baseUrl: "http://localhost:11434",
+    baseUrl: "http://ollama:11434",
     temperature: 0,
   }),
   OpenAi: new ChatOpenAI({
@@ -19,7 +19,7 @@ const llmsChat = {
 const llmsEmbedding = {
   Ollama: new OllamaEmbeddings({
     model: "starling-lm",
-    baseUrl: "http://localhost:11434",
+    baseUrl: "http://ollama:11434",
   }),
   OpenAi: new OpenAIEmbeddings({
     openAIApiKey: process.env.OPENAI_API_KEY,
