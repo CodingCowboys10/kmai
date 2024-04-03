@@ -4,13 +4,10 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.production
     env_file:
       - .env.local
-    volumes:
-      - ./src:/app/src
-      - ./public:/app/public
-    restart: always
+    restart: unless-stopped
     ports:
       - "3000:3000"
     networks:
@@ -18,6 +15,7 @@ services:
 
   minio:
     image: bitnami/minio:latest
+    restart: unless-stopped
     ports:
       - "9000:9000"
       - "9001:9001"
@@ -67,7 +65,7 @@ services:
 
   postgres:
     image: postgres
-    restart: always
+    restart: unless-stopped
     ports:
       - "5432:5432"
     environment:
@@ -82,6 +80,7 @@ services:
     image: chromadb/chroma:latest
     volumes:
       - chromadb:/chroma/chroma
+    restart: unless-stopped
     environment:
       - IS_PERSISTENT=true
       - cors_allow_origins='["*"]'

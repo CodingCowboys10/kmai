@@ -4,8 +4,8 @@ FROM node:20.10.0
 #change the working directory on the docker image to /app
 WORKDIR /app
 
-#copy the package.json and package-lock.json to the /app directory
-COPY package.json ./
+#copy the package.json to the /app directory
+COPY package.json package-lock.json ./
 
 #install the dependencies
 RUN npm install
