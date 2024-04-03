@@ -1025,3 +1025,37 @@ Sono definite due diverse tabelle: la tabella \textit{chat\_threads}, che rappre
 \end{figure}
 
 \newpage
+
+\subsection{API} \label{subsec:api}
+
+
+\textbf{Descrizione}\\
+Per la funzionalità di chat, è stata implementata un'api apposita. Il body della richiesta contiene l'intera chat history della sessione nella quale si sta svolgendo la conversazione, oltre al modello da utilizzare nelle operazioni di retrieve delle informazioni. Ottenuta la domanda, prendendo l'ultimo messaggio della conversazione, e il contesto della chat history con tutti gli altri, viene completato il prompt da porre al modello. Terminata la fase di retrive, se individuata la risposta essa sarà fornita come streaming di testo accompagnata dai riferimenti sul documento fonte, utilizzando i metadati ad esso associati e presenti nel database vettoriale. \\ \\
+\textbf{Elementi}\\
+Ottenuti dal body della richiesta modello e chat history, viene definita la collezione e quale funzione di embedding utilizzare in base al modello selezionato, utilizzando il metodo \textit{fromExistingCollection} di Chroma. Successivamente viene composto il prompt finale da utilizzare nella \textit{RunnableSequence} di LangChain, definendo domanda, metodo di retrieve, la chat history e il modello da utilizzare nell'operazione.\\
+Al termine del processo, ottenuta risposta e vettore di embedding di riferimento, viene composta l'informazione sul documento fonte della risposta e in seguito restituite come risposta con uno streaming di testo.\\
+In caso di esito negativo della chiamata, viene ritornata una risposta con status 500, contenente nel body il messaggio di errore sollevato.\\ \\
+\textbf{Endpoint: }api/chat\\
+\textbf{Metodo HTTP: }POST\\
+\textbf{Esito positivo}
+
+\textbf{Status: }200;
+
+\textbf{Body: }Streaming di testo della risposta, come da descrizione.\\
+\textbf{Esito negativo}
+
+\textbf{Status: }500;
+
+\textbf{Body: }error: messaggio di errore sollevato.\\ \\
+\textbf{Requisiti associati}
+\begin{itemize}[itemsep=-4pt]
+    \item RFO-44;
+    \item RFO-45;
+    \item RFO-46;
+    \item RFO-64;
+    \item RFO-65.
+\end{itemize}
+
+
+\newpage
+
