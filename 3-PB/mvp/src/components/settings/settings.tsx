@@ -19,7 +19,8 @@ function Settings({ isChat }: { isChat?: boolean }) {
   return (
     <div className={"flex flex-row p-5 mt-auto justify-end"}>
       <Dialog>
-        <DialogTrigger>
+        <DialogTrigger
+        data-testid={"TriggerSettings"}>
           <svg
             className="with-icon_icon__MHUeb"
             data-testid="geist-icon"
@@ -44,8 +45,8 @@ function Settings({ isChat }: { isChat?: boolean }) {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className={"text-2xl"}>Impostazioni</DialogTitle>
-            <DialogDescription className={"text-sm"}>
+            <DialogTitle className={"text-2xl"} data-testid={"DialogTitle"} >Impostazioni</DialogTitle>
+            <DialogDescription className={"text-sm"} data-testid={"DialogDescription"}>
               Modifica tutte le impostazioni dell&apos;applicazione.
             </DialogDescription>
           </DialogHeader>

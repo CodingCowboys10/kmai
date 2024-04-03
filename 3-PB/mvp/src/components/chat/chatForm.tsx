@@ -56,7 +56,7 @@ function ChatForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className="mt-auto w-7/12 relative">
+      <form onSubmit={onSubmit} className="mt-auto w-7/12 relative" data-testid={"FormForm"}>
         <FormField
           control={form.control}
           name="message"
@@ -65,6 +65,7 @@ function ChatForm() {
             <FormItem onChange={handleInputChange}>
               <FormControl>
                 <Textarea
+                  data-testid={"TextAreaForm"}
                   placeholder="Chatta con KMAI...."
                   className="resize-none pr-14"
                   onKeyDown={(e) => {
@@ -84,6 +85,7 @@ function ChatForm() {
           )}
         />
         <Button
+          data-testid={"ButtonForm"}
           className={"absolute right-0 top-0 m-3"}
           size={"icon"}
           variant={"secondary"}

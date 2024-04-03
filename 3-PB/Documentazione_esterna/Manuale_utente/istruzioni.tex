@@ -1,7 +1,17 @@
 \chapter{Utilizzo del prodotto}\label{chap:istruzioni}
+
+\section{Tutorial video}\label{sec:video}
+Per una più semplice ed intuitiva familiarizzazione e spiegazione del prodotto, è reso disponibile un tutorial video che ne illustra le funzionalità.\\
+La risorsa web, disponibile al seguente link, è erogata in lingua italiana, con trascrizione nella medesima lingua.\\ \\
+\begin{footnotesize}
+    \noindent \url{https://drive.google.com/file/d/1MudLV9FGKxE96SbHTUOv4UkT-tvHBon-/view?usp=sharing}\\
+    (\textit{Data di creazione della risorsa: 2024/03/31})
+\end{footnotesize}
+\newpage
+
 \section{Documenti}\label{sec:documenti}
 \subsection{Aggiunta documento}
-Per aggiungere un documento, cliccare sul pulsante "Aggiungi documento" presente nel menù a sinsitra.
+Per aggiungere un documento, cliccare sul pulsante "Aggiungi documento" presente nel menù a sinistra.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{schermatadocaggiungi.png}
@@ -21,7 +31,7 @@ Per aggiungere un documento, cliccare sul pulsante "Aggiungi documento" presente
 \end{figure}
 \\Importante ricordare che i documenti caricati usando un modello locale non possono essere interrogati con il chatbot che utilizza OpenAI e viceversa.
 \subsection{Ricerca documenti}
-Nella parte superiore della sezione documenti è presente una barra di ricerca, in cui è possibile cercare documenti per nome o per data.
+Nella parte superiore della sezione documenti è presente una barra di ricerca, con cui è possibile cercare documenti per nome o per data.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\textwidth]{schermatadocsearch.png}
@@ -46,7 +56,7 @@ Cliccando sul pulsante a tre puntini accanto al documento, si aprirà un menù d
     \caption{Menù documento}\label{fig:menudocs}
 \end{figure}
 \subsubsection{Visualizzazione documento}
-Cliccando su "Visualizza" sarà possibile visualizzare il documento caricato. In caso si tratti di un pdf verrà aperto in un'altra scheda, altrimenti, se il file caricato è di un qualsiasi altro formato supportato dall'applicazione, verrà scaricato.  
+Cliccando su "Visualizza" sarà possibile visualizzare il documento caricato. In caso si tratti di un PDF verrà aperto in un'altra scheda, altrimenti, se il file caricato è di un qualsiasi altro formato supportato dall'applicazione, verrà scaricato.  
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.16\textwidth]{menuactiondocvisualizza.png}
@@ -87,7 +97,7 @@ Cliccando sul pulsante "Colonne" sopra la tabella si aprirà un menù a tendina.
     \caption{Colonne tabella}\label{fig:coltable}
 \end{figure}
 \subsubsection{Righe}
-È possibile scegliere di ordinare le righe della tabella in base a nome o data cliccando sulle frecce a lato dei titoletti. Inoltre, è possibile scegliere quante righe visualizzare e, grazie alle frecce in basso a destra, è possible navigare tra le eventuali pagine.
+È possibile scegliere di ordinare le righe della tabella in base a nome o data cliccando sulle frecce a lato dei titoletti. Inoltre, è possibile scegliere quante righe visualizzare e, grazie alle frecce in basso a destra, è possibile navigare tra le eventuali pagine.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{visualizzaorderdoc.png}
@@ -123,5 +133,116 @@ Per passare alla pagina chat basta cliccare sul pulsante "Vai alla chat" present
     \caption{Vai alla pagina chat}\label{fig:changepage}
 \end{figure}
 
-\section{Chatbot}\label{sec}
-\subsection{}
+\newpage
+\section{Chatbot}\label{secchatbot}
+
+\subsection{Interazione chatbot}
+\subsubsection{Inserimento domanda}
+Per interagire e interrogare il chatbot è possibile inserire il testo della domanda nella barra posta nella parte bassa dell'applicazione.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{inserttextchat.png}
+    \caption{Inserimento domanda}\label{fig:inserttextchat}
+\end{figure}
+\subsubsection{Invio domanda}
+Una volta inserito il testo della domanda, si può procedere con l'invio utilizzando il pulsante presente nella parte destra della barra, oppure semplicemente, premendo il pulsante invio della vostra tastiera.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{buttoninserttextchat.png}
+    \caption{Invio domanda}\label{fig:buttoninserttextchat}
+\end{figure}
+\subsubsection{Caricamento risposta chatbot}
+Una volta inviata la domanda, il vostro messaggio vi apparirà nella parte dedicata alla chat, mentre sulla barra sottostante apparirà il simbolo di caricamento, che sta a indicare l'elaborazione in corso da parte del chatbot di un'eventuale risposta.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{loadingchatresponse.png}
+    \caption{Caricamento risposta chatbot}\label{fig:loadingchatresponse}
+\end{figure}
+\subsubsection{Risposta chatbot}
+Una volta completata la composizione della risposta il chatbot allegherà al messaggio di risposta le informazioni riguardante la fonte da cui ha raccolto i dati.\\
+Qualora fosse necessario, sarà possibile inoltre accedere direttamente alla fonte della risposta e quindi al file contenente le informazioni cliccando sul pulsante contenuto nel messaggio.
+In caso si tratti di un pdf verrà aperto in un’altra scheda, altrimenti, se il file caricato è di un qualsiasi altro formato supportato dall’applicazione, verrà scaricato.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{rispostachat.png}
+    \caption{Risposta chatbot}\label{fig:rispostachat}
+\end{figure}
+
+\newpage
+\subsection{Gestione chat}
+\subsubsection{Creazione automatica nuova chat}
+Una volta inviato un primo messaggio al chatbot, quest'ultimo creerà in automatico una nuova chat impostando come titolo il testo del messaggio inviato.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.3\textwidth]{automaticcreationchat.png}
+    \caption{Creazione automatica nuova chat}\label{fig:automaticcreationchat}
+\end{figure}
+
+\subsubsection{Creazione nuova chat}
+Qualora si volesse creare una nuova chat è possibile farlo dall'apposito pulsante affianco alla scritta "Nuova chat" .
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.3\textwidth]{createnewchat.png}
+    \caption{Creazione nuova chat}\label{fig:createnewchat}
+\end{figure}
+\subsubsection{Eliminazione chat}
+Qualora si volesse eliminare una chat archiviata è sufficiente premere sul pulsante a tre puntini affianco alla chat che si intende eliminare, per poi premere il pulsante "Elimina".
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.3\textwidth]{deletechat.png}
+    \caption{Eliminazione chat}\label{fig:deletechat}
+\end{figure}
+\\Per evitare eliminazioni accidentali, verrà richiesta una conferma prima di procedere.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{confirmdeletechat.png}
+    \caption{Conferma eliminazione chat}\label{fig:confirmdeletechat}
+\end{figure}
+
+\newpage
+\subsection{Impostazioni applicazione}
+Cliccando sulla rotellina presente nel menù di sinistra si apriranno le impostazioni dell'applicazione.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{schermatachatsetting.png}
+    \caption{Impostazioni dell'applicazione}\label{fig:settingchat}
+\end{figure}
+\subsubsection{Modifica modello}
+Dalle impostazioni è possibile scegliere il modello con cui fare domande sui documenti. Importante ricordare che i documenti caricati usando un modello locale non possono
+essere interrogati con il chatbot che utilizza OpenAI e viceversa.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.364\textwidth]{settingchatmodel.png}
+    \caption{Cambio modello}\label{fig:settingchatmodel}
+\end{figure}
+
+\newpage
+\subsubsection{Elimina tutte le Conversazioni}
+Cliccando nel pulsante "Elimina" è possibile eliminare tutte le conversazioni salvate fino a quel momento.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.364\textwidth]{deleteallchat.png}
+    \caption{Elimina tutte le Conversazioni}\label{fig:deleteallchat}
+\end{figure}
+\\Per evitare eliminazioni accidentali, verrà richiesta una conferma prima di procedere.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{confirmdeleteconversations.png}
+    \caption{Conferma eliminazione Conversazioni}\label{fig:dialogdeleteconversation}
+\end{figure}
+
+\newpage
+\subsubsection{Modifica tema}
+È possibile cambiare il tema dell'applicazione selezionando tra modalità dark (rappresentata dalla luna) e modalità light (indicata dall'icona del sole).
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.364\textwidth]{settingchattheme.png}
+    \caption{Cambio tema}\label{fig:settingchattheme}
+\end{figure}
+\subsubsection{Cambio pagina}
+Per passare alla pagina documenti basta cliccare sul pulsante "Vedi i Documenti" presente in fondo alle impostazioni.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.364\textwidth]{settingchatchange.png}
+    \caption{Vai alla pagina chat}\label{fig:changepage}
+\end{figure}

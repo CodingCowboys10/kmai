@@ -34,7 +34,7 @@ function DeleteChatList() {
 
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant={"destructive"}>Elimina</Button>
+          <Button variant={"destructive"} data-testid={"TriggerDelete"}>Elimina</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -45,9 +45,10 @@ function DeleteChatList() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Annulla</AlertDialogCancel>
+            <AlertDialogCancel data-testid={"ButtonCancel"}>Annulla</AlertDialogCancel>
             <AlertDialogAction asChild>
               <Button
+                data-testid={"ButtonDelete"}
                 className={
                   "bg-destructive text-destructive-foreground hover:bg-destructive"
                 }
