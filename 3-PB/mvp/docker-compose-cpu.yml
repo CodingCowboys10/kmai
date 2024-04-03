@@ -1,8 +1,21 @@
 version: '3.8'
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    env_file:
+      - .env.local
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+
   minio:
     image: bitnami/minio:latest
+    restart: unless-stopped
     ports:
       - "9000:9000"
       - "9001:9001"
@@ -12,34 +25,41 @@ services:
       - MINIO_ROOT_PASSWORD=CHANGEME123
     volumes:
       - minio_data:/data
+    networks:
+        - my_network
 
   createbuckets:
     image: minio/mc:latest
     depends_on:
       - minio
     entrypoint: >
-      /bin/sh -c "
-      /usr/bin/mc alias set myminio http://minio:9000 ROOTUSER CHANGEME123;
-      /usr/bin/mc mb myminio/starling-mvp-collections;
-      /usr/bin/mc mb myminio/openai-mvp-collections;
-      /usr/bin/mc policy set public myminio/starling-mvp-collections;
-      /usr/bin/mc policy set public myminio/openai-mvp-collections;
-      exit 0;
-      "
+        /bin/sh -c "
+        sleep 10;
+        /usr/bin/mc alias set myminio http://minio:9000 ROOTUSER CHANGEME123;
+        /usr/bin/mc mb myminio/starling-mvp-collections;
+        /usr/bin/mc mb myminio/openai-mvp-collections;
+        /usr/bin/mc policy set public myminio/starling-mvp-collections;
+        /usr/bin/mc policy set public myminio/openai-mvp-collections;
+        exit 0;
+        "
+    networks:
+        - my_network
 
   ollama:
+    volumes:
+      - ollama:/root/.ollama
+    pull_policy: always
+    tty: true
+    restart: unless-stopped
     image: ollama/ollama:latest
     ports:
       - "11434:11434"
-    volumes:
-      - ollama:/root/.ollama
-    tty: true
-    restart: unless-stopped
-    pull_policy: always
+    networks:
+        - my_network
 
   postgres:
     image: postgres
-    restart: always
+    restart: unless-stopped
     ports:
       - "5432:5432"
     environment:
@@ -47,19 +67,28 @@ services:
     volumes:
       - postgresvol:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+        - my_network
 
   chromadb:
-    image: chromadb/chroma
+    image: chromadb/chroma:latest
     volumes:
       - chromadb:/chroma/chroma
+    restart: unless-stopped
     environment:
       - IS_PERSISTENT=true
       - cors_allow_origins='["*"]'
     ports:
       - "8000:8000"
+    networks:
+        - my_network
 
 volumes:
   minio_data:
   ollama:
   postgresvol:
   chromadb:
+
+networks:
+    my_network:
+      driver: bridge

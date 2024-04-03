@@ -34,6 +34,7 @@ services:
       - minio
     entrypoint: >
         /bin/sh -c "
+        sleep 10;
         /usr/bin/mc alias set myminio http://minio:9000 ROOTUSER CHANGEME123;
         /usr/bin/mc mb myminio/starling-mvp-collections;
         /usr/bin/mc mb myminio/openai-mvp-collections;
