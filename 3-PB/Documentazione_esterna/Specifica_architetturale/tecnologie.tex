@@ -5,8 +5,8 @@ Nella seguente sezione del documento, vengono elencate le principali tecnologie 
 \begin{description}
 \item[Descrizione:] Base di dati che permette l'archiviazione e la persistenza di vettori.
 \item[Versione:] 1.8.1
-\item[Utilizzo:] È stato utilizzato per memorizzare i vettori di embeddings, generati a partire dal contenuto di documenti testuali.
-\item[Motivazione:] Uno tra i vector database più diffusi ed utilizzati, è facilmente integrabile con LangChain, altra tecnologia utilizzata. A differenza di alternative come Pinecone, oltre ad essere completamente gratuito ed a permettere la creazione e gestione di un numero illimitato di collezioni di vettori, rende possibile associare dei metadati ai vettori archiviati.
+\item[Utilizzo:] È stato utilizzato per memorizzare i vettori di \ccgloss{embeddings}, generati a partire dal contenuto di documenti testuali.
+\item[Motivazione:] Uno tra i vector \ccgloss{database} più diffusi ed utilizzati, è facilmente integrabile con LangChain, altra tecnologia utilizzata. A differenza di alternative come Pinecone, oltre ad essere completamente gratuito ed a permettere la creazione e gestione di un numero illimitato di collezioni di vettori, rende possibile associare dei metadati ai vettori archiviati.
 \end{description}
 
 \section{Docker}
@@ -19,7 +19,7 @@ Nella seguente sezione del documento, vengono elencate le principali tecnologie 
 
 \section{Jest}
 \begin{description}
-\item[Descrizione:] Framework di testing per codice Javascript e Typescript.
+\item[Descrizione:] \ccgloss{Framework} di testing per codice \ccgloss{Javascript} e Typescript.
 \item[Versione:] 29.1.2
 \item[Utilizzo:] È stato utilizzato nell'implementazione ed esecuzione dei test di unità e integrazione.
 \item[Motivazione:] È la tecnologia più utilizzata su Javascript e Typescript per testare il codice. Inoltre la sua grande popolarità semplifica la ricerca di documentazioni e informazioni per poter utilizzare tale tecnologia al meglio.
@@ -27,7 +27,7 @@ Nella seguente sezione del documento, vengono elencate le principali tecnologie 
 
 \section{LangChain}
 \begin{description}
-\item[Descrizione:] Framework per lo sviluppo di applicazioni LLM-based.
+\item[Descrizione:] Framework per lo sviluppo di applicazioni \ccgloss{LLM}-based.
 \item[Versione:] 0.1.24
 \item[Utilizzo:] Viene utilizzato per il parsing e lo splitting dei documenti testuali, oltre che per la generazione degli embeddings e il processo di information retrieval. 
 \item[Motivazione:] Oltre a permettere la gestione di moltissime funzionalità diverse tramite l'utilizzo di chain, offre l'integrazione con un'ampia varietà di altre tecnologie. 
@@ -62,7 +62,7 @@ Nella seguente sezione del documento, vengono elencate le principali tecnologie 
 \item[Descrizione:] Framework per l'esecuzione di LLM locali.
 \item[Versione:] 0.1.19
 \item[Utilizzo:] È stato utilizzato per l'esecuzione in locale del LLM utilizzato nell'embedding dei documenti e per il funzionamento del chatbot integrato.
-\item[Motivazione:] Oltre ad essere completamente gratuito, Ollama offre una vastissima gamma, in continuo aggiornamento, di modelli open source tra cui scegliere.
+\item[Motivazione:] Oltre ad essere completamente gratuito, Ollama offre una vastissima gamma, in continuo aggiornamento, di modelli \ccgloss{open source} tra cui scegliere.
 \end{description}
 
 \section{OpenAI}
@@ -78,7 +78,7 @@ Nella seguente sezione del documento, vengono elencate le principali tecnologie 
 \item[Descrizione:] Sistema di database relazionale open source.
 \item[Versione:] 8.11.3
 \item[Utilizzo:] È utilizzato per la memorizzazione delle informazioni relative alle sessioni di conversazione e ai messaggi in essi scambiati.
-\item[Motivazione:] Rispetto ad altri database, come SQLite, permette la gestione di una mole di dati elevata, coerentemente al reale caso d'uso del prodotto. Più in generale, assicura una elevata scalabilità e buone performance.
+\item[Motivazione:] Rispetto ad altri database, come \ccgloss{SQLite}, permette la gestione di una mole di dati elevata, coerentemente al reale caso d'uso del prodotto. Più in generale, assicura una elevata scalabilità e buone performance.
 \end{description}
 
 \section{React}
@@ -86,20 +86,20 @@ Nella seguente sezione del documento, vengono elencate le principali tecnologie 
 \item[Descrizione:] Libreria Javascript per lo sviluppo di applicazioni web e interfacce utente.
 \item[Versione:] 18.2.0
 \item[Utilizzo:] È stato utilizzato per lo sviluppo del prodotto.
-\item[Motivazione:] Rispetto alla principale alternativa Angular ha una curva di apprendimento ridotta, che comporta una più semplice interazione.
+\item[Motivazione:] Rispetto alla principale alternativa \ccgloss{Angular} ha una curva di apprendimento ridotta, che comporta una più semplice interazione.
 \end{description}
 
 \section{Shadcn/ui}
 \begin{description}
-\item[Descrizione:] Libreria di componenti React.
+\item[Descrizione:] Libreria di \ccgloss{componenti} React.
 \item[Versione:] 0.8.0
-\item[Utilizzo:] È stata utilizzata per facilitare la codifica del front-end, incorporando nell'interfaccia grafica componenti prefabbricate, personalizzabili e altamente riutilizzabili.
+\item[Utilizzo:] È stata utilizzata per facilitare la codifica del \ccgloss{front-end}, incorporando nell'interfaccia grafica componenti prefabbricate, personalizzabili e altamente riutilizzabili.
 \item[Motivazione:] Oltre ad essere una libreria popolare è molto utilizzata, è stata adottata perché permette l'utilizzo di componenti accessibili, personalizzabili, riutilizzabili e altamente modularizzate. Quest'ultimo aspetto ci permette di ottenere un front-end in linea con il Compounds Component pattern, tipico di React.
 \end{description}
 
 \section{Tailwind}
 \begin{description}
-\item[Descrizione:] Framework CSS per lo sviluppo semplificato della presentazione di siti e applicazioni web.
+\item[Descrizione:] Framework \ccgloss{CSS} per lo sviluppo semplificato della presentazione di siti e applicazioni web.
 \item[Versione:] 3.3.0
 \item[Utilizzo:] Viene utilizzato per sviluppare l'aspetto dell'interfaccia del prodotto.
 \item[Motivazione:] Utilizzando delle classi standard preesistenti, permette la definizione semplificata e più rapida del codice CSS.
