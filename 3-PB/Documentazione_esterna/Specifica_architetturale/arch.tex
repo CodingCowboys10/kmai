@@ -24,3 +24,18 @@ L'adozione di una Clean Architecture come architettura di sistema porta numerosi
 \end{figure}
 
 \newpage
+
+\section{Architettura di deployment} \label{sec:archdeplo}
+Nel valutare quale architettura di deployment adottare per l'applicativo, è stato considerato il caso d'utilizzo realistico del prodotto.\\
+Essendo l'applicazione pensata per essere utilizzata all'interno di fabbriche o piccole aziende, senza particolari necessità di espansioni del sistema o modifiche sostanziali una volta installato il prodotto, è stato ritenuto vantaggioso e utile optare per un'architettura monolite. Oltre ad essere la scelta migliore per lo scopo finale e le caratteristiche del prodotto, permettendo anche una più semplice fase di progettazione, codifica e test, il  monolite non presenta le stesse difficoltà che avrebbe portato la scelta di altre architetture di deployment, come quella a micro-servizi, la quale sarebbe stata di difficile implementazione considerate anche le competenze e le conoscenze dei membri del gruppo.\\ \\
+Il deploy del prodotto avviene tramite containerizzazione con Docker Compose. In questo modo, è possibile facilitare l'installazione dell'applicativo andando a definire un ambiente dove tutte le dipendenze sono risolte, nel quale sono già predisposti correttamente tutti i servizi necessari al corretto utilizzo del prodotto. In particolare, il container predispone al corretto utilizzo dei database, ovvero ChromaDB, Postgres e MinIO, oltre ai servizi di Ollama.
+
+\vspace{2cm}
+
+\begin{figure}[h!]
+    \centering  
+    \includegraphics[width=0.5\textwidth]{docker.png}
+    \caption{Servizi predisposti dal Docker Compose}
+\end{figure}
+
+\newpage
