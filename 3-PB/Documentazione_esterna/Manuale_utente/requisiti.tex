@@ -1,7 +1,29 @@
 \chapter{Requisiti} \label{cap:Req}
-Per il corretto utilizzo dell'applicazione è necessario soddisfare i seguenti requisiti minimi.
-
+Per il corretto utilizzo dell'applicazione è necessario soddisfare i seguenti requisiti minimi.\\
+La versione FULL comprende le funzionalità WEB cioè l'utilizzo del modello OpenAI, con l'aggiunta dell'esecuzione locale mediante l'utilizzo del modello Ollama.\\
+La versione FULL GPU ver. è la versione più performante ed utilizza la tecnologia CUDA, per cui è richiesta una scheda video compatibile con tale tecnologia.\\
+La versione FULL CPU ver. utilizza il processore come unica unità di elaborazione del modello, per cui non è richiesta una GPU.
 \section{Requisiti di sistema}
+\begingroup
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{oddrow}{evenrow}
+\begin{xltabular}{\textwidth}{| c | X |}
+    \hline
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Sistema Operativo}} & \textbf{\textcolor{white}{Distribuzione}}\\
+    \hline
+    \endhead
+    Linux-based (Consigliato) & Kernel 3.10 o successivo. Distribuzioni Ubuntu, Debian, RHEL, Fedora, Arch(sperimentale).\\
+    \hline
+    Windows & 10 Pro 64-bit o successivo.\\
+    \hline
+    macOS & 10.15 "Catalina" o successivo.\\
+    \hline
+    \rowcolor{white} \caption{Sistemi operativi compatibili}
+    \label{tab:reqso}
+\end{xltabular}
+\endgroup
+
 \begingroup
 \setlength{\tabcolsep}{10pt}
 \renewcommand{\arraystretch}{1.5}
@@ -13,8 +35,8 @@ Per il corretto utilizzo dell'applicazione è necessario soddisfare i seguenti r
     \endhead
     Docker & 24.0.7 & https://docs.docker.com/engine/install/ \\
     \hline
-    \rowcolor{white} \caption{Requisiti di sistema}
-    \label{tab:reqsist}
+    \rowcolor{white} \caption{Requisiti software}
+    \label{tab:reqsoft}
 \end{xltabular}
 \endgroup
 
@@ -25,14 +47,16 @@ Per il corretto utilizzo dell'applicazione è necessario soddisfare i seguenti r
 \rowcolors{2}{oddrow}{evenrow}
 \begin{xltabular}{\textwidth}{| c | c | c |}
     \hline
-    \rowcolor{headerrow} \textbf{\textcolor{white}{Componente}} & \textbf{\textcolor{white}{Minimo}} & \textbf{\textcolor{white}{Consigliato}}\\
+    \rowcolor{headerrow} \textbf{\textcolor{white}{Versione}} & \textbf{\textcolor{white}{RAM}} & \textbf{\textcolor{white}{GPU VRAM}}\\
     \hline
     \endhead
-    RAM & 16 GB DDR4 & 16 GB DDR4 \\
+    WEB only & 4 GB DDR4 & N/R \\
     \hline
-    GPU & & \\
+    FULL GPU ver.& 4 GB DDR4 & 8GB GDDR6 \\
     \hline
-    \rowcolor{white} \caption{Requisiti hardware}
+    FULL CPU ver.& 16 GB DDR4 & N/R \\
+    \hline
+    \rowcolor{white} \caption{Requisiti hardware minimi}
     \label{tab:reqhard}
 \end{xltabular}
 \endgroup
