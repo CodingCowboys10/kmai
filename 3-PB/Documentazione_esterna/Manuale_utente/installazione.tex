@@ -1,1 +1,28 @@
 \chapter{Installazione} \label{cap:Inst}
+\section{Clonazione Repository da Github}
+L'applicazione KMAI può essere scaricata gratuitamente da Github al seguente link: \url{https://github.com/CodingCowboys10/kmai} \textit{(Ultimo accesso: 2024/04/04)}; \\
+Oppure clonata mediante terminale con il comando:
+    \begin{lstlisting}
+        $ git clone https://github.com/CodingCowboys10/kmai.git
+    \end{lstlisting}
+
+\section{Configurazione}
+Recarsi nella cartella appena copiata alla seguente directory: \\
+kmai/3-PB/mvp e aprire il file .env.local\\ \textit{(se il file non fosse visibile attivare la visualizzazione dei file nascosti)}\\
+Nella prima riga, OPENAI\_API\_KEY inserire tra i doppi apici la key di OpenAI. es. sk-xxxxxx...\\
+Nella seconda riga NEXT\_PUBLIC\_HOSTED\_VERSION impostare:\\ true se si desidera utilizzare la versione WEB\_only,\\ false per le modalità FULL.\\
+Salvare e chiudere il file.
+
+\section{Docker}
+L'applicazione per essere avviata necessita dell'installazione di Docker, come riportato nella sezione \ref{cap:Req}.\\
+All'interno della directory: kmai/3-PB/mvp eseguire da terminale il comando di installazione della versione desiderata: \\
+versione GPU
+    \begin{lstlisting}
+        $ sudo docker compose -f docker-compose-gpu.yml up
+    \end{lstlisting}
+versione CPU:
+    \begin{lstlisting}
+        $ sudo docker compose -f docker-compose-cpu.yml up
+    \end{lstlisting}
+Attendere la fine dell'installazione ed infine accedere all'indirizzo web: \\\\
+\url{http://localhost:3000}
