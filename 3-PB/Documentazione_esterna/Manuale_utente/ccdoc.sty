@@ -18,6 +18,7 @@
 \usepackage{titlesec}
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{listings}
 \usepackage{makecell}
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
@@ -61,6 +62,18 @@
 \definecolor{headerrow}{HTML}{006f83}
 \definecolor{cmarkcolor}{HTML}{00a46b}
 \definecolor{xmarkcolor}{HTML}{a41900}
+
+\lstset{frame=tb,
+  language=bash,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 %\setcounter{secnumdepth}{1}
 \newcommand{\ccgloss}[1]{\emph{#1\ped{G}}}
