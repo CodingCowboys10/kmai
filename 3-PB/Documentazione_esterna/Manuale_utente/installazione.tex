@@ -26,21 +26,21 @@ L'applicazione per essere avviata necessita dell'installazione di Docker, come r
 All'interno della directory: kmai/3-PB/mvp eseguire da terminale il comando di installazione della versione desiderata: \\
 versione CPU \& WEB only:
     \begin{lstlisting}
-        $ sudo docker compose -f docker-compose-cpu.yml up
+        $ docker compose -f docker-compose-cpu.yml up
     \end{lstlisting}
 versione GPU
     \begin{lstlisting}
-        $ sudo docker compose -f docker-compose-gpu.yml up
+        $ docker compose -f docker-compose-gpu.yml up
     \end{lstlisting}
 Attendere la fine dell'installazione.\\\\
 SOLO per versione FULL: nel caso si desideri utilizzare la versione FULL del prodotto eseguire il seguente comando per scaricare il modello LLM (4.1 GB):\\
 versione CPU:
     \begin{lstlisting}
-        $ sudo docker compose -f docker-compose-cpu.yml exec -it ollama ollama pull starling-lm:latest
+        $ docker compose -f docker-compose-cpu.yml exec -it ollama ollama pull starling-lm:latest
     \end{lstlisting}
 versione GPU:
     \begin{lstlisting}
-        $ sudo docker compose -f docker-compose-gpu.yml exec -it ollama ollama pull starling-lm:latest
+        $ docker compose -f docker-compose-gpu.yml exec -it ollama ollama pull starling-lm:latest
     \end{lstlisting}
 Attendere la fine di tutte le installazioni, ed infine accedere all'indirizzo web: \\ \\
 \url{http://localhost:3000}
