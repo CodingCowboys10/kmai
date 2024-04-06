@@ -1,8 +1,16 @@
 \chapter{Requisiti} \label{cap:Req}
-Per il corretto utilizzo dell'applicazione è necessario soddisfare i seguenti requisiti minimi.\\
-La versione FULL comprende le funzionalità WEB cioè l'utilizzo del modello OpenAI, con l'aggiunta dell'esecuzione locale mediante l'utilizzo del modello Ollama.\\
-La versione FULL GPU ver. è la versione più performante ed utilizza la tecnologia CUDA, per cui è richiesta una scheda video compatibile con tale tecnologia.\\
-La versione FULL CPU ver. utilizza il processore come unica unità di elaborazione del modello, per cui non è richiesta una GPU.
+Per il corretto utilizzo dell'applicazione è necessario soddisfare i seguenti requisiti minimi, diversificati in base alla versione del prodotto che si intende utilizzare.\\
+Sono attualmente disponibili due principali versioni:
+\vspace{-0.3cm}
+\begin{itemize}[itemsep=-2pt]
+    \item Web\_Only;
+    \item Full, comprendente le versioni Full\_CPU e Full\_GPU.
+\end{itemize}
+\vspace{-0.3cm}
+La versione Web\_Only utilizza il modello GPT3.5 di OpenAI, pertanto necessita di una connessione ad internet, oltre al possesso di una API Key.\\
+La versione Full, oltre alle funzionalità della versione Web\_Only, offre la possibilità di eseguire in locale il modello Starling di Ollama, previa installazione.\\
+La Full\_GPU è la versione più performante ed utilizza la tecnologia CUDA, per cui è richiesta una scheda video compatibile con tale tecnologia.\\
+La versione Full\_CPU utilizza il processore come unica unità di elaborazione del modello, per cui non è richiesta una GPU.
 \section{Requisiti di sistema}
 \begingroup
 \setlength{\tabcolsep}{10pt}
@@ -13,7 +21,7 @@ La versione FULL CPU ver. utilizza il processore come unica unità di elaborazio
     \rowcolor{headerrow} \textbf{\textcolor{white}{Sistema Operativo}} & \textbf{\textcolor{white}{Distribuzione}}\\
     \hline
     \endhead
-    Linux-based (Consigliato) & Kernel 3.10 o successivo. Distribuzioni Ubuntu, Debian, RHEL, Fedora, Arch(sperimentale).\\
+    Linux-based (Consigliato) & Kernel 3.10 o successivo. Distribuzioni Ubuntu, Debian, RHEL, Fedora, Arch (sperimentale).\\
     \hline
     Windows & 10 Pro 64-bit o successivo.\\
     \hline
@@ -33,7 +41,7 @@ La versione FULL CPU ver. utilizza il processore come unica unità di elaborazio
     \rowcolor{headerrow} \textbf{\textcolor{white}{Software}} & \textbf{\textcolor{white}{Versione}} & \textbf{\textcolor{white}{Download}}\\
     \hline
     \endhead
-    Docker & 24.0.7 & https://docs.docker.com/engine/install/ \\
+    Docker & 24.0.7 & \url{https://docs.docker.com/engine/install/} \\
     \hline
     \rowcolor{white} \caption{Requisiti software}
     \label{tab:reqsoft}
@@ -50,11 +58,11 @@ La versione FULL CPU ver. utilizza il processore come unica unità di elaborazio
     \rowcolor{headerrow} \textbf{\textcolor{white}{Versione}} & \textbf{\textcolor{white}{RAM}} & \textbf{\textcolor{white}{GPU VRAM}}\\
     \hline
     \endhead
-    WEB only & 4 GB DDR4 & N/R \\
+    Web\_Only & 4 GB DDR4 & Non richiesto \\
     \hline
-    FULL GPU ver.& 4 GB DDR4 & 8GB GDDR6 \\
+    Full\_GPU & 4 GB DDR4 & 8GB GDDR6 \\
     \hline
-    FULL CPU ver.& 16 GB DDR4 & N/R \\
+    Full\_CPU & 16 GB DDR4 & Non richiesto \\
     \hline
     \rowcolor{white} \caption{Requisiti hardware minimi}
     \label{tab:reqhard}
@@ -71,13 +79,13 @@ La versione FULL CPU ver. utilizza il processore come unica unità di elaborazio
     \rowcolor{headerrow} \textbf{\textcolor{white}{Browser}} & \textbf{\textcolor{white}{Versione}}\\
     \hline
     \endhead
-    Google Chrome & 110.0 \\
+    Google Chrome & 110.0+ \\
     \hline
-    Mozilla Firefox & 116.0 \\
+    Mozilla Firefox & 116.0+ \\
     \hline
-    Opera & 96.0 \\
+    Opera & 96.0+ \\
     \hline
-    Microsoft Edge & 110.0 \\
+    Microsoft Edge & 110.0+ \\
     \hline
     \rowcolor{white} \caption{Browser compatibili}
     \label{tab:reqbrow}
