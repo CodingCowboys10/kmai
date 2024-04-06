@@ -1,47 +1,69 @@
 \chapter{Installazione} \label{cap:Inst}
 \section{Clonazione Repository da Github}
-L'applicazione KMAI può essere scaricata gratuitamente da Github al seguente link: \url{https://github.com/CodingCowboys10/kmai} \textit{(Ultimo accesso: 2024/04/04)}; \\
-Oppure clonata mediante terminale con il comando:
+L'applicazione Knowledge Management AI può essere scaricata gratuitamente da Github al seguente link: \\ \url{https://github.com/CodingCowboys10/kmai} \textit{(Ultimo accesso: 2024/04/04)}; \\
+Oppure può essere clonata mediante terminale con il comando:
     \begin{lstlisting}
         $ git clone https://github.com/CodingCowboys10/kmai.git
     \end{lstlisting}
 
 \section{Configurazione}
-Recarsi nella cartella appena copiata alla seguente directory: \\
-kmai/3-PB/mvp e creare un file nominato .env.local\\
-Inserire quanto segue:
+Recarsi nella cartella appena copiata alla  directory kmai/3-PB/mvp e creare un file denominato .env.local. Inserire quanto segue:
     \begin{lstlisting}
         OPENAI_API_KEY="sk-xxxx"
         NEXT_PUBLIC_HOSTED_VERSION=false
         AWS_SDK_JS_SUPPRESS_MAINTENANCE_MODE_MESSAGE=1
         export chroma_server_cors_allow_origins='["*"]'
     \end{lstlisting}
-Nella prima riga, OPENAI\_API\_KEY inserire tra i doppi apici la key di OpenAI. es. sk-xxxxxx...\\
-Nella seconda riga NEXT\_PUBLIC\_HOSTED\_VERSION impostare:\\ true se si desidera utilizzare la versione WEB\_only,\\ false per le modalità FULL.\\
+Nella prima riga, alla voce OPENAI\_API\_KEY, inserire tra i doppi apici la key di OpenAI, nel formato sk-xxxxxx...\\
+Nella seconda riga, alla voce NEXT\_PUBLIC\_HOSTED\_VERSION, impostare:
+\vspace{-0.3cm}
+\begin{itemize}[itemsep=-2pt]
+    \item true se si desidera utilizzare la versione Web\_Only;
+    \item false se si desidera utilizzare la versione Full.
+\end{itemize}
+\vspace{-0.3cm}
 Salvare e chiudere il file.\\
-\textit{(Se alla chiusura, il file nella cartella non comparisse, assicurarsi che la visualizzazione degli elementi nascosti sia attiva, per poterlo visualizzare)}\\
-SOLO per WINDOWS: eseguire come amministratore il file SetHost.bat presente nella directory.
+\textit{(Se alla chiusura, il file nella cartella non comparisse, assicurarsi che la visualizzazione degli elementi nascosti sia attiva, per poterlo visualizzare)}\\ \\
+\textbf{Solo per Windows}: eseguire come amministratore il file SetHost.bat presente nella directory.
 
 \section{Docker}
 L'applicazione per essere avviata necessita dell'installazione di Docker, come riportato nella sezione \ref{cap:Req}.\\
-All'interno della directory: kmai/3-PB/mvp eseguire da terminale il comando di installazione della versione desiderata: \\
-versione CPU \& WEB only:
+All'interno della directory: kmai/3-PB/mvp eseguire da terminale il comando di installazione della versione desiderata:
+\vspace{-0.3cm}
+\begin{itemize}
+    \item versioni Full\_CPU e Web\_Only:
+\end{itemize}
+\vspace{-0.4cm}
     \begin{lstlisting}
         $ docker compose -f docker-compose-cpu.yml up
     \end{lstlisting}
-versione GPU
+\vspace{-0.4cm}
+\begin{itemize}
+    \item versione Full\_GPU:
+\end{itemize}
+\vspace{-0.4cm}
     \begin{lstlisting}
         $ docker compose -f docker-compose-gpu.yml up
     \end{lstlisting}
-Attendere la fine dell'installazione.\\\\
-SOLO per versione FULL: nel caso si desideri utilizzare la versione FULL del prodotto eseguire il seguente comando per scaricare il modello LLM (4.1 GB):\\
-versione CPU:
+Attendere la fine dell'installazione.\\ \\ \\
+\textbf{Solo per la versione Full}: nel caso si desideri utilizzare la versione Full del prodotto, eseguire il seguente comando per scaricare il modello Starling (4.1 GB):
+\vspace{-0.3cm}
+\begin{itemize}
+    \item versione Full\_CPU:
+\end{itemize}
+\vspace{-0.4cm}
     \begin{lstlisting}
         $ docker compose -f docker-compose-cpu.yml exec -it ollama ollama pull starling-lm:latest
     \end{lstlisting}
-versione GPU:
+\vspace{-0.4cm}
+\begin{itemize}
+    \item versione Full\_GPU:
+\end{itemize}
+\vspace{-0.4cm}
     \begin{lstlisting}
         $ docker compose -f docker-compose-gpu.yml exec -it ollama ollama pull starling-lm:latest
     \end{lstlisting}
-Attendere la fine di tutte le installazioni, ed infine accedere all'indirizzo web: \\ \\
+Attendere la fine dell'installazione.\\ \\ \\
+
+\noindent Sarà infine possibile utilizzare il prodotto accedendo all'indirizzo web: \\ \\
 \url{http://localhost:3000}
