@@ -109,7 +109,7 @@ Il processo di sviluppo si articola nelle seguenti attività:
     \item analisi dei requisiti;
     \item progettazione architetturale;
     \item progettazione di dettaglio;
-    \item codifica e prova dei componenti;
+    \item codifica e prova dei \ccgloss{componenti};
     \item integrazione dei componenti.
     %\item collaudo;
     %\item installazione;
@@ -187,7 +187,7 @@ L'attività si articola nei seguenti compiti:
     \item È necessario trasformare i requisiti, identificati mediante la relativa attività, in un'architettura del prodotto, identificando i componenti necessari e scopi e funzioni ad essi associati.
     \item Deve essere sviluppata una progettazione che tenga in considerazione l'interazione dei singoli componenti tra loro, verificando che ogni componente faccia riferimento a uno o più requisiti e viceversa.
     \item Devono essere identificati i test con cui verificare la soddisfazione dei requisiti che danno origine ai componenti, e devono essere riportati nel documento opportuno denominato Piano\_di\_qualifica\_v2.0.
-    \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività. Il parere del proponente sarà inoltre necessario per la definizione dei componenti da progettare, e successivamente codificare e implementare, per la prima fase di studio di fattibilità del progetto e delle sue tecnologie, con la realizzazione di un prodotto software denominato \ccgloss{Proof of Concept}, oltre che per il prodotto software finale denominato Minimum Viable Product.
+    \item Devono essere svolti incontri interlocutori con il proponente, al fine di ottenere feedback su quanto prodotto in questa attività. Il parere del proponente sarà inoltre necessario per la definizione dei componenti da progettare, e successivamente codificare e implementare, per la prima fase di studio di fattibilità del progetto e delle sue tecnologie, con la realizzazione di un prodotto software denominato \ccgloss{Proof of Concept}, oltre che per il prodotto software finale denominato \ccgloss{Minimum Viable Product}.
     \item La progettazione deve portare alla produzione del documento Specifica\_architetturale\_v1.0, il quale conterrà:
 
 \begin{itemize}
@@ -199,7 +199,7 @@ L'attività si articola nei seguenti compiti:
         \item una motivazione riguardante il perché quello strumento è stato scelto.
     \end{enumerate}
     \item uno schema che rappresenta l'architettura logica del prodotto;
-    \item una lista dei design pattern implementati, con una descrizione dettagliata di come sono stati integrati nell'applicazione.
+    \item una lista dei design \ccgloss{pattern} implementati, con una descrizione dettagliata di come sono stati integrati nell'applicazione.
 \end{itemize}
 \item Parallelamente all'attività di progettazione architetturale, devono essere definiti i test da eseguire per verificare la corretta integrazione delle componenti del prodotto. Ogni test individuato deve essere documentato nel Piano\_di\_qualifica\_v2.0 e deve esporre:
     \begin{enumerate}
@@ -212,7 +212,7 @@ L'attività si articola nei seguenti compiti:
         \item nome del test codificato ad esso associato;
         \item tracciamento della implementazione del test.
     \end{enumerate}
-    La definizione dei test a seguito dell'attività di progettazione è coerente a quanto prefigge il \ccgloss{V model}.\\
+    La definizione dei test a seguito dell'attività di progettazione è coerente a quanto prefigge il V model.\\
     I test devono essere preferibilmente codificati in modo tale da essere automatici, veloci e ripetibili.
     Qualora questo non fosse possibile a causa di qualche problematica o per qualche necessità, sono accettati anche test manuali e quindi non automatici, cosicché da coprire ugualmente il test.
 \end{enumerate}
@@ -235,7 +235,7 @@ L'attività si articola nei seguenti compiti:
         \item nome del test codificato ad esso associato;
         \item tracciamento della implementazione del test.
     \end{enumerate}
-    La definizione dei test a seguito dell'attività di progettazione di dettaglio è coerente a quanto prefigge il \ccgloss{V model}.\\
+    La definizione dei test a seguito dell'attività di progettazione di dettaglio è coerente a quanto prefigge il V model.\\
     I test devono essere preferibilmente codificati in modo tale da essere automatici, veloci e ripetibili.
     Qualora questo non fosse possibile a causa di qualche problematica o per qualche necessità, sono accettati anche test manuali e quindi non automatici, cosicché da coprire ugualmente il test.
 \end{enumerate}
@@ -271,11 +271,11 @@ Durante lo svolgimento dei compiti vengono utilizzati i seguenti strumenti:
     \item StarUML per la creazione dei diagrammi UML dei casi d'uso, prodotti nell'attività di analisi dei requisiti, e degli UML delle classi, prodotti nelle attività di progettazione;
     \item \ccgloss{Ollama}, e i relativi modelli linguistici forniti, per l'\ccgloss{embedding} dei documenti e la fase di retrieve per l'implementazione del \ccgloss{chatbot};
     \item \ccgloss{OpenAi} tecnologia usata in alternativa a quelle del punto precedente, ma con stesso fine;
-    \item \ccgloss{Langchain} per la creazione dell'applicazione semplificando l'interazione tra \ccgloss{LLM} e database;
+    \item \ccgloss{Langchain} per la creazione dell'applicazione semplificando l'interazione tra \ccgloss{LLM} e \ccgloss{database};
     \item \ccgloss{Chromadb} per lo store dei vettori creati con l'embedding dei documenti;
     \item \ccgloss{Postgres} per lo store delle chat;
     \item \ccgloss{React} per la realizzazione dell'interfaccia utente in \ccgloss{TypeScript};
-    \item NodeJs per l'esecuzione di codice TypeScript;
+    \item \ccgloss{NodeJs} per l'esecuzione di codice TypeScript;
     \item \ccgloss{NextJs} come framework per lo sviluppo;
     \item \ccgloss{Web Storm} come IDE per la codifica del prodotto;
     \item \ccgloss{MinIO} per la gestione e l'archiviazione dei documenti.
