@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
     const vectorstore = await Chroma.fromExistingCollection(
       llmsEmbedding[model],
       {
+        url: "http://chromadb:8000",
         collectionName: collections[model],
         filter: {
           visibility: true,

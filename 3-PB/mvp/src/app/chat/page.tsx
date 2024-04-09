@@ -20,14 +20,14 @@ export default function App() {
 
 function Main() {
   return (
-    <main className="relative flex flex-row w-full h-full">
-      <SideBar isChat={true}>
-        <ChatList></ChatList>
-      </SideBar>
-      <Body>
-        <ChatMessages></ChatMessages>
-        <ChatForm></ChatForm>
-      </Body>
-    </main>
+      <main className="relative flex flex-row w-full h-full overflow-hidden">
+          <SideBar isChat={true}>
+              <ChatList></ChatList>
+          </SideBar>
+          <Body>
+              <ChatMessages></ChatMessages>
+              <ChatForm></ChatForm>
+          </Body>
+      </main>
   );
 }

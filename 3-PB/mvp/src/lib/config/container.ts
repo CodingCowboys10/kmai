@@ -33,14 +33,14 @@ import { GetChatMessagesUsecase } from "@/usecase/chat/getChatMessagesUsecase";
 import { GetChatMessagesController } from "@/controllers/chat/getChatMessagesController";
 
 const AWSParams = {
-  endpoint: "http://127.0.0.1:9000", //ristabilito
+  endpoint: "http://minio:9000",
   accessKeyId: "ROOTUSER",
   secretAccessKey: "CHANGEME123",
   s3ForcePathStyle: true,
 };
 
 const PoolParams = {
-  host: "localhost",
+  host: "postgres",
   port: 5432,
   user: "postgres",
   password: "postgres",
@@ -50,7 +50,7 @@ const PoolParams = {
 /* --------Embedding---------  */
 
 container.register<ChromaClient>("chromaclient", {
-  useValue: new ChromaClient(),
+  useValue: new ChromaClient({path: "http://chromadb:8000"})
 });
 
 container.register<ChromaDataSource>("embeddingDataSource", {

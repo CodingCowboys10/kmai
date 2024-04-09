@@ -11,10 +11,10 @@ function SideBar({
 }) {
   const [isCollapsed, setCollapsed] = useState(false);
   return (
-    <div
-      className={`p-1 relative transition-all ease-linear duration-150 flex flex-col min-h-screen max-h-screen overflow-hidden bg-accent  ${isCollapsed ? "invisible w-0" : " visible w-2/12"}`}
-    >
-      <div className={" absolute h-full flex items-center visible -right-10"}>
+      <div
+          className={`p-1 relative transition-all ease-linear duration-150 flex flex-col min-h-screen max-h-screen bg-accent  ${isCollapsed ? "invisible w-0" : " visible w-2/12"}`}
+      >
+        <div className={" absolute h-full flex items-center visible -right-10"}>
         <Button
           className={
             "flex items-center bg-background hover:bg-background text-foreground "
