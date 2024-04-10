@@ -3,7 +3,7 @@ import {ChromaClient} from "chromadb";
 import AWS from "aws-sdk";
 
 const s3 = new AWS.S3({
-    endpoint: 'http://minio:9000',
+    endpoint: 'http://127.0.0.1:9000',
     accessKeyId: "ROOTUSER" ,
     secretAccessKey : "CHANGEME123",
     s3ForcePathStyle: true,

@@ -289,6 +289,7 @@ Tali test, coerentemente a quanto prefigge il V model e il documento Norme\_di\_
 Ogni test sarà identificato da un codice alfanumerico, da una descrizione generale, dall'identificazione del requisito da cui tale test deriva e dal tracciamento della implementazione, o meno, di tale nel prodotto.
 
 \subsection{Test di accettazione}
+I seguenti test di accettazione hanno costituito la base per l'approvazione del Minimum Viable Product, verificando quali funzionalità sono state implementate nel prodotto. Essi sono stati definiti pensando ai test necessari per il collaudo di un prodotto finito.
 
 \begingroup
 \setlength{\tabcolsep}{10pt}
@@ -299,47 +300,35 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
     \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Fonte}} & \textbf{\textcolor{white}{Stato}}\\
     \hline
     \endhead
-%%TA-0 & Verificare che l’utente, all'avvio dell'applicazione, possa selezionare se  recarsi nella parte di chat; recarsi nella parte dei documenti; & UC-0, UC-0.0 & \ding{55} \\
     \hline
-    
-    TA-1 & Verificare che l’utente possa selezionare un modello di LLM con cui interagire. & UC-1,\newline UC-2 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    TA-1 & Verificare che l’utente possa selezionare un modello di LLM con cui interagire. & UC-1,\newline UC-2 & \textcolor{cmarkcolor}{\ding{51}}  \\
     \hline
     TA-2 & Verificare che l’utente possa visualizzare i documenti presenti sul modello selezionato.
-     & UC-3 &\textcolor{xmarkcolor}{\ding{55}}  \\
+     & UC-3 &\textcolor{cmarkcolor}{\ding{51}}  \\
     \hline
-    TA-3 & Verificare che l’utente, una volta visualizzata la lista dei documenti, possa: \begin{enumerate}
-        \item selezionare un singolo documento;
-        \item visualizzare il nome del documento;
-        \item visualizzare la data di inserimento del documento;
-        \item visualizzare il contenuto del documento;
-        \item visualizzare lo stato del documento;
-        \item visualizzare la dimensione del documento.
-    \end{enumerate} & UC-4, \newline UC-4.1,\newline UC-4.2,\newline UC-4.3,\newline UC-4.4,\newline UC-4.5,\newline UC-4.6 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    TA-3 & Verificare che l’utente possa visualizzare il nome,  la data di inserimento, la dimensione e il contenuto dei documenti.
+     & UC-4.1,\newline UC-4.2,\newline UC-4.4,\newline UC-4.6 &\textcolor{cmarkcolor}{\ding{51}}  \\
     \hline
-    TA-4 & Verificare che l’utente quando effettua una ricerca tra i documenti visualizzati possa:
-    \begin{enumerate}
-        \item visualizzare la barra di ricerca;
-        \item inserire il nome del documento;
-        \item inserire la data di caricamento del documento;
-        \item inserire il tag del documento.
-    \end{enumerate}& UC-5, \newline UC-5.1,\newline UC-5.2,\newline UC-5.3 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    TA-4 & Verificare che l’utente possa visualizzare i tag associati ai documenti.
+     & UC-4.3 &\textcolor{cmarkcolor}{\ding{51}}  \\
     \hline
-     TA-5 & Verificare che l’utente quando voglia assegnare un tag ad un documento possa:
-    \begin{enumerate}
-        \item visualizzare i documenti caricati;
-        \item selezionare un documento senza tag;
-        \item visualizzare la lista di tag presenti;
-        \item inserire il tag al documento.
-    \end{enumerate}& UC-6 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    TA-5 & Verificare che l’utente possa visualizzare lo stato di visibilità dei documenti.
+     & UC-4.4 &\textcolor{cmarkcolor}{\ding{51}}  \\
     \hline
-    TA-6 & Verificare che l’utente, quando voglia rimuovere un tag ad un documento, possa:
+    TA-6 & Verificare che l’utente possa ricercare i documenti per nome. & UC-5.1 & \textcolor{cmarkcolor}{\ding{51}}  \\
+    \hline
+    TA-7 & Verificare che l’utente possa ricercare i documenti per data di inserimento. & UC-5.2 & \textcolor{cmarkcolor}{\ding{51}}  \\
+    \hline
+    TA-8 & Verificare che l’utente possa ricercare i documenti per tag associati. & UC-5.3 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    \hline
+    TA-9 & Verificare che l’utente, nel rimuovere un tag ad un documento, possa:
     \begin{enumerate}
         \item visualizzare i documenti caricati;
         \item selezionare un documento con un tag associato;
         \item rimuovere il tag al documento.
     \end{enumerate}& UC-7 & \textcolor{xmarkcolor}{\ding{55}}  \\
     \hline
-     TA-7 & Verificare che l’utente quando voglia creare un tag possa:
+     TA-10 & Verificare che l’utente, nel creare un tag, possa:
     \begin{enumerate}
         \item visualizzare i tag già esistenti nel sistema;
         \item inserire il nome del nuovo tag;
@@ -347,7 +336,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
         \item inserire la descrizione del nuovo tag.
     \end{enumerate}& UC-8,\newline UC-8.1,\newline UC-8.2, \newline UC-8.3 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TA-8 & Verificare che l’utente possa:
+    TA-11 & Verificare che l’utente possa:
     \begin{enumerate}
         \item visualizzare i tag già esistenti nel sistema;
         \item visualizzare un singolo;
@@ -355,102 +344,91 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
         \item visualizzare la descrizione del tag.
     \end{enumerate}& UC-9,\newline UC-10,\newline UC-10.1,\newline UC-10.2,\newline UC-10.3 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-     TA-9 & Verificare che l’utente possa:
+     TA-12 & Verificare che l’utente possa:
     \begin{enumerate}
         \item visualizzare i tag già esistenti nel sistema;
         \item selezionare un singolo tag;
-        \item rimuovere il tag selezionato dal sistema.
-        
+        \item eliminare il tag selezionato dal sistema.
     \end{enumerate}& UC-11 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-     TA-10 & Verificare che l’utente possa:
+     TA-13 & Verificare che l’utente possa:
     \begin{enumerate}
-        \item rimuovere un documento presente nel sistema;
-        \item confermare la rimozione del documento.
-        
-    \end{enumerate}& UC-12,\newline UC-12.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+        \item eliminare un documento presente nel sistema;
+        \item confermare l'eliminazione del documento.
+    \end{enumerate}& UC-12,\newline UC-12.1 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
-    TA-11 & Verificare che l’utente, quando carica un documento, possa:
+    TA-14 & Verificare che l’utente, nel caricare un documento, possa:
     \begin{enumerate}
-        \item caricare un documento tramite file system;
-        \item caricare un documento tramite trascinamento.
-        
-    \end{enumerate}& UC-13,\newline UC-13.1,\newline UC-13.2 & \textcolor{xmarkcolor}{\ding{55}} \\
+        \item caricarlo tramite file system;
+        \item caricarlo tramite trascinamento.
+    \end{enumerate}& UC-13,\newline UC-13.1,\newline UC-13.2 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
-    TA-12 & Verificare che il sistema, quando deve inviare un messaggio d'errore in caricamento file all'utente, possa:
+    TA-15 & Verificare che il sistema, quando deve inviare un messaggio d'errore in caricamento file all'utente, possa:
     \begin{enumerate}
         \item mostrare un messaggio d'errore nel caso il nome del file sia già presente;
         \item mostrare un messaggio d'errore nel caso il formato del file non sia accettato;
         \item mostrare un messaggio d'errore nel caso il file sia corrotto.
         
-    \end{enumerate}& UC-14, \newline UC-14.1,\newline UC-14.2,\newline UC-14.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-14, \newline UC-14.1, \newline UC-14.3 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
+    TA-16 & Verificare che il sistema mostri un messaggio d'errore nel caso venga tentato il caricamento di un file non supportato.& UC-14.2 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
 
-    TA-13 & Verificare che l’utente, quando deve modificare lo stato di un documento, possa:
+    TA-17 & Verificare che l’utente, quando deve modificare lo stato di un documento, possa:
     \begin{enumerate}
-        \item bloccare un documento;
-        \item sbloccare un documento.
-        
-    \end{enumerate}& UC-15,\newline UC-16 & \textcolor{xmarkcolor}{\ding{55}} \\
+        \item bloccare un documento già visibile;
+        \item sbloccare un documento già invisibile.
+    \end{enumerate}& UC-15,\newline UC-16 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
     
-    TA-14 & Verificare che l’utente, prima di inviare domande al chatbot, possa:
+    TA-18 & Verificare che l’utente, prima di inviare domande al chatbot, possa:
     \begin{enumerate}
         \item visualizzare la lista delle lingue supportate;
         \item selezionare una lingua.
-        
     \end{enumerate}& UC-17,\newline UC-18 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-
-    TA-15 & Verificare che l’utente, quando deve inviare domande al chatbot, possa:
+    TA-19 & Verificare che l’utente, quando deve inviare domande al chatbot, possa inserire la domanda in una barra di digitazione.& UC-19.1 & \textcolor{cmarkcolor}{\ding{51}} \\
+    \hline
+    TA-20 & Verificare che l’utente, quando deve inviare domande al chatbot, possa:
     \begin{enumerate}
-        \item digitare la domanda in una barra di digitazione;
         \item inserire la domanda tramite input vocale;
         \item visualizzare un errore a causa della mancata ricezione dell'input vocale.
-        
-    \end{enumerate}& UC-19,\newline UC-19.1,\newline UC-19.2,\newline UC-20 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-19.2,\newline UC-20 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TA-16 & Verificare che l’utente, una volta inviata una domanda, possa:
+    TA-21 & Verificare che l’utente, una volta inviata una domanda, possa:
     \begin{enumerate}
         \item visualizzare la risposta;
         \item visualizzare una risposta di cortesia;
         \item visualizzare un errore a causa del mancato invio di una risposta.
-
-    \end{enumerate}& UC-21,\newline UC-21.1,\newline UC-21.2,\newline UC-22 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-21,\newline UC-21.1,\newline UC-21.2,\newline UC-22 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
-     TA-17 & Verificare che l’utente possa:
+     TA-22 & Verificare che l’utente possa:
     \begin{enumerate}
         \item creare una nuova sessione;
         \item visualizzare la lista di sessioni aperte;
         \item visualizzare una singola sessione;
         \item eliminare una sessione;
         \item confermare l'eliminazione di una sessione.
-        
-        
-    \end{enumerate}& UC-23,\newline UC-24,\newline UC-24.1,\newline UC-25,\newline UC-25.1 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-23,\newline UC-24,\newline UC-24.1,\newline UC-25,\newline UC-25.1 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
-    TA-18 & Verificare che l'utente, dopo aver selezionato una sessione, possa:
+    TA-23 & Verificare che l'utente, dopo aver selezionato una sessione, possa:
     \begin{enumerate}
         \item visualizzare la chat history;
         \item eliminare la chat history;
         \item confermare l'eliminazione della chat history.
-        
-    \end{enumerate}& UC-26,\newline UC-27,\newline UC-27.1 & \textcolor{xmarkcolor}{\ding{55}}  \\
+    \end{enumerate}& UC-26,\newline UC-27,\newline UC-27.1 & \textcolor{cmarkcolor}{\ding{51}}  \\
     \hline
-    
-     TA-19 & Verificare che l'utente, visualizzando una risposta, possa:
+     TA-24 & Verificare che l'utente, visualizzando una risposta, possa:
     \begin{enumerate}
         \item visualizzare le informazioni della risposta;
         \item visualizzare il documento da cui sono tratte;
         \item visualizzare la pagina del documento da cui sono tratte;
         \item ascoltare la risposta.
-        
-    \end{enumerate}& UC-28,\newline UC-28.1,\newline UC-28.2,\newline UC-29 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \end{enumerate}& UC-28,\newline UC-28.1,\newline UC-28.2 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
-
+    TA-25 & Verificare che l'utente possa ascoltare la risposta ricevuta.& UC-29 & \textcolor{xmarkcolor}{\ding{55}} \\
+    \hline
     \rowcolor{white} \caption{Insieme dei test di accettazione} 
-    
-  %  \label{tab:testActzn}
 \end{xltabular}
 \endgroup
 
@@ -616,7 +594,7 @@ Ogni test sarà identificato da un codice alfanumerico, da una descrizione gener
     \hline
     TS-75 & Verificare che il sistema processi correttamente ogni documento, tra i formati supportati, con dimensione fino ai 500KB. & RVO-14 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
-    TS-76 & Verificare che il sistema processi correttamente file audio, tra i formati supportati, di dimensione fino a 5MB. & RVZ-15 & \textcolor{xmarkcolor}{\ding{55}} \\
+    TS-76 & Verificare che il sistema processi correttamente file audio, tra i formati supportati, di dimensione fino a 5MB. & RVZ-15 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
     TS-77 & Verificare che il sistema funzioni correttamente nel browser Google Chrome dalla versione 110 e successive. & RVO-16 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
