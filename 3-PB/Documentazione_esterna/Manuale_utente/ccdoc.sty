@@ -1,0 +1,80 @@
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage[english, italian]{babel}
+\usepackage[headheight=30pt, textheight=590pt, footskip=50pt, includeheadfoot]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{anyfontsize}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xltabular}
+\usepackage{caption}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{subfig}
+\usepackage{colortbl}
+\usepackage{pifont}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{makecell}
+\usepackage{enumitem}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+\usetikzlibrary{positioning, calc}
+
+\pagestyle{fancy}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  %\fancyhead[L]{\includegraphics[width=0.1\textwidth]{logo.png}}
+  %\fancyhead[C]{}
+  %\fancyhead[R]{\leftmark}
+  \fancyfoot[L]{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[R]{codingcowboys.swe@gmail.com}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=0.1\textwidth]{logo.png}}
+\fancyhead[C]{}
+\fancyhead[R]{\leftmark}
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{codingcowboys.swe@gmail.com}
+
+
+\renewcommand{\chaptermark}[1]{%
+\markboth{#1}{}}
+
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{}{20pt}{\Huge}
+
+\titlespacing*{\chapter}{0pt}{-60pt}{40pt}
+
+\definecolor{primarycolor}{HTML}{008ba4}
+\definecolor{secondarycolor}{HTML}{b2dce3}
+\definecolor{colorline}{HTML}{006172}
+\definecolor{oddrow}{HTML}{b2dce3}
+\definecolor{evenrow}{HTML}{7fc5d1}
+\definecolor{headerrow}{HTML}{006f83}
+\definecolor{cmarkcolor}{HTML}{00a46b}
+\definecolor{xmarkcolor}{HTML}{a41900}
+
+\lstset{frame=tb,
+  language=bash,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%\setcounter{secnumdepth}{1}
+\newcommand{\ccgloss}[1]{\emph{#1\ped{G}}}
