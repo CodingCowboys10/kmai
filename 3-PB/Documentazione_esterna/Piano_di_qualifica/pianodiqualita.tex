@@ -42,7 +42,7 @@ La qualità di un progetto è fortemente influenzata dalla qualità dei processi
     \hline
     MPC-12 & Budget at Completion & - & - \\
     \hline
-    MPC-13 & Code Coverage & 75\% & 100\% \\
+    MPC-13 & \ccgloss{Code Coverage} & 75\% & 100\% \\
     \hline
     MPC-14 & Misure di mitigazione insufficienti & 3 & 0 \\
     \hline
@@ -61,7 +61,7 @@ La qualità di un progetto è fortemente influenzata dalla qualità dei processi
     \begin{equation}
         100\biggl(\frac{\text{Budget Consuntivato} - \text{Budget Preventivato}}{\text{Budget Preventivato}}\biggr)
     \end{equation}
-    \item[Descrizione:] Questa metrica valuta la percentuale di variazione del budget tra preventivo e consuntivo in uno sprint. Il valore è positivo quando viene preventivato un budget inferiore a quello effettivamente utilizzato, mentre è negativo quando viene preventivato un budget maggiore a quello effettivamente utilizzato.
+    \item[Descrizione:] Questa metrica valuta la percentuale di variazione del budget tra \ccgloss{preventivo} e \ccgloss{consuntivo} in uno \ccgloss{sprint}. Il valore è positivo quando viene preventivato un budget inferiore a quello effettivamente utilizzato, mentre è negativo quando viene preventivato un budget maggiore a quello effettivamente utilizzato.
 \end{description}
 
 \subsection{Varianza dell’impegno orario}
@@ -226,7 +226,7 @@ La qualità di un progetto è fortemente influenzata dalla qualità dei processi
     \endhead
     MPD-1 & Indice di Gulpease & \ge 40 & \ge 60 \\
     \hline
-    MPD-2 & Requisiti obbligatori soddisfatti & 100\% & 100\% \\
+    MPD-2 & \ccgloss{Requisiti} obbligatori soddisfatti & 100\% & 100\% \\
     \hline
     MPD-3 & Requisiti desiderabili soddisfatti & \ge 0\% & 100\% \\
     \hline
@@ -285,11 +285,11 @@ La qualità di un progetto è fortemente influenzata dalla qualità dei processi
 \newpage
 \section{Campagna di verifica} \label{sec:test}
 In questa sezione viene defintita la campagna di verifica tramite i test finalizzati a dimostrare l'adempimento, da parte del prodotto del progetto, ai requisiti individuati nella relativa fase di analisi.\\
-Tali test, coerentemente a quanto prefigge il V model e il documento Norme\_di\_progetto\_v2.0, sono individuati parallelamente alle attività di sviluppo.\\
+Tali test, coerentemente a quanto prefigge il \ccgloss{V model} e il documento Norme\_di\_progetto\_v2.0, sono individuati parallelamente alle attività di sviluppo.\\
 Ogni test sarà identificato da un codice alfanumerico, da una descrizione generale, dall'identificazione del requisito da cui tale test deriva e dal tracciamento della implementazione, o meno, di tale nel prodotto.
 
 \subsection{Test di accettazione}
-I seguenti test di accettazione hanno costituito la base per l'approvazione del Minimum Viable Product, verificando quali funzionalità sono state implementate nel prodotto. Essi sono stati definiti pensando ai test necessari per il collaudo di un prodotto finito.
+I seguenti test di accettazione hanno costituito la base per l'approvazione del \ccgloss{Minimum Viable Product}, verificando quali funzionalità sono state implementate nel prodotto. Essi sono stati definiti pensando ai test necessari per il collaudo di un prodotto finito.
 
 \begingroup
 \setlength{\tabcolsep}{10pt}
@@ -301,7 +301,7 @@ I seguenti test di accettazione hanno costituito la base per l'approvazione del 
     \hline
     \endhead
     \hline
-    TA-1 & Verificare che l’utente possa selezionare un modello di LLM con cui interagire. & UC-1,\newline UC-2 & \textcolor{cmarkcolor}{\ding{51}}  \\
+    TA-1 & Verificare che l’utente possa selezionare un modello di \ccgloss{LLM} con cui interagire. & UC-1,\newline UC-2 & \textcolor{cmarkcolor}{\ding{51}}  \\
     \hline
     TA-2 & Verificare che l’utente possa visualizzare i documenti presenti sul modello selezionato.
      & UC-3 &\textcolor{cmarkcolor}{\ding{51}}  \\
@@ -380,7 +380,7 @@ I seguenti test di accettazione hanno costituito la base per l'approvazione del 
     \end{enumerate}& UC-15,\newline UC-16 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
     
-    TA-18 & Verificare che l’utente, prima di inviare domande al chatbot, possa:
+    TA-18 & Verificare che l’utente, prima di inviare domande al \ccgloss{chatbot}, possa:
     \begin{enumerate}
         \item visualizzare la lista delle lingue supportate;
         \item selezionare una lingua.
@@ -412,7 +412,7 @@ I seguenti test di accettazione hanno costituito la base per l'approvazione del 
     \hline
     TA-23 & Verificare che l'utente, dopo aver selezionato una sessione, possa:
     \begin{enumerate}
-        \item visualizzare la chat history;
+        \item visualizzare la \ccgloss{chat history};
         \item eliminare la chat history;
         \item confermare l'eliminazione della chat history.
     \end{enumerate}& UC-26,\newline UC-27,\newline UC-27.1 & \textcolor{cmarkcolor}{\ding{51}}  \\
@@ -568,7 +568,7 @@ I seguenti test di accettazione hanno costituito la base per l'approvazione del 
     \hline
     TS-63 & Verificare che il sistema salvi, in modo persistente, i messaggi scambiati tra utente e chatbot. & RFO-63 & \textcolor{cmarkcolor}{\ding{51}}\\
     \hline
-    TS-64 & Verificare che il sistema effettui correttamente una ricerca semantica (semantic search) tra la domanda posta dall'utente e i gli embedding dei documenti caricati restituendo il documento, o pagina di esso, inerente alla domanda. & RFO-64 & \textcolor{cmarkcolor}{\ding{51}} \\
+    TS-64 & Verificare che il sistema effettui correttamente una ricerca semantica (semantic search) tra la domanda posta dall'utente e i gli \ccgloss{embedding} dei documenti caricati restituendo il documento, o pagina di esso, inerente alla domanda. & RFO-64 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
     TS-65 & Verificare che il sistema interroghi il LLM scelto in base alla domanda posta dall'utente e al relativo documento. & RFO-65 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
@@ -582,11 +582,11 @@ I seguenti test di accettazione hanno costituito la base per l'approvazione del 
     \hline
     TS-70 & Verificare che il sistema supporti il caricamento di file con formato .mp4. & RFZ-70 & \textcolor{xmarkcolor}{\ding{55}} \\
     \hline
-    TS-71 & Verificare che il sistema permetta l'utilizzo di LLM tramite OpenAI. & RVO-1 & \textcolor{cmarkcolor}{\ding{51}}\\
+    TS-71 & Verificare che il sistema permetta l'utilizzo di LLM tramite \ccgloss{OpenAI}. & RVO-1 & \textcolor{cmarkcolor}{\ding{51}}\\
     \hline
-    TS-72 & Verificare che il sistema permetta il riconoscimento vocale tramite Whisper di OpenAI. & RVD-2 & \textcolor{xmarkcolor}{\ding{55}}\\
+    TS-72 & Verificare che il sistema permetta il riconoscimento vocale tramite \ccgloss{Whisper} di OpenAI. & RVD-2 & \textcolor{xmarkcolor}{\ding{55}}\\
     \hline
-    TS-73 & Verificare che il sistema permetta l'utilizzo di LLM locali tramite Ollama. & RVO-3 & \textcolor{cmarkcolor}{\ding{51}} \\
+    TS-73 & Verificare che il sistema permetta l'utilizzo di LLM locali tramite \ccgloss{Ollama}. & RVO-3 & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
     TS-74 & Verificare che il sistema funzioni correttamente con la presenza di 1000 documenti, tra i formati supportati, in esso. & RVO-13 & \textcolor{cmarkcolor}{\ding{51}}\\
     \hline
@@ -805,7 +805,7 @@ I seguenti test di accettazione hanno costituito la base per l'approvazione del 
     \rowcolor{headerrow} \textbf{\textcolor{white}{Codice}} & \textbf{\textcolor{white}{Descrizione}} & \textbf{\textcolor{white}{Stato}}\\
     \hline
     \endhead
-    TU-1 & Verificare che il componente ChatForm venga renderizzato correttamente. & \textcolor{cmarkcolor}{\ding{51}} \\
+    TU-1 & Verificare che il \ccgloss{componente} ChatForm venga renderizzato correttamente. & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
     TU-2 & Verificare che il componente ChatList venga renderizzato correttamente. & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
@@ -885,7 +885,7 @@ I seguenti test di accettazione hanno costituito la base per l'approvazione del 
     \hline
     TU-40 & Verificare che GetDocumentContentController restituisca una risposta con status 500 in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
-    TU-41 & Verificare che la server action addChat lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
+    TU-41 & Verificare che la server action addChat lanci un errore contenente il messaggio ricevuto dal \ccgloss{controller} in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
     TU-42 & Verificare che la server action addChatMessages lanci un errore contenente il messaggio ricevuto dal controller in caso di operazione con esito negativo. & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
@@ -917,7 +917,7 @@ I seguenti test di accettazione hanno costituito la base per l'approvazione del 
     \hline
     TU-56 & Verificare che il metodo getIdsEmbedding di EmbeddingRepository restituisca correttamente gli id degli embedding recuperati. & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
-    TU-57 & Verificare che il metodo addMessages di PostgresDataSource effettui le query corrette al database per salvare un nuovo messaggio. & \textcolor{cmarkcolor}{\ding{51}} \\
+    TU-57 & Verificare che il metodo addMessages di PostgresDataSource effettui le query corrette al \ccgloss{database} per salvare un nuovo messaggio. & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
     TU-58 & Verificare che il metodo addOne di PostgresDataSource effettui le query corrette al database per creare una nuova sessione. & \textcolor{cmarkcolor}{\ding{51}} \\
     \hline
