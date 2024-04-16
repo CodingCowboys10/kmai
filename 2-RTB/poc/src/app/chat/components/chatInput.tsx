@@ -16,7 +16,7 @@ function ChatInput({ input, handleInputChange, sendMessage }: InsertProps){
                 placeholder="Inserisci una domanda ..."
                 value={input}
                 onChange={handleInputChange}
-                    onKeyDown={(e) => {if (e.key === 'Enter'){
+                onKeyDown={(e) => {if (e.key === 'Enter'){
                         e.preventDefault();
                         sendMessage(e);
                     }}}

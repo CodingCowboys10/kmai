@@ -1,0 +1,18 @@
+#Use node 20.10.0 LTS
+FROM node:20.10.0-alpine
+
+#change the working directory on the docker image to /app
+WORKDIR /app
+
+#copy the package.json to the /app directory
+COPY package.json package-lock.json ./
+
+#install the dependencies
+RUN npm install
+
+COPY . .
+
+#run the application
+RUN npm run build
+
+CMD ["npm", "start"]
